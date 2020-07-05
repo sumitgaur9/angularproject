@@ -5,7 +5,7 @@ import { RegistrationComponent } from '../app/registration/registration.componen
 import { HomeComponent } from '../app/home/home.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'home', component: HomeComponent },
