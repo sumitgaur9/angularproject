@@ -1,0 +1,18 @@
+img {width:100%;}
+
+
+.loginSection {
+    /* background-image:url(../../assets/images/bg.jpg); */
+    /* background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg'); */
+background-color: lightcyan;
+
+	/* background-position:top center;
+	background-repeat:repeat-y;
+    background-size:cover;
+    display: inline-block;
+    width: 100%;
+    height: calc(100vh - 62px); */
+}  
+
+
+
