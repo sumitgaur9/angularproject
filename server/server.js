@@ -7,7 +7,7 @@ const path = require('path');
  var app_path='../dist/newProject';
 
 
- 
+ //testing
 // Serve only the static files form the angularapp directory
 app.use(express.static(path.join(__dirname,app_path)))
 
