@@ -2,10 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 // import { ToastrService } from 'ngx-toastr';
-// import { AuthService } from 'src/app/services/auth.service';
- import { Router } from '@angular/router';
-// import { UserService } from 'src/app/services/user.service';
-// import { UtililtyFunctions } from 'src/app/utils/utils';
+import { APIService } from 'src/app/service/api.service';
+import { Router } from '@angular/router';
 declare var $: any;
 
 
@@ -16,75 +14,40 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-
-  showPopup: boolean = false;
-  submitted: boolean = false;
-  errorMessage:string="";
-  calledFrom: string = "login";
-  resetPasswordToken:string = "";
-  userEmail = null;
-  showForgotPasswordtPopup = false;
-  verifyOtp = false;
-  showFirstTimePassPopup = false;
+  public submitted: boolean = false;
+  public errorMessage: string = "";
 
   public loginInfo = new FormGroup({
-    usernameOrEmail: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   });
 
-
-
-
-
-    constructor(private router: Router) { }
+  constructor(private router: Router, private _apiservice: APIService) { }
 
   ngOnInit() {
   }
 
-  
   get f() { return this.loginInfo.controls; }
 
-  // loginUser() {
-  //   this.submitted = true;
-  //   if (this.loginInfo.invalid) {
-  //     return;
-  //   }
-  //   this.errorMessage="";
-  //   let values = this.loginInfo.value;
-  //   this._authService.signIn(values).subscribe(data => {
-  //     if (data && data.data) {
-  //       console.log("loginUserResponseData..", data.data);
-  //       if (data.data.accessToken && data.data.accessToken != "" && data.data.accessToken != null) {
-  //         let datainput: any = {};
-  //         this._userService.getCurrentUserData(datainput).subscribe(data => {
-  //           if (data && data.data) {
-  //             this.router.navigate(['']);              
-  //             this.utilityservice.onLoginSuccessfully.next();
-  //           }
-  //         }, error => {
-  //         });
-  //       }
-  //     }
-  //   }, error => {
-  //     this.errorMessage = error.error.message;
-  //   });
-  // }
-
-  // getCurrentUserData() {
-  //   let datainput: any = {};
-  //   this._userService.getCurrentUserData(datainput).subscribe(data => {
-  //     if (data && data.data) {
-  //       this.router.navigate(['']);    
-  //       this.utilityservice.onLoginSuccessfully.next();
-  //     }
-  //   }, error => {
-
-  //   });
-  // }
- 
-
-
-  
+  loginUser() {
+    this.submitted = true;
+    if (this.loginInfo.invalid) {
+      return;
+    }
+    this.errorMessage = "";
+    let values = this.loginInfo.value;
+    this._apiservice.signIn(values).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data.data);
+        if (data.token && data.token != "" && data.token != null) {
+          let datainput: any = {};
+          this.router.navigate(['/home']);
+        }
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
 
 }
 

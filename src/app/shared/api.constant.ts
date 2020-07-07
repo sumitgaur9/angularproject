@@ -1,0 +1,6 @@
+export const API_PATH: any = {
+    'Commaon_Path':'https://mongowithnode.herokuapp.com/',
+    'API_VERSION_V1': 'api/userModel/',
+    'login': 'users/login',
+    'registration': '/testimonial/listing',
+}
