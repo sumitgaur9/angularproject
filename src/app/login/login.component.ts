@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UtililtyFunctions } from 'src/app/utils/utils';
 // import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
@@ -22,9 +23,10 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", [Validators.required]),
   });
 
-  constructor(private router: Router, private _apiservice: APIService) { }
+  constructor(private router: Router, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
+    localStorage. clear();
   }
 
   get f() { return this.loginInfo.controls; }
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
         if (data.token && data.token != "" && data.token != null) {
           let datainput: any = {};
           this.router.navigate(['/home']);
+          this.utilityservice.onLoginSuccessfully.next();
         }
       }
     }, error => {

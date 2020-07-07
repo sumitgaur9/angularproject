@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,23 +8,30 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'newProject';
 
   showHeaderFooter: boolean = true;
 
-
   constructor(private router: Router) {
-
+    router.events.subscribe((val) => {
+      this.showHeaderFooter = true;
+      if (location.pathname == '/login' ||location.pathname == '/registration' ) {
+        this.showHeaderFooter = false;
+      }
+  });
   }
 
   ngOnInit() {
     
   }
 
-  ngAfterViewInit(){
-    if (this.router.url == "/#/registration" || this.router.url == "/#/login") {
-      this.showHeaderFooter = false;
-    } else { this.showHeaderFooter = true; }
-  }
+  // ngAfterViewInit(){
+  //   setTimeout(() => {
+  //     if (this.router.url == "/registration" || this.router.url == "/login") {
+  //       this.showHeaderFooter = false;
+  //     } else { this.showHeaderFooter = true; }
+  //   }, 2);
+   
+  // }
 }
