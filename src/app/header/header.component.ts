@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtililtyFunctions } from 'src/app/utils/utils';
-
+import { Router } from '@angular/router';
+import { APIService } from 'src/app/service/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,10 +16,9 @@ export class HeaderComponent implements OnInit {
   public isUserLoggedIn = false;
   public currentLoggedUserData: any = {};
   public username = "";
+public errorMessage:string='';
 
-  constructor(private utilityservice:UtililtyFunctions) { 
-
-
+    constructor(private utilityservice:UtililtyFunctions,private router: Router, private _apiservice: APIService, private toastr: ToastrService) { 
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
       let userSubs = this.utilityservice.isUserLoggedIn();
       if (userSubs && userSubs != null) {
@@ -35,6 +36,27 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+
+  logout() {
+    let dataparam:any={};
+    this._apiservice.logout(dataparam).subscribe(data => {
+     // if (data) {
+        this.showSuccess();
+        localStorage.clear();
+        this.router.navigate(['/login']);
+     // }
+    }, error => {
+      if (error && error.error && error.error.message) {
+        this.errorMessage = error.error.message;
+      }
+    });
+  }
+
+
+  showSuccess() {
+    this.toastr.success('thanks for being my friend mr gauri');
   }
 
 }

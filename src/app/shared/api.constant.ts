@@ -4,5 +4,5 @@ export const API_PATH: any = {
     'login': 'users/login',
     'registration': 'users',
     'testtokenheader': 'users/me',
-
+    'logout': 'users/me/logout',
 }

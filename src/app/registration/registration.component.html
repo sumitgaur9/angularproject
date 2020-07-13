@@ -33,14 +33,23 @@
                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
                         </div>
                         <div class="form-group col-md-6">
-                                  
+                          <select formControlName="role">
+                            <option selected>Role ...</option>
+                                    <option value="1"> Individual</option>
+                                    <option value="2"> Doctor</option>
+                                    <option value="3"> Nurse</option>
+                                    <option value="4"> Physio</option>
+                            
+                          </select> 
+
+<!-- 
                                   <select id="inputState" class="form-control">
-                                    <option selected>Choose ...</option>
-                                    <option> Individual</option>
+                                    <option selected>Role ...</option>
+                                    <option > Individual</option>
                                     <option> Doctor</option>
                                     <option> Nurse</option>
                                     <option> Physio</option>
-                                  </select>
+                                  </select> -->
                         </div>
                         <div class="form-group col-md-6">
                           <input id="password" name="Password" placeholder="Password" class="form-control" type="text">

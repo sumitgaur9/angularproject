@@ -1,0 +1,140 @@
+#home.first-section {
+    position: relative;
+    min-height: 650px;
+}
+.text-contant {
+    float: left;
+    width: 80%;
+    margin: 5px 10% 0;
+    padding: 40px 0 40px;
+    border-radius: 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.text-contant .center {
+    float: left;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+}
+.icon {
+    background: #fff;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid #39b49b 3px;
+}
+.icon img {
+    width: 50px;
+    margin-top: 2px;
+}
+.text-contant h2 a, .text-contant h2 a:hover, .text-contant h2 a:focus {
+    color: #222;
+    opacity: 1;
+}
+
+.post-media {
+    position: relative;
+}
+.post-media img {
+    width: 100%;
+}
+.playbutton {
+    position: absolute;
+    color: #ffffff !important;
+    top: 40%;
+    font-size: 60px;
+    z-index: 12;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: -20px auto;
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    padding: 120px 0;
+    position: relative;
+    width: 100%;
+}
+
+.service-time.middle::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    background: transparent;
+    position: absolute;
+    bottom: 0px;
+    z-index: 0;
+    border-bottom: solid transparent 65px;
+    border-right: solid #a0cff7 70px;
+    /* left: -70px; */
+    left: 0px;
+
+}
+
+.service-time.middle::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    background: transparent;
+    position: absolute;
+    bottom: 0px;
+    z-index: 0;
+    border-bottom: solid transparent 65px;
+    border-left: solid #a0cff7 70px;
+    right: -70px;
+    right: 0px;
+
+}
+
+.service-time.one {
+    position: relative;
+    z-index: 1;
+}
+.service-time {
+    float: left;
+    width: 100%;
+    min-height: 350px;
+    margin-top: -350px;
+    padding: 50px;
+    color: #fff;
+    position: relative;
+}
+.info-icon {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 75px;
+    line-height: normal;
+    margin-bottom: 20px;
+}
+.service-time h3 {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    margin: -5px 0 15px 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: none;
+}
+.service-time p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+}

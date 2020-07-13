@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
-    localStorage. clear();
+    localStorage.clear();
   }
 
   get f() { return this.loginInfo.controls; }
