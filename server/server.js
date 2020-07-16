@@ -4,8 +4,7 @@ const app = express();
 
 const path = require('path');
  const PORT=process.env.PORT || 5000;
- var app_path='../dist/angularproject';
-
+ var app_path='../dist/newProject';
 
  //testing
 // Serve only the static files form the angularapp directory
