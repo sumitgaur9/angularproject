@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       this.showHeaderFooter = true;
-      if (location.pathname == '/login' ||location.pathname == '/registration' ) {
+
+      if (location.hash == '#/login' ||location.hash == '#/registration' ) {
         this.showHeaderFooter = false;
       }
   });
