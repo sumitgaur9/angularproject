@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 import { LoginComponent } from '../app/login/login.component';
 import { RegistrationComponent } from '../app/registration/registration.component';
 import { HomeComponent } from '../app/home/home.component';
@@ -15,8 +16,11 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [],
-    imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })], // { useHash: true } -- testing for 404 problem on ctrl+F5
-    exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)], // { useHash: true } -- testing for 404 problem on ctrl+F5
+    exports: [RouterModule],
+    providers : [
+      Location, {provide: LocationStrategy, useClass: PathLocationStrategy}
+    ]
 })
 export class AppRoutingModule { }
 
