@@ -10,6 +10,44 @@ export class APIService {
 
     constructor(public http: HttpClient) { }
 
+
+    Save_DoctorProfile(data) {
+      let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.email}`
+      return this.http.post<any>(APIURL, data)
+          .pipe(map(userData => {
+              return userData;
+          }));
+  }
+
+
+  Get_DoctorsList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorsList}`
+    return this.http.get<any>(APIURL,{params: params})
+    .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+    }));
+  }
+
+  Save_PatientProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PatientProfile}`
+    return this.http.post<any>(APIURL, data)
+        .pipe(map(userData => {
+            return userData;
+        }));
+}
+
+Get_PatientsList(params) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientsList}`
+  return this.http.get<any>(APIURL,{params: params})
+  .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+  }));
+}
+
     signIn(data) {
         let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.login}`
         return this.http.post<any>(APIURL, data)
@@ -22,7 +60,7 @@ export class APIService {
     }
 
 
-    
+
   registration(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.registration}`
     return this.http.post<any>(APIURL, data)
