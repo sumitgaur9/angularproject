@@ -16,11 +16,12 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [],
-    imports: [RouterModule.forRoot(routes)], // { useHash: true } -- testing for 404 problem on ctrl+F5
+    imports: [RouterModule.forRoot(routes, { useHash: true })], // { useHash: true } -- testing for 404 problem on ctrl+F5 
+  //  imports: [RouterModule.forRoot(routes)], // { useHash: true } -- testing for 404 problem on ctrl+F5
     exports: [RouterModule],
-    providers : [
-      Location, {provide: LocationStrategy, useClass: PathLocationStrategy}
-    ]
+    // providers : [
+    //   Location, {provide: LocationStrategy, useClass: PathLocationStrategy}
+    // ]
 })
 export class AppRoutingModule { }
 
