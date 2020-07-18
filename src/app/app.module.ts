@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { QCommonModule } from 'src/app/common/common.module';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthInterceptor } from './service/auth-interceptor.service';
 import { LoaderInterceptorService } from './service/loader-interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
+import { DoctorEditdisplaylistComponent } from './doctoreditdisplaylist/doctoreditdisplaylist.component';
+import { ModalComponent } from './modal/modal.component';
+//import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 
 
 @NgModule({
@@ -29,7 +33,10 @@ import { LoaderComponent } from './loader/loader.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    DoctorEditdisplaylistComponent,
+    ModalComponent,
+   // DoctorprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,10 +45,14 @@ import { LoaderComponent } from './loader/loader.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
-
-
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: true,
+    }), // ToastrModule added
+    QCommonModule
   ],
+  //schemas: [NO_ERRORS_SCHEMA],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

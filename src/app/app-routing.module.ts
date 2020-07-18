@@ -4,12 +4,15 @@ import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common'
 import { LoginComponent } from '../app/login/login.component';
 import { RegistrationComponent } from '../app/registration/registration.component';
 import { HomeComponent } from '../app/home/home.component';
+import { DoctorEditdisplaylistComponent } from '../app/doctoreditdisplaylist/doctoreditdisplaylist.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'doctorlist', component: DoctorEditdisplaylistComponent },
+
 
     { path: '**', component: LoginComponent }
 ];

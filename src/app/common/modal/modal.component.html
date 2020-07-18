@@ -1,0 +1,20 @@
+<div [attr.id]="modalId" class="modal" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" tabindex='-1'>
+    <div class="modal-dialog popupModel">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            (click)="closePopup()">&times;</button>
+          <h3 class="modal-title" [innerHtml]="title"></h3>
+        </div> -->
+        <!-- <button type="button" class="closePopup" data-dismiss="modal" aria-hidden="true"
+            (click)="closePopup()">&times;</button> -->
+        <div class="modal-body">
+          <ng-content select="ad-modal-body"></ng-content>
+        </div>
+        <div class="modal-footer">
+          <ng-content select="ad-modal-footer"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+  
