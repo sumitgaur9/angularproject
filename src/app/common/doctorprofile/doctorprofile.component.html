@@ -1,4 +1,4 @@
-<form [formGroup]="doctorform" (ngSubmit)="saveDoctor()">
+<form [formGroup]="doctorform" (ngSubmit)="Save_DoctorProfile()">
 
   <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
     <ad-modal-body>
@@ -64,14 +64,14 @@
                             <input type="text" class="form-control" id="timeAvailablity" name="timeAvailablity"
                             placeholder="timeAvailablity" formControlName="timeAvailablity">                          </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
                               <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                             </div>
                             <input type="text" class="form-control" id="nombre" name="nombre"
                             placeholder="Name" formControlName="email">                          </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">

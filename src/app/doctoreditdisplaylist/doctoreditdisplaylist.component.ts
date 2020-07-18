@@ -4,6 +4,11 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppEnum } from 'src/app/shared/app.enum';
 
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { UtililtyFunctions } from 'src/app/utils/utils';
+import { ToastrService } from 'ngx-toastr';
+import { APIService } from 'src/app/service/api.service';
+
 declare var $: any;
 
 
@@ -20,13 +25,15 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public btnNewName:string='';
   public popuptitle:string;
   showForgotPasswordtPopup = false;
+  public errorMessage:string='';
+  public doctorListData:any=[];
 
 
-  constructor() { }
+  constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
     this.menuID = AppEnum.appListMenu.Doctor;
-
+this.Get_DoctorsList();
   //  this.pageInitailization();
 
 }
@@ -71,6 +78,30 @@ public openForgotPasswordPopup() {
     $('#forgotPasswordModal').modal('show');
   }, 100);
 }
+
+
+Get_DoctorsList() {
+  let dataobj={
+  };
+  this._apiservice.Get_DoctorsList(dataobj).subscribe(data => {
+    if (data) {
+      this.doctorListData=data;
+
+     // this.toastr.success('thanks to being a part of our platform');
+    //  this.CloseModal();
+     // this.router.navigate(['/doctorlist']);
+    //   if (data.token && data.token != "" && data.token != null) {
+    //     let datainput: any = {};
+    //    // this.router.navigate(['/home']);
+    // //    this.utilityservice.onLoginSuccessfully.next();
+    //   }
+    }
+  }, error => {
+    this.errorMessage = error.error.message;
+  });
+}
+
+
 
 
 

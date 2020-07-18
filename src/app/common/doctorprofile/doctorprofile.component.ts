@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class DoctorprofileComponent implements OnInit {
 
   public passwordPatternError = false;
 
-  constructor(private router: Router, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
 
   ngOnInit() {
@@ -51,24 +51,27 @@ export class DoctorprofileComponent implements OnInit {
 
   
 
-  // Save_DoctorProfile() {
-  //   this.submitted = true;
-  //   if (this.doctorform.invalid) {
-  //     return;
-  //   }
-  //   this.errorMessage = "";
-  //   let values = this.doctorform.value;
-  //   this._apiservice.Save_DoctorProfile(values).subscribe(data => {
-  //     if (data) {
-  //       console.log("loginUserResponseData..", data.data);
-  //       if (data.token && data.token != "" && data.token != null) {
-  //         let datainput: any = {};
-  //        // this.router.navigate(['/home']);
-  //     //    this.utilityservice.onLoginSuccessfully.next();
-  //       }
-  //     }
-  //   }, error => {
-  //     this.errorMessage = error.error.message;
-  //   });
-  // }
+  Save_DoctorProfile() {
+    this.submitted = true;
+    if (this.doctorform.invalid) {
+      return;
+    }
+    this.errorMessage = "";
+    let values = this.doctorform.value;
+    this._apiservice.Save_DoctorProfile(values).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data.data);
+        this.toastr.success('thanks to being a part of our platform');
+        this.CloseModal();
+        this.router.navigate(['/doctorlist']);
+      //   if (data.token && data.token != "" && data.token != null) {
+      //     let datainput: any = {};
+      //    // this.router.navigate(['/home']);
+      // //    this.utilityservice.onLoginSuccessfully.next();
+      //   }
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
 }
