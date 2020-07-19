@@ -7,9 +7,12 @@ import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
 import { DoctorprofileComponent } from './doctorprofile/doctorprofile.component';
 import { PatientprofileComponent } from './patientprofile/patientprofile.component';
+import { NurseprofileComponent } from './nurseprofile/nurseprofile.component';
+import { PharmacistprofileComponent } from './pharmacistprofile/pharmacistprofile.component';
+import { PhyscotherapistprofileComponent } from './physcotherapistprofile/physcotherapistprofile.component';
 
 @NgModule({
-  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent],
+  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent],
    
   imports: [
     CommonModule,

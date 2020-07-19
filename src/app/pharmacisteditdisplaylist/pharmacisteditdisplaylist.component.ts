@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppEnum } from 'src/app/shared/app.enum';
@@ -11,11 +10,11 @@ import { APIService } from 'src/app/service/api.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-patienteditdisplaylist',
-  templateUrl: './patienteditdisplaylist.component.html',
-  styleUrls: ['./patienteditdisplaylist.component.css']
+  selector: 'app-pharmacisteditdisplaylist',
+  templateUrl: './pharmacisteditdisplaylist.component.html',
+  styleUrls: ['./pharmacisteditdisplaylist.component.css']
 })
-export class PatienteditdisplaylistComponent implements OnInit {
+export class PharmacisteditdisplaylistComponent implements OnInit {
 
   showpatientformpopup = false;
   public errorMessage: string = '';
@@ -52,5 +51,4 @@ export class PatienteditdisplaylistComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
-
 }

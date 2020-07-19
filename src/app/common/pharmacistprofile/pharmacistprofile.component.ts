@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
-@Component({
-  selector: 'app-patientprofile',
-  templateUrl: './patientprofile.component.html',
-  styleUrls: ['./patientprofile.component.css']
-})
-export class PatientprofileComponent implements OnInit {
 
+@Component({
+  selector: 'app-pharmacistprofile',
+  templateUrl: './pharmacistprofile.component.html',
+  styleUrls: ['./pharmacistprofile.component.css']
+})
+export class PharmacistprofileComponent implements OnInit {
+
+  
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
 

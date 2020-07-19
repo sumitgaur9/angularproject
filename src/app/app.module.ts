@@ -22,6 +22,9 @@ import { LoaderInterceptorService } from './service/loader-interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
 import { DoctorEditdisplaylistComponent } from './doctoreditdisplaylist/doctoreditdisplaylist.component';
 import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patienteditdisplaylist.component';
+import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
+import { PharmacisteditdisplaylistComponent } from './pharmacisteditdisplaylist/pharmacisteditdisplaylist.component';
+import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdisplaylist/physcotherapisteditdisplaylist.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 
 
@@ -36,6 +39,9 @@ import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patien
     LoaderComponent,
     DoctorEditdisplaylistComponent,
     PatienteditdisplaylistComponent,
+    NurseeditdisplaylistComponent,
+    PharmacisteditdisplaylistComponent,
+    PhyscotherapisteditdisplaylistComponent,
    // DoctorprofileComponent
   ],
   imports: [

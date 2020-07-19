@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppEnum } from 'src/app/shared/app.enum';
@@ -9,13 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 
 declare var $: any;
-
 @Component({
-  selector: 'app-patienteditdisplaylist',
-  templateUrl: './patienteditdisplaylist.component.html',
-  styleUrls: ['./patienteditdisplaylist.component.css']
+  selector: 'app-nurseeditdisplaylist',
+  templateUrl: './nurseeditdisplaylist.component.html',
+  styleUrls: ['./nurseeditdisplaylist.component.css']
 })
-export class PatienteditdisplaylistComponent implements OnInit {
+export class NurseeditdisplaylistComponent implements OnInit {
 
   showpatientformpopup = false;
   public errorMessage: string = '';

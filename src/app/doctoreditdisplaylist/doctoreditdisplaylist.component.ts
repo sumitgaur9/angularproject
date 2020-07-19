@@ -71,7 +71,7 @@ public closeForgotPasswordPopup() {
   $('#forgotPasswordModal').modal('hide');
 }
 
-public openForgotPasswordPopup() {
+public openDoctorProfilePopup() {
   this.showForgotPasswordtPopup = true;
   setTimeout(() => {
     $(window).scrollTop(0);

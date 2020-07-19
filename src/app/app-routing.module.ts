@@ -6,7 +6,9 @@ import { RegistrationComponent } from '../app/registration/registration.componen
 import { HomeComponent } from '../app/home/home.component';
 import { DoctorEditdisplaylistComponent } from '../app/doctoreditdisplaylist/doctoreditdisplaylist.component';
 import { PatienteditdisplaylistComponent } from '../app/patienteditdisplaylist/patienteditdisplaylist.component'
-
+import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
+import { PharmacisteditdisplaylistComponent } from './pharmacisteditdisplaylist/pharmacisteditdisplaylist.component';
+import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdisplaylist/physcotherapisteditdisplaylist.component';
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -14,6 +16,9 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'doctorlist', component: DoctorEditdisplaylistComponent },
     { path: 'patientlist', component: PatienteditdisplaylistComponent },
+    { path: 'nurselist', component: NurseeditdisplaylistComponent },
+    { path: 'pharmacistlist', component: PharmacisteditdisplaylistComponent },
+    { path: 'physcotherapistlist', component: PhyscotherapisteditdisplaylistComponent },
 
 
     { path: '**', component: LoginComponent }
