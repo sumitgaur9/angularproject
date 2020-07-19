@@ -20,7 +20,8 @@ export class RegistrationComponent implements OnInit {
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     name: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
-    role:new FormControl("",[Validators.required])
+    role:new FormControl("",[Validators.required]),
+    description:new FormControl("",[Validators.required]),
   });
 
   get f() { return this.userInfo.controls; }
