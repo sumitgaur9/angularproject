@@ -59,4 +59,19 @@ public errorMessage:string='';
     this.toastr.success('thanks for being my friend mr gauri');
   }
 
+  navigatetopage(menuname)
+  {
+    switch(menuname)
+    {
+      case 'doctorlist':
+        this.router.navigate(['/doctorlist']);
+        break;
+        case 'patientlist':
+          this.router.navigate(['/patientlist']);
+          break;
+    }
+
+
+  }
+
 }

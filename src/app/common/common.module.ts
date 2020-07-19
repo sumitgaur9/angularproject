@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 //import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { DoctorprofileComponent } from './doctorprofile/doctorprofile.component';
+import { PatientprofileComponent } from './patientprofile/patientprofile.component';
 
 @NgModule({
-  declarations: [DoctorprofileComponent, ModalComponent],
+  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent],
    
   imports: [
     CommonModule,
@@ -18,6 +19,7 @@ import { DoctorprofileComponent } from './doctorprofile/doctorprofile.component'
   ], exports: [
     DoctorprofileComponent,
     ModalComponent,
+    PatientprofileComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

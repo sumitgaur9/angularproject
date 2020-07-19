@@ -1,0 +1,32 @@
+
+
+
+<div class="container mt-2" style="position:absolute;top:21%;left:7%;">
+
+    <div style="margin-bottom:1%;">
+      <!-- <h4 class="card-title">Card 1</h4>
+      <p class="card-text">Welcom to bootstrap card styles</p> -->
+      <a href="#" class="btn btn-primary">Welcome for the Patient to see their profile</a>
+    </div>  
+    <div class="row">
+      <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
+        <div class="card item-card card-block">
+        <h4 class="card-title text-right"><i class="fa fa-pencil" aria-hidden="true" (click)="openForgotPasswordPopup()"></i>
+        </h4>
+      <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+          <h5 class="item-card-title mt-3 mb-3">Sierra Web Development • Owner {{data.requiredDoctor}}</h5>
+          <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions.</p> 
+    </div>
+      </div>
+  
+    </div>
+    
+  </div>
+
+
+  <div *ngIf="showpatientformpopup">
+      <app-patientprofile [showModal]="showpatientformpopup" (forgotPasswordSet)="forgotPasswordSet($event)" (ClosePopup)="closeForgotPasswordPopup()"> </app-patientprofile>
+    </div>
+
+
+  

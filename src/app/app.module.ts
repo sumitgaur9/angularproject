@@ -21,7 +21,7 @@ import { AuthInterceptor } from './service/auth-interceptor.service';
 import { LoaderInterceptorService } from './service/loader-interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
 import { DoctorEditdisplaylistComponent } from './doctoreditdisplaylist/doctoreditdisplaylist.component';
-import { ModalComponent } from './modal/modal.component';
+import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patienteditdisplaylist.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 
 
@@ -35,7 +35,7 @@ import { ModalComponent } from './modal/modal.component';
     FooterComponent,
     LoaderComponent,
     DoctorEditdisplaylistComponent,
-    ModalComponent,
+    PatienteditdisplaylistComponent,
    // DoctorprofileComponent
   ],
   imports: [
