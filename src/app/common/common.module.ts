@@ -23,6 +23,9 @@ import { PhyscotherapistprofileComponent } from './physcotherapistprofile/physco
     DoctorprofileComponent,
     ModalComponent,
     PatientprofileComponent,
+    NurseprofileComponent,
+    PharmacistprofileComponent,
+    PhyscotherapistprofileComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

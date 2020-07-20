@@ -27,15 +27,15 @@ export class NurseprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  public patientform = new FormGroup({
+  public nurseProfileForm = new FormGroup({
     name: new FormControl(""),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    disease: new FormControl(""),
+    experties: new FormControl(""),
     phoneno: new FormControl(""),
-    requiredDoctor: new FormControl(""),
-    prefferedTime: new FormControl(""),
-    address: new FormControl(""),
+    timeAvailablity: new FormControl(""),
+    charges: new FormControl(""),
+    area: new FormControl(""),
     qualification: new FormControl(""),
   });
 
@@ -46,16 +46,16 @@ export class NurseprofileComponent implements OnInit {
   ngOnInit() {
   }
 
-  get f() { return this.patientform.controls; }
+  get f() { return this.nurseProfileForm.controls; }
 
-  Save_PatientProfile() {
+  Save_NurseProfile() {
     this.submitted = true;
-    if (this.patientform.invalid) {
+    if (this.nurseProfileForm.invalid) {
       return;
     }
     this.errorMessage = "";
-    let values = this.patientform.value;
-    this._apiservice.Save_PatientProfile(values).subscribe(data => {
+    let values = this.nurseProfileForm.value;
+    this._apiservice.Save_NurseProfile(values).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');

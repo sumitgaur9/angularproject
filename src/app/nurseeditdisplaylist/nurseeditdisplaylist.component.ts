@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class NurseeditdisplaylistComponent implements OnInit {
 
-  showpatientformpopup = false;
+  shownurseprofileformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
 
@@ -26,22 +26,22 @@ export class NurseeditdisplaylistComponent implements OnInit {
   }
 
   public closePatientProfilePopup() {
-    this.showpatientformpopup = false;
-    $('#showpatientformpopup').modal('hide');
+    this.shownurseprofileformpopup = false;
+    $('#shownurseprofileformpopup').modal('hide');
   }
 
   public openPatientProfilePopup() {
-    this.showpatientformpopup = true;
+    this.shownurseprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showpatientformpopup').modal('show');
+      $('#shownurseprofileformpopup').modal('show');
     }, 100);
   }
 
   Get_PatientsList() {
     let dataobj = {
     };
-    this._apiservice.Get_PatientsList(dataobj).subscribe(data => {
+    this._apiservice.Get_NursesList(dataobj).subscribe(data => {
       if (data) {
         console.log("daa is ", data);
         this.patientListData = data;

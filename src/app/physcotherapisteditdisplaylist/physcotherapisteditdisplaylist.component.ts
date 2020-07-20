@@ -16,33 +16,33 @@ declare var $: any;
 })
 export class PhyscotherapisteditdisplaylistComponent implements OnInit {
 
-  showpatientformpopup = false;
+  showphyscoprofileformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.Get_PatientsList();
+    this.Get_PhysiosList();
   }
 
   public closePatientProfilePopup() {
-    this.showpatientformpopup = false;
-    $('#showpatientformpopup').modal('hide');
+    this.showphyscoprofileformpopup = false;
+    $('#showphyscoprofileformpopup').modal('hide');
   }
 
   public openPatientProfilePopup() {
-    this.showpatientformpopup = true;
+    this.showphyscoprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showpatientformpopup').modal('show');
+      $('#showphyscoprofileformpopup').modal('show');
     }, 100);
   }
 
-  Get_PatientsList() {
+  Get_PhysiosList() {
     let dataobj = {
     };
-    this._apiservice.Get_PatientsList(dataobj).subscribe(data => {
+    this._apiservice.Get_PhysiosList(dataobj).subscribe(data => {
       if (data) {
         console.log("daa is ", data);
         this.patientListData = data;

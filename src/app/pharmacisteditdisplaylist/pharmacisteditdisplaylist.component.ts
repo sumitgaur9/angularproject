@@ -16,33 +16,33 @@ declare var $: any;
 })
 export class PharmacisteditdisplaylistComponent implements OnInit {
 
-  showpatientformpopup = false;
+  showpharmacistformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.Get_PatientsList();
+    this.Get_PharmacistsList();
   }
 
   public closePatientProfilePopup() {
-    this.showpatientformpopup = false;
-    $('#showpatientformpopup').modal('hide');
+    this.showpharmacistformpopup = false;
+    $('#showpharmacistformpopup').modal('hide');
   }
 
   public openPatientProfilePopup() {
-    this.showpatientformpopup = true;
+    this.showpharmacistformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showpatientformpopup').modal('show');
+      $('#showpharmacistformpopup').modal('show');
     }, 100);
   }
 
-  Get_PatientsList() {
+  Get_PharmacistsList() {
     let dataobj = {
     };
-    this._apiservice.Get_PatientsList(dataobj).subscribe(data => {
+    this._apiservice. Get_PharmacistsList(dataobj).subscribe(data => {
       if (data) {
         console.log("daa is ", data);
         this.patientListData = data;
