@@ -49,14 +49,14 @@ export class DoctorprofileComponent implements OnInit {
   this.Get_DoctorProfile();
 
   }
-  
+
 
   get f() { return this.doctorform.controls; }
 
 
 
 
-  
+
 
 
 
@@ -67,7 +67,7 @@ export class DoctorprofileComponent implements OnInit {
       if (data) {
         console.log("data",data);
 
-      
+
 
         if(data.name!=undefined)
         {
@@ -136,12 +136,12 @@ export class DoctorprofileComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
-  
 
 
-  
 
-  Save_DoctorProfile() {
+
+
+  Update_DoctorProfile() {
     this.submitted = true;
     if (this.doctorform.invalid) {
       return;
@@ -151,7 +151,7 @@ export class DoctorprofileComponent implements OnInit {
     dataobj= this.doctorform.value;
 dataobj["participantID"]=this.currentUser.roleBaseId;
   //  let values = this.doctorform.value;
-    this._apiservice.Save_DoctorProfile(dataobj).subscribe(data => {
+    this._apiservice.Update_DoctorProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');

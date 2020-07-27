@@ -18,8 +18,14 @@ export class APIService {
         return userData;
       }));
   }
+  Update_DoctorProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
 
-  
 
 
   Get_DoctorProfile(params,rolebasedid) {
@@ -52,7 +58,7 @@ export class APIService {
       }));
   }
 
-  
+
 
   Save_PatientProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PatientProfile}`
@@ -60,8 +66,16 @@ export class APIService {
       .pipe(map(userData => {
         return userData;
       }));
-
   }
+
+  Update_PatientProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
 
   Get_PatientsList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientsList}`
@@ -80,6 +94,13 @@ export class APIService {
         return userData;
       }));
 
+  }
+  Update_NurseProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
   }
 
   Get_NursesList(params) {
@@ -101,6 +122,15 @@ export class APIService {
       }));
 
   }
+
+  Update_PharmacistProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
   Get_PharmacistsList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_PharmacistsList}`
     return this.http.get<any>(APIURL, { params: params })
@@ -121,7 +151,14 @@ export class APIService {
 
   }
 
-  
+  Update_PhysioProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
 
   Get_PhysiosList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PhysiosList}`
@@ -134,7 +171,7 @@ export class APIService {
   }
 
 
- 
+
 
   signIn(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.login}`
