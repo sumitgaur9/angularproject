@@ -35,7 +35,15 @@ export class RegistrationComponent implements OnInit {
 
   registration() {
     this.errorMessage = '';
-    let values = this.userInfo.value;
+    let dataobj={
+      email: this.userInfo.value.email,
+      name:  this.userInfo.value.name,
+      password: this.userInfo.value.password,
+      role:Number(this.userInfo.value.role),
+      description: this.userInfo.value.description,
+    }
+ //   let data= this.userInfo.value;
+    let values = dataobj
     this._apiservice.registration(values).subscribe(data => {
       if (data) {
         this.showSuccess();

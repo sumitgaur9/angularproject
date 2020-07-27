@@ -27,12 +27,14 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   showForgotPasswordtPopup = false;
   public errorMessage:string='';
   public doctorListData:any=[];
-
+  public currentUser;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
     this.menuID = AppEnum.appListMenu.Doctor;
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
 this.Get_DoctorsList();
   //  this.pageInitailization();
 
@@ -79,11 +81,33 @@ public openDoctorProfilePopup() {
   }, 100);
 }
 
+public deleteDoctorProfilePopup() {
+  this.Delete_Doctor();
+}
+
+
+
+
+Delete_Doctor() {
+  let dataobj={
+  };
+  this._apiservice.Delete_Doctor(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    if (data) {
+      this.toastr.success('doctor deleted successfully');
+      this.Get_DoctorsList();
+    }
+  }, error => {
+    this.errorMessage = error.error.message;
+  });
+}
+
+
+
 
 Get_DoctorsList() {
   let dataobj={
   };
-  this._apiservice.Get_DoctorsList(dataobj).subscribe(data => {
+  this._apiservice.Get_DoctorsList(dataobj,).subscribe(data => {
     if (data) {
       this.doctorListData=data;
 

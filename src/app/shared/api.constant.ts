@@ -5,6 +5,7 @@ export const API_PATH: any = {
     'registration': 'users',
     'testtokenheader': 'users/me',
     'logout': 'users/me/logout',
+    'Get_DoctorProfile': 'Get_DoctorProfile',
     'Save_DoctorProfile': 'Save_DoctorProfile',
     'Get_DoctorsList': 'Get_DoctorsList',
     'Save_PatientProfile': 'Save_PatientProfile',

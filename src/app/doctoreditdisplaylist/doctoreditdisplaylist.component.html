@@ -11,7 +11,8 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
           <div class="card item-card card-block">
-          <h4 class="card-title text-right"><i class="fa fa-pencil" aria-hidden="true" (click)="openDoctorProfilePopup()"></i>
+        <h4 class="card-title text-right">   <!--<i class="fa fa-pencil" aria-hidden="true" (click)="openDoctorProfilePopup()"></i> -->
+            <i class="fa fa-times" aria-hidden="true" (click)="deleteDoctorProfilePopup()"></i>
           </h4>
         <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
             <h5 class="item-card-title mt-3 mb-3">{{data.name}} • Doctor {{data.charges}}</h5>

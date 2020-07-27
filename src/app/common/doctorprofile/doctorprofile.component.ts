@@ -39,14 +39,104 @@ export class DoctorprofileComponent implements OnInit {
 
   public passwordPatternError = false;
 
+  public currentUser;
+
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
 
   ngOnInit() {
+  this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.Get_DoctorProfile();
+
   }
+  
 
   get f() { return this.doctorform.controls; }
 
+
+
+
+  
+
+
+
+  Get_DoctorProfile() {
+    let dataobj={
+    };
+    this._apiservice.Get_DoctorProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        console.log("data",data);
+
+      
+
+        if(data.name!=undefined)
+        {
+          this.doctorform.patchValue({
+            name: data.name
+          });
+        }
+        if(data.email!=undefined)
+        {
+          this.doctorform.patchValue({
+            email: data.email
+          });
+        }
+        if(data.image!=undefined)
+        {
+          this.doctorform.patchValue({
+            image: data.image
+          });
+        }
+        if(data.experties!=undefined)
+        {
+          this.doctorform.patchValue({
+            experties: data.experties
+          });
+        }
+        if(data.phoneno!=undefined)
+        {
+          this.doctorform.patchValue({
+            phoneno: data.phoneno
+          });
+        }
+        if(data.timeAvailablity!=undefined)
+        {
+          this.doctorform.patchValue({
+            timeAvailablity: data.timeAvailablity
+          });
+        }
+        if(data.charges!=undefined)
+        {
+          this.doctorform.patchValue({
+            charges: data.charges
+          });
+        }
+
+        if(data.area!=undefined)
+        {
+          this.doctorform.patchValue({
+            area: data.area
+          });
+        }
+        if(data.qualification!=undefined)
+        {
+          this.doctorform.patchValue({
+            qualification: data.qualification
+          });
+        }
+//         charges: 0
+// email: "test1222@gmail.com"
+// experties: ""
+// name: "test1"
+// participantID: "5f1e4ca7b61cfd0004c50250"
+// __v: 0
+// _id: "5f1e4ca7b61cfd0004c50252"
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+  
 
 
   
@@ -57,8 +147,11 @@ export class DoctorprofileComponent implements OnInit {
       return;
     }
     this.errorMessage = "";
-    let values = this.doctorform.value;
-    this._apiservice.Save_DoctorProfile(values).subscribe(data => {
+    let dataobj={};
+    dataobj= this.doctorform.value;
+dataobj["participantID"]=this.currentUser.roleBaseId;
+  //  let values = this.doctorform.value;
+    this._apiservice.Save_DoctorProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');

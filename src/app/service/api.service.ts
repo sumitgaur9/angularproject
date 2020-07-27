@@ -19,6 +19,18 @@ export class APIService {
       }));
   }
 
+  
+
+
+  Get_DoctorProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
   Get_DoctorsList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorsList}`
@@ -29,6 +41,18 @@ export class APIService {
         return resdata;
       }));
   }
+
+  Delete_Doctor(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Doctor+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  
 
   Save_PatientProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PatientProfile}`
