@@ -19,7 +19,7 @@ export class APIService {
       }));
   }
   Update_DoctorProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -69,7 +69,7 @@ export class APIService {
   }
 
   Update_PatientProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -96,7 +96,7 @@ export class APIService {
 
   }
   Update_NurseProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -124,7 +124,7 @@ export class APIService {
   }
 
   Update_PharmacistProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
