@@ -37,33 +37,118 @@ export class PharmacistprofileComponent implements OnInit {
     charges: new FormControl(""),
     area: new FormControl(""),
     qualification: new FormControl(""),
+    id: new FormControl(""),
   });
 
   public passwordPatternError = false;
+  public currentUser;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.Get_PharmacistProfile();
   }
 
   get f() { return this.pharmacistProfileForm.controls; }
 
-  Save_PharmacistProfile() {
-    this.submitted = true;
-    if (this.pharmacistProfileForm.invalid) {
-      return;
-    }
-    this.errorMessage = "";
-    let values = this.pharmacistProfileForm.value;
-    this._apiservice.Save_PharmacistProfile(values).subscribe(data => {
+ 
+
+
+
+  Get_PharmacistProfile() {
+    let dataobj={
+    };
+    this._apiservice.Get_PharmacistProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
       if (data) {
-        console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
-        this.CloseModal();
-        this.router.navigate(['/patientlist']);
+        console.log("data",data);
+        if(data.name!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            name: data.name
+          });
+        }
+        if(data.email!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            email: data.email
+          });
+        }
+        if(data.image!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            image: data.image
+          });
+        }
+        if(data.experties!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            experties: data.experties
+          });
+        }
+        if(data.phoneno!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            phoneno: data.phoneno
+          });
+        }
+        if(data.timeAvailablity!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            timeAvailablity: data.timeAvailablity
+          });
+        }
+        if(data.charges!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            charges: data.charges
+          });
+        }
+
+        if(data.area!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            area: data.area
+          });
+        }
+        if(data.qualification!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            qualification: data.qualification
+          });
+        }
+        if(data._id!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            id: data._id
+          });
+        }
       }
     }, error => {
       this.errorMessage = error.error.message;
     });
   }
+
+  Update_PharmacistProfile() {
+    this.submitted = true;
+    if (this.pharmacistProfileForm.invalid) {
+      return;
+    }
+    this.errorMessage = "";
+    let dataobj={};
+    dataobj= this.pharmacistProfileForm.value;
+    dataobj["participantID"]=this.currentUser.roleBaseId;
+    this._apiservice.Update_PharmacistProfile(dataobj).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data.data);
+        this.toastr.success('thanks to being a part of our platform');
+        this.CloseModal();
+       // this.router.navigate(['/pharmacistlist']);
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+
 }

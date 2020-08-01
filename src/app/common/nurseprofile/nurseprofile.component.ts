@@ -37,30 +37,110 @@ export class NurseprofileComponent implements OnInit {
     charges: new FormControl(""),
     area: new FormControl(""),
     qualification: new FormControl(""),
+    id: new FormControl(""),
   });
 
   public passwordPatternError = false;
+  public currentUser;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.Get_NurseProfile();
   }
 
   get f() { return this.nurseProfileForm.controls; }
 
-  Save_NurseProfile() {
+
+  Get_NurseProfile() {
+    let dataobj={
+    };
+    this._apiservice.Get_NurseProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        console.log("data",data);
+        if(data.name!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            name: data.name
+          });
+        }
+        if(data.email!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            email: data.email
+          });
+        }
+        if(data.image!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            image: data.image
+          });
+        }
+        if(data.experties!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            experties: data.experties
+          });
+        }
+        if(data.phoneno!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            phoneno: data.phoneno
+          });
+        }
+        if(data.timeAvailablity!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            timeAvailablity: data.timeAvailablity
+          });
+        }
+        if(data.charges!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            charges: data.charges
+          });
+        }
+
+        if(data.area!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            area: data.area
+          });
+        }
+        if(data.qualification!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            qualification: data.qualification
+          });
+        }
+        if(data._id!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            id: data._id
+          });
+        }
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  Update_NurseProfile() {
     this.submitted = true;
     if (this.nurseProfileForm.invalid) {
       return;
     }
     this.errorMessage = "";
-    let values = this.nurseProfileForm.value;
-    this._apiservice.Save_NurseProfile(values).subscribe(data => {
+    let dataobj={};
+    dataobj= this.nurseProfileForm.value;
+    dataobj["participantID"]=this.currentUser.roleBaseId;
+    this._apiservice.Update_NurseProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
         this.CloseModal();
-        this.router.navigate(['/patientlist']);
+       // this.router.navigate(['/nurselist']);
       }
     }, error => {
       this.errorMessage = error.error.message;

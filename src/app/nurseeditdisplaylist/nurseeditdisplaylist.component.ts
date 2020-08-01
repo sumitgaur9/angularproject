@@ -25,12 +25,12 @@ export class NurseeditdisplaylistComponent implements OnInit {
     this.Get_PatientsList();
   }
 
-  public closePatientProfilePopup() {
+  public closeNurseProfilePopup() {
     this.shownurseprofileformpopup = false;
     $('#shownurseprofileformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup() {
+  public openNurseProfilePopup() {
     this.shownurseprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

@@ -135,18 +135,12 @@ export class DoctorprofileComponent implements OnInit {
     let dataobj={};
     dataobj= this.doctorform.value;
     dataobj["participantID"]=this.currentUser.roleBaseId;
-  //  let values = this.doctorform.value;
     this._apiservice.Update_DoctorProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('thanks for dubmit doctor profile');
         this.CloseModal();
-        this.router.navigate(['/doctorlist']);
-      //   if (data.token && data.token != "" && data.token != null) {
-      //     let datainput: any = {};
-      //    // this.router.navigate(['/home']);
-      // //    this.utilityservice.onLoginSuccessfully.next();
-      //   }
+      //  this.router.navigate(['/doctorlist']);
       }
     }, error => {
       this.errorMessage = error.error.message;

@@ -26,12 +26,12 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
     this.Get_PhysiosList();
   }
 
-  public closePatientProfilePopup() {
+  public closePhysiosProfilePopup() {
     this.showphyscoprofileformpopup = false;
     $('#showphyscoprofileformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup() {
+  public openPhysiosProfilePopup() {
     this.showphyscoprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

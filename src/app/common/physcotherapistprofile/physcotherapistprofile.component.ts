@@ -38,34 +38,119 @@ export class PhyscotherapistprofileComponent implements OnInit {
     charges: new FormControl(""),
     area: new FormControl(""),
     qualification: new FormControl(""),
+    id: new FormControl(""),
   });
 
+  public currentUser;
 
   public passwordPatternError = false;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.Get_PhysioProfile();
   }
 
   get f() { return this.physioProfileForm.controls; }
 
-  Save_PhysioProfile() {
-    this.submitted = true;
-    if (this.physioProfileForm.invalid) {
-      return;
-    }
-    this.errorMessage = "";
-    let values = this.physioProfileForm.value;
-    this._apiservice.Save_PhysioProfile(values).subscribe(data => {
+  
+
+  
+
+  Get_PhysioProfile() {
+    let dataobj={
+    };
+    this._apiservice.Get_PhysioProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
       if (data) {
-        console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
-        this.CloseModal();
-        this.router.navigate(['/patientlist']);
+        console.log("data",data);
+        if(data.name!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            name: data.name
+          });
+        }
+        if(data.email!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            email: data.email
+          });
+        }
+        if(data.image!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            image: data.image
+          });
+        }
+        if(data.experties!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            experties: data.experties
+          });
+        }
+        if(data.phoneno!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            phoneno: data.phoneno
+          });
+        }
+        if(data.timeAvailablity!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            timeAvailablity: data.timeAvailablity
+          });
+        }
+        if(data.charges!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            charges: data.charges
+          });
+        }
+
+        if(data.area!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            area: data.area
+          });
+        }
+        if(data.qualification!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            qualification: data.qualification
+          });
+        }
+        if(data._id!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            id: data._id
+          });
+        }
       }
     }, error => {
       this.errorMessage = error.error.message;
     });
   }
+
+  Update_PhysioProfile() {
+    this.submitted = true;
+    if (this.physioProfileForm.invalid) {
+      return;
+    }
+    this.errorMessage = "";
+    let dataobj={};
+    dataobj= this.physioProfileForm.value;
+    dataobj["participantID"]=this.currentUser.roleBaseId;
+    this._apiservice.Update_PhysioProfile(dataobj).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data.data);
+        this.toastr.success('thanks to being a part of our platform');
+        this.CloseModal();
+        this.router.navigate(['/nurselist']);
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+
 }

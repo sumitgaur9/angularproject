@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
     this._apiservice.registration(values).subscribe(data => {
       if (data) {
         this.showSuccess();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       }
     }, error => {
       if (error && error.error && error.error.message) {
@@ -57,10 +57,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success('thanks for being my friend mr gauri');
+    this.toastr.success('Registration Successfully');
   }
-
-
-
-
 }

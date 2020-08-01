@@ -113,6 +113,16 @@ export class APIService {
       }));
   }
 
+  Get_NurseProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_NurseProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
 
   Save_PharmacistProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PharmacistProfile}`
@@ -141,6 +151,17 @@ export class APIService {
       }));
   }
 
+  Get_PhysioProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PhysioProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
+
 
   Save_PhysioProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PhysioProfile}`
@@ -151,14 +172,15 @@ export class APIService {
 
   }
 
+  
+
   Update_PhysioProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
-
 
   Get_PhysiosList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PhysiosList}`
@@ -171,7 +193,17 @@ export class APIService {
   }
 
 
+  
 
+  Get_PharmacistProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
   signIn(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.login}`

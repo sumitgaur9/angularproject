@@ -50,7 +50,6 @@ export class HeaderComponent implements OnInit {
     let dataparam: any = {};
     this._apiservice.logout(dataparam).subscribe(data => {
       // if (data) {
-      this.showSuccess();
       localStorage.clear();
       this.router.navigate(['/login']);
       // }

@@ -6,12 +6,12 @@
     <div style="margin-bottom:1%;">
       <!-- <h4 class="card-title">Card 1</h4>
       <p class="card-text">Welcom to bootstrap card styles</p> -->
-      <a  class="btn btn-primary">Welcome for the Physcotherapist to see their profile</a>
+      <a  class="btn btn-primary" (click)="openPhysiosProfilePopup()"> Welcome for the Physcotherapist to see their profile</a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
-        <h4 class="card-title text-right"><i class="fa fa-pencil" aria-hidden="true" (click)="openPatientProfilePopup()"></i>
+        <h4 class="card-title text-right"><i class="fa fa-pencil" aria-hidden="true" (click)="openPhysiosProfilePopup()"></i>
         </h4>
       <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
           <h5 class="item-card-title mt-3 mb-3">Sierra Web Development • Owner {{data.requiredDoctor}}</h5>
@@ -25,7 +25,7 @@
 
 
   <div *ngIf="showphyscoprofileformpopup">
-      <app-physcotherapistprofile [showModal]="showphyscoprofileformpopup"  (ClosePopup)="closePatientProfilePopup()"> </app-physcotherapistprofile>
+      <app-physcotherapistprofile [showModal]="showphyscoprofileformpopup"  (ClosePopup)="closePhysiosProfilePopup()"> </app-physcotherapistprofile>
     </div>
 
 
