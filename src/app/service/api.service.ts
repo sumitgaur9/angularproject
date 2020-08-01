@@ -216,6 +216,33 @@ export class APIService {
       }));
   }
 
+  Save_VisitCompleteIntimation(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_VisitCompleteIntimation}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+
+  Request_PatientMedicinesHomeDelivery(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Request_PatientMedicinesHomeDelivery}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+
+  Save_PharmaVisitCompleteIntimation(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_PharmaVisitCompleteIntimation}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+
 
 
 }

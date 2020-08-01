@@ -57,13 +57,17 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a class="active" href="index.html">Home</a></li>
-            <li><a data-scroll href="#about">About us</a></li>
+            <!-- <li><a data-scroll href="#about">About </a></li> -->
             <li><a data-scroll (click)="navigatetopage('pharmacistlist')">Pharmacist</a></li>
             <li><a data-scroll (click)="navigatetopage('doctorlist')">Doctors</a></li>
             <li><a data-scroll (click)="navigatetopage('nurselist')">Nurse</a></li>
             <li><a data-scroll (click)="navigatetopage('physcotherapistlist')">Physcotherapist</a></li>
             <li><a data-scroll (click)="navigatetopage('patientlist')">Patient</a></li>
-            <li><a data-scroll (click)="navigatetopage('login')">LogOut</a></li>
+            <li><a data-scroll (click)="navigatetopage('ReqPatientMedHomeDel')">Req</a></li>
+            <li><a data-scroll (click)="navigatetopage('PharmaVisitCompleteIntimation')">Ph</a></li>
+            <li><a data-scroll (click)="navigatetopage('visitforall')">vfall</a></li>
+
+            <li><a data-scroll (click)="navigatetopage('login')">LOut</a></li>
           </ul>
         </div>
       </nav>
@@ -81,4 +85,16 @@
           </div> -->
     </div>
   </div>
+
+
+ 
 </header>
+<div *ngIf="showRequestPatMedHomeDelivery">
+  <app-request-pat-med-home-delivery [showModal]="showRequestPatMedHomeDeliveryModal"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+</div>
+<div *ngIf="showPharmacistVisitCompleteIntimation">
+  <app-pharmacist-visit-complete-intimation [showModal]="showPharmacistVisitCompleteIntimationModal"  (ClosePopup)="closePharmacistVisitCompleteIntimation()"> </app-pharmacist-visit-complete-intimation>
+</div>
+<div *ngIf="showVisitForAll">
+  <app-visitforall [showModal]="showVisitForAllModal"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+</div>

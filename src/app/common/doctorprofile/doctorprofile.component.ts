@@ -35,6 +35,7 @@ export class DoctorprofileComponent implements OnInit {
     charges: new FormControl(""),
     area: new FormControl(""),
     qualification: new FormControl(""),
+    id: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -47,18 +48,10 @@ export class DoctorprofileComponent implements OnInit {
   ngOnInit() {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   this.Get_DoctorProfile();
-
   }
 
 
   get f() { return this.doctorform.controls; }
-
-
-
-
-
-
-
 
   Get_DoctorProfile() {
     let dataobj={
@@ -66,9 +59,6 @@ export class DoctorprofileComponent implements OnInit {
     this._apiservice.Get_DoctorProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
       if (data) {
         console.log("data",data);
-
-
-
         if(data.name!=undefined)
         {
           this.doctorform.patchValue({
@@ -124,22 +114,17 @@ export class DoctorprofileComponent implements OnInit {
             qualification: data.qualification
           });
         }
-//         charges: 0
-// email: "test1222@gmail.com"
-// experties: ""
-// name: "test1"
-// participantID: "5f1e4ca7b61cfd0004c50250"
-// __v: 0
-// _id: "5f1e4ca7b61cfd0004c50252"
+        if(data._id!=undefined)
+        {
+          this.doctorform.patchValue({
+            id: data._id
+          });
+        }
       }
     }, error => {
       this.errorMessage = error.error.message;
     });
   }
-
-
-
-
 
   Update_DoctorProfile() {
     this.submitted = true;
@@ -149,7 +134,7 @@ export class DoctorprofileComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.doctorform.value;
-dataobj["participantID"]=this.currentUser.roleBaseId;
+    dataobj["participantID"]=this.currentUser.roleBaseId;
   //  let values = this.doctorform.value;
     this._apiservice.Update_DoctorProfile(dataobj).subscribe(data => {
       if (data) {

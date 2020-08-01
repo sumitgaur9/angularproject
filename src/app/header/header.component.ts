@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   public currentLoggedUserData: any = {};
   public username = "";
   public errorMessage: string = '';
+  public showRequestPatMedHomeDelivery:boolean=false;
+  public showPharmacistVisitCompleteIntimation:boolean=false;
+  public showVisitForAll:boolean=false;
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -63,10 +66,10 @@ export class HeaderComponent implements OnInit {
     let dataparam: any = {};
     this._apiservice.testheader(dataparam).subscribe(data => {
       // if (data) {
-        console.log("userme data is this",JSON.stringify(data));
+      console.log("userme data is this", JSON.stringify(data));
       //this.showSuccess();
-     // localStorage.clear();
-     // this.router.navigate(['/login']);
+      // localStorage.clear();
+      // this.router.navigate(['/login']);
       // }
     }, error => {
       if (error && error.error && error.error.message) {
@@ -76,7 +79,42 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  public closeRequestPatMedHomeDelivery() {
+    this.showRequestPatMedHomeDelivery = false;
+    $('#showRequestPatMedHomeDeliveryModal').modal('hide');
+  }
   
+  public openRequestPatMedHomeDelivery() {
+    this.showRequestPatMedHomeDelivery = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showRequestPatMedHomeDeliveryModal').modal('show');
+    }, 100);
+  }
+  public closePharmacistVisitCompleteIntimation() {
+    this.showPharmacistVisitCompleteIntimation = false;
+    $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
+  }
+  
+  public openPharmacistVisitCompleteIntimation() {
+    this.showPharmacistVisitCompleteIntimation = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showPharmacistVisitCompleteIntimationModal').modal('show');
+    }, 100);
+  }
+  public closeshowVisitForAll() {
+    this.showVisitForAll = false;
+    $('#showVisitForAllModal').modal('hide');
+  }
+  
+  public openShowVisitForAll() {
+    this.showVisitForAll = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVisitForAllModal').modal('show');
+    }, 100);
+  }
 
 
 
@@ -104,6 +142,15 @@ export class HeaderComponent implements OnInit {
       case 'login':
         this.logout();
         this.router.navigate(['/login']);
+        break;
+      case 'ReqPatientMedHomeDel':
+        this.openRequestPatMedHomeDelivery();
+        break;
+      case 'PharmaVisitCompleteIntimation':
+        this.openPharmacistVisitCompleteIntimation();
+        break;
+      case 'visitforall':
+        this.openShowVisitForAll();
         break;
     }
 

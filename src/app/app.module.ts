@@ -25,6 +25,7 @@ import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patien
 import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
 import { PharmacisteditdisplaylistComponent } from './pharmacisteditdisplaylist/pharmacisteditdisplaylist.component';
 import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdisplaylist/physcotherapisteditdisplaylist.component';
+import { OtherlinksComponent } from './otherlinks/otherlinks.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 
 
@@ -42,6 +43,7 @@ import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdi
     NurseeditdisplaylistComponent,
     PharmacisteditdisplaylistComponent,
     PhyscotherapisteditdisplaylistComponent,
+    OtherlinksComponent,
    // DoctorprofileComponent
   ],
   imports: [

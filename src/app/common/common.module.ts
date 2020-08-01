@@ -10,9 +10,12 @@ import { PatientprofileComponent } from './patientprofile/patientprofile.compone
 import { NurseprofileComponent } from './nurseprofile/nurseprofile.component';
 import { PharmacistprofileComponent } from './pharmacistprofile/pharmacistprofile.component';
 import { PhyscotherapistprofileComponent } from './physcotherapistprofile/physcotherapistprofile.component';
+import { RequestPatMedHomeDeliveryComponent } from './request-pat-med-home-delivery/request-pat-med-home-delivery.component';
+import { PharmacistVisitCompleteIntimationComponent } from './pharmacist-visit-complete-intimation/pharmacist-visit-complete-intimation.component';
+import { VisitforallComponent } from './visitforall/visitforall.component';
 
 @NgModule({
-  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent],
+  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent],
    
   imports: [
     CommonModule,
@@ -25,7 +28,10 @@ import { PhyscotherapistprofileComponent } from './physcotherapistprofile/physco
     PatientprofileComponent,
     NurseprofileComponent,
     PharmacistprofileComponent,
-    PhyscotherapistprofileComponent
+    PhyscotherapistprofileComponent,
+    RequestPatMedHomeDeliveryComponent,
+    PharmacistVisitCompleteIntimationComponent,
+    VisitforallComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
