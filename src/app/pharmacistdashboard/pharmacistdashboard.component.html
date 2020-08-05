@@ -1,0 +1,53 @@
+<div style="position: absolute;top: 23%;width:100%;">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">pharmacistName</th>
+                    <th scope="col">isPharmacyProvided</th>
+                    <th scope="col">patientName</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of doctorAppointmentHistoryData">
+                    <th scope="row">1</th>
+                    <td>{{data.pharmacistName}}</td>
+                    <td>{{data.isPharmacyProvided}}</td>
+                    <td>{{data.patientName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">patientName</th>
+                    <th scope="col">isPharmacyProvided</th>
+                    <th scope="col">Visit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of doctorAppointmentListData">
+                    <th scope="row">1</th>
+                    <td>{{data.patientName}}</td>
+                    <td>{{data.isPharmacyProvided}}</td>
+                    <td (click)="openPharmacistVisitCompleteIntimation(data)">Visit All</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+  <div *ngIf="showPharmacistVisitCompleteIntimation">
+    <app-pharmacist-visit-complete-intimation [appointmentid]="visitAppointmentId" [showModal]="showPharmacistVisitCompleteIntimationModal"  (ClosePopup)="closePharmacistVisitCompleteIntimation()"> </app-pharmacist-visit-complete-intimation>
+  </div>

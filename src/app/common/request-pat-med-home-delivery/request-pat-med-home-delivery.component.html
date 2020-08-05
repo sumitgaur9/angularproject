@@ -15,7 +15,7 @@
                       <div class="card" style="border: transparent!important;">
                         <div class="card-header p-0">
                           <div class="bg-info text-white text-center py-2">
-                            <h3><i class="fa fa-medkit"></i>Reg Pat Med</h3>
+                            <h3><i class="fa fa-medkit"></i>Req Pat Med</h3>
                             <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
                           </div>
                         </div>
@@ -31,7 +31,7 @@
                             </div>
                           </div>
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
@@ -39,7 +39,7 @@
                               <input type="text" class="form-control" id="medicineName" name="medicineName"
                                 placeholder="medicineName" formControlName="medicineName">
                             </div>
-                          </div>
+                          </div> -->
 
                        
 
@@ -52,6 +52,47 @@
                                 placeholder="patientContactNo" formControlName="patientContactNo">
                             </div>
                           </div>
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientAddress" name="patientAddress"
+                                placeholder="patientAddress" formControlName="patientAddress">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientPIN" name="patientPIN"
+                                placeholder="patientPIN" formControlName="patientPIN">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Medicine</label>
+                            <select class="form-control" formControlName="medicineName" (change)="medicineChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of medicineListDataArray" [value]="opt.medicineName">{{opt.medicineName}}</option>
+                          </select>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Pharmacist</label>
+                            <select class="form-control" formControlName="pharmacistName" (change)="pharmacistChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of pharmacistListDataArray" [value]="opt.name">{{opt.name}}</option>
+                          </select>
+                          </div>
+
+
+                 
+
                           <!-- <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">

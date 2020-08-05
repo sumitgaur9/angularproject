@@ -32,5 +32,17 @@ export const API_PATH: any = {
     'Get_NursesList': 'Get_NursesList',
     'Get_PhysiosList': 'Get_PhysiosList',
     'Get_PhysioProfile': 'Get_PhysioProfile',
-
+    'Save_BookAppointment': 'Save_BookAppointment',
+    'Get_FilteredDoctors': 'Get_FilteredDoctors',
+    'Get_AppointmentsByDocID': 'Get_AppointmentsByDocID',
+    'getFilteredAppointments': 'getFilteredAppointments',
+    'Save_Disease': 'Save_Disease',
+    'Get_DiseasesList': 'Get_DiseasesList',
+    'Get_ExpertiseList': 'Get_ExpertiseList',
+    'Save_Expertise': 'Save_Expertise',
+    'Save_Medicine': 'Save_Medicine',
+    'Get_MedicinesList': 'Get_MedicinesList',
+    'Get_PharmaReqByPhamacistID': 'Get_PharmaReqByPhamacistID',
+    
 }
+

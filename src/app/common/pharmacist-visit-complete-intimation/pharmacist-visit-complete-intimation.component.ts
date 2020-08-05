@@ -14,6 +14,7 @@ import { APIService } from 'src/app/service/api.service';
 export class PharmacistVisitCompleteIntimationComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+  @Input() appointmentid:string='';
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -57,6 +58,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.pharmaVisitCompleteIntimationForm.value;
+    dataobj["appointmentId"]=this.appointmentid;
     this._apiservice.Save_PharmaVisitCompleteIntimation(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);

@@ -13,9 +13,13 @@ import { PhyscotherapistprofileComponent } from './physcotherapistprofile/physco
 import { RequestPatMedHomeDeliveryComponent } from './request-pat-med-home-delivery/request-pat-med-home-delivery.component';
 import { PharmacistVisitCompleteIntimationComponent } from './pharmacist-visit-complete-intimation/pharmacist-visit-complete-intimation.component';
 import { VisitforallComponent } from './visitforall/visitforall.component';
+import { BookappointmentComponent } from './bookappointment/bookappointment.component';
+import { DiseasmasterComponent } from './diseasmaster/diseasmaster.component';
+import { ExpertiesmasterComponent } from './expertiesmaster/expertiesmaster.component';
+import { MedicinemasterComponent } from './medicinemaster/medicinemaster.component';
 
 @NgModule({
-  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent],
+  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent],
    
   imports: [
     CommonModule,
@@ -31,7 +35,11 @@ import { VisitforallComponent } from './visitforall/visitforall.component';
     PhyscotherapistprofileComponent,
     RequestPatMedHomeDeliveryComponent,
     PharmacistVisitCompleteIntimationComponent,
-    VisitforallComponent
+    VisitforallComponent,
+    BookappointmentComponent,
+    DiseasmasterComponent,
+    ExpertiesmasterComponent,
+    MedicinemasterComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

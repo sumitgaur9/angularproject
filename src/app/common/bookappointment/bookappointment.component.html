@@ -1,6 +1,6 @@
-<form [formGroup]="patientform" (ngSubmit)="Save_PatientProfile()">
+<form [formGroup]="bookAppointmentForm" (ngSubmit)="Save_BookAppointment()">
 
-    <ad-modal [title]="'OTP'" [modalId]="'showpatientformpopup'">
+    <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
       <ad-modal-body>
         <div class="overlay"></div>
         <div class="popupContainer">
@@ -11,11 +11,11 @@
                 <div class="row justify-content-center">
                   <div class="col-8">
                     <!--Form with header-->
-                
+  
                       <div class="card" style="border: transparent!important;">
                         <div class="card-header p-0">
                           <div class="bg-info text-white text-center py-2">
-                            <h3><i class="fa fa-medkit"></i>Patient Profile</h3>
+                            <h3><i class="fa fa-medkit"></i>Book Appointment</h3>
                             <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
                           </div>
                         </div>
@@ -26,8 +26,8 @@
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                               </div>
-                              <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Name" formControlName="name">
+                              <input type="text" class="form-control" id="patientNname" name="patientNname"
+                                placeholder="patientNname" formControlName="patientNname">
                             </div>
                           </div>
                           <div class="form-group">
@@ -35,8 +35,8 @@
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
                               </div>
-                              <input type="email" class="form-control" id="email" name="email"
-                                placeholder="ejemplo@gmail.com" formControlName="email">
+                              <input type="email" class="form-control" id="patientEmail" name="patientEmail"
+                                placeholder="ejemplo@gmail.com" formControlName="patientEmail">
                             </div>
                           </div>
   
@@ -45,24 +45,24 @@
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                               </div>
-                              <textarea class="form-control" placeholder="disease" id="disease" name="disease" formControlName="disease"></textarea>
-                            </div>
+                              <input type="text" class="form-control" id="patientMob" name="patientMob"
+                              placeholder="patientMob" formControlName="patientMob">                            </div>
                           </div>
                           <div class="form-group">
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                   <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                                 </div>
-                                <input type="text" class="form-control" id="requiredDoctor" name="requiredDoctor"
-                                placeholder="requiredDoctor" formControlName="requiredDoctor">                          </div>
+                                <input type="text" class="form-control" id="patientAddres" name="patientAddres"
+                                placeholder="patientAddres" formControlName="patientAddres">                          </div>
                             </div>
                           <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                               </div>
-                              <input type="text" class="form-control" id="phoneno" name="phoneno"
-                              placeholder="phoneno" formControlName="phoneno">                          </div>
+                              <input type="text" class="form-control" id="patientPIN" name="patientPIN"
+                              placeholder="patientPIN" formControlName="patientPIN">                          </div>
                           </div>
                           <!-- <div class="form-group">
                             <div class="input-group mb-2">
@@ -73,37 +73,50 @@
                               placeholder="Name" formControlName="email">                          </div>
                           </div> -->
                           <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="prefferedTime" name="prefferedTime"
-                              placeholder="prefferedTime" formControlName="prefferedTime">                          </div>
+                            <label for="exampleFormControlSelect1">Disease</label>
+                            <select class="form-control" formControlName="disease" (change)="diseaseschangeevent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of diseasListData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
+                          </select>
                           </div>
+
+
                           <div class="form-group">
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                   <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                                 </div>
-                                <input type="text" class="form-control" id="address" name="address"
-                                placeholder="address" formControlName="address">                            </div>
+                                <input type="text" class="form-control" id="diseaseAge" name="diseaseAge"
+                                placeholder="diseaseAge" formControlName="diseaseAge">                            </div>
                             </div>
-                            <div class="form-group">
-                              <div class="input-group mb-2"> 
+                            <!-- <div class="form-group">
+                              <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                   <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                                 </div>
-                                <input type="text" class="form-control" id="qualification" name="qualification"
-                                placeholder="Qualification" formControlName="qualification">                            </div>
-                            </div>
-  
+                                <input type="text" class="form-control" id="doctorName" name="doctorName"
+                                placeholder="doctorName" formControlName="doctorName">                            </div>
+                            </div> -->
+
+                         
+
+                            
+                              
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Doctor</label>
+                                <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
+                                    <option value=""></option>
+                                    <option *ngFor="let opt of filterDoctorData" [value]="opt.name">{{opt.name}}</option>
+                              </select>
+                              </div>
+
                           <!-- <div class="text-center">
                             <input type="submit" value="Enviar" class="btn btn-info btn-block rounded-0 py-2">
                           </div> -->
                         </div>
   
                       </div>
-                  
+  
                     <!--Form with header-->
   
   

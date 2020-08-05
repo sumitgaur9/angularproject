@@ -275,6 +275,107 @@ export class APIService {
 
   }
 
+  Save_BookAppointment(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_BookAppointment}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+
+  Save_Disease(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Disease}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+  Save_Expertise(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Expertise}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+
+  Get_DiseasesList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DiseasesList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_ExpertiseList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_ExpertiseList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+
+  
+
+  Get_FilteredDoctors(params,experties) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_FilteredDoctors+'/'+experties}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  Get_AppointmentsByDocID(params,doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID+'/'+doctorID}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
+
+
+  Save_Medicine(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Medicine}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  
+  Get_MedicinesList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_MedicinesList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_PharmaReqByPhamacistID(params,pharmacistID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmaReqByPhamacistID+'/'+pharmacistID}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
+
+
 
 
 }

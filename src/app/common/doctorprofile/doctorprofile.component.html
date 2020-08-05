@@ -15,7 +15,7 @@
                     <div class="card" style="border: transparent!important;">
                       <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2">
-                          <h3><i class="fa fa-medkit"></i>Doctor</h3>
+                          <h3><i class="fa fa-medkit"></i>Doctor Profile</h3>
                           <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
                         </div>
                       </div>
@@ -40,14 +40,28 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
                               <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                             </div>
                             <textarea class="form-control" placeholder="experties" id="experties" name="experties" formControlName="experties"></textarea>
                           </div>
+                        </div> -->
+
+  
+
+
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Experties</label>
+                          <select class="form-control" formControlName="experties">
+                              <option value=""></option>
+                              <option *ngFor="let opt of expertiesArrayData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
+                        </select>
                         </div>
+
+
+
                         <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">

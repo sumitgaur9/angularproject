@@ -1,0 +1,57 @@
+<div style="position: absolute;top: 23%;width:100%;">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">DoctorName</th>
+                    <th scope="col">IsVisitComplete</th>
+                    <th scope="col">Visit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of doctorAppointmentHistoryData">
+                    <th scope="row">1</th>
+                    <td>{{data.doctorName}}</td>
+                    <td>{{data.isVisitCompleted}}</td>
+                    <td>{{data.patientNname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">DoctorName</th>
+                    <th scope="col">IsVisitComplete</th>
+                    <th scope="col">Visit</th>
+                    <th scope="col">ReqMed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of doctorAppointmentListData">
+                    <th scope="row">1</th>
+                    <td>{{data.doctorName}}</td>
+                    <td>{{data.isVisitCompleted}}</td>
+                    <td (click)="openShowVisitForAll(data)">Visit All</td>
+                    <td (click)="openRequestPatMedHomeDelivery(data)">Reqmed</td>
+
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div *ngIf="showVisitForAll">
+    <app-visitforall [showModal]="showVisitForAllModal"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+  </div>
+  <div *ngIf="showRequestPatMedHomeDelivery">
+    <app-request-pat-med-home-delivery   [appointmentid]="visitAppointmentId" [showModal]="showRequestPatMedHomeDeliveryModal"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+  </div>

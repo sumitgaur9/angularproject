@@ -9,6 +9,11 @@ import { PatienteditdisplaylistComponent } from '../app/patienteditdisplaylist/p
 import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
 import { PharmacisteditdisplaylistComponent } from './pharmacisteditdisplaylist/pharmacisteditdisplaylist.component';
 import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdisplaylist/physcotherapisteditdisplaylist.component';
+import { OtherlinksComponent } from './otherlinks/otherlinks.component'
+import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
+import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
+
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -19,8 +24,13 @@ const routes: Routes = [
     { path: 'nurselist', component: NurseeditdisplaylistComponent },
     { path: 'pharmacistlist', component: PharmacisteditdisplaylistComponent },
     { path: 'physcotherapistlist', component: PhyscotherapisteditdisplaylistComponent },
+    { path: 'physcotherapistlist', component: PhyscotherapisteditdisplaylistComponent },
+    { path: 'otherlinks', component: OtherlinksComponent },
+    { path: 'doctordashboard', component: DoctordashboardComponent },
+    { path: 'pharmacistdashboard', component: PharmacistdashboardComponent },
 
-
+    
+    
     { path: '**', component: LoginComponent }
 ];
 

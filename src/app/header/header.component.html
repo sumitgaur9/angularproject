@@ -63,11 +63,13 @@
             <li><a data-scroll (click)="navigatetopage('nurselist')">Nurse</a></li>
             <li><a data-scroll (click)="navigatetopage('physcotherapistlist')">Physcotherapist</a></li>
             <li><a data-scroll (click)="navigatetopage('patientlist')">Patient</a></li>
-            <li><a data-scroll (click)="navigatetopage('ReqPatientMedHomeDel')">Req</a></li>
-            <li><a data-scroll (click)="navigatetopage('PharmaVisitCompleteIntimation')">Ph</a></li>
-            <li><a data-scroll (click)="navigatetopage('visitforall')">vfall</a></li>
+            <!-- <li><a data-scroll (click)="navigatetopage('ReqPatientMedHomeDel')">Req</a></li> -->
+            <li><a data-scroll (click)="navigatetopage('otherlinks')">OtherLinks</a></li>
 
-            <li><a data-scroll (click)="navigatetopage('login')">LOut</a></li>
+            <!-- <li><a data-scroll (click)="navigatetopage('PharmaVisitCompleteIntimation')">Ph</a></li>
+            <li><a data-scroll (click)="navigatetopage('visitforall')">vfall</a></li> -->
+
+            <li><a data-scroll (click)="navigatetopage('login')">Logout</a></li>
           </ul>
         </div>
       </nav>
@@ -89,12 +91,12 @@
 
  
 </header>
-<div *ngIf="showRequestPatMedHomeDelivery">
+<!-- <div *ngIf="showRequestPatMedHomeDelivery">
   <app-request-pat-med-home-delivery [showModal]="showRequestPatMedHomeDeliveryModal"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
-</div>
-<div *ngIf="showPharmacistVisitCompleteIntimation">
+</div> -->
+<!-- <div *ngIf="showPharmacistVisitCompleteIntimation">
   <app-pharmacist-visit-complete-intimation [showModal]="showPharmacistVisitCompleteIntimationModal"  (ClosePopup)="closePharmacistVisitCompleteIntimation()"> </app-pharmacist-visit-complete-intimation>
-</div>
-<div *ngIf="showVisitForAll">
-  <app-visitforall [showModal]="showVisitForAllModal"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
-</div>
+</div> -->
+<!-- <div *ngIf="showVisitForAll">
+  <app-visitforall [showModal]="showVisitForAllModal" [appointmentid]=""  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+</div> -->

@@ -39,6 +39,8 @@ export class DoctorprofileComponent implements OnInit {
   });
 
   public passwordPatternError = false;
+public expertiesArrayData:any=[];
+  
 
   public currentUser;
 
@@ -48,6 +50,7 @@ export class DoctorprofileComponent implements OnInit {
   ngOnInit() {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   this.Get_DoctorProfile();
+  this.Get_ExpertiseList();
   }
 
 
@@ -146,4 +149,23 @@ export class DoctorprofileComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
+
+
+
+  
+  Get_ExpertiseList() {
+    let dataobj={
+    };
+    this._apiservice.Get_ExpertiseList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_ExpertiseListGet_ExpertiseList",data);
+        this.expertiesArrayData=data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+
+
 }

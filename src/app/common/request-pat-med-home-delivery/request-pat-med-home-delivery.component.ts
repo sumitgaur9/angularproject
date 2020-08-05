@@ -14,6 +14,7 @@ import { APIService } from 'src/app/service/api.service';
 export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+  @Input() appointmentid:string='';
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -31,9 +32,17 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     patientName: new FormControl(""),
     medicineName: new FormControl(""),
     patientContactNo: new FormControl(""),
+    medicineID: new FormControl(""),
+    pharmacistID: new FormControl(""),
+    pharmacistName: new FormControl(""),
+    patientAddress: new FormControl(""),
+    patientPIN: new FormControl(""),
   });
 
   public passwordPatternError = false;
+  public medicineListDataArray:any=[];
+  public pharmacistListDataArray:any=[];
+
 
   public currentUser;
 
@@ -42,12 +51,37 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   ngOnInit() {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.Get_MedicinesList();
+  this.Get_PharmacistsList();
   }
 
 
   get f() { return this.reqPatientMedicinesHomeDeliveryForm.controls; }
 
- 
+  pharmacistChangeEvent($event) {
+    let newArray = this.pharmacistListDataArray.filter(function (item) {
+      return item.name == $event.target.value;
+    });
+    if (newArray) {
+      this.reqPatientMedicinesHomeDeliveryForm.patchValue(
+        {
+          pharmacistID:newArray[0]._id
+        } )   
+      }
+  }
+
+  medicineChangeEvent($event) {
+    let newArray = this.medicineListDataArray.filter(function (item) {
+      return item.medicineName == $event.target.value;
+    });
+    if (newArray) {
+      this.reqPatientMedicinesHomeDeliveryForm.patchValue(
+        {
+          medicineID:newArray[0]._id
+        }
+      )
+    }
+  }
   
 
   Request_PatientMedicinesHomeDelivery() {
@@ -58,21 +92,45 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.reqPatientMedicinesHomeDeliveryForm.value;
+    dataobj["appointmentID"]=this.appointmentid;
     this._apiservice.Request_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
         this.CloseModal();
-    //    this.router.navigate(['/doctorlist']);
-      //   if (data.token && data.token != "" && data.token != null) {
-      //     let datainput: any = {};
-      //    // this.router.navigate(['/home']);
-      // //    this.utilityservice.onLoginSuccessfully.next();
-      //   }
       }
     }, error => {
       this.errorMessage = error.error.message;
     });
   }
+
+  Get_MedicinesList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_MedicinesList(dataobj).subscribe(data => {
+      if (data) {
+        this.medicineListDataArray = data;
+        console.log("medicineListDataArray ", data);
+
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  Get_PharmacistsList() {
+    let dataobj = {
+    };
+    this._apiservice. Get_PharmacistsList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("pharmacistListDataArray ", data);
+        this.pharmacistListDataArray = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+
 }
 
