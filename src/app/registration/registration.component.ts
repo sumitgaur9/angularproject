@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistrationComponent implements OnInit {
   public errorMessage: string = '';
-  public submitted = false;
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   phoneNumberPattern = "^\\d{10}$";
@@ -29,9 +28,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-
   constructor(private router: Router, private _apiservice: APIService, private toastr: ToastrService) { }
-
 
   registration() {
     this.errorMessage = '';
@@ -42,11 +39,10 @@ export class RegistrationComponent implements OnInit {
       role:Number(this.userInfo.value.role),
       description: this.userInfo.value.description,
     }
- //   let data= this.userInfo.value;
     let values = dataobj
     this._apiservice.registration(values).subscribe(data => {
       if (data) {
-        this.showSuccess();
+        this.toastr.success('Registration Successfully');
         this.router.navigate(['/login']);
       }
     }, error => {
@@ -54,9 +50,5 @@ export class RegistrationComponent implements OnInit {
         this.errorMessage = error.error.message;
       }
     });
-  }
-
-  showSuccess() {
-    this.toastr.success('Registration Successfully');
   }
 }

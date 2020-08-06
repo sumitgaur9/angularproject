@@ -1,89 +1,78 @@
-
-<div  style="background-color: lightcyan;">
-<section class="testimonial py-5" id="testimonial">
+<div style="background-color: #bcd3ea !important;">
+  <section class="testimonial py-5" id="testimonial">
     <div class="container">
-        <div class="row ">
-            <div class="col-md-4 py-5 bg-primary text-white text-center ">
-                <div class=" ">
-                    <div class="card-body">
-                        <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
-                        <h2 class="py-3">Registration</h2>
-                        <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.
-
-</p>
-                    </div>
-                </div>
+      <div class="row ">
+        <div class="col-md-4 py-5 bg-primary text-white text-center " style="background-color:#007bff !important ;">
+          <div class=" ">
+            <div class="card-body">
+              <img src="../../assets/images/Registration.jpg">
+              <!-- <h2 class="py-3">Registration</h2>
+              <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto
+                patrioque an per, lucilius pertinacia eu vel.
+              </p> -->
             </div>
-            <div class="col-md-8 py-5 border">
-                <h4 class="pb-4">Please fill with your details</h4>
-                <form [formGroup]="userInfo" (ngSubmit)="registration()">
-                  <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <input class="form-control" id="name" type="text" formControlName="name" name="name"
-                          placeholder="Name" />
-                        </div>
-                        <div class="form-group col-md-6">
-                          <input class="form-control" id="email" type="email" formControlName="email" name="email"
-                      placeholder="Email Address" />
-                        </div>
-                      </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <input type="password" formControlName="password" class="form-control" placeholder="Password"
-                          onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-                        </div>
-                        <div class="form-group col-md-6">
-                          <select formControlName="role">
-                            <option selected>Role ...</option>
-                                    <option value="0"> Individual</option>
-                                    <option value="1"> Doctor</option>
-                                    <option value="2"> Nurse</option>
-                                    <option value="3"> Physio</option>
-                                    <option value="3"> Physio</option>
-                                    <option value="4"> Pharmacist</option>
-                                    <option value="11"> Admin</option>
-                          </select>
-
-<!--
-                                  <select id="inputState" class="form-control">
-                                    <option selected>Role ...</option>
-                                    <option > Individual</option>
-                                    <option> Doctor</option>
-                                    <option> Nurse</option>
-                                    <option> Physio</option>
-                                  </select> -->
-                        </div>
-                        <div class="form-group col-md-6">
-                          <input id="password" name="Password" placeholder="Password" class="form-control" type="text">
-                        </div>
-                        <div class="form-group col-md-6">
-                          <input type="confirmpassword" class="form-control" id="confirmpassword" placeholder="Confirm Password">
-                        </div>
-                        <div class="form-group col-md-12">
-                                  <textarea id="comment" name="comment"  formControlName="description" cols="40" rows="5" class="form-control"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                                  <label class="form-check-label" for="invalidCheck2">
-                                    <small>By clicking Submit, you agree to our Terms & Conditions, Visitor Agreement and Privacy Policy.</small>
-                                  </label>
-                                </div>
-                              </div>
-
-                          </div>
-                    </div>
-
-                    <div class="form-row">
-                        <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                </form>
-            </div>
+          </div>
         </div>
+        <div class="col-md-8 py-5 border">
+          <h4 class="pb-4">Please fill with your details</h4>
+          <div class="contact-form">
+            <form [formGroup]="userInfo" (ngSubmit)="registration()">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="fname">First Name:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" id="name" type="text" formControlName="name" name="name"
+                    placeholder="Name" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="lname">Email:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" id="email" type="email" formControlName="email" name="email"
+                    placeholder="Email Address" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="lname">Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="lname">Role:</label>
+                <div class="col-sm-10">
+                  <select formControlName="role" class="form-control">
+                    <option value="0"> Individual</option>
+                    <option value="1"> Doctor</option>
+                    <option value="2"> Nurse</option>
+                    <option value="3"> Physio</option>
+                    <option value="3"> Physio</option>
+                    <option value="4"> Pharmacist</option>
+                    <option value="11"> Admin</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="comment">Description:</label>
+                <div class="col-sm-10">
+                  <textarea id="comment" name="comment" formControlName="description" cols="40" rows="3"
+                    class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="buttonSection">
+                    <div class="text-center">
+                      <input type="submit" style="width: 200px;" value="Sign Up"
+                        class="btn btn-info btn-block rounded-0 py-2">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 </div>
