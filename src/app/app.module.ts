@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,7 +20,6 @@ import { FooterComponent } from './footer/footer.component';
 
 import { AuthInterceptor } from './service/auth-interceptor.service';
 import { LoaderInterceptorService } from './service/loader-interceptor.service';
-// import { LoaderComponent } from './loader/loader.component';
 import { DoctorEditdisplaylistComponent } from './doctoreditdisplaylist/doctoreditdisplaylist.component';
 import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patienteditdisplaylist.component';
 import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
@@ -28,6 +28,8 @@ import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdi
 import { OtherlinksComponent } from './otherlinks/otherlinks.component';
 import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
 import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
+import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
+import { BooklabtestComponent } from './booklabtest/booklabtest.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 
 
@@ -39,7 +41,6 @@ import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistda
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    // LoaderComponent,
     DoctorEditdisplaylistComponent,
     PatienteditdisplaylistComponent,
     NurseeditdisplaylistComponent,
@@ -48,6 +49,8 @@ import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistda
     OtherlinksComponent,
     DoctordashboardComponent,
     PharmacistdashboardComponent,
+    PatientdashboardComponent,
+    BooklabtestComponent,
    // DoctorprofileComponent
   ],
   imports: [

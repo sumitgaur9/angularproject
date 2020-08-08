@@ -125,12 +125,6 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks for pharmaVisitCompleteIntimationForm');
         this.CloseModal();
-     //   this.router.navigate(['/doctorlist']);
-      //   if (data.token && data.token != "" && data.token != null) {
-      //     let datainput: any = {};
-      //    // this.router.navigate(['/home']);
-      // //    this.utilityservice.onLoginSuccessfully.next();
-      //   }
       }
     }, error => {
       this.errorMessage = error.error.message;

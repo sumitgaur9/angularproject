@@ -9,11 +9,11 @@ import { APIService } from 'src/app/service/api.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-doctordashboard',
-  templateUrl: './doctordashboard.component.html',
-  styleUrls: ['./doctordashboard.component.css']
+  selector: 'app-patientdashboard',
+  templateUrl: './patientdashboard.component.html',
+  styleUrls: ['./patientdashboard.component.css']
 })
-export class DoctordashboardComponent implements OnInit {
+export class PatientdashboardComponent implements OnInit {
 
   public doctorAppointmentListData: any = [];
   public doctorAppointmentHistoryData: any = [];
@@ -23,10 +23,21 @@ export class DoctordashboardComponent implements OnInit {
   public showVisitForAll: boolean = false;
   public visitAppointmentId: string = '';
 
+  public expertiesArrayData:any=[];
+  public patientAppointmentData:any=[];
+
+  public doctorExperties = new FormGroup({
+    experties: new FormControl(""),
+  });
+
+  public filterDoctorData:any=[];
+
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.Get_AppointmentsByDocID();
+    this.Get_AppointmentsByPatientID();
+    this.Get_ExpertiseList();
   }
 
   //Get_AppointmentsByDocID
@@ -60,22 +71,55 @@ export class DoctordashboardComponent implements OnInit {
   }
 
 
-  Get_AppointmentsByDocID() {
+  Get_AppointmentsByPatientID() {
     let dataobj = {
     };
-    let doctorid = "5f268ed2b7335a0004fcd325";
-    this._apiservice.Get_AppointmentsByDocID(dataobj, doctorid).subscribe(data => {
+    let doctorid = "5f2e69e9afc7cc00045f7ccf";
+    this._apiservice.Get_AppointmentsByPatientID(dataobj, doctorid).subscribe(data => {
       if (data) {
-        this.doctorAppointmentListData = data.filter(function (item) {
-          return item.isVisitCompleted == false;
-        });
-        this.doctorAppointmentHistoryData = data.filter(function (item) {
-          return item.isVisitCompleted == true;
-        });
+      this.patientAppointmentData=data;
       }
     }, error => {
       this.errorMessage = error.error.message;
     });
   }
 
+  expertiesChangeEvent($event) {
+this.Get_FilteredDoctors($event.target.value);
+
+  }
+  
+  Get_ExpertiseList() {
+    let dataobj={
+    };
+    this._apiservice.Get_ExpertiseList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_ExpertiseListGet_ExpertiseList",data);
+        this.expertiesArrayData=data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  Get_FilteredDoctors(experties) {
+    let dataobj = {};
+    this._apiservice.Get_FilteredDoctors(dataobj, experties).subscribe(data => {
+      if (data) {
+        console.log("filterDoctorData ", data);
+        this.filterDoctorData = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  public openGetLabTest() {
+    this.router.navigate(['/getlabtest']);
+  }
+  
+
+
+
 }
+

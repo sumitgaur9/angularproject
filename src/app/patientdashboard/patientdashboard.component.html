@@ -1,0 +1,77 @@
+<div style="position: absolute;top: 23%;width:100%;">
+    <div class="row">
+        <div class="col-md-6">
+
+            <form [formGroup]="doctorExperties">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Experties</label>
+                <select class="form-control" formControlName="experties" (change)="expertiesChangeEvent($event)">
+                    <option value=""></option>
+                    <option *ngFor="let opt of expertiesArrayData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
+              </select>
+              </div>
+            </form>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">DoctorName</th>
+                    <th scope="col">qualification</th>
+                    <th scope="col">experties</th>
+                    <th scope="col">charges</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of filterDoctorData">
+                    <th scope="row">1</th>
+                    <td>{{data.name}}</td>
+                    <td>{{data.qualification}}</td>
+                    <td>{{data.experties}}</td>
+                    <td>{{data.charges}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">disease</th>
+                    <th scope="col">doctorName</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of patientAppointmentData;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{data.patientNname}}</td>
+                    <td>{{data.disease}}</td>
+                    <td>{{data.doctorName}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="text-center">
+                <input  style="width: 200px;" value="Get_LabTestsList" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
+              </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div *ngIf="showVisitForAll">
+    <app-visitforall [showModal]="'showVisitForAllModal'"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+  </div>
+  <div *ngIf="showRequestPatMedHomeDelivery">
+    <app-request-pat-med-home-delivery   [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+  </div>

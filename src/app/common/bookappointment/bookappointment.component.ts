@@ -63,8 +63,8 @@ export class BookappointmentComponent implements OnInit {
     this.errorMessage = "";
     let dataobj = {};
     dataobj = this.bookAppointmentForm.value;
-    dataobj["patientID"] = this.currentUser.user._id;
-    //dataobj["patientID"]  = "5f2e5d2eca9d4f000478a5e8";
+    //dataobj["patientID"] = this.currentUser.user._id;
+    dataobj["patientID"]  = "5f2e69e9afc7cc00045f7ccf";
     //dataobj["doctorName"] = "doctor1";
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
       if (data) {

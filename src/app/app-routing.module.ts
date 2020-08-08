@@ -12,6 +12,8 @@ import { PhyscotherapisteditdisplaylistComponent } from './physcotherapisteditdi
 import { OtherlinksComponent } from './otherlinks/otherlinks.component'
 import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
 import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
+import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
+import { BooklabtestComponent } from './booklabtest/booklabtest.component';
 
 
 const routes: Routes = [
@@ -28,8 +30,8 @@ const routes: Routes = [
     { path: 'otherlinks', component: OtherlinksComponent },
     { path: 'doctordashboard', component: DoctordashboardComponent },
     { path: 'pharmacistdashboard', component: PharmacistdashboardComponent },
-
-    
+    { path: 'patientdashboard', component: PatientdashboardComponent },
+    { path: 'getlabtest', component: BooklabtestComponent },
     
     { path: '**', component: LoginComponent }
 ];

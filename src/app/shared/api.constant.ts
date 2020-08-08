@@ -43,6 +43,14 @@ export const API_PATH: any = {
     'Save_Medicine': 'Save_Medicine',
     'Get_MedicinesList': 'Get_MedicinesList',
     'Get_PharmaReqByPhamacistID': 'Get_PharmaReqByPhamacistID',
+    'Get_AppointmentsByPatientID': 'Get_AppointmentsByPatientID',
+    'Get_LabTestsList': 'Get_LabTestsList',
+    'Save_LabTestsPackage': 'Save_LabTestsPackage',
+
+    'Get_LabTestsPackage': 'Get_LabTestsPackage',
+    'Save_BookLabTest': 'Save_BookLabTest',
+    'Save_LabTest': 'Save_LabTest',
+
     
 }
 

@@ -10,6 +10,12 @@
       <a  class="btn btn-primary" (click)="openDoctorDashboard()">Doctor Dashboard</a>
       <a  class="btn btn-primary" (click)="openMedicineMaster()">Medicine Master</a>
       <a  class="btn btn-primary" (click)="openPharmacistDashboard()">Pharmacist Dashboard</a>
+      <a  class="btn btn-primary" (click)="openPatientDashboard()">Patient Dashboard</a>
+      <a  class="btn btn-primary" (click)="openGetLabTest()">GetLabTestList</a>
+      <a  class="btn btn-primary" (click)="openCreateLabTestMaster()">Create Test</a>
+      <a  class="btn btn-primary" (click)="openCreateLabTestPackageMaster()">LabTestsPackage</a>
+      <a  class="btn btn-primary" (click)="openCreateBookLabTestMaster()">BookLabTest</a>
+
     </div>
 
   </div>
@@ -31,4 +37,15 @@
 
   <div *ngIf="showMedicineMasterPopup">
     <app-medicinemaster [showModal]="showMedicineMasterPopup"  (ClosePopup)="closeMedicineMaster()"> </app-medicinemaster>
+  </div>
+  <div *ngIf="showCreateLabTestMasterPopup">
+    <app-createlabtest [showModal]="showCreateLabTestMasterPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createlabtest>
+  </div>
+
+  <div *ngIf="showCreateLabTestPackageMasterPopup">
+    <app-createlabtestpackage  [showModal]="showCreateLabTestPackageMasterPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createlabtestpackage>
+  </div> 
+  
+  <div *ngIf="showCreateBookLabTestPopup">
+    <app-createbooklabtest  [showModal]="showCreateBookLabTestPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createbooklabtest>
   </div>

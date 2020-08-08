@@ -1,0 +1,177 @@
+<form [formGroup]="createBookLabTestform" (ngSubmit)="Save_BookLabTest()">
+
+    <ad-modal [title]="'OTP'" [modalId]="'showCreateLabTestMasterPopup'">
+      <ad-modal-body>
+        <div class="overlay"></div>
+        <div class="popupContainer">
+          <div class="containerBlock">
+            <div class="formSection">
+              <div class="container">
+                <h2 class="text-center"></h2>
+                <div class="row justify-content-center">
+                  <div class="col-8">
+                    <!--Form with header-->
+                      <div class="card" style="border: transparent!important;">
+                        <div class="card-header p-0">
+                          <div class="bg-info text-white text-center py-2">
+                            <h3><i class="fa fa-medkit"></i>Book Package</h3>
+                            <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <!--Body-->
+                          <!-- <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientNname" name="patientNname"
+                                placeholder="patientNname" formControlName="patientNname">
+                            </div>
+                          </div> -->
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Patient Nname</label>
+                            <select class="form-control" formControlName="patientNname" (change)="patientNameChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of patientListData" [value]="opt.name">{{opt.name}}</option>
+                          </select>
+                          </div>
+
+
+
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientMob" name="patientMob"
+                                placeholder="Patient Mob" formControlName="patientMob">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="email" class="form-control" id="patientEmail" name="patientEmail"
+                              placeholder="ejemplo@gmail.com" formControlName="patientEmail">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientAddres" name="patientAddres"
+                                placeholder="Patient Address" formControlName="patientAddres">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="patientPIN" name="patientPIN"
+                                placeholder="Patient PIN" formControlName="patientPIN">
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Test Type</label>
+                            <select class="form-control" formControlName="testType">
+                                <option value=""></option>
+                                <option *ngFor="let opt of sampleTypeListData" [value]="opt.name">{{opt.name}}</option>
+                          </select>
+                          </div>
+                          
+
+
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">PackageName</label>
+                            <select class="form-control" formControlName="packageName" (change)="packageNameChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of testPackageListData" [value]="opt.packageNname">{{opt.packageNname}}</option>
+                          </select>
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Test</label>
+                            <select class="form-control" formControlName="testsDataUIName" (change)="testChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of labTestData" [value]="opt.testName">{{opt.testName}}</option>
+                          </select>
+                          </div>
+
+                          
+                          <!-- <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="text" class="form-control" id="testsData" name="testsData"
+                                placeholder="testsData" formControlName="testsData">
+                            </div>
+                          </div> -->
+
+
+
+                          <!-- <div class="form-group">
+                            <label for="exampleFormControlSelect1">Test</label>
+                            <select class="form-control" formControlName="testsData">
+                                <option value=""></option>
+                                <option *ngFor="let opt of labTestData" [value]="opt.name">{{opt.name}}</option>
+                          </select>
+                          </div> -->
+
+                          <!-- <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <input type="number" class="form-control" id="packageAmount" name="packageAmount"
+                                placeholder="packageAmount" formControlName="packageAmount">
+                            </div>
+                          </div> -->
+
+                         
+                        </div>
+                      </div>
+                  </div>
+                  <!-- <div class="col-md-4">
+                      <img class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg">
+  
+                  </div> -->
+                </div>
+              </div>
+  
+            </div>
+  
+          </div>
+        </div>
+      </ad-modal-body>
+      <ad-modal-footer>
+        <div class="buttonSection">
+          <div class="text-center">
+              <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
+            </div>
+          <!-- <button class="primartButton" type="submit">Send OTP</button>
+          <button class="secondryButton" type="reset" (click)="CloseModal()">Cancel</button> -->
+        </div>
+      </ad-modal-footer>
+  
+    </ad-modal>
+  
+  </form>
+  

@@ -17,6 +17,14 @@ export class OtherlinksComponent implements OnInit {
 
   public showBookAppointmentPopup:boolean=false;
 
+  public showCreateLabTestMasterPopup:boolean=false;
+
+  public showCreateLabTestPopup:boolean=false;
+
+public showCreateLabTestPackageMasterPopup:boolean=false;
+public showCreateBookLabTestPopup:boolean=false;
+
+
 
   constructor(private router: Router) { }
 
@@ -80,6 +88,45 @@ export class OtherlinksComponent implements OnInit {
   }
 
 
+  public closeCreateLabTestMaster() {
+    this.showCreateLabTestMasterPopup = false;
+    $('#showCreateLabTestMasterPopup').modal('hide');
+  }
+
+  public openCreateLabTestMaster() {
+    this.showCreateLabTestMasterPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showCreateLabTestMasterPopup').modal('show');
+    }, 100);
+  }
+  public closeCreateLabTestPackageMaster() {
+    this.showCreateLabTestPackageMasterPopup = false;
+    $('#showCreateLabTestPackageMasterPopup').modal('hide');
+  }
+
+  public openCreateLabTestPackageMaster() {
+    this.showCreateLabTestPackageMasterPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showCreateLabTestPackageMasterPopup').modal('show');
+    }, 100);
+  }
+
+
+  public closeCreateBookLabTestMaster() {
+    this.showCreateBookLabTestPopup = false;
+    $('#showCreateBookLabTestPopup').modal('hide');
+  }
+
+  public openCreateBookLabTestMaster() {
+    this.showCreateBookLabTestPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showCreateBookLabTestPopup').modal('show');
+    }, 100);
+  }
+
 
   public openDoctorDashboard() {
     this.router.navigate(['/doctordashboard']);
@@ -88,5 +135,13 @@ export class OtherlinksComponent implements OnInit {
   public openPharmacistDashboard() {
     this.router.navigate(['/pharmacistdashboard']);
   }
+  public openPatientDashboard() {
+    this.router.navigate(['/patientdashboard']);
+  }
+
+  public openGetLabTest() {
+    this.router.navigate(['/getlabtest']);
+  }
+  
 
 }

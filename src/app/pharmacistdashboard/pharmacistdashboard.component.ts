@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppEnum } from 'src/app/shared/app.enum';
@@ -39,7 +41,7 @@ export class PharmacistdashboardComponent implements OnInit {
   
   public openPharmacistVisitCompleteIntimation(data) {
     this.showPharmacistVisitCompleteIntimation = true;
-      this.visitAppointmentId = data.appointmentID;
+      this.visitAppointmentId = data._id;
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showPharmacistVisitCompleteIntimationModal').modal('show');
@@ -54,11 +56,9 @@ export class PharmacistdashboardComponent implements OnInit {
       if (data) {
         //this.doctorAppointmentListData=data;
         console.log("  this.doctorAppointmentListData",data);
-        
         this.doctorAppointmentListData = data.filter(function (item) {
           return item.isPharmacyProvided == false;
         });
-
         this.doctorAppointmentHistoryData = data.filter(function (item) {
           return item.isPharmacyProvided == true;
         });
@@ -70,4 +70,3 @@ export class PharmacistdashboardComponent implements OnInit {
   }
   
 }
-

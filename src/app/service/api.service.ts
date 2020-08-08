@@ -374,9 +374,63 @@ export class APIService {
       }));
   }
   
+  Get_AppointmentsByPatientID(params,patientID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByPatientID+'/'+patientID}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
 
+  Get_LabTestsList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
+  Save_LabTest(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTest}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  Save_LabTestsPackage(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTestsPackage}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  Save_BookLabTest(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_BookLabTest}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  
+  Get_LabTestsPackage(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackage}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+
+  
 
 }
 
