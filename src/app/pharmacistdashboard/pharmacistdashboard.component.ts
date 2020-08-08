@@ -39,7 +39,7 @@ export class PharmacistdashboardComponent implements OnInit {
   
   public openPharmacistVisitCompleteIntimation(data) {
     this.showPharmacistVisitCompleteIntimation = true;
-      this.visitAppointmentId = data._id;
+      this.visitAppointmentId = data.appointmentID;
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showPharmacistVisitCompleteIntimationModal').modal('show');

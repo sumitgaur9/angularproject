@@ -2,8 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-//import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent } from '../loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { DoctorprofileComponent } from './doctorprofile/doctorprofile.component';
 import { PatientprofileComponent } from './patientprofile/patientprofile.component';
@@ -19,7 +18,7 @@ import { ExpertiesmasterComponent } from './expertiesmaster/expertiesmaster.comp
 import { MedicinemasterComponent } from './medicinemaster/medicinemaster.component';
 
 @NgModule({
-  declarations: [DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent],
+  declarations: [DoctorprofileComponent, LoaderComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent],
    
   imports: [
     CommonModule,
@@ -28,6 +27,7 @@ import { MedicinemasterComponent } from './medicinemaster/medicinemaster.compone
     RouterModule
   ], exports: [
     DoctorprofileComponent,
+    LoaderComponent,
     ModalComponent,
     PatientprofileComponent,
     NurseprofileComponent,
