@@ -8,6 +8,7 @@
                     <th scope="col">DoctorName</th>
                     <th scope="col">IsVisitComplete</th>
                     <th scope="col">Visit</th>
+                    <th scope="col">ReqMed</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -16,6 +17,7 @@
                     <td>{{data.doctorName}}</td>
                     <td>{{data.isVisitCompleted}}</td>
                     <td>{{data.patientNname}}</td>
+                    <td (click)="openRequestPatMedHomeDelivery(data)">Reqmed</td>
                   </tr>
                 </tbody>
               </table>
@@ -28,7 +30,6 @@
                     <th scope="col">DoctorName</th>
                     <th scope="col">IsVisitComplete</th>
                     <th scope="col">Visit</th>
-                    <th scope="col">ReqMed</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,7 +38,6 @@
                     <td>{{data.doctorName}}</td>
                     <td>{{data.isVisitCompleted}}</td>
                     <td (click)="openShowVisitForAll(data)">Visit All</td>
-                    <td (click)="openRequestPatMedHomeDelivery(data)">Reqmed</td>
 
                   </tr>
                 </tbody>

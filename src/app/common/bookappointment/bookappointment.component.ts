@@ -37,6 +37,7 @@ export class BookappointmentComponent implements OnInit {
     diseaseAge: new FormControl(""),
     doctorID: new FormControl(""),
     doctorName: new FormControl(""),
+   // patientID: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -52,11 +53,7 @@ export class BookappointmentComponent implements OnInit {
     this.Get_DiseasesList();
     // this.Get_FilteredDoctors();
   }
-
   get f() { return this.bookAppointmentForm.controls; }
-
-
-
 
   Save_BookAppointment() {
     this.submitted = true;
@@ -66,7 +63,8 @@ export class BookappointmentComponent implements OnInit {
     this.errorMessage = "";
     let dataobj = {};
     dataobj = this.bookAppointmentForm.value;
-    //dataobj["doctorID"] = "5f268ed2b7335a0004fcd325";
+    dataobj["patientID"] = this.currentUser.user._id;
+    //dataobj["patientID"]  = "5f2e5d2eca9d4f000478a5e8";
     //dataobj["doctorName"] = "doctor1";
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
       if (data) {
@@ -109,8 +107,6 @@ export class BookappointmentComponent implements OnInit {
       this.bookAppointmentForm.controls.doctorID.setValue(newArray[0]._id);
     }
   }
-
-
 
   Get_FilteredDoctors(experties) {
     let dataobj = {};

@@ -16,6 +16,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
   @Input() userEmail = null;
   @Input() appointmentid:string='';
 
+
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
@@ -23,6 +24,8 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
     this.ClosePopup.emit();
   }
 
+  public medicineListDataArray:any=[]; 
+  public doctorListDataArray:any=[];
   public submitted = false;
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -32,6 +35,8 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
     medicineName: new FormControl(""),
     doctorName: new FormControl(""),
     pharmacyPersonContactNo: new FormControl(""),
+    doctorID: new FormControl(""),
+    medicineID: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -43,12 +48,68 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
 
   ngOnInit() {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.Get_MedicinesList();
+  this.Get_DoctorsList();
   }
 
 
   get f() { return this.pharmaVisitCompleteIntimationForm.controls; }
 
   
+
+  medicineChangeEvent($event) {
+    let newArray = this.medicineListDataArray.filter(function (item) {
+      return item.medicineName == $event.target.value;
+    });
+    if (newArray) {
+      this.pharmaVisitCompleteIntimationForm.patchValue(
+        {
+          medicineID:newArray[0]._id
+        }
+      )
+    }
+  }
+
+  doctorChangeEvent($event) {
+    let newArray = this.doctorListDataArray.filter(function (item) {
+      return item.name == $event.target.value;
+    });
+    if (newArray) {
+      this.pharmaVisitCompleteIntimationForm.patchValue(
+        {
+          doctorID:newArray[0]._id
+        }
+      )
+    }
+  }
+
+  Get_MedicinesList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_MedicinesList(dataobj).subscribe(data => {
+      if (data) {
+        this.medicineListDataArray = data;
+        console.log("medicineListDataArray ", data);
+
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+
+  Get_DoctorsList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_DoctorsList(dataobj).subscribe(data => {
+      if (data) {
+        this.doctorListDataArray = data;
+        console.log("doctorListDataArray ", data);
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
 
   Save_PharmaVisitCompleteIntimation() {
     this.submitted = true;

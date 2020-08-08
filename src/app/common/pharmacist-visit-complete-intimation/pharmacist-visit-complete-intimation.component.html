@@ -32,13 +32,11 @@
                           </div>
 
                           <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="medicineName" name="medicineName"
-                                placeholder="medicineName" formControlName="medicineName">
-                            </div>
+                            <label for="exampleFormControlSelect1">Medicine</label>
+                            <select class="form-control" formControlName="medicineName" (change)="medicineChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of medicineListDataArray" [value]="opt.medicineName">{{opt.medicineName}}</option>
+                          </select>
                           </div>
 
                           <div class="form-group">
@@ -49,6 +47,14 @@
                               <input type="text" class="form-control" id="doctorName" name="doctorName"
                                 placeholder="doctorName" formControlName="doctorName">
                             </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Doctor</label>
+                            <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
+                                <option value=""></option>
+                                <option *ngFor="let opt of doctorListDataArray" [value]="opt.name">{{opt.name}}</option>
+                          </select>
                           </div>
 
                           <div class="form-group">

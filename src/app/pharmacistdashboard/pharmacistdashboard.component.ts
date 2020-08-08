@@ -52,13 +52,16 @@ export class PharmacistdashboardComponent implements OnInit {
     let pharmacistID="5f255d7bbb2631000488c8b0";
     this._apiservice.Get_PharmaReqByPhamacistID(dataobj,pharmacistID).subscribe(data => {
       if (data) {
-        this.doctorAppointmentListData=data;
-        console.log("  this.doctorAppointmentListData",  this.doctorAppointmentListData);
-
-        this.doctorAppointmentHistoryData = this.doctorAppointmentListData.filter(function (item) {
-          return item.isPharmacyProvided == true;
+        //this.doctorAppointmentListData=data;
+        console.log("  this.doctorAppointmentListData",data);
+        
+        this.doctorAppointmentListData = data.filter(function (item) {
+          return item.isPharmacyProvided == false;
         });
 
+        this.doctorAppointmentHistoryData = data.filter(function (item) {
+          return item.isPharmacyProvided == true;
+        });
 
       }
     }, error => {

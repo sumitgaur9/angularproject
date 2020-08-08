@@ -25,6 +25,7 @@ export class MedicinemasterComponent implements OnInit {
 
 
   public medicineDataArray=[{"name":"cipla"},{"name":"crosin"}];
+  public companyNameDataArray=[{"name":"Aimil"},{"name":"cipla"}];
 
 
   public submitted = false;
@@ -32,6 +33,8 @@ export class MedicinemasterComponent implements OnInit {
 
   public medicineMasterForm = new FormGroup({
     medicineName: new FormControl(""),
+    companyName: new FormControl(""),
+    price: new FormControl(""),
   });
 
   public passwordPatternError = false;

@@ -66,12 +66,15 @@ export class DoctordashboardComponent implements OnInit {
     let doctorid = "5f268ed2b7335a0004fcd325";
     this._apiservice.Get_AppointmentsByDocID(dataobj, doctorid).subscribe(data => {
       if (data) {
-        this.doctorAppointmentListData = data;
-        console.log("  this.doctorAppointmentListData", this.doctorAppointmentListData);
-
-        this.doctorAppointmentHistoryData = this.doctorAppointmentListData.filter(function (item) {
+        this.doctorAppointmentListData = data.filter(function (item) {
+          return item.isVisitCompleted == false;
+        });
+        this.doctorAppointmentHistoryData = data.filter(function (item) {
           return item.isVisitCompleted == true;
         });
+
+
+        
 
 
       }
