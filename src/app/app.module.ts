@@ -19,7 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { AuthInterceptor } from './service/auth-interceptor.service';
 import { LoaderInterceptorService } from './service/loader-interceptor.service';
-import { LoaderComponent } from './loader/loader.component';
+// import { LoaderComponent } from './loader/loader.component';
 import { DoctorEditdisplaylistComponent } from './doctoreditdisplaylist/doctoreditdisplaylist.component';
 import { PatienteditdisplaylistComponent } from './patienteditdisplaylist/patienteditdisplaylist.component';
 import { NurseeditdisplaylistComponent } from './nurseeditdisplaylist/nurseeditdisplaylist.component';
@@ -39,7 +39,7 @@ import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistda
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    LoaderComponent,
+    // LoaderComponent,
     DoctorEditdisplaylistComponent,
     PatienteditdisplaylistComponent,
     NurseeditdisplaylistComponent,
