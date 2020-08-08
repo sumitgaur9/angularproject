@@ -33,7 +33,7 @@ export class CreatebooklabtestComponent implements OnInit {
   
 
 
-  public sampleTypeListData=[{"name":"blood"},{"name":"muscus"},{"name":"urine"}]
+  public sampleTypeListData=[{"name":"package"},{"name":"individual"}]
 
   public createBookLabTestform = new FormGroup({
     patientNname: new FormControl(""),
@@ -47,6 +47,7 @@ export class CreatebooklabtestComponent implements OnInit {
     packageName: new FormControl(""),
     testsDataUIName: new FormControl(""),
     testsDataUIID: new FormControl(""),
+    price: new FormControl(""),
     //isReportGenerated: new FormControl(""),
   });
 
@@ -88,6 +89,7 @@ let newdatatemp={
     testType: this.createBookLabTestform.value.testType,
     packageID: this.createBookLabTestform.value.packageID,
     packageName: this.createBookLabTestform.value.packageName,
+    price: this.createBookLabTestform.value.price,
 }
 
 let dataobj=[{
