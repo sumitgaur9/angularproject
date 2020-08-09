@@ -4,17 +4,17 @@
 <div class="container mt-2" style="position:absolute;top:21%;left:7%;">
 
     <div style="margin-bottom:1%;">
-      <a  class="btn btn-primary" (click)="openBookAppointmentPopup()">Book Appointment</a>
-      <a  class="btn btn-primary" (click)="openDiseasMasterPopup()">Diseases Master</a>
-      <a  class="btn btn-primary" (click)="openExpertiesMasterPopup()">Experties Master</a>
-      <a  class="btn btn-primary" (click)="openDoctorDashboard()">Doctor Dashboard</a>
-      <a  class="btn btn-primary" (click)="openMedicineMaster()">Medicine Master</a>
-      <a  class="btn btn-primary" (click)="openPharmacistDashboard()">Pharmacist Dashboard</a>
-      <a  class="btn btn-primary" (click)="openPatientDashboard()">Patient Dashboard</a>
-      <a  class="btn btn-primary" (click)="openGetLabTest()">GetLabTestList</a>
-      <a  class="btn btn-primary" (click)="openCreateLabTestMaster()">Create Test</a>
-      <a  class="btn btn-primary" (click)="openCreateLabTestPackageMaster()">LabTestsPackage</a>
-      <a  class="btn btn-primary" (click)="openCreateBookLabTestMaster()">BookLabTest</a>
+      <a *ngIf="currentUser.user.role==0 || currentUser.user.role==11"  class="btn btn-primary" (click)="openBookAppointmentPopup()" >Book Appointment</a>
+      <a *ngIf="currentUser.user.role==1 || currentUser.user.role==11"  class="btn btn-primary" (click)="openDiseasMasterPopup()">Diseases Master</a>
+      <a  *ngIf="currentUser.user.role==11"   class="btn btn-primary" (click)="openExpertiesMasterPopup()">Experties Master</a>
+      <a  *ngIf="currentUser.user.role==1 || currentUser.user.role==11"  class="btn btn-primary" (click)="openDoctorDashboard()">Doctor Dashboard</a>
+      <a  *ngIf="currentUser.user.role==1 || currentUser.user.role==11"  class="btn btn-primary" (click)="openMedicineMaster()">Medicine Master</a>
+      <a *ngIf="currentUser.user.role==4 || currentUser.user.role==11"  class="btn btn-primary" (click)="openPharmacistDashboard()">Pharmacist Dashboard</a>
+      <a *ngIf="currentUser.user.role==0 || currentUser.user.role==11" class="btn btn-primary" (click)="openPatientDashboard()">Patient Dashboard</a>
+      <a  *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn btn-primary" (click)="openGetLabTest()">GetLabTestList</a>
+      <a  *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn btn-primary" (click)="openCreateLabTestMaster()">Create Test</a>
+      <a  *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn btn-primary" (click)="openCreateLabTestPackageMaster()">LabTestsPackage</a>
+      <a  *ngIf="currentUser.user.role==0 || currentUser.user.role==11" class="btn btn-primary" (click)="openCreateBookLabTestMaster()">BookLabTest</a>
 
     </div>
 

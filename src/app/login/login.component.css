@@ -94,3 +94,11 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.eyeIcon{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 19px;
+    cursor: pointer;
+}

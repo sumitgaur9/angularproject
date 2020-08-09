@@ -6,13 +6,13 @@
     <div style="margin-bottom:1%;">
       <!-- <h4 class="card-title">Card 1</h4>
       <p class="card-text">Welcom to bootstrap card styles</p> -->
-      <a class="btn btn-primary" (click)="openPatientProfilePopup()">Welcome for the Patient to see their profile</a>
+      <a class="btn btn-primary" *ngIf="currentUser.user.role==0 || currentUser.user.role==11"   (click)="openPatientProfilePopup()">Welcome for the Patient to see their profile</a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
         <h4 class="card-title text-right">
-          <i  *ngIf="currentUser.user.role==0 || currentUser.user.role==11"class="fa fa-times" aria-hidden="true" (click)="Delete_PatientProfile()"></i>
+          <i  *ngIf="currentUser.user.role==0 || currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PatientProfile()"></i>
 
           <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openPatientProfilePopup()"></i> -->
         </h4>

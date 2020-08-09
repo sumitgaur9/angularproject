@@ -17,26 +17,27 @@ export class PatientdashboardComponent implements OnInit {
 
   public doctorAppointmentListData: any = [];
   public doctorAppointmentHistoryData: any = [];
-  public showRequestPatMedHomeDelivery:boolean=false;
+  public showRequestPatMedHomeDelivery: boolean = false;
 
   public errorMessage;
   public showVisitForAll: boolean = false;
-  public showBookAppointmentPopup:boolean=false;
+  public showBookAppointmentPopup: boolean = false;
   public visitAppointmentId: string = '';
 
-  public expertiesArrayData:any=[];
-  public patientAppointmentData:any=[];
+  public expertiesArrayData: any = [];
+  public patientAppointmentData: any = [];
 
   public doctorExperties = new FormGroup({
     experties: new FormControl(""),
   });
-
-  public filterDoctorData:any=[];
+  public currentUser;
+  public filterDoctorData: any = [];
 
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
     this.Get_AppointmentsByPatientID();
     this.Get_ExpertiseList();
   }
@@ -92,7 +93,7 @@ export class PatientdashboardComponent implements OnInit {
     let doctorid = "5f2e69e9afc7cc00045f7ccf";
     this._apiservice.Get_AppointmentsByPatientID(dataobj, doctorid).subscribe(data => {
       if (data) {
-      this.patientAppointmentData=data;
+        this.patientAppointmentData = data;
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -100,17 +101,17 @@ export class PatientdashboardComponent implements OnInit {
   }
 
   expertiesChangeEvent($event) {
-this.Get_FilteredDoctors($event.target.value);
+    this.Get_FilteredDoctors($event.target.value);
 
   }
-  
+
   Get_ExpertiseList() {
-    let dataobj={
+    let dataobj = {
     };
     this._apiservice.Get_ExpertiseList(dataobj).subscribe(data => {
       if (data) {
-        console.log("Get_ExpertiseListGet_ExpertiseList",data);
-        this.expertiesArrayData=data;
+        console.log("Get_ExpertiseListGet_ExpertiseList", data);
+        this.expertiesArrayData = data;
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -132,7 +133,7 @@ this.Get_FilteredDoctors($event.target.value);
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }
-  
+
 
 
 

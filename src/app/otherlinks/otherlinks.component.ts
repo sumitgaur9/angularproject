@@ -10,25 +10,26 @@ declare var $: any;
 export class OtherlinksComponent implements OnInit {
 
 
-  public showDiseasMasterPopup:boolean=false;
-  public showExpertiesMasterPopup:boolean=false;
+  public showDiseasMasterPopup: boolean = false;
+  public showExpertiesMasterPopup: boolean = false;
 
-  public showMedicineMasterPopup:boolean=false;
+  public showMedicineMasterPopup: boolean = false;
 
-  public showBookAppointmentPopup:boolean=false;
+  public showBookAppointmentPopup: boolean = false;
 
-  public showCreateLabTestMasterPopup:boolean=false;
+  public showCreateLabTestMasterPopup: boolean = false;
 
-  public showCreateLabTestPopup:boolean=false;
+  public showCreateLabTestPopup: boolean = false;
 
-public showCreateLabTestPackageMasterPopup:boolean=false;
-public showCreateBookLabTestPopup:boolean=false;
-
+  public showCreateLabTestPackageMasterPopup: boolean = false;
+  public showCreateBookLabTestPopup: boolean = false;
+  public currentUser;
 
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   }
 
 
@@ -142,6 +143,6 @@ public showCreateBookLabTestPopup:boolean=false;
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }
-  
+
 
 }

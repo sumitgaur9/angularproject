@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   public submitted: boolean = false;
   public errorMessage: string = "";
+  passwordType = 'password';
 
   public loginInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
