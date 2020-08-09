@@ -14,8 +14,9 @@
         <h4 class="card-title text-right">   <!--<i class="fa fa-pencil" aria-hidden="true" (click)="openDoctorProfilePopup()"></i> -->
             <i class="fa fa-times" aria-hidden="true" (click)="deleteDoctorProfilePopup()"></i>
           </h4>
-        <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
-            <h5 class="item-card-title mt-3 mb-3">{{data.name}} • Doctor {{data.charges}}</h5>
+          <img *ngIf="data.experties=='physician'" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+          <img *ngIf="data.experties!='physician'" src="https://thumbs.dreamstime.com/z/young-female-doctor-white-dress-19541983.jpg" alt="Photo of sunset">
+          <h5 class="item-card-title mt-3 mb-3">{{data.name}} • Doctor {{data.charges}}</h5>
             <p class="card-text">{{data.experties}}</p>
       </div>
         </div>
