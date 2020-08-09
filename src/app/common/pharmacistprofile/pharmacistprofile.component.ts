@@ -38,6 +38,7 @@ export class PharmacistprofileComponent implements OnInit {
     area: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
+    participantID: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -123,6 +124,12 @@ export class PharmacistprofileComponent implements OnInit {
             id: data._id
           });
         }
+        if(data.participantID!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            participantID: data.participantID
+          });
+        }
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -137,7 +144,6 @@ export class PharmacistprofileComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.pharmacistProfileForm.value;
-    dataobj["participantID"]=this.currentUser.roleBaseId;
     this._apiservice.Update_PharmacistProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);

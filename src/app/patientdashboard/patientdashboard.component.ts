@@ -21,6 +21,7 @@ export class PatientdashboardComponent implements OnInit {
 
   public errorMessage;
   public showVisitForAll: boolean = false;
+  public showBookAppointmentPopup:boolean=false;
   public visitAppointmentId: string = '';
 
   public expertiesArrayData:any=[];
@@ -69,6 +70,20 @@ export class PatientdashboardComponent implements OnInit {
       $('#showRequestPatMedHomeDeliveryModal').modal('show');
     }, 100);
   }
+
+  public closeBookAppointmentPopup() {
+    this.showBookAppointmentPopup = false;
+    $('#showphyscoprofileformpopup').modal('hide');
+  }
+
+  public openBookAppointmentPopup() {
+    this.showBookAppointmentPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showphyscoprofileformpopup').modal('show');
+    }, 100);
+  }
+
 
 
   Get_AppointmentsByPatientID() {

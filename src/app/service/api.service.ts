@@ -68,6 +68,18 @@ export class APIService {
       }));
   }
 
+  Get_PatientProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  
+
   Update_PatientProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile +'/'+data.id}`
     return this.http.put<any>(APIURL, data)

@@ -38,6 +38,7 @@ export class NurseprofileComponent implements OnInit {
     area: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
+    participantID: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -120,6 +121,13 @@ export class NurseprofileComponent implements OnInit {
             id: data._id
           });
         }
+        if(data.participantID!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            participantID: data.participantID
+          });
+        }
+
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -134,7 +142,6 @@ export class NurseprofileComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.nurseProfileForm.value;
-    dataobj["participantID"]=this.currentUser.roleBaseId;
     this._apiservice.Update_NurseProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);

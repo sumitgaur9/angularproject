@@ -61,6 +61,10 @@
                 <input  style="width: 200px;" value="Get_LabTestsList" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
               </div>
 
+              <div class="text-center">
+                <input  style="width: 200px;" value="Book Appointment" (click)="openBookAppointmentPopup()" class="btn btn-info btn-block rounded-0 py-2">
+              </div>
+
 
         </div>
 
@@ -74,4 +78,8 @@
   </div>
   <div *ngIf="showRequestPatMedHomeDelivery">
     <app-request-pat-med-home-delivery   [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+  </div>
+
+  <div *ngIf="showBookAppointmentPopup">
+    <app-bookappointment [showModal]="showBookAppointmentPopup"  (ClosePopup)="closeBookAppointmentPopup()"> </app-bookappointment>
   </div>

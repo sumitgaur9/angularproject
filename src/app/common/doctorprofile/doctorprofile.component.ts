@@ -36,6 +36,7 @@ export class DoctorprofileComponent implements OnInit {
     area: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
+    participantID:new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -123,6 +124,14 @@ public expertiesArrayData:any=[];
             id: data._id
           });
         }
+
+        if(data.participantID!=undefined)
+        {
+          this.doctorform.patchValue({
+            participantID: data.participantID
+          });
+        }
+
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -137,13 +146,11 @@ public expertiesArrayData:any=[];
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.doctorform.value;
-    dataobj["participantID"]=this.currentUser.user._id;
     this._apiservice.Update_DoctorProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks for dubmit doctor profile');
         this.CloseModal();
-      //  this.router.navigate(['/doctorlist']);
       }
     }, error => {
       this.errorMessage = error.error.message;

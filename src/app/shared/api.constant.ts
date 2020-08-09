@@ -10,6 +10,7 @@ export const API_PATH: any = {
     'Update_DoctorProfile': 'Update_DoctorProfile',
     'Get_DoctorsList': 'Get_DoctorsList',
     'Save_PatientProfile': 'Save_PatientProfile',
+    'Get_PatientProfile': 'Get_PatientProfile',
     'Update_PatientProfile': 'Update_PatientProfile',
     'Get_PatientsList': 'Get_PatientsList',
     'Delete_Doctor': 'Delete_Doctor',

@@ -143,7 +143,6 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
         break;
         case 'otherlinks':
-          this.logout();
           this.router.navigate(['/otherlinks']);
           break;
       case 'ReqPatientMedHomeDel':

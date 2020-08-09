@@ -39,6 +39,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
     area: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
+    participantID: new FormControl("")
   });
 
   public currentUser;
@@ -125,6 +126,12 @@ export class PhyscotherapistprofileComponent implements OnInit {
             id: data._id
           });
         }
+        if(data.participantID!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            participantID: data.participantID
+          });
+        }
       }
     }, error => {
       this.errorMessage = error.error.message;
@@ -139,7 +146,6 @@ export class PhyscotherapistprofileComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.physioProfileForm.value;
-    dataobj["participantID"]=this.currentUser.roleBaseId;
     this._apiservice.Update_PhysioProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
