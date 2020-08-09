@@ -68,7 +68,7 @@ export class CreatelabtestComponent implements OnInit {
       //  this.router.navigate(['/doctorlist']);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

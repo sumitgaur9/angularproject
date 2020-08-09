@@ -93,7 +93,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
 
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -107,7 +107,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
         console.log("doctorListDataArray ", data);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -127,7 +127,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
         this.CloseModal();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 }

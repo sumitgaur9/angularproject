@@ -96,7 +96,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
         this.Get_DoctorsList();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -120,7 +120,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
         //   }
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

@@ -50,7 +50,7 @@ public currentUser;
         this.patientListData = data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -64,7 +64,7 @@ public currentUser;
         this.Get_PharmacistsList();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
