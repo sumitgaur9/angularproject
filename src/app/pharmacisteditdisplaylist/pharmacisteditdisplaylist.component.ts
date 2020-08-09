@@ -19,10 +19,12 @@ export class PharmacisteditdisplaylistComponent implements OnInit {
   showpharmacistformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
-
+public currentUser;
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
     this.Get_PharmacistsList();
   }
 
@@ -51,4 +53,19 @@ export class PharmacisteditdisplaylistComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
+
+  
+  Delete_PharmacistProfile() {
+    let dataobj = {
+    };
+    this._apiservice.Delete_Pharmacist(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        this.toastr.success('doctor deleted successfully');
+        this.Get_PharmacistsList();
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
 }

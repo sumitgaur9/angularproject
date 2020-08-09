@@ -68,5 +68,6 @@ export class PharmacistdashboardComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
+
   
 }

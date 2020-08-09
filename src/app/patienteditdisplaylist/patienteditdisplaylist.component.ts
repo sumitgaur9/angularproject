@@ -20,10 +20,13 @@ export class PatienteditdisplaylistComponent implements OnInit {
   showpatientformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
+  public currentUser;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
     this.Get_PatientsList();
   }
 
@@ -47,6 +50,19 @@ export class PatienteditdisplaylistComponent implements OnInit {
       if (data) {
         console.log("daa is ", data);
         this.patientListData = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  Delete_PatientProfile() {
+    let dataobj = {
+    };
+    this._apiservice.Delete_Patient(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        this.toastr.success('doctor deleted successfully');
+        this.Get_PatientsList();
       }
     }, error => {
       this.errorMessage = error.error.message;

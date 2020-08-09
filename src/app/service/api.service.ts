@@ -88,6 +88,16 @@ export class APIService {
       }));
   }
 
+  Delete_Patient(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Patient+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
 
   Get_PatientsList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientsList}`
@@ -125,6 +135,16 @@ export class APIService {
       }));
   }
 
+  Delete_Nurse(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Nurse+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
   Get_NurseProfile(params,rolebasedid) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_NurseProfile+'/'+rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
@@ -150,6 +170,16 @@ export class APIService {
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
+      }));
+  }
+
+  Delete_Pharmacist(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Pharmacist+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
       }));
   }
 
@@ -184,7 +214,15 @@ export class APIService {
 
   }
 
-  
+  Delete_Physio(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Physio+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
   Update_PhysioProfile(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile +'/'+data.id}`

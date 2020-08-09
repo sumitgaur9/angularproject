@@ -18,11 +18,13 @@ export class NurseeditdisplaylistComponent implements OnInit {
   shownurseprofileformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
+  public currentUser;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.Get_PatientsList();
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.Get_NursesList();
   }
 
   public closeNurseProfilePopup() {
@@ -38,7 +40,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
     }, 100);
   }
 
-  Get_PatientsList() {
+  Get_NursesList() {
     let dataobj = {
     };
     this._apiservice.Get_NursesList(dataobj).subscribe(data => {
@@ -50,5 +52,19 @@ export class NurseeditdisplaylistComponent implements OnInit {
       this.errorMessage = error.error.message;
     });
   }
+
+  Delete_NurseProfile() {
+    let dataobj = {
+    };
+    this._apiservice.Delete_Nurse(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        this.toastr.success('doctor deleted successfully');
+        this.Get_NursesList();
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
 
 }

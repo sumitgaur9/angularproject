@@ -19,10 +19,13 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
   showphyscoprofileformpopup = false;
   public errorMessage: string = '';
   public patientListData: any = [];
+  public currentUser;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
     this.Get_PhysiosList();
   }
 
@@ -46,6 +49,20 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
       if (data) {
         console.log("daa is ", data);
         this.patientListData = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message;
+    });
+  }
+
+  
+  Delete_PhysioProfile() {
+    let dataobj = {
+    };
+    this._apiservice.Delete_Physio(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        this.toastr.success('doctor deleted successfully');
+        this.Get_PhysiosList();
       }
     }, error => {
       this.errorMessage = error.error.message;
