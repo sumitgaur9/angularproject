@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.testheader();
+   //  this.testheader();
     //$('[data-toggle="popover"]').popover(); 
   }
 
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
     let dataparam: any = {};
     this._apiservice.logout(dataparam).subscribe(data => {
       // if (data) {
-      localStorage.clear();
+     
       this.router.navigate(['/login']);
       // }
     }, error => {

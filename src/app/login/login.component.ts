@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     let values = this.loginInfo.value;
     this._apiservice.signIn(values).subscribe(data => {
       if (data) {
-        console.log("loginUserResponseData..", data.data);
+        console.log("loginUserResponseData..", data);
         if (data.token && data.token != "" && data.token != null) {
           let datainput: any = {};
           this.router.navigate(['/home']);

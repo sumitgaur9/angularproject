@@ -255,6 +255,7 @@ export class APIService {
     return this.http.post<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
+          localStorage.clear();
         }
         return resdata;
       }));
