@@ -75,7 +75,7 @@ export class PharmacistdashboardComponent implements OnInit {
 
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

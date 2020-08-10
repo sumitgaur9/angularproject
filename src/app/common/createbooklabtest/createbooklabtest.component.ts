@@ -107,7 +107,7 @@ newdatatemp["testsData"]=dataobj;
       //  this.router.navigate(['/doctorlist']);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -123,7 +123,7 @@ newdatatemp["testsData"]=dataobj;
         this.labTestData=data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -138,7 +138,7 @@ newdatatemp["testsData"]=dataobj;
         this.testPackageListData = data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -151,7 +151,7 @@ newdatatemp["testsData"]=dataobj;
         this.patientListData = data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

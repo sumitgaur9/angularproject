@@ -133,7 +133,7 @@ export class PatientprofileComponent implements OnInit {
 
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -153,7 +153,7 @@ export class PatientprofileComponent implements OnInit {
         this.router.navigate(['/patientlist']);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 }

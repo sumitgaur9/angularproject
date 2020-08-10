@@ -49,7 +49,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
         this.patientListData = data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -62,7 +62,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
         this.Get_NursesList();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

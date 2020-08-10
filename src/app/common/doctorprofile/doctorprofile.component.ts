@@ -134,7 +134,7 @@ public expertiesArrayData:any=[];
 
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -153,7 +153,8 @@ public expertiesArrayData:any=[];
         this.CloseModal();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      this.toastr.error(error.error.message);
     });
   }
 
@@ -169,7 +170,7 @@ public expertiesArrayData:any=[];
         this.expertiesArrayData=data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

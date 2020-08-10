@@ -70,7 +70,7 @@ export class CreatelabtestpackageComponent implements OnInit {
       //  this.router.navigate(['/doctorlist']);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -86,7 +86,7 @@ export class CreatelabtestpackageComponent implements OnInit {
         this.labTestData=data;
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

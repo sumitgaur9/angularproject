@@ -5,6 +5,7 @@ import { UtililtyFunctions } from 'src/app/utils/utils';
 // import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", [Validators.required]),
   });
 
-  constructor(private router: Router, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
     localStorage.clear();
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
         }
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

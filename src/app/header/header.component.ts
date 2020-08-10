@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
       // }
     }, error => {
       if (error && error.error && error.error.message) {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       }
     });
   }
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
       // }
     }, error => {
       if (error && error.error && error.error.message) {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       }
     });
   }

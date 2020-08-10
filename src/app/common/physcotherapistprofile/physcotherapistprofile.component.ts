@@ -134,7 +134,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
         }
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
@@ -154,7 +154,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
         this.router.navigate(['/nurselist']);
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
