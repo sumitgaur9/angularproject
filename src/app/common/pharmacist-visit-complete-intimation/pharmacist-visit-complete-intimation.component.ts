@@ -15,6 +15,9 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() appointmentid:string='';
+  @Input() inputPharmacistVisitCompleteIntimationModalData:any;
+
+  
 
 
   @Output() ClosePopup = new EventEmitter();
@@ -50,6 +53,10 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   this.Get_MedicinesList();
   this.Get_DoctorsList();
+  this.pharmaVisitCompleteIntimationForm.patchValue({
+    patientName:this.inputPharmacistVisitCompleteIntimationModalData.patientName,
+    pharmacyPersonContactNo:this.inputPharmacistVisitCompleteIntimationModalData.patientContactNo,
+  })
   }
 
 

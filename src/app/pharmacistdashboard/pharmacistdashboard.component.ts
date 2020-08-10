@@ -24,11 +24,17 @@ export class PharmacistdashboardComponent implements OnInit {
   public errorMessage;
   public showVisitForAll:boolean=false;
   public visitAppointmentId:string='';
+  public inputPharmacistVisitCompleteIntimationModal:any={
+    patientName:'',
+    patientContactNo:''
+  };
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
     this.Get_PharmaReqByPhamacistID();
+   
+
   }
 
   
@@ -37,11 +43,15 @@ export class PharmacistdashboardComponent implements OnInit {
   public closePharmacistVisitCompleteIntimation() {
     this.showPharmacistVisitCompleteIntimation = false;
     $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
+    this.Get_PharmaReqByPhamacistID();
   }
   
   public openPharmacistVisitCompleteIntimation(data) {
     this.showPharmacistVisitCompleteIntimation = true;
       this.visitAppointmentId = data.appointmentID;
+      this.inputPharmacistVisitCompleteIntimationModal.patientName=data.patientName;
+      this.inputPharmacistVisitCompleteIntimationModal.patientContactNo=data.patientContactNo;
+
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showPharmacistVisitCompleteIntimationModal').modal('show');

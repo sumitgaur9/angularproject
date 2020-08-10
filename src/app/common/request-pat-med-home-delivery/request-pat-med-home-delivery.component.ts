@@ -15,6 +15,9 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() appointmentid:string='';
+  @Input() inputrequesPatMedHomeDeliveryData:any;
+
+  
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -29,7 +32,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   
   public reqPatientMedicinesHomeDeliveryForm = new FormGroup({
-    patientName: new FormControl(""),
+    patientName:new FormControl(""),
     medicineName: new FormControl(""),
     patientContactNo: new FormControl(""),
     medicineID: new FormControl(""),
@@ -37,6 +40,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     pharmacistName: new FormControl(""),
     patientAddress: new FormControl(""),
     patientPIN: new FormControl(""),
+
   });
 
   public passwordPatternError = false;
@@ -53,6 +57,12 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   this.Get_MedicinesList();
   this.Get_PharmacistsList();
+  this.reqPatientMedicinesHomeDeliveryForm.patchValue({
+    patientName:this.inputrequesPatMedHomeDeliveryData.patientNname,
+    patientAddress:this.inputrequesPatMedHomeDeliveryData.patientAddres,
+    patientPIN:this.inputrequesPatMedHomeDeliveryData.patientPIN,
+    patientContactNo:this.inputrequesPatMedHomeDeliveryData.patientMob,
+  })
   }
 
 

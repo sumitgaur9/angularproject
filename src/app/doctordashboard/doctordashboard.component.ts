@@ -22,6 +22,13 @@ export class DoctordashboardComponent implements OnInit {
   public errorMessage;
   public showVisitForAll: boolean = false;
   public visitAppointmentId: string = '';
+  public patientname:string='';
+  public inputrequesPatMedHomeDelivery:any={
+    patientNname:'',
+    patientMob:'',
+    patientPIN:'',
+    patientAddres:'',
+  }
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -33,11 +40,16 @@ export class DoctordashboardComponent implements OnInit {
   public closeshowVisitForAll() {
     this.showVisitForAll = false;
     $('#showVisitForAllModal').modal('hide');
+    this.Get_AppointmentsByDocID();
   }
 
   public openShowVisitForAll(data) {
     this.showVisitForAll = true;
+    console.log("data is this",data);
     this.visitAppointmentId = data._id;
+    this.patientname = data.patientNname;
+
+    
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showVisitForAllModal').modal('show');
@@ -47,12 +59,19 @@ export class DoctordashboardComponent implements OnInit {
   public closeRequestPatMedHomeDelivery() {
     this.showRequestPatMedHomeDelivery = false;
     $('#showRequestPatMedHomeDeliveryModal').modal('hide');
+    this.Get_AppointmentsByDocID();
   }
 
   public openRequestPatMedHomeDelivery(data) {
     this.showRequestPatMedHomeDelivery = true;
-    this.showVisitForAll = true;
     this.visitAppointmentId = data._id;
+    console.log("data is this",data);
+
+    this.inputrequesPatMedHomeDelivery.patientNname=data.patientNname;
+    this.inputrequesPatMedHomeDelivery.patientMob=data.patientMob;
+    this.inputrequesPatMedHomeDelivery.patientPIN=data.patientPIN;
+    this.inputrequesPatMedHomeDelivery.patientAddres=data.patientAddres;
+
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showRequestPatMedHomeDeliveryModal').modal('show');

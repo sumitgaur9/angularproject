@@ -14,6 +14,9 @@ export class VisitforallComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() appointmentid;
+  @Input() patientname;
+
+  
 
   
 
@@ -29,7 +32,7 @@ export class VisitforallComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   public visitforallform = new FormGroup({
-    patientName: new FormControl(""),
+    patientName:new FormControl(""),
     isNextVisitRequired: new FormControl(""),
   });
 
@@ -41,7 +44,11 @@ export class VisitforallComponent implements OnInit {
 
 
   ngOnInit() {
+    
   this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.visitforallform.patchValue({
+    patientName:this.patientname
+  })
   }
 
 

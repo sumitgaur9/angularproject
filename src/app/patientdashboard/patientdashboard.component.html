@@ -1,30 +1,41 @@
 <div style="position: absolute;top: 23%;width:100%;">
     <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="doctorExperties">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Experties</label>
+            <select class="form-control" formControlName="experties" (change)="expertiesChangeEvent($event)">
+                <option value=""></option>
+                <option *ngFor="let opt of expertiesArrayData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
+          </select>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3">
+        <div class="text-center" style="margin-top: 8%;">
+            <input  style="width: 200px;" value="Lab Tests List" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
+          </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="text-center"  style="margin-top: 8%;"  *ngIf="currentUser.user.role==0 || currentUser.user.role==11">
+        <input  style="width: 200px;" value="Book Appointment" (click)="openBookAppointmentPopup()" class="btn btn-info btn-block rounded-0 py-2">
+      </div>
+    </div>
         <div class="col-md-6">
-
-            <form [formGroup]="doctorExperties">
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Experties</label>
-                <select class="form-control" formControlName="experties" (change)="expertiesChangeEvent($event)">
-                    <option value=""></option>
-                    <option *ngFor="let opt of expertiesArrayData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
-              </select>
-              </div>
-            </form>
-
             <table class="table">
-                <thead>
-                  <tr>
+              <thead style="background-color:#17a2b8">
+                <tr>
                     <th scope="col">#</th>
                     <th scope="col">DoctorName</th>
-                    <th scope="col">qualification</th>
-                    <th scope="col">experties</th>
-                    <th scope="col">charges</th>
+                    <th scope="col">Qualification</th>
+                    <th scope="col">Experties</th>
+                    <th scope="col">Charges</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of filterDoctorData">
-                    <th scope="row">1</th>
+                  <tr *ngFor="let data of filterDoctorData;let i = index">
+                    <th scope="row">{{i+1}}</th>
                     <td>{{data.name}}</td>
                     <td>{{data.qualification}}</td>
                     <td>{{data.experties}}</td>
@@ -35,12 +46,12 @@
         </div>
         <div class="col-md-6">
             <table class="table">
-                <thead>
+                <thead style="background-color:#17a2b8">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">disease</th>
-                    <th scope="col">doctorName</th>
+                    <th scope="col">Diseases</th>
+                    <th scope="col">Doctor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,30 +66,19 @@
               </table>
         </div>
 
-        <div class="col-md-6">
-
-            <div class="text-center">
-                <input  style="width: 200px;" value="Get_LabTestsList" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
-              </div>
-
-              <div class="text-center"  *ngIf="currentUser.user.role==0 || currentUser.user.role==11">
-                <input  style="width: 200px;" value="Book Appointment" (click)="openBookAppointmentPopup()" class="btn btn-info btn-block rounded-0 py-2">
-              </div>
-
-
-        </div>
+      
 
     </div>
 
 </div>
 
 
-<div *ngIf="showVisitForAll">
+<!-- <div *ngIf="showVisitForAll">
     <app-visitforall [showModal]="'showVisitForAllModal'"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
   </div>
   <div *ngIf="showRequestPatMedHomeDelivery">
     <app-request-pat-med-home-delivery   [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
-  </div>
+  </div> -->
 
   <div *ngIf="showBookAppointmentPopup">
     <app-bookappointment [showModal]="showBookAppointmentPopup"  (ClosePopup)="closeBookAppointmentPopup()"> </app-bookappointment>
