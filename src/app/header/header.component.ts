@@ -19,9 +19,9 @@ export class HeaderComponent implements OnInit {
   public currentLoggedUserData: any = {};
   public username = "";
   public errorMessage: string = '';
-  public showRequestPatMedHomeDelivery:boolean=false;
-  public showPharmacistVisitCompleteIntimation:boolean=false;
-  public showVisitForAll:boolean=false;
+  public showRequestPatMedHomeDelivery: boolean = false;
+  public showPharmacistVisitCompleteIntimation: boolean = false;
+  public showVisitForAll: boolean = false;
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-   //  this.testheader();
+    //  this.testheader();
     //$('[data-toggle="popover"]').popover(); 
   }
 
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
     let dataparam: any = {};
     this._apiservice.logout(dataparam).subscribe(data => {
       // if (data) {
-     
+
       this.router.navigate(['/login']);
       // }
     }, error => {
@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
     this.showRequestPatMedHomeDelivery = false;
     $('#showRequestPatMedHomeDeliveryModal').modal('hide');
   }
-  
+
   public openRequestPatMedHomeDelivery() {
     this.showRequestPatMedHomeDelivery = true;
     setTimeout(() => {
@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit {
     this.showPharmacistVisitCompleteIntimation = false;
     $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
   }
-  
+
   public openPharmacistVisitCompleteIntimation() {
     this.showPharmacistVisitCompleteIntimation = true;
     setTimeout(() => {
@@ -106,7 +106,7 @@ export class HeaderComponent implements OnInit {
     this.showVisitForAll = false;
     $('#showVisitForAllModal').modal('hide');
   }
-  
+
   public openShowVisitForAll() {
     this.showVisitForAll = true;
     setTimeout(() => {
@@ -123,6 +123,9 @@ export class HeaderComponent implements OnInit {
 
   navigatetopage(menuname) {
     switch (menuname) {
+      case 'home':
+        this.router.navigate(['/home']);
+        break;
       case 'doctorlist':
         this.router.navigate(['/doctorlist']);
         break;
@@ -142,9 +145,9 @@ export class HeaderComponent implements OnInit {
         this.logout();
         this.router.navigate(['/login']);
         break;
-        case 'otherlinks':
-          this.router.navigate(['/otherlinks']);
-          break;
+      case 'otherlinks':
+        this.router.navigate(['/otherlinks']);
+        break;
       case 'ReqPatientMedHomeDel':
         this.openRequestPatMedHomeDelivery();
         break;
@@ -154,6 +157,15 @@ export class HeaderComponent implements OnInit {
       case 'visitforall':
         this.openShowVisitForAll();
         break;
+      case 'logo':
+        let userSubs = this.utilityservice.isUserLoggedIn();
+        if (userSubs.user && userSubs.user.tokens != null) {
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/login']);
+        }
+        break;
+
     }
 
 

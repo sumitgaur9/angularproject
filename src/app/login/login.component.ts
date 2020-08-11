@@ -45,13 +45,36 @@ export class LoginComponent implements OnInit {
         console.log("loginUserResponseData..", data);
         if (data.token && data.token != "" && data.token != null) {
           let datainput: any = {};
-          this.router.navigate(['/home']);
+          //this.router.navigate(['/home']);
+          this.navigateToSpecificPage(data.user.role);
           this.utilityservice.onLoginSuccessfully.next();
         }
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
+  }
+
+
+  navigateToSpecificPage(roleType) {
+    switch (roleType) {
+      case 0:
+        this.router.navigate(['/patientdashboard']);
+        break;
+      case 1:
+        this.router.navigate(['/doctordashboard']);
+        break;
+      case 2:
+      case 3:
+      case 11:
+        this.router.navigate(['/home']);
+        break;
+      case 4:
+        this.router.navigate(['/pharmacistdashboard']);
+        break;
+
+
+    }
   }
 
 }
