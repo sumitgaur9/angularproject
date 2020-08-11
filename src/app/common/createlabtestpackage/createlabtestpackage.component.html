@@ -40,13 +40,13 @@
                             </div>
                           </div> -->
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <label for="exampleFormControlSelect1">Test</label>
-                            <select class="form-control" formControlName="testsData">
+                            <select  class="form-control" formControlName="testsData">
                                 <option value=""></option>
-                                <option *ngFor="let opt of labTestData" [value]="opt.name">{{opt.name}}</option>
+                                <option *ngFor="let opt of labTestData" [value]="opt.testname">{{opt.testname}}</option>
                           </select>
-                          </div>
+                          </div> -->
 
                           <div class="form-group">
                             <div class="input-group mb-2">
@@ -57,6 +57,42 @@
                                 placeholder="packageAmount" formControlName="packageAmount">
                             </div>
                           </div>
+
+
+
+                          <div class="form-group">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <!-- <input type="number" class="form-control" id="packageAmount" name="packageAmount"
+                                placeholder="packageAmount" > -->
+
+
+                                <!-- <ng-multiselect-dropdown
+                                [placeholder]="'custom placeholder'"
+                                [(data)]="labTestData"
+                                formControlName="selectedItems1"
+                                [settings]="dropdownSettings"
+                                (onSelect)="onItemSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                              >
+                              </ng-multiselect-dropdown> -->
+
+                              <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems" 
+                              [settings]="settings" 
+                              (onSelect)="onItemSelect($event)"
+                              (onDeSelect)="OnItemDeSelect($event)" 
+                              (onSelectAll)="onSelectAll($event)" 
+                              (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills">
+        </angular2-multiselect>
+                            </div>
+                          </div>
+
+
+
+                         
+
 
                          
                         </div>

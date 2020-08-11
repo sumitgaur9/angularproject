@@ -21,15 +21,21 @@ import { MedicinemasterComponent } from './medicinemaster/medicinemaster.compone
 import { CreatelabtestComponent } from './createlabtest/createlabtest.component';
 import { CreatelabtestpackageComponent } from './createlabtestpackage/createlabtestpackage.component';
 import { CreatebooklabtestComponent } from './createbooklabtest/createbooklabtest.component';
+// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent],
    
   imports: [
+
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AngularMultiSelectModule,
+
+    // NgMultiSelectDropDownModule.forRoot()
   ], exports: [
     LoaderComponent,
     DoctorprofileComponent,
