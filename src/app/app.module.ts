@@ -31,7 +31,7 @@ import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistda
 import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
 import { BooklabtestComponent } from './booklabtest/booklabtest.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -60,6 +60,8 @@ import { BooklabtestComponent } from './booklabtest/booklabtest.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
+    ChartsModule,
+
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-bottom-left',
