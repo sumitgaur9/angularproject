@@ -456,6 +456,7 @@ export class APIService {
 
   Save_LabTestsPackage(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTestsPackage}`
+    //let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Image}`
     return this.http.post<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;

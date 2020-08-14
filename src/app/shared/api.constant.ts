@@ -1,6 +1,6 @@
 export const API_PATH: any = {
     'Commaon_Path':'https://mongowithnode.herokuapp.com/',
-    // 'Commaon_Path':'http://localhost:5000/',
+     //'Commaon_Path':'http://localhost:5000/',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
     'registration': 'users',
@@ -48,6 +48,7 @@ export const API_PATH: any = {
     'Get_AppointmentsByPatientID': 'Get_AppointmentsByPatientID',
     'Get_LabTestsList': 'Get_LabTestsList',
     'Save_LabTestsPackage': 'Save_LabTestsPackage',
+    'Save_Image': '/api/photo',
 
     'Get_LabTestsPackage': 'Get_LabTestsPackage',
     'Save_BookLabTest': 'Save_BookLabTest',
