@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { UtililtyFunctions } from 'src/app/utils/utils';
+import { ToastrService } from 'ngx-toastr';
+import { APIService } from 'src/app/service/api.service';
 declare var $: any;
 
 @Component({
@@ -9,7 +13,7 @@ declare var $: any;
 })
 export class OtherlinksComponent implements OnInit {
 
-
+public errorMessage:string='';
   public showDiseasMasterPopup: boolean = false;
   public showExpertiesMasterPopup: boolean = false;
 
@@ -26,12 +30,35 @@ export class OtherlinksComponent implements OnInit {
   public currentUser;
 
 
-  constructor(private router: Router) { }
+/****************for image********************* */
+  public testimageform = new FormGroup({
+    image: new FormControl("")
+  });
+
+  public uploadResult = "";
+  public UploadFile = [];
+  public UploadFileName = "";
+
+  /********************** */
+
+
+
+
+
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
   }
 
+  uploadFile(fileInput) {
+    if (fileInput.length === 0) { 
+      return;
+     }
+    this.uploadResult = "";
+    this.UploadFile = <Array<File>>fileInput.target.files;
+    this.UploadFileName = this.UploadFile[0].name;
+  }
 
   public closeDiseasMasterPopup() {
     this.showDiseasMasterPopup = false;
@@ -142,6 +169,23 @@ export class OtherlinksComponent implements OnInit {
 
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
+  }
+
+
+
+
+
+  Save_Image() {
+    this.errorMessage = "";
+    var formData = new FormData();
+    formData.append('image', this.UploadFile[0], this.UploadFileName);
+    this._apiservice.Save_Image(formData).subscribe(data => {
+      if (data) {
+        this.toastr.success('image save successfully');
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 
 

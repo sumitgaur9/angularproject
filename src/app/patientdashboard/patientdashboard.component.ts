@@ -6,6 +6,8 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { ChartType, ChartOptions,ChartDataSets } from 'chart.js';
+import { SingleDataSet,MultiDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 declare var $: any;
 
 @Component({
@@ -33,6 +35,77 @@ export class PatientdashboardComponent implements OnInit {
   public currentUser;
   public filterDoctorData: any = [];
 
+  
+  public commonDashBoardCountData:any={
+    total_no_of_doctors:0,
+    total_no_of_nurses:0,
+    total_no_of_patients:0,
+    total_no_of_pharmacists:0,
+  };
+
+  public diseaseWiseApptCount:any;
+  public medicineWiseApptCount:any;
+  public pharmacistWiseApptCount:any;
+
+  public doctorWiseApptCount:any;
+  public labTestWiseTestCount:any;
+
+
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
+  // public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
+  // public pieChartData: SingleDataSet = [300, 500, 100];
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [];
+  //public pieChartColors = ["#ff9900","#ff9900","#97bbcd","#97bbcd"]; 
+
+  public pieChartColor:any = [
+    {
+        backgroundColor: ['rgba(30, 169, 224, 0.8)',
+        'rgba(255,165,0,0.9)',
+        'rgba(139, 136, 136, 0.9)',
+        'rgba(255, 161, 181, 0.9)',
+        'rgba(255, 102, 0, 0.9)'
+        ]
+    }
+]
+
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+  public pieChartPharmacistLabels: Label[] = [];
+  public pieChartPharmacistData: SingleDataSet = [];
+
+
+  //second
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [];
+
+  public barChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  ];
+
+
+  //third
+
+
+  public doughnutChartLabels: Label[] = [];
+  public doughnutChartData: SingleDataSet = [
+   
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
+
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -40,6 +113,11 @@ export class PatientdashboardComponent implements OnInit {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
     this.Get_AppointmentsByPatientID();
     this.Get_ExpertiseList();
+
+    this.Get_CommonDashboardCount();
+     this.Get_LabTestWiseTestCount();
+     this.Get_DoctorWiseApptCount();
+
   }
 
   //Get_AppointmentsByDocID
@@ -90,10 +168,11 @@ export class PatientdashboardComponent implements OnInit {
   Get_AppointmentsByPatientID() {
     let dataobj = {
     };
-    let doctorid = "5f2e69e9afc7cc00045f7ccf";
+    let doctorid = this.currentUser.roleBaseId;//"5f2e69e9afc7cc00045f7ccf";
     this._apiservice.Get_AppointmentsByPatientID(dataobj, doctorid).subscribe(data => {
       if (data) {
         this.patientAppointmentData = data;
+        console.log("this.patientAppointmentData",this.patientAppointmentData)
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -135,6 +214,83 @@ export class PatientdashboardComponent implements OnInit {
   }
 
 
+  Get_CommonDashboardCount() {
+    let dataobj = {}
+    this._apiservice.Get_CommonDashboardCount(dataobj).subscribe(data => {
+      if (data) {
+        this.commonDashBoardCountData=data;
+        console.log("  this.commonDashBoardCountData  this.commonDashBoardCountData",  this.commonDashBoardCountData)
+
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  
+
+  Get_LabTestWiseTestCount() {
+    let dataobj = {
+    };
+    let patientid = this.currentUser.roleBaseId;//"5f2fa8d88c2e60000478f67c"; 
+    this._apiservice.Get_LabTestWiseTestCount(dataobj,patientid).subscribe(data => {
+      if (data) {
+        this.labTestWiseTestCount=data;
+        if(this.labTestWiseTestCount && this.labTestWiseTestCount.length>0)
+        {
+          for(var i=0;i<this.labTestWiseTestCount.length;i++)
+          {
+            this.pieChartPharmacistLabels.push(this.labTestWiseTestCount[i].testName);
+            if(i==1)
+            {
+              this.pieChartPharmacistData.push(4);
+
+            }
+            else
+            {
+              this.pieChartPharmacistData.push(this.labTestWiseTestCount[i].testCount);
+            }
+          }
+        }
+      
+        console.log("  this.labTestWiseTestCount  this.labTestWiseTestCount",  this.labTestWiseTestCount)
+
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+
+  Get_DoctorWiseApptCount() {
+    let dataobj = {
+    };
+    let patientid =this.currentUser.roleBaseId;// "5f2fa8d88c2e60000478f67c";
+    this._apiservice.Get_DoctorWiseApptCount(dataobj,patientid).subscribe(data => {
+      if (data) {
+        this.doctorWiseApptCount=data;
+        if(this.doctorWiseApptCount && this.doctorWiseApptCount.length>0)
+        {
+          for(var i=0;i<this.doctorWiseApptCount.length;i++)
+          {
+            this.pieChartLabels.push(this.doctorWiseApptCount[i].doctorName);
+            if(i==1)
+            {
+              this.pieChartData.push(4);
+            }
+            else
+            {
+              this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
+            }
+          }
+        }
+        console.log("  this.doctorWiseApptCount  this.doctorWiseApptCount",  this.doctorWiseApptCount)
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+  
 
 
 }

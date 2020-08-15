@@ -1,4 +1,4 @@
-<div style="position: absolute;top: 23%;width:100%;">
+<!-- <div style="position: absolute;top: 23%;width:100%;">
     <div class="row">
       <div class="col-md-6">
         <form [formGroup]="doctorExperties">
@@ -70,16 +70,305 @@
 
     </div>
 
-</div>
+</div> -->
 
 
-<!-- <div *ngIf="showVisitForAll">
-    <app-visitforall [showModal]="'showVisitForAllModal'"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+
+
+
+
+
+  
+  <div class="content"  style="position: absolute;top: 23%;width:100%;">
+    <div class="container-fluid p-0">
+
+      <div class="row mb-2 mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+          <h3><strong>Patient</strong> Dashboard</h3>
+        </div>
+
+        <div class="col-auto ml-auto text-right mt-n1">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+              <!-- <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Analytics</li> -->
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-xxl-5 d-flex">
+          <div class="w-100">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Total Doctors</h5>
+                    <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_doctors}}</h1>
+                    <div class="mb-1">
+                      <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
+                      <span class="text-muted">Since last week</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Total Nurses</h5>
+                    <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_nurses}}</h1>
+                    <div class="mb-1">
+                      <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+                      <span class="text-muted">Since last week</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Total Patient</h5>
+                    <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_patients}}</h1>
+                    <div class="mb-1">
+                      <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
+                      <span class="text-muted">Since last week</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Total  Pharmacist</h5>
+                    <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_pharmacists}}</h1>
+                    <div class="mb-1">
+                      <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
+                      <span class="text-muted">Since last week</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-xxl-7">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Doctor Wise Count</h5>
+            </div>
+            <div class="card-body py-3">
+              <div class="chart chart-sm">
+                <!-- <canvas id="chartjs-dashboard-line"></canvas> -->
+
+                <div style="display: block;">
+                  <canvas baseChart 
+                    [data]="pieChartData" 
+                    [labels]="pieChartLabels" 
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend"
+                    [colors]="pieChartColor">
+                  </canvas>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Online/Home Visit</h5>
+            </div>
+            <div class="card-body d-flex">
+              <div class="align-self-center w-100">
+                <div class="py-3">
+                  <div class="chart chart-xs">
+                    <div style="display: block;">
+                      <canvas baseChart 
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                      </canvas>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <!-- <table class="table mb-0">
+                  <tbody>
+                    <tr>
+                      <td>Chrome</td>
+                      <td class="text-right">4306</td>
+                    </tr>
+                    <tr>
+                      <td>Firefox</td>
+                      <td class="text-right">3801</td>
+                    </tr>
+                    <tr>
+                      <td>IE</td>
+                      <td class="text-right">1689</td>
+                    </tr>
+                  </tbody>
+                </table> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Real-Time</h5>
+            </div>
+            <div class="card-body px-4">
+              <div id="world_map" style="height:350px;"></div>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
+          <div class="card flex-fill">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Lab Test Count</h5>
+            </div>
+            <div class="card-body d-flex">
+              <div class="align-self-center w-100">
+                <div class="chart">
+                  <div>
+                    <canvas baseChart 
+                    [data]="pieChartPharmacistData" 
+                    [labels]="pieChartPharmacistLabels" 
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend"
+                    [colors]="pieChartColor">
+                  </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+          <div class="card flex-fill">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Appointments</h5>
+            </div>
+            <table class="table table-hover my-0">
+              <thead>
+                <!-- <tr>
+                  <th>doctorName</th>
+                  <th class="d-none d-xl-table-cell">patientNname</th>
+                  <th class="d-none d-xl-table-cell">disease</th>
+                  <th>Status</th>
+                  <th class="d-none d-md-table-cell">Assignee</th>
+                </tr> -->
+
+                <tr>
+                  <!-- <th>#</th> -->
+                  <th>DoctorName</th>
+                  <th class="d-none d-xl-table-cell">Patient Name</th>
+                  <th class="d-none d-md-table-cell">Patient Contact</th>
+              <th class="d-none d-xl-table-cell">patientEmail</th>
+              <th class="d-none d-xl-table-cell">Disease</th>
+                  <th>Disease Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of patientAppointmentData" >
+                  <td>{{data.doctorName}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
+                  <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
+                  <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.disease}}</td>
+
+                  <td class="d-none d-md-table-cell">{{data.diseaseAge}}</td>
+
+                  <!-- <td><span  (click)="!data.isVisitCompleted > 0 ? openShowVisitForAll(data) : false"  [ngClass]="data.isVisitCompleted ? 'badge badge-warning deactivevisitispharmacyprovide ' : 'badge badge-success activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span></td>
+                  <td><span  (click)="!data.isPharmacyProvided > 0 ? openRequestPatMedHomeDelivery(data) : false"  [ngClass]="data.isPharmacyProvided ? 'badge badge-warning deactivevisitispharmacyprovide ' : 'badge badge-success activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span></td> -->
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+
+
+
+            
+            
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Other Services</h5>
+            </div>
+            <div class="card-body d-flex w-100">
+              <div class="align-self-center chart chart-lg">
+                <div style="display: block;">
+                  <!-- <canvas baseChart 
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    [colors]="pieChartColor">
+                  </canvas> -->
+
+                  <div class="text-center">
+                    <input  style="width: 200px;" value="Lab Tests List" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
+                  </div>
+                  <div class="text-center"  style="margin-top: 5%;"  *ngIf="currentUser.user.role==0 || currentUser.user.role==11">
+                    <input  style="width: 200px;" value="Book Appointment" (click)="openBookAppointmentPopup()" class="btn btn-info btn-block rounded-0 py-2">
+                  </div>
+                  <!-- <div class="col-md-3">
+                    <div class="text-center" style="margin-top: 8%;">
+                        <input  style="width: 200px;" value="Lab Tests List" (click)="openGetLabTest()" class="btn btn-info btn-block rounded-0 py-2">
+                      </div>
+                </div>
+            
+                <div class="col-md-3">
+                  <div class="text-center"  style="margin-top: 8%;"  *ngIf="currentUser.user.role==0 || currentUser.user.role==11">
+                    <input  style="width: 200px;" value="Book Appointment" (click)="openBookAppointmentPopup()" class="btn btn-info btn-block rounded-0 py-2">
+                  </div>
+                </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div *ngIf="showRequestPatMedHomeDelivery">
-    <app-request-pat-med-home-delivery   [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
-  </div> -->
 
+ 
   <div *ngIf="showBookAppointmentPopup">
     <app-bookappointment [showModal]="showBookAppointmentPopup"  (ClosePopup)="closeBookAppointmentPopup()"> </app-bookappointment>
   </div>

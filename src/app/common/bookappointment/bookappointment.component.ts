@@ -14,7 +14,6 @@ declare var $: any;
 })
 export class BookappointmentComponent implements OnInit {
 
-
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
 
@@ -28,6 +27,9 @@ export class BookappointmentComponent implements OnInit {
   public submitted = false;
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
+
+
 
   public bookAppointmentForm = new FormGroup({
     patientNname: new FormControl(""),
@@ -39,7 +41,8 @@ export class BookappointmentComponent implements OnInit {
     diseaseAge: new FormControl(""),
     doctorID: new FormControl(""),
     doctorName: new FormControl(""),
-    prefferedDate: new FormControl(""),
+    appointmentDate: new FormControl(""),
+    appointmentType: new FormControl(""),
    // patientID: new FormControl(""),
   });
 
@@ -74,10 +77,16 @@ export class BookappointmentComponent implements OnInit {
       return;
     }
     this.errorMessage = "";
-    let dataobj = {};
+    let dataobj:any = {};
     dataobj = this.bookAppointmentForm.value;
     //dataobj["patientID"] = this.currentUser.user._id;
-    dataobj["patientID"]  = "5f2e69e9afc7cc00045f7ccf";
+
+
+
+    dataobj.appointmentDate="2020/07/29";
+
+
+    dataobj["patientID"]  = this.currentUser.roleBaseId;;//"5f2e69e9afc7cc00045f7ccf";
     //dataobj["doctorName"] = "doctor1";
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
       if (data) {

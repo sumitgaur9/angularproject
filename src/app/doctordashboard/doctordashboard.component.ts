@@ -21,6 +21,25 @@ export class DoctordashboardComponent implements OnInit {
   public doctorAppointmentHistoryData: any = [];
   public showRequestPatMedHomeDelivery:boolean=false;
 
+
+  public commonDashBoardCountData:any={
+    total_no_of_doctors:0,
+    total_no_of_nurses:0,
+    total_no_of_patients:0,
+    total_no_of_pharmacists:0,
+
+
+  };
+  public diseaseWiseApptCount:any;
+  public medicineWiseApptCount:any;
+  public pharmacistWiseApptCount:any;
+  public doctorWiseApptCount:any;
+  public labTestWiseTestCount:any;
+
+public completeDoctorVisitData:any=[];
+
+
+
   public errorMessage;
   public showVisitForAll: boolean = false;
   public visitAppointmentId: string = '';
@@ -36,11 +55,31 @@ export class DoctordashboardComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
+
+  // public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
+  // public pieChartData: SingleDataSet = [300, 500, 100];
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [];
+  //public pieChartColors = ["#ff9900","#ff9900","#97bbcd","#97bbcd"]; 
+
+  public pieChartColor:any = [
+    {
+        backgroundColor: ['rgba(30, 169, 224, 0.8)',
+        'rgba(255,165,0,0.9)',
+        'rgba(139, 136, 136, 0.9)',
+        'rgba(255, 161, 181, 0.9)',
+        'rgba(255, 102, 0, 0.9)'
+        ]
+    }
+]
+
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
+
+  public pieChartPharmacistLabels: Label[] = [];
+  public pieChartPharmacistData: SingleDataSet = [];
 
 
   //second
@@ -62,11 +101,9 @@ export class DoctordashboardComponent implements OnInit {
   //third
 
 
-  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: MultiDataSet = [
-    [350, 450, 100],
-    [50, 150, 120],
-    [250, 130, 70],
+  public doughnutChartLabels: Label[] = [];
+  public doughnutChartData: SingleDataSet = [
+   
   ];
   public doughnutChartType: ChartType = 'doughnut';
 
@@ -77,6 +114,10 @@ export class DoctordashboardComponent implements OnInit {
     this.Get_AppointmentsByDocID();
      monkeyPatchChartJsTooltip();
      monkeyPatchChartJsLegend();
+     this.Get_CommonDashboardCount();
+     this.Get_DiseaseWiseApptCount();
+     this.Get_MedicineWiseApptCount();
+     this.Get_PharmacistWiseApptCount();
   }
 
   //Get_AppointmentsByDocID
@@ -128,6 +169,8 @@ export class DoctordashboardComponent implements OnInit {
     let doctorid = "5f268ed2b7335a0004fcd325";
     this._apiservice.Get_AppointmentsByDocID(dataobj, doctorid).subscribe(data => {
       if (data) {
+        this.completeDoctorVisitData=data;
+        console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID",data)
         this.doctorAppointmentListData = data.filter(function (item) {
           return item.isVisitCompleted == false;
         });
@@ -141,17 +184,105 @@ export class DoctordashboardComponent implements OnInit {
   }
 
 
+  Get_CommonDashboardCount() {
+    let dataobj = {}
+    this._apiservice.Get_CommonDashboardCount(dataobj).subscribe(data => {
+      if (data) {
+        this.commonDashBoardCountData=data;
+        console.log("  this.commonDashBoardCountData  this.commonDashBoardCountData",  this.commonDashBoardCountData)
 
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
+  Get_DiseaseWiseApptCount() {
+    let dataobj = {}
+    this._apiservice.Get_DiseaseWiseApptCount(dataobj).subscribe(data => {
+      if (data) {
+        this.diseaseWiseApptCount=data;
+        if(this.diseaseWiseApptCount && this.diseaseWiseApptCount.length>0)
+        {
+          for(var i=0;i<this.diseaseWiseApptCount.length;i++)
+          {
+            this.pieChartLabels.push(this.diseaseWiseApptCount[i].diseaseName);
+            if(i==1)
+            {
+              this.pieChartData.push(4);
 
+            }
+            else
+            {
+              this.pieChartData.push(this.diseaseWiseApptCount[i].apptCount);
+            }
+          }
+        }
+        console.log("  this.diseaseWiseApptCount  this.diseaseWiseApptCount",  this.diseaseWiseApptCount)
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
+  Get_MedicineWiseApptCount() {
+    let dataobj = {}
+    this._apiservice.Get_MedicineWiseApptCount(dataobj).subscribe(data => {
+      if (data) {
+        this.medicineWiseApptCount=data;
+        if(this.medicineWiseApptCount && this.medicineWiseApptCount.length>0)
+        {
+          for(var i=0;i<this.medicineWiseApptCount.length;i++)
+          {
+            this.doughnutChartLabels.push(this.medicineWiseApptCount[i].medicineName);
+            if(i==1)
+            {
+              this.doughnutChartData.push(4);
 
+            }
+            else
+            {
+              this.doughnutChartData.push(this.medicineWiseApptCount[i].apptCount);
+            }
+          }
+        }
+        console.log("  this.medicineWiseApptCount  this.medicineWiseApptCount",  this.medicineWiseApptCount)
 
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
+  Get_PharmacistWiseApptCount() {
+    let dataobj = {}
+    this._apiservice.Get_PharmacistWiseApptCount(dataobj).subscribe(data => {
+      if (data) {
+        this.pharmacistWiseApptCount=data;
+        if(this.pharmacistWiseApptCount && this.pharmacistWiseApptCount.length>0)
+        {
+          for(var i=0;i<this.pharmacistWiseApptCount.length;i++)
+          {
+            this.pieChartPharmacistLabels.push(this.pharmacistWiseApptCount[i].pharmacistName);
+            if(i==1)
+            {
+              this.pieChartPharmacistData.push(4);
 
+            }
+            else
+            {
+              this.pieChartPharmacistData.push(this.pharmacistWiseApptCount[i].apptCount);
+            }
+          }
+        }
+      
+        console.log("  this.pharmacistWiseApptCount  this.pharmacistWiseApptCount",  this.pharmacistWiseApptCount)
 
-
-
-  
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
 }
+
