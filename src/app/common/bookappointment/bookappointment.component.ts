@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { IDayCalendarConfig, DatePickerComponent } from "ng2-date-picker";
+declare var $: any;
 
 @Component({
   selector: 'app-bookappointment',
@@ -37,6 +39,7 @@ export class BookappointmentComponent implements OnInit {
     diseaseAge: new FormControl(""),
     doctorID: new FormControl(""),
     doctorName: new FormControl(""),
+    prefferedDate: new FormControl(""),
    // patientID: new FormControl(""),
   });
 
@@ -45,7 +48,15 @@ export class BookappointmentComponent implements OnInit {
   public diseasListData: any = [];
   public filterDoctorData: any = [];
   public selecteddoctorid;
-
+  public displayDate= '05/07/2020';
+  public dayPickerConfig = <IDayCalendarConfig>{
+    locale: "in",
+    format: "DD/MM/YYYY",
+    monthFormat: "MMMM, YYYY",
+    firstDayOfWeek: "mo",                     
+    min: "01/07/2020",
+    max: "30/08/2020"
+  };
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
@@ -56,6 +67,8 @@ export class BookappointmentComponent implements OnInit {
   get f() { return this.bookAppointmentForm.controls; }
 
   Save_BookAppointment() {
+
+    console.log("this.bookAppointmentForm.valuethis.bookAppointmentForm.valuethis.bookAppointmentForm.value",this.bookAppointmentForm.value);
     this.submitted = true;
     if (this.bookAppointmentForm.invalid) {
       return;

@@ -23,18 +23,19 @@ import { CreatelabtestpackageComponent } from './createlabtestpackage/createlabt
 import { CreatebooklabtestComponent } from './createbooklabtest/createbooklabtest.component';
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import {DpDatePickerModule} from 'ng2-date-picker';
+
 
 @NgModule({
   declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent],
    
   imports: [
-
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     AngularMultiSelectModule,
-
+    DpDatePickerModule
     // NgMultiSelectDropDownModule.forRoot()
   ], exports: [
     LoaderComponent,

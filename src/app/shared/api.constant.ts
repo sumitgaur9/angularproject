@@ -49,11 +49,16 @@ export const API_PATH: any = {
     'Get_LabTestsList': 'Get_LabTestsList',
     'Save_LabTestsPackage': 'Save_LabTestsPackage',
     'Save_Image': '/api/photo',
-
     'Get_LabTestsPackage': 'Get_LabTestsPackage',
     'Save_BookLabTest': 'Save_BookLabTest',
     'Save_LabTest': 'Save_LabTest',
+    'Get_CommonDashboardCount': 'Get_CommonDashboardCount',
+    'Get_DiseaseWiseApptCount': 'Get_DiseaseWiseApptCount',
+    'Get_MedicineWiseApptCount': 'Get_MedicineWiseApptCount',
+    'Get_PharmacistWiseApptCount': 'Get_PharmacistWiseApptCount',
+    'Get_DoctorWiseApptCount': 'Get_DoctorWiseApptCount',
+    'Get_LabTestWiseTestCount': 'Get_LabTestWiseTestCount',
+    'Get_IndividualToPackageLabTestCount': 'Get_IndividualToPackageLabTestCount',
 
-    
 }
 
