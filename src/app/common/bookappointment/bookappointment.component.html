@@ -120,7 +120,21 @@
                               </div>
 
                               <div class="form-group">
+
                                 <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                                  </div>
+                                  <input class="form-control" type="text" 
+                                  [dpDayPicker]="dayPickerConfig"
+                                  [theme]="'dp-material'"
+                                  formControlName="appointmentDate"
+                                  [mode]="'day'"
+                                  [displayDate]="displayDate"
+                                  placeholder="Appointment Date"/>
+                                                           </div>
+
+                                <!-- <div class="input-group mb-2">
                                   <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                                   </div>
@@ -133,9 +147,8 @@
                                   (onChange)="date = $event" 
                                   placeholder="Appointment Date"/>
 
+                                                           </div> -->
 
-
-                                                           </div>
                               </div>
 
 
