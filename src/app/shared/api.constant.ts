@@ -4,7 +4,7 @@ export const API_PATH: any = {
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
     'registration': 'users',
-    'testtokenheader': 'users/me',
+    'userme': 'users/me',
     'logout': 'users/me/logout',
     'Get_DoctorProfile': 'Get_DoctorProfile',
     'Save_DoctorProfile': 'Save_DoctorProfile',

@@ -278,11 +278,15 @@ export class APIService {
       }));
   }
 
-  testheader(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.testtokenheader}`
+  userme(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.userme}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
+          if (resdata && resdata.roleBaseId) {
+            localStorage.setItem("currentusermedata", JSON.stringify(resdata));
+          }
+
         }
         return resdata;
       }));

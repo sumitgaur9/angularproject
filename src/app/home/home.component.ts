@@ -71,25 +71,5 @@ TxtType.prototype.tick = function() {
         css.type = "text/css";
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
-
-   // this.testtoken();
   }
-
-
-  testtoken() {
-   let dataparam:any={};
-    this._apiservice.testheader(dataparam).subscribe(data => {
-      if (data) {
-        console.log("loginUserResponseData..", data.data);
-       
-      }
-    }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-    });
-  }
-
-  
-
-
-
 }

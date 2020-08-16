@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    //  this.testheader();
+      this.userme();
     //$('[data-toggle="popover"]').popover(); 
   }
 
@@ -59,17 +59,10 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-
-
-  testheader() {
+  userme() {
     let dataparam: any = {};
-    this._apiservice.testheader(dataparam).subscribe(data => {
-      // if (data) {
+    this._apiservice.userme(dataparam).subscribe(data => {
       console.log("userme data is this", JSON.stringify(data));
-      //this.showSuccess();
-      // localStorage.clear();
-      // this.router.navigate(['/login']);
-      // }
     }, error => {
       if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);
