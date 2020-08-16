@@ -70,6 +70,8 @@ export class CreatebooklabtestComponent implements OnInit {
     this.createBookLabTestform.patchValue({
       patientNname: this.currentUser.user.name,
       patientEmail: this.currentUser.user.email,
+      patientMob: this.currentUser.user.phoneno,
+      patientAddres: this.currentUser.user.address,
     })
 
 
