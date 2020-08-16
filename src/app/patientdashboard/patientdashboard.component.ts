@@ -50,6 +50,8 @@ export class PatientdashboardComponent implements OnInit {
   public doctorWiseApptCount:any;
   public labTestWiseTestCount:any;
 
+  public individualToPackageLabTestCount:any;
+
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -64,12 +66,12 @@ export class PatientdashboardComponent implements OnInit {
 
   public pieChartColor:any = [
     {
-        backgroundColor: ['rgba(30, 169, 224, 0.8)',
-        'rgba(255,165,0,0.9)',
-        'rgba(139, 136, 136, 0.9)',
-        'rgba(255, 161, 181, 0.9)',
-        'rgba(255, 102, 0, 0.9)'
-        ]
+      backgroundColor: ['#157fda',
+      '#39b49b',
+      'rgba(139, 136, 136, 0.9)',
+      'rgba(255, 161, 181, 0.9)',
+      'rgba(255, 102, 0, 0.9)'
+      ]
     }
 ]
 
@@ -117,7 +119,7 @@ export class PatientdashboardComponent implements OnInit {
     this.Get_CommonDashboardCount();
      this.Get_LabTestWiseTestCount();
      this.Get_DoctorWiseApptCount();
-
+     this.Get_IndividualToPackageLabTestCount();
   }
 
   //Get_AppointmentsByDocID
@@ -285,6 +287,38 @@ export class PatientdashboardComponent implements OnInit {
           }
         }
         console.log("  this.doctorWiseApptCount  this.doctorWiseApptCount",  this.doctorWiseApptCount)
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+  
+
+
+  
+  Get_IndividualToPackageLabTestCount() {
+    let dataobj = {
+    };
+    let patientid =this.currentUser.roleBaseId;// "5f2fa8d88c2e60000478f67c";
+    this._apiservice.Get_IndividualToPackageLabTestCount(dataobj,patientid).subscribe(data => {
+      if (data) {
+        this.individualToPackageLabTestCount=data;
+        // if(this.individualToPackageLabTestCount && this.individualToPackageLabTestCount.length>0)
+        // {
+        //   for(var i=0;i<this.individualToPackageLabTestCount.length;i++)
+        //   {
+        //     this.pieChartLabels.push(this.individualToPackageLabTestCount[i].doctorName);
+        //     if(i==1)
+        //     {
+        //       this.pieChartData.push(4);
+        //     }
+        //     else
+        //     {
+        //       this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
+        //     }
+        //   }
+        // }
+        console.log("  this.individualToPackageLabTestCount  this.individualToPackageLabTestCount",  this.individualToPackageLabTestCount)
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

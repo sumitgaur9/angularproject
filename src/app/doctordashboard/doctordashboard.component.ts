@@ -7,7 +7,7 @@ import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { ChartType, ChartOptions,ChartDataSets } from 'chart.js';
-import { SingleDataSet,MultiDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { SingleDataSet,MultiDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip,Color } from 'ng2-charts';
 declare var $: any;
 
 @Component({
@@ -34,7 +34,7 @@ export class DoctordashboardComponent implements OnInit {
   public medicineWiseApptCount:any;
   public pharmacistWiseApptCount:any;
   public doctorWiseApptCount:any;
-  public labTestWiseTestCount:any;
+  public monthlyHomeOnlineApptCount:any;
 
 public completeDoctorVisitData:any=[];
 
@@ -65,8 +65,14 @@ public completeDoctorVisitData:any=[];
 
   public pieChartColor:any = [
     {
-        backgroundColor: ['rgba(30, 169, 224, 0.8)',
-        'rgba(255,165,0,0.9)',
+        // backgroundColor: ['rgba(30, 169, 224, 0.8)',
+        // 'rgba(255,165,0,0.9)',
+        // 'rgba(139, 136, 136, 0.9)',
+        // 'rgba(255, 161, 181, 0.9)',
+        // 'rgba(255, 102, 0, 0.9)'
+        // ]
+        backgroundColor: ['#157fda',
+        '#39b49b',
         'rgba(139, 136, 136, 0.9)',
         'rgba(255, 161, 181, 0.9)',
         'rgba(255, 102, 0, 0.9)'
@@ -87,17 +93,29 @@ public completeDoctorVisitData:any=[];
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+
+  public barChartLabels: Label[] = [];
+
+//  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    { data: [],
+      label:'HomeVisitCount',
+    },
+    { data: [], label: 'OnlineConsultationCount' }
   ];
+  public barChartColors: Color[] = [
+    { backgroundColor: '#157fda' },
+    { backgroundColor: '#39b49b' },
+  ]
 
-
+  // public barChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  // ];
   //third
 
 
@@ -118,6 +136,7 @@ public completeDoctorVisitData:any=[];
      this.Get_DiseaseWiseApptCount();
      this.Get_MedicineWiseApptCount();
      this.Get_PharmacistWiseApptCount();
+     this.Get_MonthlyHomeOnlineApptCount();
   }
 
   //Get_AppointmentsByDocID
@@ -278,6 +297,39 @@ public completeDoctorVisitData:any=[];
       
         console.log("  this.pharmacistWiseApptCount  this.pharmacistWiseApptCount",  this.pharmacistWiseApptCount)
 
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  Get_MonthlyHomeOnlineApptCount() {
+    let dataobj = {}
+    this._apiservice.Get_MonthlyHomeOnlineApptCount(dataobj).subscribe(data => {
+      if (data) {
+        this.monthlyHomeOnlineApptCount=data;
+        var lablehomevisitdataandseriesname:any={
+          data:[],
+          label:'HomeVisitCount',
+        }
+        var lableOnlineConsultationCountdataandseriesname:any={
+          data:[],
+          label:'OnlineConsultationCount',
+        }
+        if(this.monthlyHomeOnlineApptCount && this.monthlyHomeOnlineApptCount.length>0)
+        {
+          for(var i=0;i<this.monthlyHomeOnlineApptCount.length;i++)
+          {
+            this.barChartLabels.push(this.monthlyHomeOnlineApptCount[i].Month);
+            this.barChartData[0].data.push(i*1);
+            this.barChartData[1].data.push(i*2);
+            // lablehomevisitdataandseriesname.data.push(this.monthlyHomeOnlineApptCount[i].HomeVisitCount)
+            // lableOnlineConsultationCountdataandseriesname.data.push(this.monthlyHomeOnlineApptCount[i].OnlineConsultationCount)
+          }
+        }
+       // this.barChartData.push(lablehomevisitdataandseriesname);
+       // this.barChartData.push(lableOnlineConsultationCountdataandseriesname);
+        console.log("  this.monthlyHomeOnlineApptCount  this.monthlyHomeOnlineApptCount",  this.barChartData)
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

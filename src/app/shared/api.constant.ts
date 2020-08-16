@@ -59,6 +59,6 @@ export const API_PATH: any = {
     'Get_DoctorWiseApptCount': 'Get_DoctorWiseApptCount',
     'Get_LabTestWiseTestCount': 'Get_LabTestWiseTestCount',
     'Get_IndividualToPackageLabTestCount': 'Get_IndividualToPackageLabTestCount',
-
+    'Get_MonthlyHomeOnlineApptCount': 'Get_MonthlyHomeOnlineApptCount',
 }
 

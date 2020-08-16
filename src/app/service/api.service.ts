@@ -502,6 +502,15 @@ export class APIService {
       }));
   }
 
+  Get_MonthlyHomeOnlineApptCount(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MonthlyHomeOnlineApptCount}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
   
   Get_MedicineWiseApptCount(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicineWiseApptCount}`
