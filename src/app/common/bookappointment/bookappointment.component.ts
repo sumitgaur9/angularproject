@@ -73,6 +73,9 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
 this.bookAppointmentForm.patchValue({
   patientNname: this.currentUser.user.name,
   patientEmail: this.currentUser.user.email,
+  patientMob: this.currentUser.user.phoneno,
+  patientAddres: this.currentUser.user.address,
+
 })
 
     // this.Get_FilteredDoctors();
