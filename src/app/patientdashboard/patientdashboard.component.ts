@@ -83,6 +83,11 @@ export class PatientdashboardComponent implements OnInit {
   public pieChartPharmacistData: SingleDataSet = [];
 
 
+  public pieChartIndividualToPackageLabTestCountLabels: Label[] = ['individualTestCount','packageCount'];
+  public pieChartIndividualToPackageLabTestCountData: SingleDataSet = [];
+
+
+  IndividualToPackageLabTestCount
   //second
 
   public barChartOptions: ChartOptions = {
@@ -98,11 +103,11 @@ export class PatientdashboardComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-
+ 
   //third
 
 
-  public doughnutChartLabels: Label[] = [];
+  public doughnutChartLabels: Label[] = ['individualTestCount','packageCount'];
   public doughnutChartData: SingleDataSet = [
    
   ];
@@ -303,29 +308,24 @@ export class PatientdashboardComponent implements OnInit {
     this._apiservice.Get_IndividualToPackageLabTestCount(dataobj,patientid).subscribe(data => {
       if (data) {
         this.individualToPackageLabTestCount=data;
-        // if(this.individualToPackageLabTestCount && this.individualToPackageLabTestCount.length>0)
-        // {
-        //   for(var i=0;i<this.individualToPackageLabTestCount.length;i++)
-        //   {
-        //     this.pieChartLabels.push(this.individualToPackageLabTestCount[i].doctorName);
-        //     if(i==1)
-        //     {
-        //       this.pieChartData.push(4);
-        //     }
-        //     else
-        //     {
-        //       this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
-        //     }
-        //   }
-        // }
+        if(this.individualToPackageLabTestCount)
+        {
+
+          // this.pieChartIndividualToPackageLabTestCountData.push(this.individualToPackageLabTestCount.individualTestCount);
+          // this.pieChartIndividualToPackageLabTestCountData.push(this.individualToPackageLabTestCount.packageCount);
+
+          this.doughnutChartData.push(4);
+          this.doughnutChartData.push(8);
+
+          this.pieChartIndividualToPackageLabTestCountData.push(4);
+          this.pieChartIndividualToPackageLabTestCountData.push(8);
+        }
         console.log("  this.individualToPackageLabTestCount  this.individualToPackageLabTestCount",  this.individualToPackageLabTestCount)
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-  
-
 
 }
 

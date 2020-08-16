@@ -190,14 +190,35 @@
                 <div class="py-3">
                   <div class="chart chart-xs">
                     <div style="display: block;">
-                      <canvas baseChart 
+                      <!-- <canvas baseChart 
                         [datasets]="barChartData"
                         [labels]="barChartLabels"
                         [options]="barChartOptions"
                         [plugins]="barChartPlugins"
                         [legend]="barChartLegend"
                         [chartType]="barChartType">
-                      </canvas>
+                      </canvas> -->
+<!-- 
+                      <canvas baseChart 
+                      [data]="pieChartIndividualToPackageLabTestCountData" 
+                      [labels]="pieChartIndividualToPackageLabTestCountData" 
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [plugins]="pieChartPlugins"
+                      [legend]="pieChartLegend"
+                      [colors]="pieChartColor">
+                    </canvas> -->
+
+                    <canvas baseChart 
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    [colors]="pieChartColor">
+                  </canvas>
+
+                  
+
+
                     </div>
                     
                   </div>
