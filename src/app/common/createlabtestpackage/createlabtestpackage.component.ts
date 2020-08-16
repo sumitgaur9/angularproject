@@ -45,7 +45,7 @@ export class CreatelabtestpackageComponent implements OnInit {
     this.labTestData = [];
     this.selectedItems = [];
     this.settings = {
-      text: "Select Skills",
+      text: "Select Test",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       classes: "myclass custom-class"

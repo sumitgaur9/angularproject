@@ -67,24 +67,12 @@
                               </div>
                               <!-- <input type="number" class="form-control" id="packageAmount" name="packageAmount"
                                 placeholder="packageAmount" > -->
-
-
-                                <!-- <ng-multiselect-dropdown
-                                [placeholder]="'custom placeholder'"
-                                [(data)]="labTestData"
-                                formControlName="selectedItems1"
-                                [settings]="dropdownSettings"
-                                (onSelect)="onItemSelect($event)"
-                                (onSelectAll)="onSelectAll($event)"
-                              >
-                              </ng-multiselect-dropdown> -->
-
                               <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems" 
                               [settings]="settings" 
                               (onSelect)="onItemSelect($event)"
                               (onDeSelect)="OnItemDeSelect($event)" 
                               (onSelectAll)="onSelectAll($event)" 
-                              (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills">
+                              (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills" style="width: 89%;">
         </angular2-multiselect>
                             </div>
                           </div>

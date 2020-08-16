@@ -96,7 +96,7 @@
 
 
 
-                          <div class="form-group">
+                          <div class="form-group" *ngIf="createBookLabTestform.value.testType=='package'">
                             <label for="exampleFormControlSelect1">PackageName</label>
                             <select class="form-control" formControlName="packageName" (change)="packageNameChangeEvent($event)">
                                 <option value=""></option>
@@ -106,13 +106,31 @@
 
 
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <label for="exampleFormControlSelect1">Test</label>
                             <select class="form-control" formControlName="testsDataUIName" (change)="testChangeEvent($event)">
                                 <option value=""></option>
                                 <option *ngFor="let opt of labTestData" [value]="opt.testName">{{opt.testName}}</option>
                           </select>
+                          </div> -->
+                          
+                          <div class="form-group" *ngIf="createBookLabTestform.value.testType=='individual'">
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                              </div>
+                              <!-- <input type="number" class="form-control" id="packageAmount" name="packageAmount"
+                                placeholder="packageAmount" > -->
+                              <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems" 
+                              [settings]="settings" 
+                              (onSelect)="onItemSelect($event)"
+                              (onDeSelect)="OnItemDeSelect($event)" 
+                              (onSelectAll)="onSelectAll($event)" 
+                              (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills" style="width: 89%;">
+        </angular2-multiselect>
+                            </div>
                           </div>
+
 
                          
                           <div class="form-group">
