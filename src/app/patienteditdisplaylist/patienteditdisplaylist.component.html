@@ -12,7 +12,7 @@
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
         <h4 class="card-title text-right">
-          <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PatientProfile()"></i>
+          <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PatientProfile(data._id)"></i>
 
           <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openPatientProfilePopup()"></i> -->
         </h4>

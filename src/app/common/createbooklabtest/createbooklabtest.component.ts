@@ -34,7 +34,7 @@ export class CreatebooklabtestComponent implements OnInit {
   itemList = [];
   selectedItems = [];
   settings = {};
-
+public nurseListData:any=[];
 
 
   public sampleTypeListData = [{ "name": "package" }, { "name": "individual" }]
@@ -52,7 +52,9 @@ export class CreatebooklabtestComponent implements OnInit {
     testsDataUIName: new FormControl(""),
     testsDataUIID: new FormControl(""),
     price: new FormControl(""),
-    skills: new FormControl([[], Validators.required])
+    skills: new FormControl([[], Validators.required]),
+    nurseID: new FormControl(""),
+    nurseName: new FormControl(""),
     //isReportGenerated: new FormControl(""),
   });
 
@@ -88,6 +90,7 @@ export class CreatebooklabtestComponent implements OnInit {
     this.Get_PatientsList();
     this.Get_LabTestsPackage();
     this.Get_LabTestsList();
+    this.Get_NursesList();
   }
 
 
@@ -186,6 +189,8 @@ this.createBookLabTestform.patchValue(
     dataobj.testType = this.createBookLabTestform.value.testType;
     dataobj.packageID = this.createBookLabTestform.value.packageID;
     dataobj.packageName = this.createBookLabTestform.value.packageName;
+    dataobj.nurseID = this.createBookLabTestform.value.nurseID;
+    dataobj.nurseName = this.createBookLabTestform.value.nurseName;
     dataobj.price = this.createBookLabTestform.value.price;
     dataobj["testsData"] = [ { "testID":'',"testname":''}]; // in case of package  selection if testdata goes blank then api give error
     if(dataobj.packageID==null || dataobj.packageID=='' || dataobj.packageID==undefined)
@@ -281,6 +286,20 @@ this.createBookLabTestform.patchValue(
       )
     }
   }
+  nurseNameChangeEvent($event) {
+    let newArray = this.nurseListData.filter(function (item) {
+      return item.name == $event.target.value;
+    });
+    if (newArray) {
+      this.createBookLabTestform.patchValue(
+        {
+          nurseID: newArray[0]._id
+        }
+      )
+    }
+  }
+
+  
 
   packageNameChangeEvent($event) {
     let newArray = this.testPackageListData.filter(function (item) {
@@ -307,6 +326,20 @@ this.createBookLabTestform.patchValue(
         }
       )
     }
+  }
+
+
+
+  Get_NursesList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_NursesList(dataobj).subscribe(data => {
+      if (data) {
+        this.nurseListData = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 
 

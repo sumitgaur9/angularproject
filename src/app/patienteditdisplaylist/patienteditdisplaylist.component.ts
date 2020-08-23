@@ -56,10 +56,10 @@ export class PatienteditdisplaylistComponent implements OnInit {
     });
   }
 
-  Delete_PatientProfile() {
+  Delete_PatientProfile(id) {
     let dataobj = {
     };
-    this._apiservice.Delete_Patient(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+    this._apiservice.Delete_Patient(dataobj, id).subscribe(data => {
       if (data) {
         this.toastr.success('doctor deleted successfully');
         this.Get_PatientsList();

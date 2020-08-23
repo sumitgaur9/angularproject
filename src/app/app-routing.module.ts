@@ -14,7 +14,10 @@ import { DoctordashboardComponent } from './doctordashboard/doctordashboard.comp
 import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
 import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
 import { BooklabtestComponent } from './booklabtest/booklabtest.component';
+import { NursedashboardComponent } from './nursedashboard/nursedashboard.component';
+import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtechniciandashboard.component';
 
+import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdisplaylist/labtechnicianeditdisplaylist.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,9 +32,13 @@ const routes: Routes = [
     { path: 'physcotherapistlist', component: PhyscotherapisteditdisplaylistComponent },
     { path: 'otherlinks', component: OtherlinksComponent },
     { path: 'doctordashboard', component: DoctordashboardComponent },
+    { path: 'nursedashboard', component: NursedashboardComponent },
     { path: 'pharmacistdashboard', component: PharmacistdashboardComponent },
     { path: 'patientdashboard', component: PatientdashboardComponent },
     { path: 'getlabtest', component: BooklabtestComponent },
+    { path: 'labtechnician', component: LabtechnicianeditdisplaylistComponent },
+    { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },
+
     
     { path: '**', component: LoginComponent }
 ];

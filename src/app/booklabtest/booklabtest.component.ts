@@ -54,5 +54,18 @@ Get_LabTestsList() {
   });
 }
 
+Delete_LabTest(id) {
+  let dataobj = {
+  };
+  this._apiservice.Delete_LabTest(dataobj,id).subscribe(data => {
+    if (data) {
+      this.toastr.success('doctor deleted successfully');
+      this.Get_LabTestsList();
+    }
+  }, error => {
+    this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+  });
+}
+
 }
 

@@ -35,6 +35,8 @@ export class PatientdashboardComponent implements OnInit {
   public currentUser;
   public filterDoctorData: any = [];
 
+  public labTestBookingData:any=[];
+
   
   public commonDashBoardCountData:any={
     total_no_of_doctors:0,
@@ -125,6 +127,7 @@ export class PatientdashboardComponent implements OnInit {
      this.Get_LabTestWiseTestCount();
      this.Get_DoctorWiseApptCount();
      this.Get_IndividualToPackageLabTestCount();
+     this.Get_LabTestsBookings();
   }
 
   //Get_AppointmentsByDocID
@@ -326,6 +329,23 @@ export class PatientdashboardComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+
+  Get_LabTestsBookings() {
+    let dataobj:any = {}
+    dataobj.patientID=this.currentUser.roleBaseId;
+    this._apiservice.Get_LabTestsBookings(dataobj).subscribe(data => {
+      if (data) {
+        this.labTestBookingData = data.filter(function (item) {
+          return item.isReportGenerated == true;
+        });
+        console.log("this.labTestBookingDatathis.labTestBookingData",this.labTestBookingData);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
 
 }
 

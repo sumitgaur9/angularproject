@@ -55,10 +55,10 @@ public currentUser;
   }
 
   
-  Delete_PharmacistProfile() {
+  Delete_PharmacistProfile(id) {
     let dataobj = {
     };
-    this._apiservice.Delete_Pharmacist(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+    this._apiservice.Delete_Pharmacist(dataobj,id).subscribe(data => {
       if (data) {
         this.toastr.success('doctor deleted successfully');
         this.Get_PharmacistsList();

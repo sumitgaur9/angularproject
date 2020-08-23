@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
       case 2:
       case 3:
       case 11:
+        case 5:
         this.router.navigate(['/home']);
         break;
       case 4:

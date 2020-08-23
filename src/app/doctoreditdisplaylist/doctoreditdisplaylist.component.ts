@@ -80,17 +80,17 @@ export class DoctorEditdisplaylistComponent implements OnInit {
     }, 100);
   }
 
-  public deleteDoctorProfilePopup() {
-    this.Delete_Doctor();
+  public deleteDoctorProfilePopup(id) {
+    this.Delete_Doctor(id);
   }
 
 
 
 
-  Delete_Doctor() {
+  Delete_Doctor(id) {
     let dataobj = {
     };
-    this._apiservice.Delete_Doctor(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+    this._apiservice.Delete_Doctor(dataobj, id).subscribe(data => {
       if (data) {
         this.toastr.success('doctor deleted successfully');
         this.Get_DoctorsList();

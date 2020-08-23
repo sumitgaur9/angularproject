@@ -60,5 +60,13 @@ export const API_PATH: any = {
     'Get_LabTestWiseTestCount': 'Get_LabTestWiseTestCount',
     'Get_IndividualToPackageLabTestCount': 'Get_IndividualToPackageLabTestCount',
     'Get_MonthlyHomeOnlineApptCount': 'Get_MonthlyHomeOnlineApptCount',
+    'Delete_LabTest': 'Delete_LabTest',
+    'Delete_LabTestPackage': 'Delete_LabTestPackage',
+    'Get_LabTestsBookings': 'Get_LabTestsBookings',
+    'Get_LabTechniciansList': 'Get_LabTechniciansList',
+    'Get_LabTechnicianProfile': 'Get_LabTechnicianProfile',
+    'Update_LabTechnicianProfile': 'Update_LabTechnicianProfile',
+    'Save_UploadLabTestReport': 'Save_UploadLabTestReport',
+    
 }
 

@@ -15,6 +15,9 @@ export class VisitforallComponent implements OnInit {
   @Input() userEmail = null;
   @Input() appointmentid;
   @Input() patientname;
+  @Input() bookLabTestId;
+
+  
 
   
 
@@ -61,9 +64,12 @@ export class VisitforallComponent implements OnInit {
       return;
     }
     this.errorMessage = "";
-    let dataobj={};
+    let dataobj:any={};
     dataobj= this.visitforallform.value;
-    dataobj["appointmentId"]=this.appointmentid;
+    dataobj.appointmentId=this.appointmentid;
+    dataobj.bookLabTestId=this.bookLabTestId;
+    dataobj.role=2;
+
     this._apiservice.Save_VisitCompleteIntimation(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);

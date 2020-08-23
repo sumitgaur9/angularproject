@@ -53,10 +53,10 @@ export class NurseeditdisplaylistComponent implements OnInit {
     });
   }
 
-  Delete_NurseProfile() {
+  Delete_NurseProfile(id) {
     let dataobj = {
     };
-    this._apiservice.Delete_Nurse(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+    this._apiservice.Delete_Nurse(dataobj,id).subscribe(data => {
       if (data) {
         this.toastr.success('doctor deleted successfully');
         this.Get_NursesList();

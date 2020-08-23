@@ -56,10 +56,10 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
   }
 
   
-  Delete_PhysioProfile() {
+  Delete_PhysioProfile(id) {
     let dataobj = {
     };
-    this._apiservice.Delete_Physio(dataobj, this.currentUser.roleBaseId).subscribe(data => {
+    this._apiservice.Delete_Physio(dataobj, id).subscribe(data => {
       if (data) {
         this.toastr.success('doctor deleted successfully');
         this.Get_PhysiosList();

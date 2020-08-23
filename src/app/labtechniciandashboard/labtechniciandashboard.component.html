@@ -1,0 +1,52 @@
+<div style="position: absolute;top: 23%;width:100%;">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+              <thead style="background-color:#17a2b8">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">patientNname</th>
+                    <th scope="col">isCollectionCollected</th>
+                    <th scope="col">patientMob</th>
+                    <th scope="col">Upload Report</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of labTestBookingData;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{data.patientNname}}</td>
+                    <td>{{data.isCollectionCollected}}</td>
+                    <td>{{data.patientMob}}</td>
+                    <td>   
+                         <button (click)="openUploadReport(data)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Upload Report</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <!-- <div class="col-md-6">
+            <table class="table">
+              <thead style="background-color:#17a2b8">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">DoctorName</th>
+                    <th scope="col">IsVisitComplete</th>
+                    <th scope="col">Comp Visit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of doctorAppointmentListData;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{data.doctorName}}</td>
+                    <td>{{data.isVisitCompleted}}</td>
+                    <td>    <button (click)="openShowVisitForAll(data)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Comp Visit</button></td>
+
+                  </tr>
+                </tbody>
+              </table>
+        </div> -->
+    </div>
+</div>
+<div *ngIf="showUploadReport">
+    <app-uploadtestreport [showModal]="'showUploadReportModal'" [uploadreportdatainput]="uploadreportdatainput"  (ClosePopup)="closeshowUploadReport()"> </app-uploadtestreport>
+  </div>
+

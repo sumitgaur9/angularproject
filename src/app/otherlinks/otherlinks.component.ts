@@ -159,6 +159,20 @@ public errorMessage:string='';
   public openDoctorDashboard() {
     this.router.navigate(['/doctordashboard']);
   }
+  public openNurseDashboard() {
+    this.router.navigate(['/nursedashboard']);
+  }
+  public openLabTechnicianList() {
+    this.router.navigate(['/labtechnician']);
+  }
+
+  public openLabTechnicianDashboard() {
+    this.router.navigate(['/labtechniciandashboard']);
+  }
+
+  
+  
+  
 
   public openPharmacistDashboard() {
     this.router.navigate(['/pharmacistdashboard']);

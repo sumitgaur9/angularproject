@@ -24,10 +24,12 @@ import { CreatebooklabtestComponent } from './createbooklabtest/createbooklabtes
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import {DpDatePickerModule} from 'ng2-date-picker';
+import { LabtechnicianprofileComponent } from './labtechnicianprofile/labtechnicianprofile.component';
+import { UploadtestreportComponent } from './uploadtestreport/uploadtestreport.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent],
    
   imports: [
     CommonModule,
@@ -55,6 +57,8 @@ import {DpDatePickerModule} from 'ng2-date-picker';
     CreatelabtestComponent,
     CreatelabtestpackageComponent,
     CreatebooklabtestComponent,
+    LabtechnicianprofileComponent,
+    UploadtestreportComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

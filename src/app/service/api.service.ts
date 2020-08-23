@@ -25,9 +25,6 @@ export class APIService {
         return userData;
       }));
   }
-
-
-
   Get_DoctorProfile(params,rolebasedid) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorProfile+'/'+rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
@@ -575,6 +572,64 @@ export class APIService {
         return userData;
       }));
   }
+
+  Save_UploadLabTestReport(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_UploadLabTestReport}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  
+
+  Delete_LabTest(params,delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTest+'/'+delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_LabTestsBookings(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsBookings}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Update_LabTechnicianProfile(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTechnicianProfile +'/'+data.id}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  Get_LabTechnicianProfile(params,rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTechnicianProfile+'/'+rolebasedid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_LabTechniciansList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTechniciansList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
 
   
 
