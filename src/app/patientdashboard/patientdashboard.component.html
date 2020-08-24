@@ -419,9 +419,10 @@
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
                   <td class="d-none d-xl-table-cell">{{data.price}}</td>
-                  <td class="d-none d-md-table-cell">{{data.testType}}</td>
-                  <td>   
-                    <button (click)="Get_UploadedTestReportbyLabTestID(data._id)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Get Report</button></td>
+                  <td class="d-none d-md-table-cell">{{data.testType}}</td>                  
+                  <td>
+                    <a *ngIf="data.isReportGenerated" href="https://mongowithnode.herokuapp.com/api/userModel/Get_UploadedTestReportbyBookLabTestID/{{data._id}}" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Download</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
