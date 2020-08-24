@@ -346,6 +346,19 @@ export class PatientdashboardComponent implements OnInit {
     });
   }
 
+  Get_UploadedTestReportbyLabTestID(booklabtestid) {
+    let dataobj = {
+    };
+    let doctorid = this.currentUser.roleBaseId;//"5f2e69e9afc7cc00045f7ccf";
+    this._apiservice.Get_UploadedTestReportbyLabTestID(dataobj, booklabtestid).subscribe(data => {
+    console.log(data);
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  
+
 
 }
 
