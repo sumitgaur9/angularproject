@@ -12,9 +12,11 @@ import { APIService } from 'src/app/service/api.service';
 })
 export class PhyscotherapistprofileComponent implements OnInit {
 
-  
+
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+
+  @Input() getphyscoprofileid: string = '';
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -27,7 +29,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
- 
+
   public physioProfileForm = new FormGroup({
     name: new FormControl(""),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -46,7 +48,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
 
   public passwordPatternError = false;
 
-  constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
@@ -55,79 +57,72 @@ export class PhyscotherapistprofileComponent implements OnInit {
 
   get f() { return this.physioProfileForm.controls; }
 
-  
 
-  
+
+
 
   Get_PhysioProfile() {
-    let dataobj={
+    let dataobj = {
     };
-    this._apiservice.Get_PhysioProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    let physcoid = this.currentUser.roleBaseId;
+    if (this.currentUser.user.role == 11) {
+      physcoid = this.getphyscoprofileid;
+    }
+    this._apiservice.Get_PhysioProfile(dataobj, physcoid).subscribe(data => {
       if (data) {
-        console.log("data",data);
-        if(data.name!=undefined)
-        {
+        console.log("data", data);
+        if (data.name != undefined) {
           this.physioProfileForm.patchValue({
             name: data.name
           });
         }
-        if(data.email!=undefined)
-        {
+        if (data.email != undefined) {
           this.physioProfileForm.patchValue({
             email: data.email
           });
         }
-        if(data.image!=undefined)
-        {
+        if (data.image != undefined) {
           this.physioProfileForm.patchValue({
             image: data.image
           });
         }
-        if(data.experties!=undefined)
-        {
+        if (data.experties != undefined) {
           this.physioProfileForm.patchValue({
             experties: data.experties
           });
         }
-        if(data.phoneno!=undefined)
-        {
+        if (data.phoneno != undefined) {
           this.physioProfileForm.patchValue({
             phoneno: data.phoneno
           });
         }
-        if(data.timeAvailablity!=undefined)
-        {
+        if (data.timeAvailablity != undefined) {
           this.physioProfileForm.patchValue({
             timeAvailablity: data.timeAvailablity
           });
         }
-        if(data.charges!=undefined)
-        {
+        if (data.charges != undefined) {
           this.physioProfileForm.patchValue({
             charges: data.charges
           });
         }
 
-        if(data.area!=undefined)
-        {
+        if (data.area != undefined) {
           this.physioProfileForm.patchValue({
             area: data.area
           });
         }
-        if(data.qualification!=undefined)
-        {
+        if (data.qualification != undefined) {
           this.physioProfileForm.patchValue({
             qualification: data.qualification
           });
         }
-        if(data._id!=undefined)
-        {
+        if (data._id != undefined) {
           this.physioProfileForm.patchValue({
             id: data._id
           });
         }
-        if(data.participantID!=undefined)
-        {
+        if (data.participantID != undefined) {
           this.physioProfileForm.patchValue({
             participantID: data.participantID
           });
@@ -144,8 +139,8 @@ export class PhyscotherapistprofileComponent implements OnInit {
       return;
     }
     this.errorMessage = "";
-    let dataobj={};
-    dataobj= this.physioProfileForm.value;
+    let dataobj = {};
+    dataobj = this.physioProfileForm.value;
     this._apiservice.Update_PhysioProfile(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);

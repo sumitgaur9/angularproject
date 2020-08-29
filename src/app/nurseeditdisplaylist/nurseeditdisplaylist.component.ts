@@ -19,6 +19,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
   public errorMessage: string = '';
   public patientListData: any = [];
   public currentUser;
+  public getnurseprofileid:string='';
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -32,7 +33,8 @@ export class NurseeditdisplaylistComponent implements OnInit {
     $('#shownurseprofileformpopup').modal('hide');
   }
 
-  public openNurseProfilePopup() {
+  public openNurseProfilePopup(id) {
+    this.getnurseprofileid=id;
     this.shownurseprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

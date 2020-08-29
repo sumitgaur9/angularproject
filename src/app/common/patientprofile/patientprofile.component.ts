@@ -13,6 +13,7 @@ export class PatientprofileComponent implements OnInit {
 
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+  @Input() getpatientprofileid:string='';
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -58,7 +59,12 @@ export class PatientprofileComponent implements OnInit {
   Get_PatientProfile() {
     let dataobj={
     };
-    this._apiservice.Get_PatientProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    let patientid=this.currentUser.roleBaseId;
+    if(this.currentUser.user.role==11)
+    {
+      patientid=this.getpatientprofileid;
+    }
+    this._apiservice.Get_PatientProfile(dataobj,patientid).subscribe(data => {
       if (data) {
         console.log("data",data);
 

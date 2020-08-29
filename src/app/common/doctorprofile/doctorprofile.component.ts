@@ -14,6 +14,9 @@ export class DoctorprofileComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
 
+  @Input() getdoctorprofileid:string='';
+  
+
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
@@ -60,7 +63,12 @@ public expertiesArrayData:any=[];
   Get_DoctorProfile() {
     let dataobj={
     };
-    this._apiservice.Get_DoctorProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    let doctorid=this.currentUser.roleBaseId;
+    if(this.currentUser.user.role==11)
+    {
+      doctorid=this.getdoctorprofileid;
+    }
+    this._apiservice.Get_DoctorProfile(dataobj,doctorid).subscribe(data => {
       if (data) {
         console.log("data",data);
         if(data.name!=undefined)

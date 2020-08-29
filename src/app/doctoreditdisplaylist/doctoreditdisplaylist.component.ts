@@ -29,6 +29,8 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public doctorListData: any = [];
   public currentUser;
 
+  public getdoctorprofileid:string='';
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
@@ -69,10 +71,11 @@ export class DoctorEditdisplaylistComponent implements OnInit {
 
   public closeForgotPasswordPopup() {
     this.showForgotPasswordtPopup = false;
-    $('#forgotPasswordModal').modal('hide');
+    $('#forgotPasswordMssodal').modal('hide');
   }
 
-  public openDoctorProfilePopup() {
+  public openDoctorProfilePopup(id) {
+    this.getdoctorprofileid=id;
     this.showForgotPasswordtPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

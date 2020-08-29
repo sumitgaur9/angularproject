@@ -20,6 +20,8 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
   public errorMessage: string = '';
   public patientListData: any = [];
   public currentUser;
+  public getphyscoprofileid:string='';
+  
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -34,7 +36,8 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
     $('#showphyscoprofileformpopup').modal('hide');
   }
 
-  public openPhysiosProfilePopup() {
+  public openPhysiosProfilePopup(id) {
+    this.getphyscoprofileid=id;
     this.showphyscoprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

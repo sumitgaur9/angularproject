@@ -20,6 +20,8 @@ export class PharmacisteditdisplaylistComponent implements OnInit {
   public errorMessage: string = '';
   public patientListData: any = [];
 public currentUser;
+public getpharmacistprofileid:string='';
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
@@ -33,7 +35,8 @@ public currentUser;
     $('#showpharmacistformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup() {
+  public openPatientProfilePopup(id) {
+    this.getpharmacistprofileid=id;
     this.showpharmacistformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

@@ -15,6 +15,8 @@ export class NurseprofileComponent implements OnInit {
   
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+  @Input() getnurseprofileid:string='';
+  
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -57,7 +59,13 @@ export class NurseprofileComponent implements OnInit {
   Get_NurseProfile() {
     let dataobj={
     };
-    this._apiservice.Get_NurseProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+
+    let nurseid=this.currentUser.roleBaseId;
+    if(this.currentUser.user.role==11)
+    {
+      nurseid=this.getnurseprofileid;
+    }
+    this._apiservice.Get_NurseProfile(dataobj,nurseid).subscribe(data => {
       if (data) {
         console.log("data",data);
         if(data.name!=undefined)

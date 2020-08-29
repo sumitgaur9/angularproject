@@ -12,9 +12,10 @@
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
         <h4 class="card-title text-right">
+                    <i class="fa fa-pencil"  *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openPatientProfilePopup(data._id)"></i>
+
           <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PatientProfile(data._id)"></i>
 
-          <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openPatientProfilePopup()"></i> -->
         </h4>
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8XO3HWFLnuQQKlWrvAWAzeezLmPjpMkb50g&usqp=CAU" alt="Photo of sunset">
       <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
@@ -28,7 +29,7 @@
 
 
   <div *ngIf="showpatientformpopup">
-      <app-patientprofile [showModal]="showpatientformpopup"  (ClosePopup)="closePatientProfilePopup()"> </app-patientprofile>
+      <app-patientprofile [showModal]="showpatientformpopup" [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup()"> </app-patientprofile>
     </div>
 
 

@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   public showRequestPatMedHomeDelivery: boolean = false;
   public showPharmacistVisitCompleteIntimation: boolean = false;
   public showVisitForAll: boolean = false;
+  public currentUser;
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -30,6 +31,8 @@ export class HeaderComponent implements OnInit {
         this.isUserLoggedIn = true;
         this.currentLoggedUserData = userSubs.user;
         this.username = userSubs.user.name;
+        this.userme();
+
       } else {
         this.isUserLoggedIn = false;
         this.currentLoggedUserData = {};
@@ -41,8 +44,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.userme();
-    //$('[data-toggle="popover"]').popover(); 
   }
 
 

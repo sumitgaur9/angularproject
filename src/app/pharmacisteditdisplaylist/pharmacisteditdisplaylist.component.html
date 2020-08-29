@@ -12,8 +12,9 @@
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
         <h4 class="card-title text-right">
+                    <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openPatientProfilePopup(data._id)"></i>
+
           <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PharmacistProfile(data._id)"></i>
-          <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openPatientProfilePopup()"></i> -->
         </h4>
       <img src="https://www.careeraddict.com/uploads/article/52732/Photo_20of_20a_20professional_20pharmacist_20checking_20stock_20in_20an_20aisle_20of_20a_20local_20drugstore_202.jpg" alt="Photo of sunset">
           <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
@@ -27,7 +28,7 @@
 
 
   <div *ngIf="showpharmacistformpopup">
-      <app-pharmacistprofile [showModal]="showpharmacistformpopup"  (ClosePopup)="closePatientProfilePopup()"> </app-pharmacistprofile>
+      <app-pharmacistprofile [showModal]="showpharmacistformpopup"  [getpharmacistprofileid]="getpharmacistprofileid" (ClosePopup)="closePatientProfilePopup()"> </app-pharmacistprofile>
     </div>
 
 

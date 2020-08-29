@@ -12,6 +12,8 @@
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
         <div class="card item-card card-block">
         <h4 class="card-title text-right">
+          <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openNurseProfilePopup(data._id)"></i>
+
           <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_NurseProfile(data._id)"></i>
           <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openNurseProfilePopup()"></i> -->
         </h4>
@@ -27,7 +29,7 @@
 
 
   <div *ngIf="shownurseprofileformpopup">
-      <app-nurseprofile [showModal]="shownurseprofileformpopup"  (ClosePopup)="closeNurseProfilePopup()"> </app-nurseprofile>
+      <app-nurseprofile [showModal]="shownurseprofileformpopup"  [getnurseprofileid]="getnurseprofileid" (ClosePopup)="closeNurseProfilePopup()"> </app-nurseprofile>
     </div>
 
 

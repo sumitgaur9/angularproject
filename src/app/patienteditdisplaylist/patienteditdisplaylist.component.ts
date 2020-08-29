@@ -22,6 +22,9 @@ export class PatienteditdisplaylistComponent implements OnInit {
   public patientListData: any = [];
   public currentUser;
 
+  public getpatientprofileid:string='';
+
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
@@ -35,7 +38,8 @@ export class PatienteditdisplaylistComponent implements OnInit {
     $('#showpatientformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup() {
+  public openPatientProfilePopup(id) {
+    this.getpatientprofileid=id;
     this.showpatientformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

@@ -12,7 +12,7 @@
         <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
           <div class="card item-card card-block">
         <h4 class="card-title text-right"> 
-            <i class="fa fa-pencil" aria-hidden="true" (click)="openDoctorProfilePopup()"></i>
+            <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openDoctorProfilePopup(data._id)"></i>
             <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="deleteDoctorProfilePopup(data._id)"></i>
           </h4>
           <img *ngIf="data.experties=='physician'" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
@@ -30,7 +30,7 @@
     <div *ngIf="showForgotPasswordtPopup">
 
 
-        <app-doctorprofile [showModal]="showForgotPasswordtPopup"  (ClosePopup)="closeForgotPasswordPopup()"> </app-doctorprofile>
+        <app-doctorprofile [showModal]="showForgotPasswordtPopup" [getdoctorprofileid]="getdoctorprofileid" (ClosePopup)="closeForgotPasswordPopup()"> </app-doctorprofile>
       </div>
 
 

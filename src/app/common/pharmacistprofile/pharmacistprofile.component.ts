@@ -15,7 +15,8 @@ export class PharmacistprofileComponent implements OnInit {
   
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
-
+  @Input() getpharmacistprofileid:string='';
+  
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
@@ -60,7 +61,12 @@ export class PharmacistprofileComponent implements OnInit {
   Get_PharmacistProfile() {
     let dataobj={
     };
-    this._apiservice.Get_PharmacistProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    let pharmacistid=this.currentUser.roleBaseId;
+    if(this.currentUser.user.role==11)
+    {
+      pharmacistid=this.getpharmacistprofileid;
+    }
+    this._apiservice.Get_PharmacistProfile(dataobj,pharmacistid).subscribe(data => {
       if (data) {
         console.log("data",data);
         if(data.name!=undefined)
