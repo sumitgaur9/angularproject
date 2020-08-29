@@ -1,6 +1,7 @@
 export const API_PATH: any = {
     'Commaon_Path':'https://mongowithnode.herokuapp.com/',
     //  'Commaon_Path':'http://localhost:5000/',
+    'GTM_ID': 'GTM-M476F8N',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
     'registration': 'users',

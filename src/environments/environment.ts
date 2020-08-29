@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  GTM_ID: 'GTM-M476F8N'
 };
 
 /*

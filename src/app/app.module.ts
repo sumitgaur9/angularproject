@@ -1,4 +1,5 @@
 import { environment } from './../environments/environment';
+import { API_PATH } from 'src/app/shared/api.constant'
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -90,7 +91,7 @@ import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtec
     },
     {
       provide: 'googleTagManagerId',
-      useValue: environment.GTM_ID
+       useValue: API_PATH.GTM_ID
     }
   ],
   bootstrap: [AppComponent]
