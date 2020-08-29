@@ -36,7 +36,7 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
     $('#showphyscoprofileformpopup').modal('hide');
   }
 
-  public openPhysiosProfilePopup(id) {
+  public openPhysiosProfilePopup(id?) {
     this.getphyscoprofileid=id;
     this.showphyscoprofileformpopup = true;
     setTimeout(() => {

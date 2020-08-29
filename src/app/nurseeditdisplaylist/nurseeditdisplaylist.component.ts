@@ -33,7 +33,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
     $('#shownurseprofileformpopup').modal('hide');
   }
 
-  public openNurseProfilePopup(id) {
+  public openNurseProfilePopup(id?) {
     this.getnurseprofileid=id;
     this.shownurseprofileformpopup = true;
     setTimeout(() => {

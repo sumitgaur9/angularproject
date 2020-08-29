@@ -35,7 +35,7 @@ public getpharmacistprofileid:string='';
     $('#showpharmacistformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup(id) {
+  public openPatientProfilePopup(id?) {
     this.getpharmacistprofileid=id;
     this.showpharmacistformpopup = true;
     setTimeout(() => {

@@ -38,7 +38,7 @@ export class PatienteditdisplaylistComponent implements OnInit {
     $('#showpatientformpopup').modal('hide');
   }
 
-  public openPatientProfilePopup(id) {
+  public openPatientProfilePopup(id?) {
     this.getpatientprofileid=id;
     this.showpatientformpopup = true;
     setTimeout(() => {
