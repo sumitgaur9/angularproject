@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { GTMFunction } from './utils/gtm';
 
 import { Router } from '@angular/router';
 
@@ -13,8 +14,13 @@ export class AppComponent implements OnInit {
 
   showHeaderFooter: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private GTMFunction: GTMFunction) {
     router.events.subscribe((val) => {
+
+      if(location.hash){
+        console.log("this.router.url",location.hash);
+        this.GTMFunction.pageview(location.hash);
+      }
       this.showHeaderFooter = true;
 
       if (location.hash == '#/login' ||location.hash == '#/registration' ) {

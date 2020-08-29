@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -86,6 +87,10 @@ import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtec
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: 'googleTagManagerId',
+      useValue: environment.GTM_ID
     }
   ],
   bootstrap: [AppComponent]
