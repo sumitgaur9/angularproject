@@ -12,15 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistrationComponent implements OnInit {
   public errorMessage: string = '';
 
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  //emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   phoneNumberPattern = "^\\d{10}$";
+//    email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
+
+  public submitted: boolean = false;
 
   public userInfo = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
+    email: new FormControl("", [Validators.required]),
     name: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
-    role:new FormControl("",[Validators.required]),
-    description:new FormControl("",[Validators.required]),
+    role: new FormControl("", [Validators.required]),
+    description: new FormControl("", [Validators.required]),
+    phoneno: new FormControl("", [Validators.required, Validators.pattern(this.phoneNumberPattern)])
   });
 
   get f() { return this.userInfo.controls; }
@@ -32,12 +36,17 @@ export class RegistrationComponent implements OnInit {
 
   registration() {
     this.errorMessage = '';
-    let dataobj={
+    let dataobj = {
       email: this.userInfo.value.email,
-      name:  this.userInfo.value.name,
+      name: this.userInfo.value.name,
       password: this.userInfo.value.password,
-      role:Number(this.userInfo.value.role),
+      role: Number(this.userInfo.value.role),
+      phoneno: Number(this.userInfo.value.phoneno),
       description: this.userInfo.value.description,
+    }
+    this.submitted = true;
+    if (this.userInfo.invalid) {
+      return;
     }
     let values = dataobj
     this._apiservice.registration(values).subscribe(data => {
@@ -56,6 +65,4 @@ export class RegistrationComponent implements OnInit {
     this.router.navigate(['/login']);
 
   }
-
-
 }

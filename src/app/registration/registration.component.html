@@ -23,20 +23,55 @@
                 <div class="col-sm-10">
                   <input class="form-control" id="name" type="text" formControlName="name" name="name"
                     placeholder="Name" />
+                    <div *ngIf="submitted && userInfo.controls.name.invalid">
+                      <div *ngIf="f.name.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                        This Field is Required.
+                      </div>
+                  </div>
                 </div>
+
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-2" for="lname">Email:</label>
                 <div class="col-sm-10">
                   <input class="form-control" id="email" type="email" formControlName="email" name="email"
                     placeholder="Email Address" />
+
+                    <div *ngIf="submitted && userInfo.controls.email.invalid">
+                      <div *ngIf="f.email.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                        This Field is Required.
+                      </div>
+                  </div>
+
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="lname">Phone Number:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" id="tel" type="tel" formControlName="phoneno" name="phoneno"
+                  placeholder="Phone Number" />
+                <div *ngIf="submitted && userInfo.controls.phoneno.invalid">
+                <div *ngIf="f.phoneno.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                  This Field is Required.
+                </div>
+                <div *ngIf="f.phoneno.errors.pattern" style="color:red;font-size: 14px;font-family: auto;">Please enter a valid phone number</div>
+            </div>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="control-label col-sm-2" for="lname">Password:</label>
                 <div class="col-sm-10">
                   <input type="password" formControlName="password" class="form-control" placeholder="Password"
                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+
+                    <div *ngIf="submitted && userInfo.controls.password.invalid">
+                      <div *ngIf="f.password.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                        This Field is Required.
+                      </div>
+                  </div>
+
                 </div>
               </div>
               <div class="form-group">
@@ -53,6 +88,13 @@
 
                     <option value="11"> Admin</option>
                   </select>
+
+                  <div *ngIf="submitted && userInfo.controls.role.invalid">
+                    <div *ngIf="f.role.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                      This Field is Required.
+                    </div>
+                </div>
+
                 </div>
               </div>
               <div class="form-group">
@@ -60,6 +102,11 @@
                 <div class="col-sm-10">
                   <textarea id="comment" name="comment" formControlName="description" cols="40" rows="3"
                     class="form-control"></textarea>
+                    <div *ngIf="submitted && userInfo.controls.description.invalid">
+                      <div *ngIf="f.description.errors.required" style="color:red;font-size: 14px;font-family: auto;">
+                        This Field is Required.
+                      </div>
+                  </div>
                 </div>
               </div>
               <div class="form-group">
