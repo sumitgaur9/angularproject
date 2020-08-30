@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginInfo.controls; }
 
   loginUser() {
+   // this.GenerateOTP();
     this.submitted = true;
     if (this.loginInfo.invalid) {
       return;
@@ -54,6 +55,21 @@ export class LoginComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+
+  GenerateOTP() {
+   let dataobj={
+     "email": this.loginInfo.controls.email.value
+   }
+    this._apiservice.GenerateOTP(dataobj).subscribe(data => {
+      if (data) {
+        console.log("OTP Data is this..", data);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
 
 
   navigateToSpecificPage(roleType) {

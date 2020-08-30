@@ -69,5 +69,6 @@ export const API_PATH: any = {
     'Update_LabTechnicianProfile': 'Update_LabTechnicianProfile',
     'Save_UploadLabTestReport': 'Save_UploadLabTestReport',
     'Get_UploadedTestReportbyLabTestID': 'Get_UploadedTestReportbyLabTestID',
+    'GenerateOTP': 'GenerateOTP',
 }
 

@@ -25,7 +25,7 @@
                     placeholder="Name" />
                     <div *ngIf="submitted && userInfo.controls.name.invalid">
                       <div *ngIf="f.name.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                        This Field is Required.
+                      First Name is Required Field.
                       </div>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
 
                     <div *ngIf="submitted && userInfo.controls.email.invalid">
                       <div *ngIf="f.email.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                        This Field is Required.
+                        Email is Required Field.
                       </div>
                   </div>
 
@@ -53,7 +53,7 @@
                   placeholder="Phone Number" />
                 <div *ngIf="submitted && userInfo.controls.phoneno.invalid">
                 <div *ngIf="f.phoneno.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                  This Field is Required.
+                  Phone No is Required Field.
                 </div>
                 <div *ngIf="f.phoneno.errors.pattern" style="color:red;font-size: 14px;font-family: auto;">Please enter a valid phone number</div>
             </div>
@@ -68,7 +68,7 @@
 
                     <div *ngIf="submitted && userInfo.controls.password.invalid">
                       <div *ngIf="f.password.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                        This Field is Required.
+                        Password is Required Field.
                       </div>
                   </div>
 
@@ -91,7 +91,7 @@
 
                   <div *ngIf="submitted && userInfo.controls.role.invalid">
                     <div *ngIf="f.role.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                      This Field is Required.
+                      Role is Required Field.
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                     class="form-control"></textarea>
                     <div *ngIf="submitted && userInfo.controls.description.invalid">
                       <div *ngIf="f.description.errors.required" style="color:red;font-size: 14px;font-family: auto;">
-                        This Field is Required.
+                        Description is Required Field.
                       </div>
                   </div>
                 </div>
