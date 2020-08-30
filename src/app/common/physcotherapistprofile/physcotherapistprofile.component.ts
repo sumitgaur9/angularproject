@@ -41,7 +41,8 @@ export class PhyscotherapistprofileComponent implements OnInit {
     area: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
-    participantID: new FormControl("")
+    participantID: new FormControl(""),
+    description: new FormControl(""),
   });
 
   public currentUser;
@@ -79,6 +80,12 @@ export class PhyscotherapistprofileComponent implements OnInit {
         if (data.email != undefined) {
           this.physioProfileForm.patchValue({
             email: data.email
+          });
+        }
+        if(data.description!=undefined)
+        {
+          this.physioProfileForm.patchValue({
+            description: data.description
           });
         }
         if (data.image != undefined) {

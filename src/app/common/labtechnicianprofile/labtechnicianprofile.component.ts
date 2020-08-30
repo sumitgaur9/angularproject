@@ -38,6 +38,7 @@ export class LabtechnicianprofileComponent implements OnInit {
     qualification: new FormControl(""),
     id: new FormControl(""),
     participantID:new FormControl(""),
+    description: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -82,6 +83,13 @@ public expertiesArrayData:any=[];
             image: data.image
           });
         }
+        if(data.description!=undefined)
+        {
+          this.labTechform.patchValue({
+            description: data.description
+          });
+        }
+
         if(data.experties!=undefined)
         {
           this.labTechform.patchValue({

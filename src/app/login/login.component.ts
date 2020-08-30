@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginInfo.controls; }
 
   loginUser() {
-   // this.GenerateOTP();
+    //this.GenerateOTP();
     this.submitted = true;
     if (this.loginInfo.invalid) {
       return;

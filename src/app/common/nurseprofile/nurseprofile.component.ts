@@ -41,6 +41,7 @@ export class NurseprofileComponent implements OnInit {
     qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
+    description: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -72,6 +73,12 @@ export class NurseprofileComponent implements OnInit {
         {
           this.nurseProfileForm.patchValue({
             name: data.name
+          });
+        }
+        if(data.description!=undefined)
+        {
+          this.nurseProfileForm.patchValue({
+            description: data.description
           });
         }
         if(data.email!=undefined)

@@ -40,6 +40,7 @@ export class PharmacistprofileComponent implements OnInit {
     qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
+    description: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -75,6 +76,13 @@ export class PharmacistprofileComponent implements OnInit {
             name: data.name
           });
         }
+        if(data.description!=undefined)
+        {
+          this.pharmacistProfileForm.patchValue({
+            description: data.description
+          });
+        }
+
         if(data.email!=undefined)
         {
           this.pharmacistProfileForm.patchValue({

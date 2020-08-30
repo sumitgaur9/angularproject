@@ -40,6 +40,7 @@ export class DoctorprofileComponent implements OnInit {
     qualification: new FormControl(""),
     id: new FormControl(""),
     participantID:new FormControl(""),
+    description: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -81,6 +82,12 @@ public expertiesArrayData:any=[];
         {
           this.doctorform.patchValue({
             email: data.email
+          });
+        }
+        if(data.description!=undefined)
+        {
+          this.doctorform.patchValue({
+            description: data.description
           });
         }
         if(data.image!=undefined)

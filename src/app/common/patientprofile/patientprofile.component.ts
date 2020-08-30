@@ -33,13 +33,11 @@ export class PatientprofileComponent implements OnInit {
     image: new FormControl(""),
     disease: new FormControl(""),
     phoneno: new FormControl(""),
-    requiredDoctor: new FormControl(""),
-    prefferedTime: new FormControl(""),
     address: new FormControl(""),
     qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
-    
+    description: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -67,8 +65,6 @@ export class PatientprofileComponent implements OnInit {
     this._apiservice.Get_PatientProfile(dataobj,patientid).subscribe(data => {
       if (data) {
         console.log("data",data);
-
-
         if(data.name!=undefined)
         {
           this.patientform.patchValue({
@@ -99,19 +95,6 @@ export class PatientprofileComponent implements OnInit {
             phoneno: data.phoneno
           });
         }
-        if(data.requiredDoctor!=undefined)
-        {
-          this.patientform.patchValue({
-            requiredDoctor: data.requiredDoctor
-          });
-        }
-        if(data.prefferedTime!=undefined)
-        {
-          this.patientform.patchValue({
-            prefferedTime: data.prefferedTime
-          });
-        }
-
         if(data.address!=undefined)
         {
           this.patientform.patchValue({
@@ -130,6 +113,14 @@ export class PatientprofileComponent implements OnInit {
             id: data._id
           });
         }
+        if(data.description!=undefined)
+        {
+          this.patientform.patchValue({
+            description: data.description
+          });
+        }
+
+
         if(data.participantID!=undefined)
         {
           this.patientform.patchValue({
