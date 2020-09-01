@@ -15,8 +15,9 @@
             <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openDoctorProfilePopup(data._id)"></i>
             <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="deleteDoctorProfilePopup(data._id)"></i>
           </h4>
-          <img *ngIf="data.experties=='physician'" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
-          <img *ngIf="data.experties!='physician'" src="https://thumbs.dreamstime.com/z/young-female-doctor-white-dress-19541983.jpg" alt="Photo of sunset">
+          <img *ngIf="data.image==''" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+          <img *ngIf="data.image!=''" src="https://mongowithnode.herokuapp.com/uploads/{{data.image}}" alt="Photo of sunset">
+          <!-- <img *ngIf="data.experties!='physician'" src="https://thumbs.dreamstime.com/z/young-female-doctor-white-dress-19541983.jpg" alt="Photo of sunset"> -->
           <h5 class="item-card-title mt-3 mb-3">{{data.name}} • Doctor {{data.charges}}</h5>
             <!-- <p class="card-text">{{data.experties}}</p> -->
             <p class="card-text">{{data.description}}</p>
