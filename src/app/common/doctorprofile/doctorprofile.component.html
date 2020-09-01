@@ -138,6 +138,8 @@
                 </div>
 
                 <div class="col-md-4">
+                  <img *ngIf="getImageValue==''" class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg">
+                  <img *ngIf="getImageValue!=''" class="otpPopup-img" src="https://mongowithnode.herokuapp.com/uploads/{{getImageValue}}" alt="passwordsetImg">
                   <div class="form-group">
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
@@ -147,7 +149,6 @@
 
                     </div>
                   </div>
-                    <!-- <img class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg"> -->
 
                 </div>
 

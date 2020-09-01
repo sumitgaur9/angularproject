@@ -61,6 +61,7 @@ public expertiesArrayData:any=[];
   public uploadResult = "";
   public UploadFile = [];
   public UploadFileName = "";
+  getImageValue = "";
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -105,8 +106,9 @@ public expertiesArrayData:any=[];
         }
         if(data.image!=undefined)
         {
+          this.getImageValue = data.image;
           this.doctorform.patchValue({
-            image: data.image
+            image: data.image            
           });
         }
         if(data.experties!=undefined)
