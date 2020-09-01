@@ -18,8 +18,8 @@ export class APIService {
         return userData;
       }));
   }
-  Update_DoctorProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile +'/'+data.id}`
+  Update_DoctorProfile(data,doctorid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile +'/'+doctorid}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
