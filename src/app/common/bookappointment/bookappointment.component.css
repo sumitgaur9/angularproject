@@ -1,0 +1,10 @@
+.bookappointmentbtn{
+    float: left;
+    margin: 0;
+    background: linear-gradient(to right, #39b49a 0%, #1d86df 100%);
+    width: 100%;
+    color: #fff;
+    padding: 9px 25px;
+    font-size: 18px;
+    font-weight: 600;
+}

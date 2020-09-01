@@ -2,187 +2,166 @@
 
     <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
       <ad-modal-body>
-        <div class="overlay"></div>
-        <div class="popupContainer">
-          <div class="containerBlock">
-            <div class="formSection">
-              <div class="container">
-                <h2 class="text-center"></h2>
-                <div class="row justify-content-center">
-                  <div class="col-8">
-                    <!--Form with header-->
-  
-                      <div class="card" style="border: transparent!important;">
-                        <div class="card-header p-0">
-                          <div class="bg-info text-white text-center py-2">
-                            <h3><i class="fa fa-medkit"></i>Book Appointment</h3>
-                            <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
-                          </div>
-                        </div>
-                        <div class="card-body p-3">
-                          <!--Body-->
-                          <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientNname" name="patientNname"
-                                placeholder="Patient Name" formControlName="patientNname">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
-                              </div>
-                              <input type="email" class="form-control" id="patientEmail" name="patientEmail"
-                                placeholder="ejemplo@gmail.com" formControlName="patientEmail">
-                            </div>
-                          </div>
-  
-                          <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientMob" name="patientMob"
-                              placeholder="Mobile no" formControlName="patientMob">                            </div>
-                          </div>
-                          <div class="form-group">
-                              <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                                </div>
-                                <input type="text" class="form-control" id="patientAddres" name="patientAddres"
-                                placeholder="Patient Address" formControlName="patientAddres">                          </div>
-                            </div>
-                          <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientPIN" name="patientPIN"
-                              placeholder="Patient PIN" formControlName="patientPIN">                          </div>
-                          </div>
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="nombre" name="nombre"
-                              placeholder="Name" formControlName="email">                          </div>
-                          </div> -->
-                          <div class="form-group">
-                            <label for="exampleFormControlSelect1">Disease</label>
-                            <select class="form-control" formControlName="disease" (change)="diseaseschangeevent($event)">
-                                <option value=""></option>
-                                <option *ngFor="let opt of diseasListData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
-                          </select>
-                          </div>
 
 
-                          <div class="form-group">
-                              <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                                </div>
-                                <input type="text" class="form-control" id="diseaseAge" name="diseaseAge"
-                                placeholder="Disease Age" formControlName="diseaseAge">                            </div>
-                            </div>
-                            <!-- <div class="form-group">
-                              <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                                </div>
-                                <input type="text" class="form-control" id="doctorName" name="doctorName"
-                                placeholder="doctorName" formControlName="doctorName">                            </div>
-                            </div> -->
+<div class="row">
 
-                         
+  <div class="col-md-12">
+    <!--Form with header-->
 
-                            
-                              
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Doctor</label>
-                                <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
-                                    <option value=""></option>
-                                    <option *ngFor="let opt of filterDoctorData" [value]="opt.name">{{opt.name}}</option>
-                              </select>
-                              </div>
-
-
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">Appointment Type</label>
-                                <select class="form-control" formControlName="appointmentType">
-                                    <option value=""></option>
-                                    <option *ngFor="let opt of appointmentTypeData" [value]="opt.name">{{opt.name}}</option>
-                              </select>
-                              </div>
-
-                              <div class="form-group">
-
-                                <div class="input-group mb-2">
-                                  <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                                  </div>
-                                  <input class="form-control" type="text" 
-                                  [dpDayPicker]="dayPickerConfig"
-                                  [theme]="'dp-material'"
-                                  formControlName="appointmentDate"
-                                  [mode]="'day'"
-                                  [displayDate]="displayDate"
-                                  placeholder="Appointment Date"/>
-                                                           </div>
-
-                                <!-- <div class="input-group mb-2">
-                                  <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                                  </div>
-                                  <input class="form-control" type="text" 
-                                  [dpDayPicker]="dayPickerConfig"
-                                  [theme]="'dp-material'"
-                                  formControlName="appointmentDate"
-                                  [mode]="'day'"
-                                  [displayDate]="displayDate"
-                                  (onChange)="date = $event" 
-                                  placeholder="Appointment Date"/>
-
-                                                           </div> -->
-
-                              </div>
-
-
-
-                          <!-- <div class="text-center">
-                            <input type="submit" value="Enviar" class="btn btn-info btn-block rounded-0 py-2">
-                          </div> -->
-                        </div>
-  
-                      </div>
-  
-                    <!--Form with header-->
-  
-  
-                  </div>
-  
-                  <div class="col-md-4">
-                      <img class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg">
-  
-                  </div>
-  
-  
-                </div>
-              </div>
-  
-            </div>
-  
+      <div class="card" style="border: transparent!important;">
+        <div class="card-header p-0">
+          <div class="bg-info text-white text-center py-2">
+            <h3 class="bookappointmentbtn"><i class="fa fa-medkit"></i><span style="margin-left:5px"> Book Appointment</span></h3>
+            <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
           </div>
         </div>
+      </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card-body">
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+          </div>
+          <input type="text" class="form-control" id="patientNname" name="patientNname"
+            placeholder="Patient Name" formControlName="patientNname">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
+          </div>
+          <input type="email" class="form-control" id="patientEmail" name="patientEmail"
+            placeholder="ejemplo@gmail.com" formControlName="patientEmail">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-phone text-info"></i></div>
+        </div>
+          <input type="text" class="form-control" id="patientMob" name="patientMob"
+          placeholder="Mobile no" formControlName="patientMob">                            </div>
+      </div>
+      <div class="form-group">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-address-card-o text-info"></i></div>
+            </div>
+            <input type="text" class="form-control" id="patientAddres" name="patientAddres"
+            placeholder="Patient Address" formControlName="patientAddres">                          </div>
+        </div>
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-thumb-tack text-info"></i></div>
+          </div>
+          <input type="text" class="form-control" id="patientPIN" name="patientPIN"
+          placeholder="Patient PIN" formControlName="patientPIN">                          </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
+          </div>
+          <input class="form-control" type="text" 
+          [dpDayPicker]="dayPickerConfig"
+          [theme]="'dp-material'"
+          formControlName="appointmentDate"
+          [mode]="'day'"
+          [displayDate]="displayDate"
+          placeholder="Appointment Date"/>
+                                   </div>
+      </div>
+
+    </div>
+</div>
+
+  <div class="col-md-6">
+
+    <!-- <div class="form-group">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+        </div>
+        <input type="text" class="form-control" id="nombre" name="nombre"
+        placeholder="Name" formControlName="email">                          </div>
+    </div> -->
+    <div class="card-body">
+    <div class="form-group">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+        </div>
+        <input type="text" class="form-control" id="diseaseAge" name="diseaseAge"
+        placeholder="Disease Age" formControlName="diseaseAge">                            </div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Disease</label>
+      <select class="form-control" formControlName="disease" (change)="diseaseschangeevent($event)">
+          <option value=""></option>
+          <option *ngFor="let opt of diseasListData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
+    </select>
+    </div>
+
+
+   
+      <!-- <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+          </div>
+          <input type="text" class="form-control" id="doctorName" name="doctorName"
+          placeholder="doctorName" formControlName="doctorName">                            </div>
+      </div> -->
+
+   
+
+      
+        
+      <div class="form-group">
+          <label for="exampleFormControlSelect1">Doctor</label>
+          <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
+              <option value=""></option>
+              <option *ngFor="let opt of filterDoctorData" [value]="opt.name">{{opt.name}}</option>
+        </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Appointment Type</label>
+          <select class="form-control" formControlName="appointmentType">
+              <option value=""></option>
+              <option *ngFor="let opt of appointmentTypeData" [value]="opt.name">{{opt.name}}</option>
+        </select>
+        </div>
+
+      
+</div>
+</div>
+       
+</div>
+       
+      
+     
+           
+             
+        
+        
       </ad-modal-body>
       <ad-modal-footer>
         <div class="buttonSection">
           <div class="text-center">
-              <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
+            <i class="fa fa-medkit"></i>    <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
             </div>
           <!-- <button class="primartButton" type="submit">Send OTP</button>
           <button class="secondryButton" type="reset" (click)="CloseModal()">Cancel</button> -->
