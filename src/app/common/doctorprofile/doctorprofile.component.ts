@@ -181,7 +181,11 @@ public expertiesArrayData:any=[];
     //dataobj= this.doctorform.value;
 
     var formData = new FormData();
-    formData.append('image', this.UploadFile[0], this.UploadFileName);
+    if(this.UploadFile.length && this.UploadFileName){
+      formData.append('image', this.UploadFile[0], this.UploadFileName);
+    } else{
+      formData.append('image', '');
+    }
     formData.append('name', this.doctorform.value.name);
     formData.append('phoneno', this.doctorform.value.phoneno);
     formData.append('experties', this.doctorform.value.experties);
