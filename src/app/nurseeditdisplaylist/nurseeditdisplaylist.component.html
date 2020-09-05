@@ -17,8 +17,14 @@
           <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_NurseProfile(data._id)"></i>
           <!-- <i class="fa fa-pencil" aria-hidden="true" (click)="openNurseProfilePopup()"></i> -->
         </h4>
-        <img src="https://i2.wp.com/www.navpradesh.com/wp-content/uploads/2019/10/AIIMS.jpg?fit=1024%2C575&ssl=1" alt="Photo of sunset">      
-          <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
+        <!-- <img *ngIf="data.image==''" src="https://i2.wp.com/www.navpradesh.com/wp-content/uploads/2019/10/AIIMS.jpg?fit=1024%2C575&ssl=1" alt="Photo of sunset">
+        <img *ngIf="data.image!=''" src="https://mongowithnode.herokuapp.com/uploads/{{data.image}}" alt="Photo of sunset"> -->
+
+        <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+        
+        
+        <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
           <!-- <p class="card-text">{{data.experties}}</p> -->
           <p class="card-text">{{data.description}}</p>
     </div>

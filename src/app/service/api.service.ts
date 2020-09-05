@@ -77,8 +77,8 @@ export class APIService {
 
   
 
-  Update_PatientProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile +'/'+data.id}`
+  Update_PatientProfile(data,id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile +'/'+id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -114,8 +114,8 @@ export class APIService {
       }));
 
   }
-  Update_NurseProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile +'/'+data.id}`
+  Update_NurseProfile(data,nurseId) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile +'/'+nurseId}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -162,8 +162,8 @@ export class APIService {
 
   }
 
-  Update_PharmacistProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile +'/'+data.id}`
+  Update_PharmacistProfile(data,id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile +'/'+id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -221,8 +221,8 @@ export class APIService {
       }));
   }
 
-  Update_PhysioProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile +'/'+data.id}`
+  Update_PhysioProfile(data,id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile +'/'+id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -603,8 +603,8 @@ export class APIService {
       }));
   }
 
-  Update_LabTechnicianProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTechnicianProfile +'/'+data.id}`
+  Update_LabTechnicianProfile(data,id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTechnicianProfile +'/'+id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
