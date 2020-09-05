@@ -71,4 +71,8 @@ public getpharmacistprofileid:string='';
     });
   }
 
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+  }
+
 }

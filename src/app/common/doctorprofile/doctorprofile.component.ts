@@ -76,22 +76,22 @@ public expertiesArrayData:any=[];
 
   get f() { return this.doctorform.controls; }
 
-  toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
+  // toBase64 = file => new Promise((resolve, reject) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => resolve(reader.result);
+  //   reader.onerror = error => reject(error);
+  // });
 
   arrayBufferToBase64(buffer) {
-    // return this.utli.arrayBufferToBase64(arrayBufferToBase64);
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return 'data:image/jpg;base64,' + window.btoa(binary);
+    return this.utilityservice.arrayBufferToBase64(buffer);
+    // var binary = '';
+    // var bytes = new Uint8Array(buffer);
+    // var len = bytes.byteLength;
+    // for (var i = 0; i < len; i++) {
+    //   binary += String.fromCharCode(bytes[i]);
+    // }
+    // return 'data:image/jpg;base64,' + window.btoa(binary);
   }
 
   Get_DoctorProfile() {
@@ -200,12 +200,6 @@ public expertiesArrayData:any=[];
       return;
     }
     this.errorMessage = "";
-    //let dataobj={};
-
-
-
-    //dataobj= this.doctorform.value;
-
     var formData = new FormData();
     formData.append('image', '');
     if(this.UploadFile.length && this.UploadFileName){
@@ -214,6 +208,7 @@ public expertiesArrayData:any=[];
       formData.append('newimage', '');
     }
     formData.append('name', this.doctorform.value.name);
+    formData.append('email', this.doctorform.value.email);
     formData.append('phoneno', this.doctorform.value.phoneno);
     formData.append('experties', this.doctorform.value.experties);
     formData.append('timeAvailablity', this.doctorform.value.timeAvailablity);
@@ -270,7 +265,7 @@ public expertiesArrayData:any=[];
   async main() {
     const files = document.querySelector('#myfile') as HTMLInputElement;
     const file = files.files[0];
-    const result = await this.toBase64(file).catch(e => Error(e));
+    const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
     if(result instanceof Error) {
        console.log('Error: ', result.message);
        return;

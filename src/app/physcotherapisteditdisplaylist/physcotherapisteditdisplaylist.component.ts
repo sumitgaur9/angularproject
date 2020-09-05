@@ -71,4 +71,8 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+  }
 }

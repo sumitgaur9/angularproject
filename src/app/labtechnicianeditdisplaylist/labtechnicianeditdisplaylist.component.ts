@@ -66,6 +66,8 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
   //   });
   // }
 
-
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+  }
 }
 

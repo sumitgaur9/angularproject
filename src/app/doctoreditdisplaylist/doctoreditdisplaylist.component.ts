@@ -87,17 +87,12 @@ export class DoctorEditdisplaylistComponent implements OnInit {
     this.Delete_Doctor(id);
   }
 
-  arrayBufferToBase64( buffer ) {
-    // return this.utli.arrayBufferToBase64(arrayBufferToBase64);
-    var binary = '';
-    var bytes = new Uint8Array( buffer );
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode( bytes[ i ] );
-    }
-    return 'data:image/jpg;base64,'+window.btoa( binary );
-  }
+  
 
+
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+  }
 
 
   Delete_Doctor(id) {

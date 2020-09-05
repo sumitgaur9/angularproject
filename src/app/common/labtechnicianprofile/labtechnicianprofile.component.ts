@@ -39,6 +39,7 @@ export class LabtechnicianprofileComponent implements OnInit {
     id: new FormControl(""),
     participantID:new FormControl(""),
     description: new FormControl(""),
+    newimage: new FormControl(),
   });
 
   public passwordPatternError = false;
@@ -46,6 +47,16 @@ public expertiesArrayData:any=[];
   
 
   public currentUser;
+
+  public uploadreportdatainput:any;
+  public testimageform = new FormGroup({
+    image: new FormControl("")
+  });
+  
+  public uploadResult = "";
+  public UploadFile = [];
+  public UploadFileName = "";
+  getImageValue;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -77,12 +88,21 @@ public expertiesArrayData:any=[];
             email: data.email
           });
         }
-        if(data.image!=undefined)
-        {
-          this.labTechform.patchValue({
-            image: data.image
-          });
-        }
+      
+  if(data.image!=undefined)
+  {
+    this.labTechform.patchValue({
+      image: data.image            
+    });
+  }
+  if(data.newimage!=undefined && data.newimage.data!=undefined)
+  {
+    this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
+    
+    this.labTechform.patchValue({
+      newimage: data.newimage            
+    });
+  }
         if(data.description!=undefined)
         {
           this.labTechform.patchValue({
@@ -153,9 +173,28 @@ public expertiesArrayData:any=[];
       return;
     }
     this.errorMessage = "";
-    let dataobj={};
-    dataobj= this.labTechform.value;
-    this._apiservice.Update_LabTechnicianProfile(dataobj).subscribe(data => {
+  
+
+    
+ var formData = new FormData();
+ formData.append('image', '');
+ if(this.UploadFile.length && this.UploadFileName){
+   formData.append('newimage', this.UploadFile[0], this.UploadFileName);
+ } else{
+   formData.append('newimage', '');
+ }
+ formData.append('name', this.labTechform.value.name);
+ formData.append('email', this.labTechform.value.email);
+ formData.append('phoneno', this.labTechform.value.phoneno);
+ formData.append('experties', this.labTechform.value.experties);
+ formData.append('timeAvailablity', this.labTechform.value.timeAvailablity);
+ formData.append('charges', this.labTechform.value.charges);
+ formData.append('area', this.labTechform.value.area);
+ formData.append('qualification', this.labTechform.value.qualification);
+ formData.append('id', this.labTechform.value.id);
+ formData.append('participantID', this.labTechform.value.participantID);
+ formData.append('description', this.labTechform.value.description);
+ this._apiservice.Update_LabTechnicianProfile(formData,this.labTechform.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks for lab technician doctor profile');
@@ -178,5 +217,38 @@ public expertiesArrayData:any=[];
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
+  }
+
+  uploadFile(fileInput) {
+    if (fileInput.length === 0) {
+      return;
+    }
+    this.uploadResult = "";
+    this.UploadFile = <Array<File>>fileInput.target.files;
+    this.UploadFileName = this.UploadFile[0].name;
+
+   this.main();
+
+  }
+
+  async main() {
+    const files = document.querySelector('#myfile') as HTMLInputElement;
+    const file = files.files[0];
+    const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
+    if(result instanceof Error) {
+       console.log('Error: ', result.message);
+       return;
+    }
+    this.getImageValue = result;
+ }
+
+
+
+
+
+
+ arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+   
   }
 }

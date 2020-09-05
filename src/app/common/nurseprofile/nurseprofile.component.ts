@@ -29,8 +29,22 @@ export class NurseprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
+  /************************** */
+
+  public uploadreportdatainput:any;
+  public testimageform = new FormGroup({
+    image: new FormControl("")
+  });
+  
+  public uploadResult = "";
+  public UploadFile = [];
+  public UploadFileName = "";
+  getImageValue;
+
+
   public nurseProfileForm = new FormGroup({
     name: new FormControl(""),
+    newimage: new FormControl(), 
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
     experties: new FormControl(""),
@@ -90,7 +104,15 @@ export class NurseprofileComponent implements OnInit {
         if(data.image!=undefined)
         {
           this.nurseProfileForm.patchValue({
-            image: data.image
+            image: data.image            
+          });
+        }
+        if(data.newimage!=undefined && data.newimage.data!=undefined)
+        {
+          this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
+          
+          this.nurseProfileForm.patchValue({
+            newimage: data.newimage            
           });
         }
         if(data.experties!=undefined)
@@ -149,6 +171,9 @@ export class NurseprofileComponent implements OnInit {
     });
   }
 
+
+
+
   Update_NurseProfile() {
     this.submitted = true;
     if (this.nurseProfileForm.invalid) {
@@ -157,7 +182,25 @@ export class NurseprofileComponent implements OnInit {
     this.errorMessage = "";
     let dataobj={};
     dataobj= this.nurseProfileForm.value;
-    this._apiservice.Update_NurseProfile(dataobj).subscribe(data => {
+    var formData = new FormData();
+    if(this.UploadFile.length && this.UploadFileName){
+      formData.append('newimage', this.UploadFile[0], this.UploadFileName);
+    } else{
+      formData.append('newimage', '');
+    }
+    formData.append('image', '');
+    formData.append('name', this.nurseProfileForm.value.name);
+    formData.append('email', this.nurseProfileForm.value.email);
+    formData.append('phoneno', this.nurseProfileForm.value.phoneno);
+    formData.append('experties', this.nurseProfileForm.value.experties);
+    formData.append('timeAvailablity', this.nurseProfileForm.value.timeAvailablity);
+    formData.append('charges', this.nurseProfileForm.value.charges);
+    formData.append('area', this.nurseProfileForm.value.area);
+    formData.append('qualification', this.nurseProfileForm.value.qualification);
+    formData.append('id', this.nurseProfileForm.value.id);
+    formData.append('participantID', this.nurseProfileForm.value.participantID);
+    formData.append('description', this.nurseProfileForm.value.description);
+      this._apiservice.Update_NurseProfile(formData,this.nurseProfileForm.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
@@ -168,4 +211,36 @@ export class NurseprofileComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+
+  uploadFile(fileInput) {
+    if (fileInput.length === 0) {
+      return;
+    }
+    this.uploadResult = "";
+    this.UploadFile = <Array<File>>fileInput.target.files;
+    this.UploadFileName = this.UploadFile[0].name;
+
+   this.main();
+
+  }
+
+  async main() {
+    const files = document.querySelector('#myfile') as HTMLInputElement;
+    const file = files.files[0];
+    const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
+    if(result instanceof Error) {
+       console.log('Error: ', result.message);
+       return;
+    }
+    this.getImageValue = result;
+ }
+
+ arrayBufferToBase64(buffer) {
+  return this.utilityservice.arrayBufferToBase64(buffer);
+ 
+}
+
+
+
 }

@@ -29,6 +29,7 @@ export class PatientprofileComponent implements OnInit {
 
   public patientform = new FormGroup({
     name: new FormControl(""),
+    newimage: new FormControl(), 
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
     disease: new FormControl(""),
@@ -41,6 +42,17 @@ export class PatientprofileComponent implements OnInit {
   });
 
   public passwordPatternError = false;
+
+
+  public uploadreportdatainput:any;
+  public testimageform = new FormGroup({
+    image: new FormControl("")
+  });
+  
+  public uploadResult = "";
+  public UploadFile = [];
+  public UploadFileName = "";
+  getImageValue;
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -80,9 +92,18 @@ export class PatientprofileComponent implements OnInit {
         if(data.image!=undefined)
         {
           this.patientform.patchValue({
-            image: data.image
+            image: data.image            
           });
         }
+        if(data.newimage!=undefined && data.newimage.data!=undefined)
+        {
+          this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
+          
+          this.patientform.patchValue({
+            newimage: data.newimage            
+          });
+        }
+
         if(data.disease!=undefined)
         {
           this.patientform.patchValue({
@@ -142,7 +163,25 @@ export class PatientprofileComponent implements OnInit {
     }
     this.errorMessage = "";
     let values = this.patientform.value;
-    this._apiservice.Update_PatientProfile(values).subscribe(data => {
+
+    var formData = new FormData();
+    formData.append('image', '');
+    if(this.UploadFile.length && this.UploadFileName){
+      formData.append('newimage', this.UploadFile[0], this.UploadFileName);
+    } else{
+      formData.append('newimage', '');
+    }
+    formData.append('name', this.patientform.value.name);
+    formData.append('email', this.patientform.value.email);
+    formData.append('phoneno', this.patientform.value.phoneno);
+    formData.append('disease', this.patientform.value.disease);
+    formData.append('qualification', this.patientform.value.qualification);
+    formData.append('address', this.patientform.value.address);
+    formData.append('id', this.patientform.value.id);
+    formData.append('participantID', this.patientform.value.participantID);
+    formData.append('description', this.patientform.value.description);
+
+    this._apiservice.Update_PatientProfile(formData,this.patientform.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
@@ -153,4 +192,38 @@ export class PatientprofileComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  
+uploadFile(fileInput) {
+  if (fileInput.length === 0) {
+    return;
+  }
+  this.uploadResult = "";
+  this.UploadFile = <Array<File>>fileInput.target.files;
+  this.UploadFileName = this.UploadFile[0].name;
+
+ this.main();
+
+}
+
+async main() {
+  const files = document.querySelector('#myfile') as HTMLInputElement;
+  const file = files.files[0];
+  const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
+  if(result instanceof Error) {
+     console.log('Error: ', result.message);
+     return;
+  }
+  this.getImageValue = result;
+}
+
+
+
+
+
+
+arrayBufferToBase64(buffer) {
+  return this.utilityservice.arrayBufferToBase64(buffer);
+ 
+}
 }

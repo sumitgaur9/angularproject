@@ -1,4 +1,4 @@
-<form [formGroup]="patientform" (ngSubmit)="Update_PatientProfile()">
+<form [formGroup]="patientform" (ngSubmit)="Update_PatientProfile()"  enctype="multipart/form-data">
 
     <ad-modal [title]="'OTP'" [modalId]="'showpatientformpopup'">
       <ad-modal-body>
@@ -106,10 +106,19 @@
                   </div>
   
                   <div class="col-md-4">
-                      <img class="otpPopup-img" src="https://w7.pngwing.com/pngs/791/121/png-transparent-health-care-medicine-physician-patient-contract-research-organization-infirm-text-hospital-surgery.png" alt="passwordsetImg">
-  
-                  </div>
-  
+                    <!-- <img *ngIf="getImageValue==''" class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg"> -->
+                   <img  class="otpPopup-img" [src]="getImageValue" alt="passwordsetImg">
+                   <div class="form-group">
+                     <div class="input-group mb-2">
+                       <div class="input-group-prepend">
+                         <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                       </div>
+                         <input type="file" id="myfile" class="form-control" name="file" (change)="uploadFile($event)">
+ 
+                     </div>
+                   </div>
+ 
+                 </div>
   
                 </div>
               </div>
