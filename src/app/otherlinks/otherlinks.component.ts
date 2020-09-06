@@ -16,6 +16,7 @@ export class OtherlinksComponent implements OnInit {
 public errorMessage:string='';
   public showDiseasMasterPopup: boolean = false;
   public showExpertiesMasterPopup: boolean = false;
+  public showSaveImageForWebPopup:boolean=false;
 
   public showMedicineMasterPopup: boolean = false;
 
@@ -28,6 +29,8 @@ public errorMessage:string='';
   public showCreateLabTestPackageMasterPopup: boolean = false;
   public showCreateBookLabTestPopup: boolean = false;
   public currentUser;
+
+  public showChangePasswordPopup:boolean=false;
 
 
 /****************for image********************* */
@@ -184,6 +187,34 @@ public errorMessage:string='';
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }
+
+  public closeChangePasswordPopup() {
+    this.showChangePasswordPopup = false;
+    $('#showChangePasswordPopup').modal('hide');
+  }
+
+  public openChangePasswordPopup() {
+    this.showChangePasswordPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showChangePasswordPopup').modal('show');
+    }, 100);
+  }
+  
+
+  public closeSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = false;
+    $('#showSaveImageForWebPopup').modal('hide');
+  }
+
+  public openSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showSaveImageForWebPopup').modal('show');
+    }, 100);
+  }
+  
 
 
 

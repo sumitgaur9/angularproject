@@ -646,8 +646,44 @@ export class APIService {
         return userData;
       }));
   }
-  
+  ChangePassword(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.ChangePassword}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
 
+  }
+
+  ForgotPassword(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Forgot_Password}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+  SaveUpdate_UploadWebsiteImages(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_UploadWebsiteImages}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+
+  }
+
+  Get_WebsiteImageByLocationEnum(params,locationenum) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteImageByLocationEnum+'/'+locationenum}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
+  
+  
 }
 
 

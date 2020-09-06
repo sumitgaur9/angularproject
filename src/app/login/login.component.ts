@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", [Validators.required]),
   });
 
+  public showForgotPasswordPopup:boolean=false;
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
@@ -93,6 +95,23 @@ export class LoginComponent implements OnInit {
 
     }
   }
+
+
+  public closeForgotPasswordPopup() {
+    this.showForgotPasswordPopup = false;
+    $('#showForgotPasswordPopup').modal('hide');
+  }
+
+  public openForgotPasswordPopup() {
+    this.showForgotPasswordPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showForgotPasswordPopup').modal('show');
+    }, 100);
+  }
+
+
+
 
 }
 

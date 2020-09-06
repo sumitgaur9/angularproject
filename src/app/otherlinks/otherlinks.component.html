@@ -63,6 +63,12 @@
                   <button style="width: 225px" *ngIf="currentUser.user.role==5 || currentUser.user.role==11" class="btn" (click)="openLabTechnicianDashboard()"><i class="fa fa-list" aria-hidden="true"></i><span style="margin-left:5px;">LabTehnicianDashboard</span></button>
                 </div>
 
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px"  class="btn" (click)="openChangePasswordPopup()"><i class="fa fa-list" aria-hidden="true"></i><span style="margin-left:5px;">Change Password</span></button>
+                </div>
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px"  class="btn" (click)="openSaveImageForWebPopup()"><i class="fa fa-list" aria-hidden="true"></i><span style="margin-left:5px;">Image Upload</span></button>
+                </div>
               </div>
             </div>
           </div>
@@ -164,4 +170,10 @@
 <app-createbooklabtest  [showModal]="showCreateBookLabTestPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createbooklabtest>
 </div>
 
-
+<div *ngIf="showChangePasswordPopup">
+  <app-changepassword  [showModal]="showChangePasswordPopup"  (ClosePopup)="closeChangePasswordPopup()"> </app-changepassword>
+  </div>
+  
+  <div *ngIf="showSaveImageForWebPopup">
+    <app-imageupload  [showModal]="showSaveImageForWebPopup"  (ClosePopup)="closeSaveImageForWebPopup()"> </app-imageupload>
+    </div>

@@ -26,10 +26,13 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { LabtechnicianprofileComponent } from './labtechnicianprofile/labtechnicianprofile.component';
 import { UploadtestreportComponent } from './uploadtestreport/uploadtestreport.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent],
    
   imports: [
     CommonModule,
@@ -58,7 +61,10 @@ import { UploadtestreportComponent } from './uploadtestreport/uploadtestreport.c
     CreatelabtestpackageComponent,
     CreatebooklabtestComponent,
     LabtechnicianprofileComponent,
-    UploadtestreportComponent
+    UploadtestreportComponent,
+    ForgotpasswordComponent,
+    ChangepasswordComponent,
+    ImageuploadComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
