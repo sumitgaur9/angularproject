@@ -37,7 +37,7 @@
                                 <label for="exampleFormControlSelect1">ImageChangeFor</label>
                                 <select class="form-control" formControlName="imageChangeForID">
                                     <option value=""></option>
-                                    <option *ngFor="let opt of imageForDataArray" [value]="opt.id" (click)="imageForChangeEvent(opt.id)">{{opt.name}}</option>
+                                    <option *ngFor="let opt of imageForDataArray" [value]="opt.id">{{opt.name}}</option>
                               </select>
                               </div>
                           
