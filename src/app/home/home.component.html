@@ -2,7 +2,7 @@
  
 
      <!-- <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('https://image.shutterstock.com/image-photo/health-banner-care-healthcare-management-250nw-1530954482.jpg');"> -->
-      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('https://www.nopests.com/wp-content/uploads/2019/01/doctor-desk-with-medical-equipment-stethoscope-and-clinic-tonometer-picture-id649855748.jpg');">
+      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4"   [ngStyle]="{ 'background-image': 'url(' + TopNavImage.image + ')'}"   >
 
       
       <div class="container">
@@ -82,7 +82,9 @@
       <!-- end col -->
       <div class="col-md-6">
          <div class="post-media wow fadeIn">
-            <img src="../../assets/images/about_03.jpg" alt="" class="img-responsive">
+            <img alt="" class="img-responsive" [src]="WhatWeDo.image">
+
+            <!-- <img src="../../assets/images/about_03.jpg" alt="" class="img-responsive"> -->
             <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
          </div>
          <!-- end media -->
@@ -96,8 +98,10 @@
        <div class="service-widget">
           <div class="post-media wow fadeIn">
              <a href="../../assets/images/clinic_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-             <img src="../../assets/images/clinic_02.jpg" alt="" class="img-responsive">
-          </div>
+             <!-- <img src="../../assets/images/clinic_02.jpg" alt="" class="img-responsive"> -->
+             <img alt="" class="img-responsive" [src]="Services.image1">
+
+            </div>
           <h3>Digital Control Center</h3>
        </div>
        <!-- end service -->
@@ -106,7 +110,10 @@
        <div class="service-widget">
           <div class="post-media wow fadeIn">
              <a href="../../assets/images/clinic_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-             <img src="../../assets/images/clinic_02.jpg" alt="" class="img-responsive">
+             <img alt="" class="img-responsive" [src]="Services.image2">
+
+           
+             <!-- <img src="../../assets/images/clinic_02.jpg" alt="" class="img-responsive"> -->
           </div>
           <h3>Hygienic Operating Room</h3>
        </div>
@@ -116,7 +123,9 @@
        <div class="service-widget">
           <div class="post-media wow fadeIn">
              <a href="../../assets/images/clinic_03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-             <img src="../../assets/images/clinic_03.jpg" alt="" class="img-responsive">
+             <img alt="" class="img-responsive" [src]="Services.image3">
+
+             <!-- <img src="../../assets/images/clinic_03.jpg" alt="" class="img-responsive"> -->
           </div>
           <h3>Specialist Physicians</h3>
        </div>
@@ -126,7 +135,9 @@
        <div class="service-widget">
           <div class="post-media wow fadeIn">
              <a href="../../assets/images/clinic_01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-             <img src="../../assets/images/clinic_01.jpg" alt="" class="img-responsive">
+             <img alt="" class="img-responsive" [src]="Services.image4">
+
+             <!-- <img src="../../assets/images/clinic_01.jpg" alt="" class="img-responsive"> -->
           </div>
           <h3>Digital Control Center</h3>
        </div>
@@ -147,7 +158,9 @@
       <div class="row dev-list text-center">
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
               <div class="widget clearfix">
-                  <img src="../../assets/images/doctor_01.jpg" alt="" class="img-responsive img-rounded">
+                  <!-- <img src="../../assets/images/doctor_01.jpg" alt="" class="img-responsive img-rounded"> -->
+                  <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image1">
+
                   <div class="widget-title">
                       <h3 class="testclass">Soren Bo Bostian</h3>
                       <small class="smallheading">Clinic Owner</small>
@@ -166,7 +179,9 @@
 
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
               <div class="widget clearfix">
-                  <img src="../../assets/images/doctor_02.jpg" alt="" class="img-responsive img-rounded">
+                  <!-- <img src="../../assets/images/doctor_02.jpg" alt="" class="img-responsive img-rounded"> -->
+                  <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image2">
+
                   <div class="widget-title">
                       <h3 class="testclass">Bryan Saftler</h3>
                       <small class="smallheading">Internal Diseases</small>
@@ -185,7 +200,9 @@
 
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn">
               <div class="widget clearfix">
-                  <img src="../../assets/images/doctor_03.jpg" alt="" class="img-responsive img-rounded">
+                  <!-- <img src="../../assets/images/doctor_03.jpg" alt="" class="img-responsive img-rounded"> -->
+                  <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image3">
+
                   <div class="widget-title">
                       <h3 class="testclass">Matthew Bayliss</h3>
                       <small class="smallheading">Orthopedics Expert</small>

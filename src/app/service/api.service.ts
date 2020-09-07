@@ -682,6 +682,17 @@ export class APIService {
       }));
   }
   
+    
+  Get_WebsiteImageByLocationEnumList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteImageByLocationEnumList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
   
   
 }

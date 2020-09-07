@@ -152,9 +152,11 @@ public expertiesArrayData:any=[];
 
 
 
-  public imageForDataArray:any=[{"id":'1',"name":"Top"},{"id":'2',"name":"whatweDo"}]
+  public imageForDataArray:any=[{"id":'1',"name":"TopNavImage"},{"id":'2',"name":"WhatWeDo"},
+  {"id":'3',"name":"Servicesimage1"},{"id":'4',"name":"Servicesimage2"},{"id":'5',"name":"Servicesimage3"},
+  {"id":'6',"name":"Servicesimage4"}, {"id":'7',"name":"SpecialistClinicimage1"},{"id":'8',"name":"SpecialistClinicimage2"},
+  {"id":'9',"name":"SpecialistClinicimage3"}]
 
-  
 
 
   onChangesonChanges(): void {
