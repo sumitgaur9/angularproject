@@ -56,6 +56,9 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
   public filterDoctorData: any = [];
   public selecteddoctorid;
   public displayDate= '05/07/2020';
+  public getImageValue;  
+  public newArray1: any = [];
+
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
@@ -64,22 +67,34 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
     min: "01/07/2020",
     max: "30/08/2020"
   };
+  textareaValue;
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("currentusermedata"));
     this.Get_DiseasesList();
 
-this.bookAppointmentForm.patchValue({
-  patientNname: this.currentUser.user.name,
-  patientEmail: this.currentUser.user.email,
-  patientMob: this.currentUser.user.phoneno,
-  patientAddres: this.currentUser.user.address,
+    this.bookAppointmentForm.patchValue({
+      patientNname: this.currentUser.user.name,
+      patientEmail: this.currentUser.user.email,
+      patientMob: this.currentUser.user.phoneno,
+      patientAddres: this.currentUser.user.address,
 
-})
+    })
 
-    // this.Get_FilteredDoctors();
+    this.textareaValue = `Pat. Name: ${this.currentUser.user.name}
+
+Pat. Email: ${this.currentUser.user.email}
+
+Pat. Phone: ${this.currentUser.user.phoneno}
+  
+Pat. Add: ${this.currentUser.user.address}`;
+    //this.Get_FilteredDoctors();
+
   }
+
+  
   get f() { return this.bookAppointmentForm.controls; }
 
   Save_BookAppointment() {
@@ -256,12 +271,17 @@ defaultDateDispFormat() {
   }
 
   doctorChangeEvent($event) {
-    let newArray = this.filterDoctorData.filter(function (item) {
+    this.getImageValue = '';
+    this.newArray1 = this.filterDoctorData.filter(function (item) {
       return item.name == $event.target.value;
     });
-    if (newArray) {
-      this.bookAppointmentForm.controls.doctorID.setValue(newArray[0]._id);
+    if (this.newArray1) {
+      this.bookAppointmentForm.controls.doctorID.setValue(this.newArray1[0]._id);
+      this.getImageValue = this.arrayBufferToBase64(this.newArray1[0].newimage.data.data);//need to update data in base 64
     }
+  }
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
   Get_FilteredDoctors(experties) {

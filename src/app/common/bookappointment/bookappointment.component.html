@@ -21,7 +21,33 @@
 
   <div class="col-md-6">
     <div class="card-body">
+
       <div class="form-group">
+        <div class="input-group mb-2" style="border: 0.1px dashed slategray;">
+         
+          <textarea name="comment" rows="8" cols="30" style="color: slategray;" disabled [value]="textareaValue">Enter text here...</textarea>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
+          </div>
+          <input class="form-control" type="text" [dpDayPicker]="dayPickerConfig" [theme]="'dp-material'"
+            formControlName="appointmentDate" [mode]="'day'" [displayDate]="displayDate" placeholder="Appointment Date" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Appointment Type</label>
+        <select class="form-control" formControlName="appointmentType">
+            <option value=""></option>
+            <option *ngFor="let opt of appointmentTypeData" [value]="opt.name">{{opt.name}}</option>
+      </select>
+      </div>
+
+      <!-- <div class="form-group">
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
@@ -80,7 +106,7 @@
           [displayDate]="displayDate"
           placeholder="Appointment Date"/>
                                    </div>
-      </div>
+      </div> -->
 
     </div>
 </div>
@@ -96,14 +122,14 @@
         placeholder="Name" formControlName="email">                          </div>
     </div> -->
     <div class="card-body">
-    <div class="form-group">
+    <!-- <div class="form-group">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
         </div>
         <input type="text" class="form-control" id="diseaseAge" name="diseaseAge"
         placeholder="Disease Age" formControlName="diseaseAge">                            </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label for="exampleFormControlSelect1">Disease</label>
@@ -136,19 +162,31 @@
         </select>
         </div>
 
-
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Appointment Type</label>
-          <select class="form-control" formControlName="appointmentType">
-              <option value=""></option>
-              <option *ngFor="let opt of appointmentTypeData" [value]="opt.name">{{opt.name}}</option>
-        </select>
+        <div *ngIf="getImageValue">
+          <div style="width: 60%; float: left;">
+            <img width="140" class="otpPopup-img" [src]="getImageValue" alt="passwordsetImg">
+          </div>
+          <div style="width: 40%; float:right;">
+            <b> Dr. {{newArray1[0].name}}</b><br>
+            <a> {{newArray1[0].qualification}}</a><br>
+            <b> {{newArray1[0].charges}}</b><br>
+          </div>
         </div>
+
+       
 
       
 </div>
 </div>
        
+<div class="card-body" style="margin-top: -5%;margin-left: 2%;">
+  <div class="form-group">
+    <div class="input-group mb-2">
+      
+      <textarea class="form-control" rows="2" cols="30" type="text" placeholder="Disease Desciption"></textarea>
+    </div>
+  </div>
+</div>
 </div>
        
       
@@ -161,7 +199,9 @@
       <ad-modal-footer>
         <div class="buttonSection">
           <div class="text-center">
-            <i class="fa fa-medkit"></i>    <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
+            <h4 class="bookappointmentbtn"><i class="fa fa-medkit"></i><input type="submit" style="color: white; background-color: #1589d8c7;" value="Save"> </h4>
+
+            <!-- <i class="fa fa-medkit"></i>    <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2"> -->
             </div>
           <!-- <button class="primartButton" type="submit">Send OTP</button>
           <button class="secondryButton" type="reset" (click)="CloseModal()">Cancel</button> -->
