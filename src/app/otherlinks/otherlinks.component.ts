@@ -188,8 +188,7 @@ public errorMessage:string='';
     this.router.navigate(['/getlabtest']);
   }
   public openGetLabPackageTest() {
-    alert("function called")
-    //this.router.navigate(['/getlabtest']);
+    this.router.navigate(['/getlabtestpackagelist']);
   }
 
   public closeChangePasswordPopup() {

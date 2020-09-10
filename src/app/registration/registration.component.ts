@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APIService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { UtililtyFunctions } from 'src/app/utils/utils';
+
 
 @Component({
   selector: 'app-registration',
@@ -32,7 +34,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private router: Router, private _apiservice: APIService, private toastr: ToastrService) { }
+  constructor(private router: Router,private utilityservice:UtililtyFunctions, private _apiservice: APIService, private toastr: ToastrService) { }
 
   registration() {
     this.errorMessage = '';
@@ -64,5 +66,13 @@ export class RegistrationComponent implements OnInit {
   navigateToLoginPage() {
     this.router.navigate(['/login']);
 
+  }
+
+  getMessage(formcontrol: any, formControlName: any, fieldDisplayName: string) {
+    // if(formControlName=='billingRate' && this.addForm.controls.clientContractStatus.value == 'fp')
+    // {
+    //   fieldDisplayName = 'Fixed price';
+    // }
+    return this.utilityservice.getErrorMessage(formcontrol, formControlName, fieldDisplayName);
   }
 }

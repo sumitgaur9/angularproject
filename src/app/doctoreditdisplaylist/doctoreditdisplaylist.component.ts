@@ -72,6 +72,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public closeForgotPasswordPopup() {
     this.showForgotPasswordtPopup = false;
     $('#forgotPasswordMssodal').modal('hide');
+    this.Get_DoctorsList();
   }
 
   public openDoctorProfilePopup(id?) {

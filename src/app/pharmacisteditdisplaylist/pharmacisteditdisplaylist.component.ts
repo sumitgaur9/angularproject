@@ -33,6 +33,8 @@ public getpharmacistprofileid:string='';
   public closePatientProfilePopup() {
     this.showpharmacistformpopup = false;
     $('#showpharmacistformpopup').modal('hide');
+    this.Get_PharmacistsList();
+
   }
 
   public openPatientProfilePopup(id?) {

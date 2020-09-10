@@ -1,6 +1,6 @@
 export const API_PATH: any = {
-    'Commaon_Path':'https://mongowithnode.herokuapp.com/',
-//      'Commaon_Path':'http://localhost:5000/',
+    // 'Commaon_Path':'https://mongowithnode.herokuapp.com/',
+      'Commaon_Path':'http://localhost:5000/',
     'GTM_ID': 'GTM-M476F8N',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
@@ -75,5 +75,22 @@ export const API_PATH: any = {
     'SaveUpdate_UploadWebsiteImages': 'SaveUpdate_UploadWebsiteImages',
     'Forgot_Password': 'users/forgotPassword',
     'Get_WebsiteImageByLocationEnumList': 'Get_WebsiteImageByLocationEnumList',
+    'Delete_LabTestsPackage': 'Delete_LabTestsPackage',
+}
+
+export const PATTERN_ERROR_MESSAGE = {
+    password: 'Password must contain one letter,one number and one special character and length should be 6 to 20 characters.',
+    email: 'Invalid Email id',
+    billingRate: 'Invalid Billing rate. It should be upto 2 decimal only.',
+    companyId: 'Only alphabets, numbers and special character (),-,. are allowed. ',
+    companyAdminUserId: 'Only alphabets, numbers and special character (),-,.,@ are allowed.',
+    storeCode: 'Only alphabets, numbers and special character (),-,. are allowed. ',
+    storeName: 'Only alphabets, numbers and special character (),-,. are allowed. ',
+    firstName: 'Only alphabets, numbers and special character _,. are allowed. ',
+    lastName: 'Only alphabets, numbers and special character _,. are allowed. ',
+    name: 'Only alphabets, numbers, space and special character _,. are allowed. ',
+    gstNo: 'Only alphabets and numbers are allowed',
+    panNo: 'Only alphabets and numbers are allowed',
+    phoneno:'Ten Character allowed'
 }
 

@@ -31,6 +31,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
   public closeNurseProfilePopup() {
     this.shownurseprofileformpopup = false;
     $('#shownurseprofileformpopup').modal('hide');
+    this.Get_NursesList();
   }
 
   public openNurseProfilePopup(id?) {

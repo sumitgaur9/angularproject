@@ -161,6 +161,7 @@ public expertiesArrayData:any=[];
 
   onChangesonChanges(): void {
     this.doctorform.get('imageChangeForID').valueChanges.subscribe(val => {
+      this.getImageValue ='';
       this.Get_WebsiteImageByLocationEnum(val);
   })
 }

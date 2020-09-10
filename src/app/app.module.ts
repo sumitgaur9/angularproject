@@ -37,6 +37,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NursedashboardComponent } from './nursedashboard/nursedashboard.component';
 import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdisplaylist/labtechnicianeditdisplaylist.component';
 import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtechniciandashboard.component';
+import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackagelist.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtec
     NursedashboardComponent,
     LabtechnicianeditdisplaylistComponent,
     LabtechniciandashboardComponent,
+    LabtestpackagelistComponent,
    // DoctorprofileComponent
   ],
   imports: [
