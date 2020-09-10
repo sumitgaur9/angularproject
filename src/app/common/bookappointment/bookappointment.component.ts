@@ -261,6 +261,7 @@ defaultDateDispFormat() {
   }
 
   diseaseschangeevent($event) {
+    this.getImageValue = '';
     let newArray = this.diseasListData.filter(function (item) {
       return item.diseaseName == $event.target.value;
     });

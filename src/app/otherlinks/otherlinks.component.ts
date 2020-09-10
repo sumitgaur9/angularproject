@@ -187,6 +187,10 @@ public errorMessage:string='';
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }
+  public openGetLabPackageTest() {
+    alert("function called")
+    //this.router.navigate(['/getlabtest']);
+  }
 
   public closeChangePasswordPopup() {
     this.showChangePasswordPopup = false;
