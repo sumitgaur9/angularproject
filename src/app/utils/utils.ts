@@ -1,6 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import {FormControl} from '@angular/forms';
+import { PATTERN_ERROR_MESSAGE } from 'src/app/shared/api.constant'
+
 declare var $: any;
 
 @Injectable({
@@ -40,5 +43,78 @@ export class UtililtyFunctions {
           binary += String.fromCharCode(bytes[i]);
         }
         return 'data:image/jpg;base64,' + window.btoa(binary);
+      }
+
+      getErrorMessage(fieldControl: FormControl, formControlName, displayName: string) {
+        //console.log(fieldControl,displayName);
+        //  console.log(fieldControl.errors);
+        if (fieldControl.errors) {
+    
+          if (fieldControl.errors.required && displayName) {
+            return displayName + ' is mandatory';
+          }
+          else if (fieldControl.errors.pattern) {
+            return this.checkPattern(formControlName);
+          }
+          else if (fieldControl.errors.minlength) {
+            return 'Minimum length should be ' + fieldControl.errors.minlength.requiredLength + ' characters.';
+          }
+          else if (fieldControl.errors.maxlength) {
+            return 'Maximum length should be ' + fieldControl.errors.maxlength.requiredLength + ' characters.';
+          }
+          else if (fieldControl.errors.notUnique) {
+            return displayName + ' already exist';
+          }
+          else if (fieldControl.errors.invalidEntry || fieldControl.errors.notFound) {
+            return displayName + ' not found';
+          }
+          else if (fieldControl.errors.invalidValue) {
+            return 'should be less than 60 minutes';
+          } else if (fieldControl.errors.matDatepickerMin) {
+            return `${displayName} should not be beyond ${this.parsedDate(fieldControl.errors.matDatepickerMin.min)}`;
+          }
+          else if (fieldControl.errors.serverError) {
+            return fieldControl.errors.serverError.toString();
+          }
+          else if (fieldControl.errors.passwordMismatch) {
+            return 'Password and confirm password should be same.';
+          }
+          else if (fieldControl.errors['unique']) {
+            return fieldControl.errors['unique']['message'];
+          }
+          else if (fieldControl.errors.isNegative) {
+            return `${displayName} should not be less than 0`;
+          }
+        }
+      }
+
+
+      private parsedDate(dateValue) {
+        const date = new Date(dateValue);
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+      }
+
+      checkPattern(formControlName) {
+        switch (formControlName) {
+          case 'password': return PATTERN_ERROR_MESSAGE.password;
+          case 'billingRate': return PATTERN_ERROR_MESSAGE.billingRate;
+          case 'email': return PATTERN_ERROR_MESSAGE.email;
+          case 'companyId': return PATTERN_ERROR_MESSAGE.companyId;
+          case 'companyAdminUserId': return PATTERN_ERROR_MESSAGE.companyAdminUserId;
+          case 'storeName': return PATTERN_ERROR_MESSAGE.storeName;
+          case 'storeCode': return PATTERN_ERROR_MESSAGE.storeCode;
+          case 'lname': return PATTERN_ERROR_MESSAGE.lastName;
+          case 'fname': return PATTERN_ERROR_MESSAGE.firstName;
+          case 'contactPerson1Name':
+          case 'contactPerson2Name':
+            return PATTERN_ERROR_MESSAGE.name;
+          case 'contactPerson1Email':
+          case 'contactPerson2Email':
+            return PATTERN_ERROR_MESSAGE.email;
+          case 'gstNo': return PATTERN_ERROR_MESSAGE.gstNo;
+          case 'panNo': return PATTERN_ERROR_MESSAGE.panNo;
+          case 'phoneno': return PATTERN_ERROR_MESSAGE.phoneno;
+
+        }
       }
 }

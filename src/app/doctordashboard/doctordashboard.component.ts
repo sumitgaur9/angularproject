@@ -124,11 +124,14 @@ public completeDoctorVisitData:any=[];
    
   ];
   public doughnutChartType: ChartType = 'doughnut';
+  public currentUser;
 
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
     this.Get_AppointmentsByDocID();
      monkeyPatchChartJsTooltip();
      monkeyPatchChartJsLegend();
@@ -183,9 +186,16 @@ public completeDoctorVisitData:any=[];
 
 
   Get_AppointmentsByDocID() {
-    let dataobj = {
-    };
-    let doctorid = "5f268ed2b7335a0004fcd325";
+    let doctorid = this.currentUser.roleBaseId;//"5f2e69e9afc7cc00045f7ccf";
+    
+    let dataobj={
+      doctorID:this.currentUser.roleBaseId,
+      sortBy:this.usersParams.sortBy,
+
+      sortDir:this.usersParams.sortDir
+
+
+    }
     this._apiservice.Get_AppointmentsByDocID(dataobj, doctorid).subscribe(data => {
       if (data) {
         this.completeDoctorVisitData=data;
@@ -334,6 +344,30 @@ public completeDoctorVisitData:any=[];
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
+  }
+
+  usersParams:any = {
+    // page: 1,
+    // size: 10,
+    // smartSearch: ''
+  };
+ 
+  sortUserList(sortBy){
+    if(this.usersParams.sortBy == undefined && this.usersParams.sortDir == undefined){      
+      this.usersParams.sortBy = sortBy;
+      this.usersParams.sortDir = "desc";
+    } else if(this.usersParams.sortBy == sortBy && this.usersParams.sortDir == "desc"){      
+      this.usersParams.sortBy = sortBy;
+      this.usersParams.sortDir = "asc";
+    } else if(this.usersParams.sortBy == sortBy && this.usersParams.sortDir == "asc"){      
+      this.usersParams.sortBy = sortBy;
+      this.usersParams.sortDir = "desc";
+    } else if(this.usersParams.sortBy != undefined && this.usersParams.sortBy != sortBy ){      
+      this.usersParams.sortBy = sortBy;
+      this.usersParams.sortDir = "desc";
+    }
+        
+    this.Get_AppointmentsByDocID();
   }
 
 }

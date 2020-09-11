@@ -47,6 +47,7 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
     doctorName: new FormControl(""),
     appointmentDate: new FormControl(""),
     appointmentType: new FormControl(""),
+    description: new FormControl(""),
    // patientID: new FormControl(""),
   });
 

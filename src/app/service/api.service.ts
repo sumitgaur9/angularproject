@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { API_PATH } from 'src/app/shared/api.constant'
 import { map } from 'rxjs/operators';
 
@@ -19,8 +19,10 @@ export class APIService {
       }));
   }
   Update_DoctorProfile(data,doctorid) {
+    let headers = new HttpHeaders({ "enctype": "multipart/form-data" });
+
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile +'/'+doctorid}`
-    return this.http.put<any>(APIURL, data)
+    return this.http.put<any>(APIURL, data, { headers: headers })
       .pipe(map(userData => {
         return userData;
       }));
@@ -386,13 +388,22 @@ export class APIService {
       }));
   }
   Get_AppointmentsByDocID(params,doctorID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID+'/'+doctorID}`
-    return this.http.get<any>(APIURL, { params: params })
-      .pipe(map(resdata => {
-        if (resdata) {
-        }
-        return resdata;
-      }));
+   // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
+
+    // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID+'/'+doctorID}`
+    // return this.http.get<any>(APIURL, { params: params })
+    //   .pipe(map(resdata => {
+    //     if (resdata) {
+    //     }
+    //     return resdata;
+    //   }));
+
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
+      return this.http.post<any>(APIURL, params)
+        .pipe(map(userData => {
+          return userData;
+        }));
+
   }
   
 
@@ -692,6 +703,17 @@ export class APIService {
         return resdata;
       }));
   }
+  
+  Delete_LabTestsPackage(params,packageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTestsPackage+'/'+packageid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+  
   
   
   

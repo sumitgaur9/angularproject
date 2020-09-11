@@ -16,8 +16,9 @@ import { PatientdashboardComponent } from './patientdashboard/patientdashboard.c
 import { BooklabtestComponent } from './booklabtest/booklabtest.component';
 import { NursedashboardComponent } from './nursedashboard/nursedashboard.component';
 import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtechniciandashboard.component';
-
 import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdisplaylist/labtechnicianeditdisplaylist.component';
+import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackagelist.component';
+
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'getlabtest', component: BooklabtestComponent },
     { path: 'labtechnician', component: LabtechnicianeditdisplaylistComponent },
     { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },
+    { path: 'getlabtestpackagelist', component: LabtestpackagelistComponent },
 
     
     { path: '**', component: LoginComponent }
