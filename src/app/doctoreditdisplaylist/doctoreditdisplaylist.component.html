@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
   <div style="margin-bottom:1%;">
     <a class="btn btn-primary" (click)="openDoctorProfilePopup()" *ngIf="currentUser.user.role==1">Welcome for the
@@ -7,24 +6,6 @@
   <div class="row">
     <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
       <div class="card item-card card-block" style="padding: 2% 2%;">
-        <!-- <h4 class="card-title text-right">
-          <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
-            (click)="openDoctorProfilePopup(data._id)"></i>
-          <i *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true"
-            (click)="deleteDoctorProfilePopup(data._id)"></i>
-        </h4> -->
-
-      
-        <!-- <h4 class="card-title text-left" style="float:left;width:20%">
-          <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
-            (click)="openDoctorProfilePopup(data._id)"></i>
-        </h4>
-
-        <h4 class="card-title text-right" style="float:right;width:20%">
-          <i *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true"
-            (click)="deleteDoctorProfilePopup(data._id)"></i>
-        </h4> -->
-
         <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
           src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
         <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
@@ -36,70 +17,28 @@
         <p class="card-text" *ngIf="data.description">
           {{data.description.length > 50 ? data.description.substring(0,95)+'...' : data.description  }}</p>
           <div style="float:left;width:100%">
-
             <div style="float:left;width:96%" class="card-title1">
              <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
              (click)="openDoctorProfilePopup(data._id)"></i>
-         
                </div>
-         
                <div style="float:left;width:4%" class="card-title1">
                  <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
                  (click)="deleteDoctorProfilePopup(data._id)" style="color:red"></i>
-         
                </div>
-         
                </div>
      
-=======
-
-
-
-<div class="container mt-2" style="position:absolute;top:21%;left:7%;">
-
-      <div style="margin-bottom:1%;">
-        <!-- <h4 class="card-title">Card 1</h4>
-        <p class="card-text">Welcom to bootstrap card styles</p> -->
-        <a  class="btn btn-primary" (click)="openDoctorProfilePopup()" *ngIf="currentUser.user.role==1">Welcome for the Doctors to see their profile</a>
-      </div>
-      <div class="row">
-        <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
-          <div class="card item-card card-block" style="padding: 2% 2%;">
-        <h4 class="card-title text-right"> 
-            <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openDoctorProfilePopup(data._id)"></i>
-            <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="deleteDoctorProfilePopup(data._id)"></i>
-          </h4>
-          <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
-          <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
-          <!-- <img *ngIf="data.experties!='physician'" src="https://thumbs.dreamstime.com/z/young-female-doctor-white-dress-19541983.jpg" alt="Photo of sunset"> -->
-          <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;">Dr. {{data.name}} ({{data.experties}}) 
-            <label class="rupeesymbol" style="font-weight: 700;display:block;">&#8377; {{data.charges.toLocaleString('en-IN')}}</label>
-          </h5>
-          
-            <!-- <p class="card-text">{{data.experties}}</p> -->
-            <p *ngIf="data.description" class="card-text">{{data.description.length > 50 ? data.description.substring(0,95)+'...' : data.description  }}</p>
-            </div>
->>>>>>> Stashed changes
         </div>
     </div>
   </div>
 </div>
 
-<<<<<<< Updated upstream
+
 <div *ngIf="showDoctorProfilePopup">
   <app-doctorprofile [showModal]="showDoctorProfilePopup" [getdoctorprofileid]="getdoctorprofileid"
     (ClosePopup)="closeDoctorProfilePopup($event)"> </app-doctorprofile>
 </div>
-=======
 
-    <div *ngIf="showForgotPasswordtPopup">
-
-
-        <app-doctorprofile [showModal]="showForgotPasswordtPopup" [getdoctorprofileid]="getdoctorprofileid" (ClosePopup)="closeForgotPasswordPopup()"> </app-doctorprofile>
-      </div>     
-
-      <div *ngIf="showConfirmationPopup">
-        <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
-        </app-confirmation>
-      </div>
->>>>>>> Stashed changes
+<div *ngIf="showConfirmationPopup">
+  <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+  </app-confirmation>
+</div>
