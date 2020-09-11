@@ -28,6 +28,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   showForgotPasswordtPopup = false;
   showConfirmationPopup = false;
   public errorMessage: string = '';
+  public showData='';
   public doctorListData: any = [];
   public currentUser;
 
