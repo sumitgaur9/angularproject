@@ -25,6 +25,8 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public btnNewName: string = '';
   public popuptitle: string;
   public showDoctorProfilePopup = false;
+  showForgotPasswordtPopup = false;
+  showConfirmationPopup = false;
   public errorMessage: string = '';
   public doctorListData: any = [];
   public currentUser;
@@ -88,11 +90,30 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   }
 
   public deleteDoctorProfilePopup(id) {
-    this.Delete_Doctor(id);
+    this.getdoctorprofileid = id;
+    this.openAttendancePopup();
   }
 
   
+  openAttendancePopup() {
+    this.showConfirmationPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#confirmationModal').modal('show');
+    }, 100);
+  }
 
+  closeConfirmationPopup(updateListRequired: boolean = false) {
+    this.showConfirmationPopup = false;
+    $('#confirmationModal').modal('hide');
+    if (updateListRequired) {
+      this.Delete_Doctor(this.getdoctorprofileid);
+    }
+  }
+
+  // markUserAttendance(){
+  //   this.showConfirmationPopup = false;
+  //   $('#confirmationModal').modal('hide');  }
 
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
