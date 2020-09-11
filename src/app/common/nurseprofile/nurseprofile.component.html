@@ -2,6 +2,15 @@
 
     <ad-modal [title]="'OTP'" [modalId]="'shownurseprofileformpopup'">
       <ad-modal-body>
+
+        <div class="modal-header" style="height:47px; background: linear-gradient(to right, #39b49a 0%, #1d86df 100%);">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="closebtnspan"  (click)="CloseModal()">&times;</span></button>
+          <p class="bookappointmentbtn"><i class="fa fa-medkit"></i><span style="margin-left:5px"> Welcome
+              &nbsp;{{nurseProfileForm.value.name}} &nbsp;[{{nurseProfileForm.value.experties}}]</span>
+          </p>
+        </div>
+
+
         <div class="overlay"></div>
         <div class="popupContainer">
           <div class="containerBlock">
@@ -11,14 +20,13 @@
                 <div class="row justify-content-center">
                   <div class="col-8">
                     <!--Form with header-->
-                
+
                       <div class="card" style="border: transparent!important;">
-                        <div class="card-header p-0">
+                        <!-- <div class="card-header p-0">
                           <div class="bg-info text-white text-center py-2">
                             <h3><i class="fa fa-medkit"></i>Nurse Profile</h3>
-                            <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
                           </div>
-                        </div>
+                        </div> -->
                         <div class="card-body p-3">
                           <!--Body-->
                           <div class="form-group">
@@ -39,7 +47,7 @@
                                 placeholder="ejemplo@gmail.com" formControlName="email">
                             </div>
                           </div>
-  
+
                           <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
@@ -89,7 +97,7 @@
                                 placeholder="Area" formControlName="area">                            </div>
                             </div>
                             <div class="form-group">
-                              <div class="input-group mb-2"> 
+                              <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                   <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                                 </div>
@@ -97,7 +105,7 @@
                                 placeholder="Qualification" formControlName="qualification">                            </div>
                             </div>
 
-                            
+
                           <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
@@ -106,19 +114,19 @@
                               <textarea id="Description" name="Description" formControlName="description" cols="40" rows="3"
                               class="form-control" placeholder="Description"></textarea>                        </div>
                           </div>
-  
+
                           <!-- <div class="text-center">
                             <input type="submit" value="Enviar" class="btn btn-info btn-block rounded-0 py-2">
                           </div> -->
                         </div>
-  
+
                       </div>
-                  
+
                     <!--Form with header-->
-  
-  
+
+
                   </div>
-  
+
                   <div class="col-md-4">
                     <!-- <img *ngIf="getImageValue==''" class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg"> -->
                    <img  class="otpPopup-img" [src]="getImageValue" alt="passwordsetImg">
@@ -131,12 +139,12 @@
                      </div>
                    </div>
                  </div>
-  
+
                 </div>
               </div>
-  
+
             </div>
-  
+
           </div>
         </div>
       </ad-modal-body>
@@ -149,8 +157,7 @@
           <button class="secondryButton" type="reset" (click)="CloseModal()">Cancel</button> -->
         </div>
       </ad-modal-footer>
-  
+
     </ad-modal>
-  
+
   </form>
-  

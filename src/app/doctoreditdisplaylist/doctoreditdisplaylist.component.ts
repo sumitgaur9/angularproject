@@ -24,7 +24,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public pageheading: string = '';
   public btnNewName: string = '';
   public popuptitle: string;
-  showForgotPasswordtPopup = false;
+  public showDoctorProfilePopup = false;
   public errorMessage: string = '';
   public doctorListData: any = [];
   public currentUser;
@@ -69,18 +69,18 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   }
 
 
-  public closeForgotPasswordPopup() {
-    this.showForgotPasswordtPopup = false;
-    $('#forgotPasswordMssodal').modal('hide');
+  public closeDoctorProfilePopup() {
+    this.showDoctorProfilePopup = false;
+    $('#showDoctorProfilePopup').modal('hide');
     this.Get_DoctorsList();
   }
 
   public openDoctorProfilePopup(id?) {
     this.getdoctorprofileid=id;
-    this.showForgotPasswordtPopup = true;
+    this.showDoctorProfilePopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#forgotPasswordModal').modal('show');
+      $('#showDoctorProfilePopup').modal('show');
     }, 100);
   }
 
