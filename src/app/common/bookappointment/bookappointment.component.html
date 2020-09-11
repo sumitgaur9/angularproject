@@ -22,7 +22,7 @@
   <div class="col-md-6">
     <div class="card-body">
 
-      <div class="form-group">
+      <div class="form-group" (click)="openPatientProfilePopup()" >
         <div class="input-group mb-2" style="border: 0.1px dashed slategray;">
          
           <textarea name="comment" rows="8" cols="30" style="color: slategray;" disabled [value]="textareaValue">Enter text here...</textarea>
@@ -212,3 +212,6 @@
   
   </form>
   
+  <div *ngIf="showpatientformpopup">
+    <app-patientprofile [showModal]="showpatientformpopup" [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup()"> </app-patientprofile>
+  </div>
