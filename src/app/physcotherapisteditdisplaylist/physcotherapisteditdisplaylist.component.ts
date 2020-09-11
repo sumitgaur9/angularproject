@@ -31,10 +31,13 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
     this.Get_PhysiosList();
   }
 
-  public closePhysiosProfilePopup() {
+  public closePhysiosProfilePopup(calllistapi) {
     this.showphyscoprofileformpopup = false;
     $('#showphyscoprofileformpopup').modal('hide');
-    this.Get_PhysiosList();
+    if(calllistapi)
+    {
+      this.Get_PhysiosList();
+    }
   }
 
   public openPhysiosProfilePopup(id?) {

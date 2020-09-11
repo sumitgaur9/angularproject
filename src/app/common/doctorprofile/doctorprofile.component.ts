@@ -14,12 +14,12 @@ export class DoctorprofileComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() getdoctorprofileid: string = '';
-  @Output() ClosePopup = new EventEmitter();
+  @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
-
+  
   public submitted = false;
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -184,7 +184,7 @@ export class DoctorprofileComponent implements OnInit {
     this._apiservice.Update_DoctorProfile(formData, this.doctorform.value.id).subscribe(data => {
       if (data) {
         this.toastr.success('Thanks for update Doctor profile');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

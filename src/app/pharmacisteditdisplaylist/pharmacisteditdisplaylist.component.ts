@@ -30,10 +30,13 @@ public getpharmacistprofileid:string='';
     this.Get_PharmacistsList();
   }
 
-  public closePatientProfilePopup() {
+  public closePatientProfilePopup(calllistapi) {
     this.showpharmacistformpopup = false;
     $('#showpharmacistformpopup').modal('hide');
-    this.Get_PharmacistsList();
+    if(calllistapi)
+    {
+      this.Get_PharmacistsList();
+    }
 
   }
 

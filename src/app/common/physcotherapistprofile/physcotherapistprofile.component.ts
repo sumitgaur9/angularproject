@@ -18,11 +18,14 @@ export class PhyscotherapistprofileComponent implements OnInit {
 
   @Input() getphyscoprofileid: string = '';
 
-  @Output() ClosePopup = new EventEmitter();
-  @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
+  // @Output() ClosePopup = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
+
+
+
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
 
   public submitted = false;
@@ -190,7 +193,7 @@ export class PhyscotherapistprofileComponent implements OnInit {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

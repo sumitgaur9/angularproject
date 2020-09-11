@@ -18,11 +18,10 @@ export class NurseprofileComponent implements OnInit {
   @Input() getnurseprofileid:string='';
   
 
-  @Output() ClosePopup = new EventEmitter();
-  @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
+  @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
 
   public submitted = false;
@@ -204,7 +203,7 @@ export class NurseprofileComponent implements OnInit {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
-        this.CloseModal();
+        this.CloseModal(true);
        // this.router.navigate(['/nurselist']);
       }
     }, error => {

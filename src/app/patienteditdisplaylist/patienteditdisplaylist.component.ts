@@ -33,10 +33,13 @@ export class PatienteditdisplaylistComponent implements OnInit {
     this.Get_PatientsList();
   }
 
-  public closePatientProfilePopup() {
+  public closePatientProfilePopup(calllistapi) {
     this.showpatientformpopup = false;
     $('#showpatientformpopup').modal('hide');
-    this.Get_PatientsList();
+    if(calllistapi)
+    {
+      this.Get_PatientsList();
+    }
   }
 
   public openPatientProfilePopup(id?) {

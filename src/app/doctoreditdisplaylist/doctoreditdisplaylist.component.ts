@@ -69,10 +69,13 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   }
 
 
-  public closeDoctorProfilePopup() {
+  public closeDoctorProfilePopup(calllistapi) {
     this.showDoctorProfilePopup = false;
     $('#showDoctorProfilePopup').modal('hide');
-    this.Get_DoctorsList();
+    if(calllistapi)
+    {
+      this.Get_DoctorsList();
+    }
   }
 
   public openDoctorProfilePopup(id?) {

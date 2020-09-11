@@ -28,10 +28,13 @@ export class NurseeditdisplaylistComponent implements OnInit {
     this.Get_NursesList();
   }
 
-  public closeNurseProfilePopup() {
+  public closeNurseProfilePopup(calllistapi) {
     this.shownurseprofileformpopup = false;
     $('#shownurseprofileformpopup').modal('hide');
-    this.Get_NursesList();
+    if(calllistapi)
+    {
+      this.Get_NursesList();
+    }
   }
 
   public openNurseProfilePopup(id?) {

@@ -10335,3 +10335,8 @@
   width: 96%;
   margin-left: 21%;
 }
+.card-title1 i:hover{
+  transform: scale(1.25) rotate(100deg); 
+  color:#18d4ca;
+  
+}

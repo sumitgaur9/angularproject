@@ -32,7 +32,7 @@ img{
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
   }
   .card-text{
-    height:80px;  
+    height:50px;  
   }
   
   .card::before, .card::after {
