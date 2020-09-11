@@ -1,0 +1,28 @@
+<div class="container mt-2" style="position:absolute;top:21%;left:7%;">
+    <div style="margin-bottom:1%;">
+      <!-- <h4 class="card-title">Card 1</h4>
+      <p class="card-text">Welcom to bootstrap card styles</p> -->
+      <a  class="btn btn-primary">Welcome to see Lab Test Package</a>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
+        <div class="card item-card card-block" style="padding: 2% 2%;">
+      <h4 class="card-title text-right">
+           <!--<i class="fa fa-pencil" aria-hidden="true" (click)="openDoctorProfilePopup()"></i> -->
+          <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+
+          <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_LabTestsPackage(data._id)"></i>
+
+
+        </h4>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQqBPK5FnorNl-QxakUC6VNnKSm2MnAH7SYg&usqp=CAU" alt="Photo of sunset">
+          <h5 class="item-card-title mt-3 mb-3">{{data.testName}} • LabTest {{data.price}}</h5>
+          <p class="card-text">{{data.sampleType}}</p>
+    </div>
+      </div>
+
+    </div>
+  </div>
+ 
+
+
