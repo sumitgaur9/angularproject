@@ -186,7 +186,6 @@ export class PatientprofileComponent implements OnInit {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
         this.CloseModal();
-        this.router.navigate(['/patientlist']);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
