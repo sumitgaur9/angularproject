@@ -60,6 +60,9 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
   public getImageValue;  
   public newArray1: any = [];
 
+  public showpatientformpopup = false;
+  public getpatientprofileid='';
+
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
@@ -76,25 +79,32 @@ public appointmentTypeData=[{"name":"HomeVisit"},{"name":"Online"}]
     this.currentUser = JSON.parse(window.localStorage.getItem("currentusermedata"));
     this.Get_DiseasesList();
 
-    this.bookAppointmentForm.patchValue({
-      patientNname: this.currentUser.user.name,
-      patientEmail: this.currentUser.user.email,
-      patientMob: this.currentUser.user.phoneno,
-      patientAddres: this.currentUser.user.address,
+    if(this.currentUser.user && this.currentUser.user._id){
+      this.getpatientprofileid = this.currentUser.user._id;
+    }
 
-    })
-
-    this.textareaValue = `Pat. Name: ${this.currentUser.user.name}
-
-Pat. Email: ${this.currentUser.user.email}
-
-Pat. Phone: ${this.currentUser.user.phoneno}
-  
-Pat. Add: ${this.currentUser.user.address}`;
-    //this.Get_FilteredDoctors();
-
+    this.updatePatientDetails(this.currentUser);
+   
   }
 
+  updatePatientDetails(currentUser){
+
+    this.bookAppointmentForm.patchValue({
+      patientNname: currentUser.user.name,
+      patientEmail: currentUser.user.email,
+      patientMob: currentUser.user.phoneno,
+      patientAddres: currentUser.user.address,  
+    });
+
+    this.textareaValue = `Pat. Name: ${currentUser.user.name}
+
+Pat. Email: ${currentUser.user.email}
+
+Pat. Phone: ${currentUser.user.phoneno}
+
+Pat. Add: ${currentUser.user.address}`;
+
+  }
   
   get f() { return this.bookAppointmentForm.controls; }
 
@@ -246,6 +256,44 @@ defaultDateDispFormat() {
       return false;
   }
 }
+
+
+
+  public async closePatientProfilePopup() {
+    await this.userme();
+   
+    //  this.Get_PatientsList(); // need to update the patiet details
+   
+
+  }
+
+  public openPatientProfilePopup() {
+    this.showpatientformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showpatientformpopup').modal('show');
+    }, 100);
+  }
+
+  userme() {
+    let dataparam: any = {};
+    this._apiservice.userme(dataparam).subscribe(data => {
+      console.log("userme data is this", JSON.stringify(data));
+      this.currentUser = JSON.parse(window.localStorage.getItem("currentusermedata"));
+
+      this.updatePatientDetails(this.currentUser);
+  
+      this.showpatientformpopup = false;
+      $('#showpatientformpopup').modal('hide');
+
+    }, error => {
+      if (error && error.error && error.error.message) {
+        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      }
+    });
+  }
+
+
 
 
   Get_DiseasesList() {
