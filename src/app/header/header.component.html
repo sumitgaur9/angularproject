@@ -27,7 +27,7 @@
 <header>
   <div class="header-top wow fadeIn">
     <div class="container">
-      <a class="navbar-brand" (click)="navigatetopage('logo')"><img src="../../assets/images/logo.png" alt="image"></a>
+      <a class="navbar-brand" routerLink="/home"><img style="height: 40px;width: 200px;" src="../../assets/images/logo.png" alt="image"></a>
       <div class="right-header">
         <div class="header-info">
           <div class="info-inner">
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="header-bottom wow fadeIn" style="visibility: visible;
-    animation-name: fadeIn;height:50px;">
+    animation-name: fadeIn;height:35px;">
     <div class="container">
       <nav class="main-menu">
         <!-- <div class="navbar-header">
@@ -56,20 +56,20 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a class="active" (click)="navigatetopage('home')">Home</a></li>
+            <li><a routerLinkActive="active" routerLink="/home" (click)="navigatetopage('home')">Home</a></li>
             <!-- <li><a data-scroll href="#about">About </a></li> -->
-            <li><a data-scroll (click)="navigatetopage('pharmacistlist')">Pharmacist</a></li>
-            <li><a data-scroll (click)="navigatetopage('doctorlist')">Doctors</a></li>
-            <li><a data-scroll (click)="navigatetopage('nurselist')">Nurse</a></li>
-            <li><a data-scroll (click)="navigatetopage('physcotherapistlist')">Physcotherapist</a></li>
-            <li><a data-scroll (click)="navigatetopage('patientlist')">Patient</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/pharmacistlist">Pharmacist</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/doctorlist">Doctors</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/nurselist">Nurse</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/physcotherapistlist">Physcotherapist</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/patientlist">Patient</a></li>
             <!-- <li><a data-scroll (click)="navigatetopage('ReqPatientMedHomeDel')">Req</a></li> -->
-            <li><a data-scroll (click)="navigatetopage('otherlinks')">OtherLinks</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/otherlinks">OtherLinks</a></li>
 
             <!-- <li><a data-scroll (click)="navigatetopage('PharmaVisitCompleteIntimation')">Ph</a></li>
             <li><a data-scroll (click)="navigatetopage('visitforall')">vfall</a></li> -->
 
-            <li><a data-scroll (click)="navigatetopage('login')">Logout</a></li>
+            <li><a data-scroll routerLinkActive="active" routerLink="/login">Logout</a></li>
           </ul>
         </div>
       </nav>

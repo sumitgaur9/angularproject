@@ -10,7 +10,7 @@ header {
 .header-top {
     float: left;
     width: 100%;
-    padding: 10px 0;
+    padding: 4px 0;
 }
 .header-top .navbar-brand {
     float: left;
@@ -34,8 +34,8 @@ header {
 .info-inner span.icontop {
     float: left;
     background: #157fda;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 35px;
     text-align: center;
     line-height: normal;
     padding: 10px 12px;
@@ -46,7 +46,7 @@ header {
 }
 .iconcont {
     float: left;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: -1px;
     margin: 4px 0;
 }
@@ -99,8 +99,8 @@ nav.main-menu .navbar-toggle {
 }
 .header-bottom nav.main-menu ul.nav.navbar-nav > li a {
     color: #fff;
-    font-size: 17px;
-    padding: 20px 20px;
+    font-size: 16px;
+    padding: 16px;
     text-transform: none;
     letter-spacing: 0;
     font-weight: 500;

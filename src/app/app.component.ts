@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     router.events.subscribe((val) => {
 
       if(location.hash){
-        console.log("this.router.url",location.hash);
+      //  console.log("this.router.url",location.hash);
         this.GTMFunction.pageview(location.hash);
       }
       this.showHeaderFooter = true;
