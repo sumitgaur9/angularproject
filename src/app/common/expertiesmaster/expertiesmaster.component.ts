@@ -27,12 +27,24 @@ export class ExpertiesmasterComponent implements OnInit {
   errorMessage = '';
 
   public expertiesMasterForm = new FormGroup({
-    diseaseName: new FormControl(""),
+    expertiseName: new FormControl(""),
   });
 
   public passwordPatternError = false;
   public currentUser;
-  public expertiesDataArray=[{"name":"physician"},{"name":"cardiologist"}];
+  public expertiesDataArray=[
+    {"name":"physician"},
+    {"name":"cardiologist"},
+    {"name":"Neurology"},
+    {"name":"Gynaecology"},
+    {"name":"Dermatology"},
+    {"name":"Plastic & Cosmetic Surgery"},
+    {"name":"Pediatrics"}, // child specialist 
+    {"name":"IVF & Infertility Treatment"},
+    {"name":"Liver Transplantation"},
+    {"name":"Psychiatry"}
+
+  ];
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 

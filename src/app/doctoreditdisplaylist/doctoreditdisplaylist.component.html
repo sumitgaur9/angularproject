@@ -18,10 +18,13 @@
           <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
           <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
           <!-- <img *ngIf="data.experties!='physician'" src="https://thumbs.dreamstime.com/z/young-female-doctor-white-dress-19541983.jpg" alt="Photo of sunset"> -->
-          <h5 class="item-card-title mt-3 mb-3">{{data.name}} • Doctor {{data.charges}}</h5>
+          <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;">Dr. {{data.name}} ({{data.experties}}) 
+            <label class="rupeesymbol" style="font-weight: 700;display:block;">&#8377; {{data.charges.toLocaleString('en-IN')}}</label>
+          </h5>
+          
             <!-- <p class="card-text">{{data.experties}}</p> -->
-            <p class="card-text">{{data.description}}</p>
-      </div>
+            <p class="card-text">{{data.description.length > 50 ? data.description.substring(0,95)+'...' : data.description  }}</p>
+            </div>
         </div>
 
       </div>

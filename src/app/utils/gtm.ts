@@ -9,7 +9,7 @@ export class GTMFunction {
   constructor(private gtmService: GoogleTagManagerService) { }
 
   pageview(page) {
-    console.log("this.gtmService", this.gtmService);
+   // console.log("this.gtmService", this.gtmService);
     this.gtmService.pushTag({ event: 'page', pageName: page });
   }
 

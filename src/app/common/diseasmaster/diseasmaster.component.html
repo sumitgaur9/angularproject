@@ -25,19 +25,19 @@
                             <!--Body-->
 
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Take Care By</label>
+                                <label for="exampleFormControlSelect1">Take Care By(Expert In)</label>
                                 <select class="form-control" formControlName="takeCareBy">
                                     <option value=""></option>
-                                    <option *ngFor="let opt of takeCareByDataArray" [value]="opt.name">{{opt.name}}</option>
+                                    <option *ngFor="let opt of takeCareByDataArray" [value]="opt.expertiseName">{{opt.expertiseName}}</option>
                               </select>
                               </div>
 
 
                             <div class="form-group">
-                              <label for="exampleFormControlSelect1">Experties</label>
+                              <label for="exampleFormControlSelect1">Disease Name</label>
                               <select class="form-control" formControlName="diseaseName">
                                   <option value=""></option>
-                                  <option *ngFor="let opt of expertiesDataArray" [value]="opt.name">{{opt.name}}</option>
+                                  <option *ngFor="let opt of diseaseDataArray" [value]="opt.name">{{opt.name}}</option>
                             </select>
                             </div>
                           </div>

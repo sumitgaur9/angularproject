@@ -24,9 +24,16 @@ export class DiseasmasterComponent implements OnInit {
   }
 
 
-  public expertiesDataArray=[{"name":"fever"},{"name":"cold"},{"name":"heart-attack"}];
-  public takeCareByDataArray=[{"name":"physician"},{"name":"cardiologist"}];
+  public diseaseDataArray=[
+    {"name":"fever"},
+    {"name":"cold"},
+    {"name":"heart-attack"},
+    {"name":"Migrane"},
+    {"name":"Dipression"},
+    {"name":"Diabetes"}
+  ];
 
+  public takeCareByDataArray=[];
 
   public submitted = false;
   errorMessage = '';
@@ -43,10 +50,25 @@ export class DiseasmasterComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+
+    this.Get_ExpertiseList();
+
   }
 
   get f() { return this.diseasMasterForm.controls; }
 
+  Get_ExpertiseList() {
+    let dataobj={
+    };
+    this._apiservice.Get_ExpertiseList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_ExpertiseListGet_ExpertiseList",data);
+        this.takeCareByDataArray=data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
  
 
