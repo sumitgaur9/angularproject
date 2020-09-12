@@ -128,14 +128,23 @@
 
               <div class="form-group">
                 <div class="col-sm-4">
-                  <input class="form-control" id="cpatchaTextBox" placeholder="Captcha" />
+                  <input class="form-control" id="cpatchaTextBox" placeholder="Enter Captcha" />
                   <div *ngIf="submitted && isInvalidCaptcha" style="color:red;font-size: 14px;font-family: auto;">
                     Invalid Captcha Code.
                   </div>
-                   <div id="captcha"></div>
-                  
+                   <div id="captcha"></div>                  
                 </div>
               </div>
+              
+              <div class="form-group" *ngIf="isVisibleSendOTPbutton">
+                <div class="col-sm-6">
+                  <input type="button" value="Send OTP to Reg. Mobile" (click)="openOTPpopup()" class="form-control"/>                                  
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="submitted && inActiveEmailID">
+                <em  style="color: red;">{{errorMessage}}</em>
+            </div>
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

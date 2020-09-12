@@ -21,6 +21,8 @@ export class RegistrationComponent implements OnInit {
   public submitted: boolean = false;
   code;
   isInvalidCaptcha:boolean = false;
+  isVisibleSendOTPbutton:boolean = false;
+  inActiveEmailID = '';
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -41,6 +43,8 @@ export class RegistrationComponent implements OnInit {
 
   registration() {
     this.errorMessage = '';
+    this.inActiveEmailID = '';
+    this.isVisibleSendOTPbutton = false;
     let dataobj = {
       email: this.userInfo.value.email,
       name: this.userInfo.value.name,
@@ -70,12 +74,28 @@ export class RegistrationComponent implements OnInit {
       if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       }
+      // else if (error && error.error && error.error.message) {
+      //   this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      // }
+      
+      else if (error && error.error && error.error.code===11000) {
+        if(error.error.keyValue && error.error.keyValue.email){
+          this.errorMessage = error.error.keyValue.email+ ' is an InActive account registered with us.';
+           this.toastr.error(this.errorMessage);
+           this.isVisibleSendOTPbutton = true;
+           this.inActiveEmailID = error.error.keyValue.email;
+        }
+      }
     });
   }
 
   navigateToLoginPage() {
     this.router.navigate(['/login']);
 
+  }
+
+  openOTPpopup(){
+    alert("OTP sent to "+this.inActiveEmailID)
   }
 
   createCaptcha() {
