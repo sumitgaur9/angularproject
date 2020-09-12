@@ -106,3 +106,21 @@ nav.main-menu .navbar-toggle {
     font-weight: 500;
     margin-right: 5px;
 }
+
+.dropdownText{
+    display: inline-block;
+    margin: 0;
+}
+.logout img{
+    margin-left: 6px !important;
+    height: 21px !important;
+}
+@media screen and (max-width: 767px){
+    .logout img{
+        height: 13px !important;
+    }
+    .dropdownText{
+        position: relative;
+        top: -2px;
+    }
+}

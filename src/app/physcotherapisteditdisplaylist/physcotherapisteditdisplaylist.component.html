@@ -28,7 +28,7 @@
                </div>
                <div style="float:left;width:4%" class="card-title1">
                  <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
-                 (click)="Delete_PhysioProfile(data._id)" style="color:red"></i>
+                 (click)="openConfirmationPopup(data._id)" style="color:red"></i>
                </div>
                </div>
     </div>
@@ -41,6 +41,12 @@
 
   <div *ngIf="showphyscoprofileformpopup">
       <app-physcotherapistprofile [showModal]="showphyscoprofileformpopup" [getphyscoprofileid]="getphyscoprofileid"  (ClosePopup)="closePhysiosProfilePopup($event)"> </app-physcotherapistprofile>
+    </div>
+
+
+    <div *ngIf="showConfirmationPopup">
+      <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+      </app-confirmation>
     </div>
 
 

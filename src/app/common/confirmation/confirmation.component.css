@@ -1,0 +1,36 @@
+.confirmationtext{
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    margin-bottom: 0;
+    color: #515151;
+    margin-top: 15px;
+}
+
+
+.closebtnmodal {
+    margin: 0;
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    width: 23px;
+    height: 23px;
+    border-radius: 23px;
+    background-color: red;
+    color: #ffe300;
+    font-size: 9px;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .closebtntext {
+    font-size: 23px;
+    position: absolute;
+    top: -3px;
+    right: 3px;
+    color: black;
+}
