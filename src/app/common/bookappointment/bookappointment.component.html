@@ -2,7 +2,10 @@
 
     <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
       <ad-modal-body>
-
+        <div class="closebtnmodal">
+          <button type="button"><span aria-hidden="true" class="closebtntext" (click)="CloseModal(false)"><i class="fa fa-pencil" aria-hidden="true"></i>
+          </span></button>
+      </div>
 
 <div class="row">
 
@@ -22,10 +25,10 @@
   <div class="col-md-6">
     <div class="card-body">
 
-      <div class="form-group" (click)="openPatientProfilePopup()" >
-        <div class="input-group mb-2" style="border: 0.1px dashed slategray;">
+      <div class="form-group">
+        <div class="input-group mb-2" style="border: 0.1px dashed slategray;" (click)="openPatientProfilePopup()">
          
-          <textarea name="comment" rows="8" cols="30" style="color: slategray;" disabled [value]="textareaValue">Enter text here...</textarea>
+          <textarea name="comment" rows="8" cols="100" style="color: slategray;" disabled [value]="textareaValue">Enter text here...</textarea>
         </div>
       </div>
       

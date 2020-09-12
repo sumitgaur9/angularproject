@@ -70,6 +70,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
   get f() { return this.passwordVerifyInfo.controls; }
 
+  get forgotPWD() { return this.forgotPasswordInfo.controls; }
 
 
   // setUserPassword() {
@@ -106,19 +107,26 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
 
    GenerateOTP() {
-
-   
+    this.submitted = true;
+    if (this.forgotPasswordInfo.invalid) {
+      for (const key of Object.keys(this.forgotPasswordInfo.controls)) {
+        if (this.forgotPasswordInfo.controls[key].invalid) {
+          const invalidControl = this.el.nativeElement.querySelector('[formcontrolname="' + key + '"]');
+          invalidControl.focus();
+          this.forgotPasswordInfo.markAllAsTouched();
+          break;
+        }
+      }
+      return;
+    }
     let dataobj={
       "email": this.forgotPasswordInfo.controls.email.value
     }
      this._apiservice.GenerateOTP(dataobj).subscribe(data => {
        if (data) {
          console.log("OTP Data is this..", data);
-
-this.responseOTP=data.response.OTP;
+        this.responseOTP=data.response.OTP;
          this.openVerifyForgotPasswordPopup();
-
-
        }
      }, error => {
        this.errorMessage = error.error.message; this.toastr.error(error.error.message);

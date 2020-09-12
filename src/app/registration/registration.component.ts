@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { APIService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { UtililtyFunctions } from 'src/app/utils/utils';
+declare var $: any;
 
 
 @Component({
@@ -23,6 +24,7 @@ export class RegistrationComponent implements OnInit {
   isInvalidCaptcha:boolean = false;
   isVisibleSendOTPbutton:boolean = false;
   inActiveEmailID = '';
+  public showForgotPasswordPopup:boolean=false;
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -71,13 +73,13 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     }, error => {
-      if (error && error.error && error.error.message) {
-        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+       if (error && error.status==501) {
+        this.toastr.error(error.error.message);
+        this.isVisibleSendOTPbutton = true;
       }
       // else if (error && error.error && error.error.message) {
       //   this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       // }
-      
       else if (error && error.error && error.error.code===11000) {
         if(error.error.keyValue && error.error.keyValue.email){
           this.errorMessage = error.error.keyValue.email+ ' is an InActive account registered with us.';
@@ -85,6 +87,9 @@ export class RegistrationComponent implements OnInit {
            this.isVisibleSendOTPbutton = true;
            this.inActiveEmailID = error.error.keyValue.email;
         }
+      }
+      else if (error && error.error && error.error.message) {
+        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       }
     });
   }
@@ -144,4 +149,18 @@ export class RegistrationComponent implements OnInit {
     // }
     return this.utilityservice.getErrorMessage(formcontrol, formControlName, fieldDisplayName);
   }
+
+  public closeForgotPasswordPopup() {
+    this.showForgotPasswordPopup = false;
+    $('#showForgotPasswordPopup').modal('hide');
+  }
+
+  public openForgotPasswordPopup() {
+    this.showForgotPasswordPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showForgotPasswordPopup').modal('show');
+    }, 100);
+  }
+
 }

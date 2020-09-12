@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
   public showRequestPatMedHomeDelivery: boolean = false;
   public showPharmacistVisitCompleteIntimation: boolean = false;
   public showVisitForAll: boolean = false;
+  public showChangePasswordPopup:boolean=false;
+  public showSaveImageForWebPopup:boolean=false;
+
   public currentUser;
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
@@ -106,6 +109,34 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showVisitForAllModal').modal('show');
+    }, 100);
+  }
+
+
+  public closeChangePasswordPopup() {
+    this.showChangePasswordPopup = false;
+    $('#showChangePasswordPopup').modal('hide');
+  }
+
+  public openChangePasswordPopup() {
+    this.showChangePasswordPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showChangePasswordPopup').modal('show');
+    }, 100);
+  }
+  
+
+  public closeSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = false;
+    $('#showSaveImageForWebPopup').modal('hide');
+  }
+
+  public openSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showSaveImageForWebPopup').modal('show');
     }, 100);
   }
 
