@@ -23,6 +23,8 @@ export class PatienteditdisplaylistComponent implements OnInit {
   public currentUser;
 
   public getpatientprofileid:string='';
+  showConfirmationPopup = false;
+  public showData='Do you really want to delete these records? This process cannot be undone.';
 
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -80,5 +82,28 @@ export class PatienteditdisplaylistComponent implements OnInit {
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
+
+  public openDeleteConfirmationPopup(id) {
+    this.getpatientprofileid = id;
+    this.openConfirmationPopup();
+  }
+
+  
+  openConfirmationPopup() {
+    this.showConfirmationPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#confirmationModal').modal('show');
+    }, 100);
+  }
+
+  closeConfirmationPopup(updateListRequired: boolean = false) {
+    this.showConfirmationPopup = false;
+    $('#confirmationModal').modal('hide');
+    if (updateListRequired) {
+      this.Delete_PatientProfile(this.getpatientprofileid);
+    }
+  }
+
 
 }

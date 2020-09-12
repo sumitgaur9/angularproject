@@ -21,6 +21,10 @@ export class NurseeditdisplaylistComponent implements OnInit {
   public currentUser;
   public getnurseprofileid:string='';
 
+  showConfirmationPopup = false;
+  public showData='Do you really want to delete these records? This process cannot be undone.';
+
+
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
@@ -74,6 +78,29 @@ export class NurseeditdisplaylistComponent implements OnInit {
 
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
+  }
+
+
+  public openDeleteConfirmationPopup(id) {
+    this.getnurseprofileid = id;
+    this.openConfirmationPopup();
+  }
+
+  
+  openConfirmationPopup() {
+    this.showConfirmationPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#confirmationModal').modal('show');
+    }, 100);
+  }
+
+  closeConfirmationPopup(updateListRequired: boolean = false) {
+    this.showConfirmationPopup = false;
+    $('#confirmationModal').modal('hide');
+    if (updateListRequired) {
+      this.Delete_NurseProfile(this.getnurseprofileid);
+    }
   }
 
 

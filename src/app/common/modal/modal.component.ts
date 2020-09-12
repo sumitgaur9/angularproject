@@ -19,6 +19,20 @@ export class ModalComponent implements OnInit, AfterViewInit {
         } else {
          jQuery('.modal-dialog.popupModel').css({"max-width":"654px"});
        }
+       
+       if(this.modalId=="confirmationModal"){
+        jQuery('.modal-footer').css({"display":"block"});
+        jQuery('.modal-footer').css({"padding":"0"});
+        jQuery('.modal-dialog.popupModel').css({"max-width":"800px"});
+
+
+      } else {
+       jQuery('.modal-footer').css({"display":"flex"});
+       jQuery('.modal-footer').css({"padding":"0.75rem"});
+
+     }
+       
+
        }
   ngAfterViewInit(){
     const modal = jQuery(this.el.nativeElement.querySelector('.modal'));

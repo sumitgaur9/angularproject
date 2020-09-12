@@ -28,7 +28,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   showForgotPasswordtPopup = false;
   showConfirmationPopup = false;
   public errorMessage: string = '';
-  public showData='';
+  public showData='Do you really want to delete these records? This process cannot be undone.';
   public doctorListData: any = [];
   public currentUser;
 

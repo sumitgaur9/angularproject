@@ -29,4 +29,9 @@
       <app-labtechnicianprofile [showModal]="showlabtechnicianprofileformpopup"  (ClosePopup)="closeLabTechProfilePopup()"> </app-labtechnicianprofile>
     </div>
 
+    <div *ngIf="showConfirmationPopup">
+      <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+      </app-confirmation>
+    </div>
+
 

@@ -1,29 +1,3 @@
-<!-- <header class="text-gray-700 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">{{username}}</span>
-      </a>
-      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-gray-900">HOME</a>
-        <a class="mr-5 hover:text-gray-900">ABOUT</a>
-        <a class="mr-5 hover:text-gray-900">SERVICES</a>
-        <a class="mr-5 hover:text-gray-900">CONTACT US</a>
-      </nav>
-      <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0" (click)="logout()">LOGOUT
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-      </button>
-    </div>
-  </header>
-  <hr> -->
-
-
-
-
 <header>
   <div class="header-top wow fadeIn">
     <div class="container">
@@ -38,10 +12,23 @@
             <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">knowledgerelated@gmail.com</a></span>
           </div>
-          <div class="info-inner">
+          <div class="info-inner" style="width:250px;">
             <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
             <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span>
           </div>
+
+          <div class="dropdown show" style="position: absolute;right: 0px;">
+            <a class="btn btn-secondary dropdown-toggle" style="background-color:white;color:black;border:transparent" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>
