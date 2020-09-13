@@ -1,6 +1,5 @@
 import { environment } from './../environments/environment';
-import { API_PATH } from 'src/app/shared/api.constant'
-
+import { API_PATH , firebase} from 'src/app/shared/api.constant'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -88,7 +87,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebase),
   ],
   //schemas: [NO_ERRORS_SCHEMA],
   providers: [
