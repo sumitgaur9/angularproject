@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { GTMFunction } from './utils/gtm';
 
 import { Router } from '@angular/router';
+import { MessagingService } from './service/messaging.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'newProject';
+  // title = 'newProject';
+  title = 'push-notification';
+  message;
 
   showHeaderFooter: boolean = true;
 
-  constructor(private router: Router, private GTMFunction: GTMFunction) {
+  constructor(private router: Router, private GTMFunction: GTMFunction, private messagingService: MessagingService) {
     router.events.subscribe((val) => {
 
       if(location.hash){
@@ -30,7 +34,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.messagingService.requestPermission()
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
   // ngAfterViewInit(){

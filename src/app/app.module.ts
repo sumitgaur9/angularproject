@@ -39,6 +39,13 @@ import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdispla
 import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtechniciandashboard.component';
 import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackagelist.component';
 
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { MessagingService } from './service/messaging.service';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,10 +84,16 @@ import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackage
       positionClass: 'toast-bottom-left',
       preventDuplicates: true,
     }), // ToastrModule added
-    QCommonModule
+    QCommonModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   //schemas: [NO_ERRORS_SCHEMA],
   providers: [
+    MessagingService,
+    AsyncPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
