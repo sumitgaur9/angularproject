@@ -68,7 +68,9 @@ import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component'
     ForgotpasswordComponent,
     ChangepasswordComponent,
     ImageuploadComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    VerifyotpComponent,
+    PasswordsetupComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

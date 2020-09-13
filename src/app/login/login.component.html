@@ -65,5 +65,15 @@
 </div>
 
 <div *ngIf="showForgotPasswordPopup">
-	<app-forgotpassword  [showModal]="showForgotPasswordPopup"  (ClosePopup)="closeForgotPasswordPopup()"> </app-forgotpassword>
-	</div>
+	<app-forgotpassword  [calledFrom]="'login'" [showModal]="showForgotPasswordPopup"  (ClosePopup)="closeForgotPasswordPopup()" (forgotPasswordSet)="forgotPasswordSet($event)"> </app-forgotpassword>
+  </div>
+  
+
+  <div *ngIf="showVerifyOTPPopup">
+    <app-verifyotp   [showModal]="showVerifyOTPPopup" [inputForVerifyOTP]="inputForVerifyOTP"  (ClosePopup)="closeVerifyOTPPopup()" (verifyOTPSet)="verifyOTPSet($event)"> </app-verifyotp>
+    </div>
+
+
+    <div *ngIf="showPasswordSetupPopup">
+      <app-passwordsetup [calledFrom]="'login'" [showModal]="showPasswordSetupPopup" [userEmail]="inputForVerifyOTP.userEmail"  (ClosePopup)="closePasswordSetupPopup()"> </app-passwordsetup>
+      </div>

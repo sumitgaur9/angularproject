@@ -12,15 +12,17 @@ export class VerifyotpComponent implements OnInit {
 
 
   @Input() inputForVerifyOTP:any;
+  @Input() showModal:string;
+
   @Output() ClosePopup = new EventEmitter();
 
   public submitted:boolean=false;
-
+  
+  @Output() verifyOTPSet: EventEmitter<any> = new EventEmitter();
 
   CloseModal() {
     this.ClosePopup.emit();
   }
-  public showPasswordSetupPopup:boolean=false;
 
   VerifyOTPInfo = new FormGroup({
     otp: new FormControl("", [Validators.required]),
@@ -46,20 +48,9 @@ export class VerifyotpComponent implements OnInit {
     }
     else
     {
-      this.openPasswordSetupPopup();
+      this.verifyOTPSet.emit(this.inputForVerifyOTP.userEmail)
      // this.CloseModal();
     }
   }
-  public closePasswordSetupPopup() {
-    this.showPasswordSetupPopup = false;
-    $('#showPasswordSetupPopup').modal('hide');
-  }
-
-  public openPasswordSetupPopup() {
-    this.showPasswordSetupPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showPasswordSetupPopup').modal('show');
-    }, 100);
-  }
+  
 }

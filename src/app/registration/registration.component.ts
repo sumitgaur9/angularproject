@@ -25,6 +25,11 @@ export class RegistrationComponent implements OnInit {
   isVisibleSendOTPbutton:boolean = false;
   inActiveEmailID = '';
   public showForgotPasswordPopup:boolean=false;
+  public showVerifyOTPPopup:boolean=false;
+  public showPasswordSetupPopup:boolean=false;
+
+  public inputForVerifyOTP:any={}
+
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -163,4 +168,46 @@ export class RegistrationComponent implements OnInit {
     }, 100);
   }
 
+
+
+  forgotPasswordSet(value) {
+    console.log("valuevaluevalue",value);
+    this.inputForVerifyOTP.userEmail=value.userEmail;
+     this.inputForVerifyOTP.OTPAPIValue=value.OTPAPIValue;
+   this.closeForgotPasswordPopup();
+   this.openVerifyOTPPopup();
+  }
+
+  public openVerifyOTPPopup() {
+    this.showVerifyOTPPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVerifyOTPPopup').modal('show');
+    }, 100);
+  }
+ 
+   public closeVerifyOTPPopup() {
+     this.showVerifyOTPPopup = false;
+     $('#showVerifyOTPPopup').modal('hide');
+   }
+
+   verifyOTPSet(email) {
+    console.log("valuevaluevalue",email);
+    this.inputForVerifyOTP.userEmail=email;
+    this.closeVerifyOTPPopup();
+   this.openPasswordSetupPopup();
+  }
+
+   public closePasswordSetupPopup() {
+    this.showPasswordSetupPopup = false;
+    $('#showPasswordSetupPopup').modal('hide');
+  }
+
+  public openPasswordSetupPopup() {
+    this.showPasswordSetupPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showPasswordSetupPopup').modal('show');
+    }, 100);
+  }
 }

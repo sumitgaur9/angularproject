@@ -25,7 +25,6 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
   
   public showVerifyForgotPasswordPopup:boolean=false;
-  public showVerifyOTPPopup:boolean=false;
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
@@ -182,32 +181,27 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
     $('#showVerifyForgotPasswordPopup').modal('hide');
   }
 
-  public openVerifyForgotPasswordPopup() {
-    this.showVerifyForgotPasswordPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVerifyForgotPasswordPopup').modal('show');
-    }, 100);
-  }
+ 
 
+  // public openVerifyOTPPopup() {
+  //   this.inputForVerifyOTP.userEmail=this.forgotPasswordInfo.controls.email.value;
+  //   this.inputForVerifyOTP.calledfrom="login";
+  //   this.inputForVerifyOTP.OTPAPIValue=this.responseOTP;
+  //   this.inputForVerifyOTP.calledFrom=this.calledFrom;
 
-  public closeVerifyOTPPopup() {
-    this.showVerifyOTPPopup = false;
-    $('#showVerifyOTPPopup').modal('hide');
-  }
+    
+  //   this.showVerifyOTPPopup = true;
+  //   setTimeout(() => {
+  //     $(window).scrollTop(0);
+  //     $('#showVerifyOTPPopup').modal('show');
+  //   }, 100);
+  // }
+
 
   public openVerifyOTPPopup() {
     this.inputForVerifyOTP.userEmail=this.forgotPasswordInfo.controls.email.value;
-    this.inputForVerifyOTP.calledfrom="login";
     this.inputForVerifyOTP.OTPAPIValue=this.responseOTP;
-    this.inputForVerifyOTP.calledFrom=this.calledFrom;
-
-    
-    this.showVerifyOTPPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVerifyOTPPopup').modal('show');
-    }, 100);
+    this.forgotPasswordSet.emit(this.inputForVerifyOTP);
   }
 
 }

@@ -20,12 +20,16 @@ export class LoginComponent implements OnInit {
   public errorMessage: string = "";
   passwordType = 'password';
 
+  public showForgotPasswordPopup:boolean=false;
+  public showVerifyOTPPopup:boolean=false;
+  public showPasswordSetupPopup:boolean=false;
+
+  public inputForVerifyOTP:any={};
   public loginInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   });
 
-  public showForgotPasswordPopup:boolean=false;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -107,6 +111,49 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showForgotPasswordPopup').modal('show');
+    }, 100);
+  }
+
+
+
+  forgotPasswordSet(value) {
+    console.log("valuevaluevalue",value);
+    this.inputForVerifyOTP.userEmail=value.userEmail;
+     this.inputForVerifyOTP.OTPAPIValue=value.OTPAPIValue;
+   this.closeForgotPasswordPopup();
+   this.openVerifyOTPPopup();
+  }
+
+  public openVerifyOTPPopup() {
+    this.showVerifyOTPPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVerifyOTPPopup').modal('show');
+    }, 100);
+  }
+ 
+   public closeVerifyOTPPopup() {
+     this.showVerifyOTPPopup = false;
+     $('#showVerifyOTPPopup').modal('hide');
+   }
+
+   verifyOTPSet(email) {
+    console.log("valuevaluevalue",email);
+    this.inputForVerifyOTP.userEmail=email;
+    this.closeVerifyOTPPopup();
+   this.openPasswordSetupPopup();
+  }
+
+   public closePasswordSetupPopup() {
+    this.showPasswordSetupPopup = false;
+    $('#showPasswordSetupPopup').modal('hide');
+  }
+
+  public openPasswordSetupPopup() {
+    this.showPasswordSetupPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showPasswordSetupPopup').modal('show');
     }, 100);
   }
 
