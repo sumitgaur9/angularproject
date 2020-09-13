@@ -103,6 +103,5 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
       this.Delete_PhysioProfile(this.getphyscoprofileid);
     }
   }
-
 }
 
