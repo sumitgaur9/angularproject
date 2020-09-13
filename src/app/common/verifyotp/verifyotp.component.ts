@@ -15,6 +15,9 @@ export class VerifyotpComponent implements OnInit {
   @Output() ClosePopup = new EventEmitter();
 
 
+  public submitted:boolean=false;
+
+
   CloseModal() {
     this.ClosePopup.emit();
   }
