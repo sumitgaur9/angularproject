@@ -27,7 +27,7 @@
 
   <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
     <div style="margin-bottom:1%;">
-      <a class="btn btn-primary" (click)="openLabTestProfilePopup()" *ngIf="currentUser.user.role==1">Welcome to see book lab test list</a>
+      <!-- <a class="btn btn-primary" (click)="openLabTestProfilePopup()" *ngIf="currentUser.user.role==1">Welcome to see book lab test list</a> -->
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
@@ -45,11 +45,11 @@
             <div style="float:left;width:100%">
               <div style="float:left;width:96%" class="card-title1">
                <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
-               (click)="openDoctorProfilePopup(data._id)"></i>
+               (click)="openLabTestProfilePopup(data._id)"></i>
                  </div>
                  <div style="float:left;width:4%" class="card-title1">
                    <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
-                   (click)="openLabTestProfilePopup(data._id)" style="color:red"></i>
+                   (click)="openDeleteConfirmationPopup(data._id)" style="color:red"></i>
                  </div>
                  </div>
        
