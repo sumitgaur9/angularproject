@@ -31,10 +31,11 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { ImageuploadComponent } from './imageupload/imageupload.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { VerifyotpComponent } from './verifyotp/verifyotp.component';
+import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent],
    
   imports: [
     CommonModule,

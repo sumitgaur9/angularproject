@@ -1,5 +1,5 @@
-<form [formGroup]="forgotPasswordInfo" (ngSubmit)="GenerateOTP()">
-    <ad-modal [title]="'OTP'" [modalId]="'showForgotPasswordPopup'">
+<form [formGroup]="VerifyOTPInfo" (ngSubmit)="verifyOTPContinueBtnClick()">
+    <ad-modal [title]="'OTP'" [modalId]="'showVerifyOTPPopup'">
       <ad-modal-body>
         <div class="overlay"></div>
         <div class="popupContainer">
@@ -15,20 +15,21 @@
             <div class="col-12" style="margin-top:3%">
                 <div class="row">
                     <div class="col-sm-12">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input class="form-control" id="email"  formControlName="email" type="text" placeholder="Email" />
-                        <div *ngIf=" submitted && forgotPasswordInfo.controls.email.errors" 
-                        style="color:red">
-                        <div *ngIf="forgotPasswordInfo.controls.email.errors.required">Email address is required</div>
-                        <div *ngIf="forgotPasswordInfo.controls.email.errors.pattern">Please enter a valid email
-                            address</div>
-                    </div>
-                    <div *ngIf="submitted && errorMessage">
-                        <div>{{errorMessage}}</div>
-                    </div>
-                      
-                      </div>
+                        <div class="form-group">
+                            <span class="has-float-label">
+                                <input disabled class="form-control" id="userEmail"  formControlName="userEmail"  type="text" placeholder="Registered email id" />
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="has-float-label">
+                                <input class="form-control" formControlName="otp" id="otp" type="text"
+                                    placeholder="Enter The One time password received on your Email." />
+                                <div *ngIf="submitted && f.otp.errors" 
+                                    style="color:red">
+                                    <div *ngIf="f.otp.errors.required">OTP is required</div>
+                                </div>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,3 +57,9 @@
       </ad-modal-footer>
     </ad-modal>
   </form>
+
+
+  <div *ngIf="showPasswordSetupPopup">
+    <app-passwordsetup [calledFrom]="inputForVerifyOTP.calledFrom" [showModal]="showPasswordSetupPopup" [userEmail]="inputForVerifyOTP.userEmail"  (ClosePopup)="closePasswordSetupPopup()"> </app-passwordsetup>
+    </div>
+    

@@ -14,7 +14,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
   constructor(private el: ElementRef,) { }
 
   ngOnInit() {
-       if(this.modalId=="confirmationModal" || this.modalId=="showForgotPasswordPopup" ){
+       if(this.modalId=="confirmationModal" || this.modalId=="showForgotPasswordPopup"
+       || this.modalId=="showVerifyOTPPopup"|| this.modalId=="showPasswordSetupPopup" || this.modalId=="showChangePasswordPopup" ){
         jQuery('.modal-footer').css({"display":"block"});
         jQuery('.modal-footer').css({"padding":"0"});
         jQuery('.modal-dialog.popupModel').css({"max-width":"800px"});

@@ -20,11 +20,17 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
+  @Input() calledFrom:string;
 
+
+  
   public showVerifyForgotPasswordPopup:boolean=false;
+  public showVerifyOTPPopup:boolean=false;
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
+
+
 
  CloseModal() {
     this.ClosePopup.emit();
@@ -32,6 +38,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
  submitted = false;
   errorMessage = '';
+  public inputForVerifyOTP:any={}
 
   public responseOTP:string='';
   //emailPattern = '^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$';
@@ -107,6 +114,8 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
 
    GenerateOTP() {
+    // this.responseOTP="2222";
+    // this.openVerifyOTPPopup();
     this.submitted = true;
     if (this.forgotPasswordInfo.invalid) {
       for (const key of Object.keys(this.forgotPasswordInfo.controls)) {
@@ -126,7 +135,9 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
        if (data) {
          console.log("OTP Data is this..", data);
         this.responseOTP=data.response.OTP;
-         this.openVerifyForgotPasswordPopup();
+        this.openVerifyOTPPopup();
+        //this.CloseModal();
+       //  this.openVerifyForgotPasswordPopup();
        }
      }, error => {
        this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -180,7 +191,24 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   }
 
 
+  public closeVerifyOTPPopup() {
+    this.showVerifyOTPPopup = false;
+    $('#showVerifyOTPPopup').modal('hide');
+  }
 
+  public openVerifyOTPPopup() {
+    this.inputForVerifyOTP.userEmail=this.forgotPasswordInfo.controls.email.value;
+    this.inputForVerifyOTP.calledfrom="login";
+    this.inputForVerifyOTP.OTPAPIValue=this.responseOTP;
+    this.inputForVerifyOTP.calledFrom=this.calledFrom;
+
+    
+    this.showVerifyOTPPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVerifyOTPPopup').modal('show');
+    }, 100);
+  }
 
 }
 

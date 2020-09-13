@@ -7,6 +7,13 @@
             <div class="card-body">
               <img src="../../assets/images/Registration.jpg">
               <div class="py-3" (click)="navigateToLoginPage()">Already Have An Account?</div>
+              <div class="buttonSection" *ngIf="isVisibleSendOTPbutton" style="    margin-left: 18%;
+              ">
+                <div class="text-center">
+                  <input type="button" style="width: 200px;" value="Send OTP to Reg. Mobile"
+                    class="btn btn-info btn-block rounded-0 py-2" (click)="openForgotPasswordPopup()">
+                </div>
+              </div>
               <!-- <h2 class="py-3">Registration</h2>
               <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto
                 patrioque an per, lucilius pertinacia eu vel.
@@ -167,5 +174,8 @@
 
 
 <div *ngIf="showForgotPasswordPopup">
-	<app-forgotpassword  [showModal]="showForgotPasswordPopup"  (ClosePopup)="closeForgotPasswordPopup()"> </app-forgotpassword>
+	<app-forgotpassword  [calledFrom]="'Registration'" [showModal]="showForgotPasswordPopup"  (ClosePopup)="closeForgotPasswordPopup()"> </app-forgotpassword>
 	</div>
+
+
+  
