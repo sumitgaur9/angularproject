@@ -42,7 +42,7 @@
 
 
   <div *ngIf="showlabtechnicianprofileformpopup">
-      <app-labtechnicianprofile [showModal]="showlabtechnicianprofileformpopup"  [getlabtechnicianprofileid]="getlabtechnicianprofileid"  (ClosePopup)="closeLabTechProfilePopup()"> </app-labtechnicianprofile>
+      <app-labtechnicianprofile [showModal]="showlabtechnicianprofileformpopup"  [getlabtechnicianprofileid]="getlabtechnicianprofileid"  (ClosePopup)="closeLabTechProfilePopup($event)"> </app-labtechnicianprofile>
     </div>
 
     <div *ngIf="showConfirmationPopup">

@@ -2,8 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtililtyFunctions } from 'src/app/utils/utils';
-// import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { LoginError } from 'src/app/shared/api.constant'
+
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 declare var $: any;
@@ -59,6 +60,12 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      if(this.errorMessage==LoginError.inactiveUserMSG)
+      {
+        this.toastr.error(error.error.message);
+        this.router.navigate(['/registration'])
+      }
+
     });
   }
 

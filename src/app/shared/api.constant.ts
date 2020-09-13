@@ -95,4 +95,8 @@ export const PATTERN_ERROR_MESSAGE = {
     panNo: 'Only alphabets and numbers are allowed',
     phoneno:'Ten Character allowed'
 }
+export const LoginError={
+    inactiveUserMSG:'Login failed! This is an InActive Account !! To Deactivate, register with same credentials'
+}
+
 
