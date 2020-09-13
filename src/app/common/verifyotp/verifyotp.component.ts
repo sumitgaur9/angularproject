@@ -14,7 +14,6 @@ export class VerifyotpComponent implements OnInit {
   @Input() inputForVerifyOTP:any;
   @Output() ClosePopup = new EventEmitter();
 
-
   public submitted:boolean=false;
 
 
