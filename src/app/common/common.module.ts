@@ -32,10 +32,12 @@ import { ImageuploadComponent } from './imageupload/imageupload.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { VerifyotpComponent } from './verifyotp/verifyotp.component';
 import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component';
+import { LabtestprofileComponent } from './labtestprofile/labtestprofile.component';
+import { LabtestpackageprofileComponent } from './labtestpackageprofile/labtestpackageprofile.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent],
    
   imports: [
     CommonModule,
@@ -70,7 +72,9 @@ import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component'
     ImageuploadComponent,
     ConfirmationComponent,
     VerifyotpComponent,
-    PasswordsetupComponent
+    PasswordsetupComponent,
+    LabtestprofileComponent,
+    LabtestpackageprofileComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

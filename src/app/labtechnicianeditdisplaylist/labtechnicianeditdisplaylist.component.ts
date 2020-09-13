@@ -21,6 +21,9 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
   public currentUser;
 
   showConfirmationPopup = false;
+
+
+  public getlabtechnicianprofileid:string='';
   public showData='Do you really want to delete these records? This process cannot be undone.';
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -30,12 +33,19 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
     this.Get_LabTechniciansList();
   }
 
-  public closeLabTechProfilePopup() {
+  
+
+  public closeLabTechProfilePopup(calllistapi) {
     this.showlabtechnicianprofileformpopup = false;
     $('#showlabtechnicianprofileformpopup').modal('hide');
+    if(calllistapi)
+    {
+      this.Get_LabTechniciansList();
+    }
   }
 
-  public openLabTechProfilePopup() {
+  public openLabTechProfilePopup(id?) {
+    this.getlabtechnicianprofileid=id;
     this.showlabtechnicianprofileformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
@@ -44,7 +54,7 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
   }
 
   Get_LabTechniciansList() {
-    let dataobj = {
+    let dataobj={
     };
     this._apiservice.Get_LabTechniciansList(dataobj).subscribe(data => {
       if (data) {
@@ -56,18 +66,18 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
     });
   }
 
-  // Delete_NurseProfile(id) {
-  //   let dataobj = {
-  //   };
-  //   this._apiservice.Delete_Nurse(dataobj,id).subscribe(data => {
-  //     if (data) {
-  //       this.toastr.success('doctor deleted successfully');
-  //       this.Get_LabTechniciansList();
-  //     }
-  //   }, error => {
-  //     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-  //   });
-  // }
+  Delete_LabTechnician(id) {
+    let dataobj = {
+    };
+    this._apiservice.Delete_LabTechnician(dataobj,id).subscribe(data => {
+      if (data) {
+        this.toastr.success('Lab Technician deleted successfully');
+        this.Get_LabTechniciansList();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
@@ -75,10 +85,12 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
 
 
   public openDeleteConfirmationPopup(id) {
-    //this.getnurseprofileid = id;
+    this.getlabtechnicianprofileid = id;
     this.openConfirmationPopup();
   }
 
+
+  
   
   openConfirmationPopup() {
     this.showConfirmationPopup = true;
@@ -92,9 +104,11 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
     this.showConfirmationPopup = false;
     $('#confirmationModal').modal('hide');
     if (updateListRequired) {
-     // this.Delete_NurseProfile(this.getnurseprofileid);
+      this.Delete_LabTechnician(this.getlabtechnicianprofileid);
     }
   }
+
+  
   
 }
 

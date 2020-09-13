@@ -146,6 +146,7 @@ export class HeaderComponent implements OnInit {
     this.toastr.success('thanks for being my friend mr gauri');
   }
 
+ 
   navigatetopage(menuname) {
     switch (menuname) {
       case 'home':

@@ -17,6 +17,7 @@ export class LabtechnicianprofileComponent implements OnInit {
 
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
+  @Input() getlabtechnicianprofileid:string='';
 
   public CloseModal() {
     this.ClosePopup.emit();
@@ -73,7 +74,12 @@ public expertiesArrayData:any=[];
   Get_LabTechnicianProfile() {
     let dataobj={
     };
-    this._apiservice.Get_LabTechnicianProfile(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+    let labtechid=this.currentUser.roleBaseId;
+    if(this.currentUser.user.role==11)
+    {
+      labtechid=this.getlabtechnicianprofileid;
+    }
+    this._apiservice.Get_LabTechnicianProfile(dataobj,labtechid).subscribe(data => {
       if (data) {
         console.log("data",data);
         if(data.name!=undefined)

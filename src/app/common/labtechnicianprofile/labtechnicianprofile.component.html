@@ -1,6 +1,6 @@
 <form [formGroup]="labTechform" (ngSubmit)="Update_LabTechnicianProfile()" enctype="multipart/form-data">
 
-    <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
+    <ad-modal [title]="'OTP'" [modalId]="'showlabtechnicianprofileformpopup'">
       <ad-modal-body>
         <div class="overlay"></div>
         <div class="popupContainer">
@@ -52,14 +52,17 @@
     
   
   
+                        
+  
+
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">Experties</label>
                             <select class="form-control" formControlName="experties">
-                                <option value=""></option>
-                                <option *ngFor="let opt of expertiesArrayData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
-                          </select>
+                              <option value=""></option>
+                              <option *ngFor="let opt of expertiesArrayData" [value]="opt.expertiseName">
+                                {{opt.expertiseName}}</option>
+                            </select>
                           </div>
-  
   
   
                           <div class="form-group">
@@ -79,14 +82,6 @@
                               placeholder="Time Availablity" formControlName="timeAvailablity">                          </div>
                           </div>
 
-                          <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                              </div>
-                              <textarea id="Description" name="Description" formControlName="description" cols="40" rows="3"
-                              class="form-control" placeholder="Description"></textarea>                        </div>
-                          </div>
 
                           <!-- <div class="form-group">
                             <div class="input-group mb-2">

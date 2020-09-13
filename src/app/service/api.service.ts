@@ -713,6 +713,18 @@ export class APIService {
         return resdata;
       }));
   }
+
+  Delete_LabTechnician(params,labtechnicianid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTechnician+'/'+labtechnicianid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  
   
   
   

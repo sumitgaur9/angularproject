@@ -21,6 +21,10 @@ export class BooklabtestComponent implements OnInit {
   public errorMessage:string='';
   public labTestData:any=[];
   public currentUser;
+  public showConfirmationPopup:boolean=false;
+  public showData='Do you really want to delete these records? This process cannot be undone.';
+public showLabTestProfilePopup:boolean=false;
+  public getbookedlabtestid:string='';
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -65,6 +69,53 @@ Delete_LabTest(id) {
   }, error => {
     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
   });
+}
+
+public openDeleteConfirmationPopup(id) {
+  this.getbookedlabtestid = id;
+  this.openConfirmationPopup();
+}
+
+
+openConfirmationPopup() {
+  this.showConfirmationPopup = true;
+  setTimeout(() => {
+    $(window).scrollTop(0);
+    $('#confirmationModal').modal('show');
+  }, 100);
+}
+
+closeConfirmationPopup(updateListRequired: boolean = false) {
+  this.showConfirmationPopup = false;
+  $('#confirmationModal').modal('hide');
+  if (updateListRequired) {
+    //this.Delete_NurseProfile(this.getbookedlabtestid);
+  }
+}
+
+arrayBufferToBase64(buffer) {
+  return this.utilityservice.arrayBufferToBase64(buffer);
+}
+
+
+
+
+public closeLabTestProfilePopup(calllistapi) {
+  this.showLabTestProfilePopup = false;
+  $('#showLabTestProfilePopup').modal('hide');
+  if(calllistapi)
+  {
+    this.Get_LabTestsList();
+  }
+}
+
+public openLabTestProfilePopup(id?) {
+  this.getbookedlabtestid=id;
+  this.showLabTestProfilePopup = true;
+  setTimeout(() => {
+    $(window).scrollTop(0);
+    $('#showLabTestProfilePopup').modal('show');
+  }, 100);
 }
 
 }

@@ -23,6 +23,12 @@ export class LabtestpackagelistComponent implements OnInit {
   public errorMessage:string='';
   public labTestData:any=[];
   public currentUser;
+  public showConfirmationPopup:boolean=false;
+public getlabtestpackageid:string='';
+public showLabTestPackageProfilePopup:boolean=false;
+
+
+public showData='Do you really want to delete these records? This process cannot be undone.';
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -37,6 +43,7 @@ Get_LabTestsPackage() {
   this._apiservice.Get_LabTestsPackage(dataobj,).subscribe(data => {
     if (data) {
       this.labTestData=data;
+      console.log("this.labTestData=data;this.labTestData=data;",this.labTestData)
     }
   }, error => {
     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -55,6 +62,54 @@ Delete_LabTestsPackage(id) {
     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
   });
 }
+
+public openDeleteConfirmationPopup(id) {
+  this.getlabtestpackageid = id;
+  this.openConfirmationPopup();
+}
+
+
+openConfirmationPopup() {
+  this.showConfirmationPopup = true;
+  setTimeout(() => {
+    $(window).scrollTop(0);
+    $('#confirmationModal').modal('show');
+  }, 100);
+}
+
+closeConfirmationPopup(updateListRequired: boolean = false) {
+  this.showConfirmationPopup = false;
+  $('#confirmationModal').modal('hide');
+  if (updateListRequired) {
+    //this.Delete_NurseProfile(this.getlabtestpackageid);
+  }
+}
+
+
+public closeLabTestPackageProfilePopup(calllistapi) {
+  this.showLabTestPackageProfilePopup = false;
+  $('#showLabTestPackageProfilePopup').modal('hide');
+  if(calllistapi)
+  {
+    this.Get_LabTestsPackage();
+  }
+}
+
+public openLabTestPackageProfilePopup(id?) {
+  this.getlabtestpackageid=id;
+  this.showLabTestPackageProfilePopup = true;
+  setTimeout(() => {
+    $(window).scrollTop(0);
+    $('#showLabTestPackageProfilePopup').modal('show');
+  }, 100);
+}
+
+
+arrayBufferToBase64(buffer) {
+  return this.utilityservice.arrayBufferToBase64(buffer);
+}
+
+
 
 }
 
