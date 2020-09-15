@@ -24,27 +24,31 @@ export class LabtestprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  public doctorform = new FormGroup({
-    name: new FormControl(""),
-    email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
-    image: new FormControl(""),
-    newimage: new FormControl(),
-    experties: new FormControl(""),
-    phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
-    charges: new FormControl(""),
-    area: new FormControl(""),
-    qualification: new FormControl(""),
-    id: new FormControl(""),
-    participantID: new FormControl(""),
-    description: new FormControl(""),
-  });
 
-  public passwordPatternError = false;
-  public expertiesArrayData: any = [];
-
+  public expertiesArrayData:any=[];
+  
 
   public currentUser;
+
+
+
+  public sampleTypeListData=[{"name":"blood"},{"name":"muscus"},{"name":"urine"}]
+
+  public createlabtestform = new FormGroup({
+    testName: new FormControl(""),
+    sampleType: new FormControl(""),
+    minSampleSize: new FormControl(""),
+    price: new FormControl(""),
+    newimage: new FormControl(),
+    description: new FormControl(""),
+    id: new FormControl(""),
+  });
+
+
+
+  public passwordPatternError = false;
+
+
 
   /************************** */
 
@@ -62,93 +66,61 @@ export class LabtestprofileComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
-    this.Get_DoctorProfile();
+    this.Get_LabTest();
   }
 
-  get f() { return this.doctorform.controls; }
+  get f() { return this.createlabtestform.controls; }
 
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
-  Get_DoctorProfile() {
+  Get_LabTest() {
     let dataobj = {
     };
-    let doctorid = this.currentUser.roleBaseId;
-    if (this.currentUser.user.role == 11) {
-      doctorid = this.getbookedlabtestid;
-    }
-    this._apiservice.Get_DoctorProfile(dataobj, doctorid).subscribe(data => {
+    let doctorid = this.getbookedlabtestid;
+    this._apiservice.Get_LabTest(dataobj, doctorid).subscribe(data => {
       if (data) {
-        if (data.name != undefined) {
-          this.doctorform.patchValue({
-            name: data.name
+        if (data.testName != undefined) {
+          this.createlabtestform.patchValue({
+            testName: data.testName
           });
         }
-        if (data.email != undefined) {
-          this.doctorform.patchValue({
-            email: data.email
+        if (data.sampleType != undefined) {
+          this.createlabtestform.patchValue({
+            sampleType: data.sampleType
           });
         }
         if (data.description != undefined) {
-          this.doctorform.patchValue({
+          this.createlabtestform.patchValue({
             description: data.description
           });
         }
-        if (data.image != undefined) {
-          this.doctorform.patchValue({
-            image: data.image
-          });
-        }
+      
         if (data.newimage != undefined && data.newimage.data != undefined) {
           this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
 
-          this.doctorform.patchValue({
+          this.createlabtestform.patchValue({
             newimage: data.newimage
           });
         }
-        if (data.experties != undefined) {
-          this.doctorform.patchValue({
-            experties: data.experties
+        if (data.minSampleSize != undefined) {
+          this.createlabtestform.patchValue({
+            minSampleSize: data.minSampleSize
           });
         }
-        if (data.phoneno != undefined) {
-          this.doctorform.patchValue({
-            phoneno: data.phoneno
+        if (data.price != undefined) {
+          this.createlabtestform.patchValue({
+            price: data.price
           });
         }
-        if (data.timeAvailablity != undefined) {
-          this.doctorform.patchValue({
-            timeAvailablity: data.timeAvailablity
-          });
-        }
-        if (data.charges != undefined) {
-          this.doctorform.patchValue({
-            charges: data.charges
-          });
-        }
-
-        if (data.area != undefined) {
-          this.doctorform.patchValue({
-            area: data.area
-          });
-        }
-        if (data.qualification != undefined) {
-          this.doctorform.patchValue({
-            qualification: data.qualification
-          });
-        }
+        
         if (data._id != undefined) {
-          this.doctorform.patchValue({
+          this.createlabtestform.patchValue({
             id: data._id
           });
         }
 
-        if (data.participantID != undefined) {
-          this.doctorform.patchValue({
-            participantID: data.participantID
-          });
-        }
 
       }
     }, error => {
@@ -156,33 +128,27 @@ export class LabtestprofileComponent implements OnInit {
     });
   }
 
-  Update_DoctorProfile() {
+  SaveUpdate_LabTest() {
     this.submitted = true;
-    if (this.doctorform.invalid) {
+    if (this.createlabtestform.invalid) {
       return;
     }
     this.errorMessage = "";
     var formData = new FormData();
-    formData.append('image', '');
+   // formData.append('image', '');
     if (this.UploadFile.length && this.UploadFileName) {
       formData.append('newimage', this.UploadFile[0], this.UploadFileName);
     } else {
       formData.append('newimage', '');
     }
-    formData.append('name', this.doctorform.value.name);
-    formData.append('email', this.doctorform.value.email);
-    formData.append('phoneno', this.doctorform.value.phoneno);
-    formData.append('experties', this.doctorform.value.experties);
-    formData.append('timeAvailablity', this.doctorform.value.timeAvailablity);
-    formData.append('charges', this.doctorform.value.charges);
-    formData.append('area', this.doctorform.value.area);
-    formData.append('qualification', this.doctorform.value.qualification);
-    formData.append('id', this.doctorform.value.id);
-    formData.append('participantID', this.doctorform.value.participantID);
-    formData.append('description', this.doctorform.value.description);
-    this._apiservice.Update_DoctorProfile(formData, this.doctorform.value.id).subscribe(data => {
+    formData.append('testName', this.createlabtestform.value.testName);
+    formData.append('sampleType', this.createlabtestform.value.sampleType);
+    formData.append('minSampleSize', this.createlabtestform.value.minSampleSize);
+    formData.append('price', this.createlabtestform.value.price);
+    formData.append('description', this.createlabtestform.value.description);
+    this._apiservice.SaveUpdate_LabTest(formData, this.createlabtestform.value.id).subscribe(data => {
       if (data) {
-        this.toastr.success('Thanks for update Doctor profile');
+        this.toastr.success('Thanks for update lab test record');
         this.CloseModal(true);
       }
     }, error => {
@@ -190,8 +156,6 @@ export class LabtestprofileComponent implements OnInit {
       this.toastr.error(error.error.message);
     });
   }
-
- 
 
   uploadFile(fileInput) {
     if (fileInput.length === 0) {
@@ -215,5 +179,6 @@ export class LabtestprofileComponent implements OnInit {
     }
     this.getImageValue = result;
   }
+
 
 }

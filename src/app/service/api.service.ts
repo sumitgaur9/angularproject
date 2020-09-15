@@ -724,8 +724,27 @@ export class APIService {
       }));
   }
 
+
   
   
+  SaveUpdate_LabTest(data,labtestid?) {
+  //  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_LabTest +'/'+labtestid}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_LabTest}`
+
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  Get_LabTest(params,labtestid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTest+'/'+labtestid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
   
   
   
