@@ -2048,7 +2048,9 @@
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border-radius: 0px;
+
+    /* border-radius: 0.25rem; */
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   
@@ -10327,3 +10329,123 @@
   color:#18d4ca;
   
 }
+
+
+
+
+/******************************/
+
+/* // float label css */
+
+.has-float-label {
+    position: relative;
+}
+.has-float-label label {
+    position: absolute;
+    cursor: text;
+    /* font-size: $fontsm; */
+    opacity: 1;
+    transition: all 0.2s;
+    top: -25px;
+    left: 0;
+    z-index: 3;
+    line-height: 1;
+    padding: 0 1px;
+    color: #A2A2A2;
+    font-weight: 300;
+}
+.has-float-label label::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    background: #fff;
+    height: 2px;
+    top: 50%;
+    left: -0.2em;
+    right: -0.2em;
+    z-index: -1;
+}
+
+
+
+/* //Mozilla Firefox 4 to 18  */
+.has-float-label .form-control:-moz-placeholder {
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    color: #A2A2A2 !important;
+}
+.has-float-label .form-control:placeholder-shown:not(:focus):-moz-placeholder {
+    opacity: 0;
+    color: #A2A2A2 !important;
+}
+
+/* //Mozilla Firefox 19+ */
+.has-float-label .form-control::-moz-placeholder {
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    color: #A2A2A2 !important;
+}
+.has-float-label .form-control:placeholder-shown:not(:focus)::-moz-placeholder {
+    opacity: 0;
+    color: #A2A2A2 !important;
+}
+
+/* //Internet Explorer 10 and 11 */
+.has-float-label .form-control:-ms-input-placeholder {
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    color: #A2A2A2 !important;
+}
+.has-float-label .form-control:placeholder-shown:not(:focus):-ms-input-placeholder {
+    opacity: 0;
+    color: #A2A2A2 !important;
+}
+
+
+/* // WebKit, Blink (Safari, Google Chrome, Opera 15+)  */
+.has-float-label .form-control::-webkit-input-placeholder {
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    color: #A2A2A2 !important;
+}
+.has-float-label .form-control::placeholder{
+    opacity: 0;
+    color: #A2A2A2 !important;
+}
+.has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+    opacity: 0;
+    color: #A2A2A2 !important;
+}
+
+
+.has-float-label .form-control:placeholder-shown:not(:focus) + label {
+    left: 12px;
+     font-size: 14px;
+    opacity: 1;
+    top: 13px;
+    font-weight: 300;
+    color: #A2A2A2 !important;
+}
+
+
+
+.input-group .has-float-label {
+    display: table-cell;
+}
+.input-group .has-float-label .form-control {
+    border-radius: 0.25rem;
+}
+.input-group .has-float-label:not(:last-child) .form-control {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.input-group .has-float-label:not(:first-child) .form-control {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: -1px;
+}
+
