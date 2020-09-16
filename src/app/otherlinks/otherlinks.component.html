@@ -158,17 +158,15 @@
 <div *ngIf="showMedicineMasterPopup">
 <app-medicinemaster [showModal]="showMedicineMasterPopup"  (ClosePopup)="closeMedicineMaster()"> </app-medicinemaster>
 </div>
-<div *ngIf="showCreateLabTestMasterPopup">
-<app-createlabtest [showModal]="showCreateLabTestMasterPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createlabtest>
-</div>
 
-<div *ngIf="showCreateLabTestPackageMasterPopup">
+
+<!-- <div *ngIf="showCreateLabTestPackageMasterPopup">
 <app-createlabtestpackage  [showModal]="showCreateLabTestPackageMasterPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createlabtestpackage>
 </div> 
 
 <div *ngIf="showCreateBookLabTestPopup">
 <app-createbooklabtest  [showModal]="showCreateBookLabTestPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createbooklabtest>
-</div>
+</div> -->
 
 <div *ngIf="showChangePasswordPopup">
   <app-changepassword  [showModal]="showChangePasswordPopup"  (ClosePopup)="closeChangePasswordPopup()"> </app-changepassword>
