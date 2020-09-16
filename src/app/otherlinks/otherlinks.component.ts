@@ -22,7 +22,6 @@ public errorMessage:string='';
 
   public showBookAppointmentPopup: boolean = false;
 
-  public showCreateLabTestMasterPopup: boolean = false;
 
   public showCreateLabTestPopup: boolean = false;
 
@@ -119,18 +118,7 @@ public errorMessage:string='';
   }
 
 
-  public closeCreateLabTestMaster() {
-    this.showCreateLabTestMasterPopup = false;
-    $('#showCreateLabTestMasterPopup').modal('hide');
-  }
 
-  public openCreateLabTestMaster() {
-    this.showCreateLabTestMasterPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showCreateLabTestMasterPopup').modal('show');
-    }, 100);
-  }
   public closeCreateLabTestPackageMaster() {
     this.showCreateLabTestPackageMasterPopup = false;
     $('#showCreateLabTestPackageMasterPopup').modal('hide');

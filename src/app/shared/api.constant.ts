@@ -1,6 +1,6 @@
 export const API_PATH: any = {
-    //  'Commaon_Path':'https://mongowithnode.herokuapp.com/',
-    'Commaon_Path':'http://localhost:5000/',
+     'Commaon_Path':'https://mongowithnode.herokuapp.com/',
+    // 'Commaon_Path':'http://localhost:5000/',
     'GTM_ID': 'GTM-M476F8N',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
@@ -77,7 +77,7 @@ export const API_PATH: any = {
     'Get_WebsiteImageByLocationEnumList': 'Get_WebsiteImageByLocationEnumList',
     'Delete_LabTestsPackage': 'Delete_LabTestsPackage',
     'Delete_LabTechnician': 'Delete_LabTechnician',
-    'SaveUpdate_LabTest': 'SaveUpdate_LabTest',
+    'Update_LabTest': 'Update_LabTest',
     'Get_LabTest': 'Get_LabTest',
     'SaveUpdate_LabTestsPackage': 'SaveUpdate_LabTestsPackage',
 }

@@ -458,14 +458,6 @@ export class APIService {
       }));
   }
 
-  Save_LabTest(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTest}`
-    return this.http.post<any>(APIURL, data)
-      .pipe(map(userData => {
-        return userData;
-      }));
-  }
-
   Save_LabTestsPackage(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTestsPackage}`
     //let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Image}`
@@ -723,19 +715,21 @@ export class APIService {
         return resdata;
       }));
   }
-
-
   
-  
-  SaveUpdate_LabTest(data,labtestid?) {
-  //  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_LabTest +'/'+labtestid}`
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_LabTest}`
-
+  Update_LabTest(data,labtestid) {
+   let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTest +'/'+labtestid}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
+  Save_LabTest(data) {
+      let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTest}`
+      return this.http.post<any>(APIURL, data)
+        .pipe(map(userData => {
+          return userData;
+        }));
+    }
   Get_LabTest(params,labtestid) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTest+'/'+labtestid}`
     return this.http.get<any>(APIURL, { params: params })

@@ -16,6 +16,8 @@ export class LabtestprofileComponent implements OnInit {
   @Input() getbookedlabtestid: string = '';
   @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
 
+  public formMode:string='';
+
   public CloseModal(calllistapi) {
     this.ClosePopup.emit(calllistapi);
   }
@@ -66,7 +68,14 @@ export class LabtestprofileComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
-    this.Get_LabTest();
+    if(this.getbookedlabtestid!=undefined && this.getbookedlabtestid!=null)
+    {
+      this.formMode="edit";
+      this.Get_LabTest();
+    }
+    else{
+      this.formMode="new";
+    }
   }
 
   get f() { return this.createlabtestform.controls; }
@@ -128,14 +137,26 @@ export class LabtestprofileComponent implements OnInit {
     });
   }
 
-  SaveUpdate_LabTest() {
+
+  callSubmitApi()
+  {
+    if(this.formMode=="edit")
+    {
+      this.Update_LabTest();
+    }
+    else{
+      this.Save_LabTest();
+    }
+
+  }
+
+  Save_LabTest() {
     this.submitted = true;
     if (this.createlabtestform.invalid) {
       return;
     }
     this.errorMessage = "";
     var formData = new FormData();
-   // formData.append('image', '');
     if (this.UploadFile.length && this.UploadFileName) {
       formData.append('newimage', this.UploadFile[0], this.UploadFileName);
     } else {
@@ -146,7 +167,7 @@ export class LabtestprofileComponent implements OnInit {
     formData.append('minSampleSize', this.createlabtestform.value.minSampleSize);
     formData.append('price', this.createlabtestform.value.price);
     formData.append('description', this.createlabtestform.value.description);
-    this._apiservice.SaveUpdate_LabTest(formData, this.createlabtestform.value.id).subscribe(data => {
+    this._apiservice.Save_LabTest(formData).subscribe(data => {
       if (data) {
         this.toastr.success('Thanks for update lab test record');
         this.CloseModal(true);
@@ -156,6 +177,37 @@ export class LabtestprofileComponent implements OnInit {
       this.toastr.error(error.error.message);
     });
   }
+
+
+  Update_LabTest() {
+    this.submitted = true;
+    if (this.createlabtestform.invalid) {
+      return;
+    }
+    this.errorMessage = "";
+    var formData = new FormData();
+    if (this.UploadFile.length && this.UploadFileName) {
+      formData.append('newimage', this.UploadFile[0], this.UploadFileName);
+    } else {
+      formData.append('newimage', '');
+    }
+    formData.append('testName', this.createlabtestform.value.testName);
+    formData.append('sampleType', this.createlabtestform.value.sampleType);
+    formData.append('minSampleSize', this.createlabtestform.value.minSampleSize);
+    formData.append('price', this.createlabtestform.value.price);
+    formData.append('description', this.createlabtestform.value.description);
+    this._apiservice.Update_LabTest(formData, this.createlabtestform.value.id).subscribe(data => {
+      if (data) {
+        this.toastr.success('Thanks for update lab test record');
+        this.CloseModal(true);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      this.toastr.error(error.error.message);
+    });
+  }
+
+
 
   uploadFile(fileInput) {
     if (fileInput.length === 0) {
