@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role < 1 || currentUser.user.role==11" class="btn" (click)="openCreateBookLabTestMaster()"><i class="fa fa-list" aria-hidden="true"></i><span style="margin-left:5px;">BookLabTest</span></button>
+                  <button style="width: 225px" *ngIf="currentUser.user.role < 1 || currentUser.user.role==11" class="btn" (click)="openSaveBookLabTestMaster()"><i class="fa fa-list" aria-hidden="true"></i><span style="margin-left:5px;">BookLabTest</span></button>
                 </div>
 
                 <div class="text-center" style="margin-top: 5%;">
@@ -160,13 +160,13 @@
 </div>
 
 
-<!-- <div *ngIf="showCreateLabTestPackageMasterPopup">
-<app-createlabtestpackage  [showModal]="showCreateLabTestPackageMasterPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createlabtestpackage>
+<div *ngIf="showCreateLabTestPackageMasterPopup">
+<app-createlabtestpackage  [showModal]="showCreateLabTestPackageMasterPopup"  (ClosePopup)="closeCreateLabTestPackageMaster()"> </app-createlabtestpackage>
 </div> 
 
-<div *ngIf="showCreateBookLabTestPopup">
-<app-createbooklabtest  [showModal]="showCreateBookLabTestPopup"  (ClosePopup)="closeCreateLabTestMaster()"> </app-createbooklabtest>
-</div> -->
+<div *ngIf="showSaveBookLabTestPopup">
+<app-createbooklabtest  [showModal]="showSaveBookLabTestPopup"  (ClosePopup)="closeSaveBookLabTestMaster()"> </app-createbooklabtest>
+</div>
 
 <div *ngIf="showChangePasswordPopup">
   <app-changepassword  [showModal]="showChangePasswordPopup"  (ClosePopup)="closeChangePasswordPopup()"> </app-changepassword>

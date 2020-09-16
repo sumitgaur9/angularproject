@@ -26,7 +26,7 @@ public errorMessage:string='';
   public showCreateLabTestPopup: boolean = false;
 
   public showCreateLabTestPackageMasterPopup: boolean = false;
-  public showCreateBookLabTestPopup: boolean = false;
+  public showSaveBookLabTestPopup: boolean = false;
   public currentUser;
 
   public showChangePasswordPopup:boolean=false;
@@ -133,16 +133,16 @@ public errorMessage:string='';
   }
 
 
-  public closeCreateBookLabTestMaster() {
-    this.showCreateBookLabTestPopup = false;
-    $('#showCreateBookLabTestPopup').modal('hide');
+  public closeSaveBookLabTestMaster() {
+    this.showSaveBookLabTestPopup = false;
+    $('#showSaveBookLabTestPopup').modal('hide');
   }
 
-  public openCreateBookLabTestMaster() {
-    this.showCreateBookLabTestPopup = true;
+  public openSaveBookLabTestMaster() {
+    this.showSaveBookLabTestPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showCreateBookLabTestPopup').modal('show');
+      $('#showSaveBookLabTestPopup').modal('show');
     }, 100);
   }
 
