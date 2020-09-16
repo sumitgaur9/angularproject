@@ -68,7 +68,7 @@ public nurseListData:any=[];
 
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.localStorage.getItem("currentusermedata"));
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
     this.createBookLabTestform.patchValue({
       patientNname: this.currentUser.user.name,
       patientEmail: this.currentUser.user.email,
