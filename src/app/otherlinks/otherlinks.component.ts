@@ -13,39 +13,25 @@ declare var $: any;
 })
 export class OtherlinksComponent implements OnInit {
 
-public errorMessage:string='';
+  public errorMessage: string = '';
   public showDiseasMasterPopup: boolean = false;
   public showExpertiesMasterPopup: boolean = false;
-  public showSaveImageForWebPopup:boolean=false;
-
+  public showSaveImageForWebPopup: boolean = false;
   public showMedicineMasterPopup: boolean = false;
-
   public showBookAppointmentPopup: boolean = false;
-
-
   public showCreateLabTestPopup: boolean = false;
-
-  public showCreateLabTestPackageMasterPopup: boolean = false;
   public showSaveBookLabTestPopup: boolean = false;
+  public showChangePasswordPopup: boolean = false;
+
   public currentUser;
 
-  public showChangePasswordPopup:boolean=false;
-
-
-/****************for image********************* */
+  /****************for image********************* */
   public testimageform = new FormGroup({
     image: new FormControl("")
   });
-
   public uploadResult = "";
   public UploadFile = [];
   public UploadFileName = "";
-
-  /********************** */
-
-
-
-
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -54,12 +40,25 @@ public errorMessage:string='';
   }
 
   uploadFile(fileInput) {
-    if (fileInput.length === 0) { 
+    if (fileInput.length === 0) {
       return;
-     }
+    }
     this.uploadResult = "";
     this.UploadFile = <Array<File>>fileInput.target.files;
     this.UploadFileName = this.UploadFile[0].name;
+  }
+
+  public closeBookAppointmentPopup() {
+    this.showBookAppointmentPopup = false;
+    $('#showphyscoprofileformpopup').modal('hide');
+  }
+
+  public openBookAppointmentPopup() {
+    this.showBookAppointmentPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showphyscoprofileformpopup').modal('show');
+    }, 100);
   }
 
   public closeDiseasMasterPopup() {
@@ -75,7 +74,6 @@ public errorMessage:string='';
     }, 100);
   }
 
-
   public closeExpertiesMasterPopup() {
     this.showExpertiesMasterPopup = false;
     $('#showphyscoprofileformpopup').modal('hide');
@@ -88,21 +86,6 @@ public errorMessage:string='';
       $('#showphyscoprofileformpopup').modal('show');
     }, 100);
   }
-
-
-  public closeBookAppointmentPopup() {
-    this.showBookAppointmentPopup = false;
-    $('#showphyscoprofileformpopup').modal('hide');
-  }
-
-  public openBookAppointmentPopup() {
-    this.showBookAppointmentPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showphyscoprofileformpopup').modal('show');
-    }, 100);
-  }
-
 
   public closeMedicineMaster() {
     this.showMedicineMasterPopup = false;
@@ -117,21 +100,20 @@ public errorMessage:string='';
     }, 100);
   }
 
-
-
-  public closeCreateLabTestPackageMaster() {
-    this.showCreateLabTestPackageMasterPopup = false;
-    $('#showCreateLabTestPackageMasterPopup').modal('hide');
+  public openPharmacistDashboard() {
+    this.router.navigate(['/pharmacistdashboard']);
   }
 
-  public openCreateLabTestPackageMaster() {
-    this.showCreateLabTestPackageMasterPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showCreateLabTestPackageMasterPopup').modal('show');
-    }, 100);
+  public openPatientDashboard() {
+    this.router.navigate(['/patientdashboard']);
   }
 
+  public openGetLabTest() {
+    this.router.navigate(['/getlabtest']);
+  }
+  public openGetLabPackageTest() {
+    this.router.navigate(['/getlabtestpackagelist']);
+  }
 
   public closeSaveBookLabTestMaster() {
     this.showSaveBookLabTestPopup = false;
@@ -146,37 +128,16 @@ public errorMessage:string='';
     }, 100);
   }
 
-
-  public openDoctorDashboard() {
-    this.router.navigate(['/doctordashboard']);
-  }
   public openNurseDashboard() {
     this.router.navigate(['/nursedashboard']);
   }
+
   public openLabTechnicianList() {
     this.router.navigate(['/labtechnician']);
   }
 
   public openLabTechnicianDashboard() {
     this.router.navigate(['/labtechniciandashboard']);
-  }
-
-  
-  
-  
-
-  public openPharmacistDashboard() {
-    this.router.navigate(['/pharmacistdashboard']);
-  }
-  public openPatientDashboard() {
-    this.router.navigate(['/patientdashboard']);
-  }
-
-  public openGetLabTest() {
-    this.router.navigate(['/getlabtest']);
-  }
-  public openGetLabPackageTest() {
-    this.router.navigate(['/getlabtestpackagelist']);
   }
 
   public closeChangePasswordPopup() {
@@ -191,7 +152,6 @@ public errorMessage:string='';
       $('#showChangePasswordPopup').modal('show');
     }, 100);
   }
-  
 
   public closeSaveImageForWebPopup() {
     this.showSaveImageForWebPopup = false;
@@ -205,11 +165,10 @@ public errorMessage:string='';
       $('#showSaveImageForWebPopup').modal('show');
     }, 100);
   }
-  
 
-
-
-
+  public openDoctorDashboard() {
+    this.router.navigate(['/doctordashboard']);
+  }
 
   Save_Image() {
     this.errorMessage = "";

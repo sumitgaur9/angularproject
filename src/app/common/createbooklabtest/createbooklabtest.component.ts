@@ -88,7 +88,7 @@ public nurseListData:any=[];
     };
 
     this.Get_PatientsList();
-    this.Get_LabTestsPackage();
+    this.Get_LabTestsPackageList();
     this.Get_LabTestsList();
     this.Get_NursesList();
   }
@@ -248,12 +248,12 @@ this.createBookLabTestform.patchValue(
 
 
 
-  Get_LabTestsPackage() {
+Get_LabTestsPackageList() {
     let dataobj = {
     };
-    this._apiservice.Get_LabTestsPackage(dataobj).subscribe(data => {
+    this._apiservice.Get_LabTestsPackageList(dataobj).subscribe(data => {
       if (data) {
-        console.log("Get_LabTestsPackage is ", data);
+        console.log("Get_LabTestsPackageList is ", data);
         this.testPackageListData = data;
       }
     }, error => {

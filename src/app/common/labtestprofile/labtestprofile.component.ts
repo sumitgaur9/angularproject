@@ -17,25 +17,15 @@ export class LabtestprofileComponent implements OnInit {
   @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
 
   public formMode:string='';
-
   public CloseModal(calllistapi) {
     this.ClosePopup.emit(calllistapi);
   }
-  
   public submitted = false;
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-
-
   public expertiesArrayData:any=[];
-  
-
   public currentUser;
-
-
-
   public sampleTypeListData=[{"name":"blood"},{"name":"muscus"},{"name":"urine"}]
-
   public createlabtestform = new FormGroup({
     testName: new FormControl(""),
     sampleType: new FormControl(""),
@@ -45,20 +35,11 @@ export class LabtestprofileComponent implements OnInit {
     description: new FormControl(""),
     id: new FormControl(""),
   });
-
-
-
   public passwordPatternError = false;
-
-
-
-  /************************** */
-
   public uploadreportdatainput: any;
   public testimageform = new FormGroup({
     image: new FormControl("")
   });
-
   public uploadResult = "";
   public UploadFile = [];
   public UploadFileName = "";
@@ -207,8 +188,6 @@ export class LabtestprofileComponent implements OnInit {
     });
   }
 
-
-
   uploadFile(fileInput) {
     if (fileInput.length === 0) {
       return;
@@ -231,6 +210,4 @@ export class LabtestprofileComponent implements OnInit {
     }
     this.getImageValue = result;
   }
-
-
 }

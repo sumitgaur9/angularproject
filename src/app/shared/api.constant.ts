@@ -48,9 +48,9 @@ export const API_PATH: any = {
     'Get_PharmaReqByPhamacistID': 'Get_PharmaReqByPhamacistID',
     'Get_AppointmentsByPatientID': 'Get_AppointmentsByPatientID',
     'Get_LabTestsList': 'Get_LabTestsList',
-    'Save_LabTestsPackage': 'Save_LabTestsPackage',
     'Save_Image': 'api/photo',
     'Get_LabTestsPackage': 'Get_LabTestsPackage',
+    'Get_LabTestsPackageList': 'Get_LabTestsPackageList',
     'Save_BookLabTest': 'Save_BookLabTest',
     'Save_LabTest': 'Save_LabTest',
     'Get_CommonDashboardCount': 'Get_CommonDashboardCount',
@@ -79,7 +79,9 @@ export const API_PATH: any = {
     'Delete_LabTechnician': 'Delete_LabTechnician',
     'Update_LabTest': 'Update_LabTest',
     'Get_LabTest': 'Get_LabTest',
-    'SaveUpdate_LabTestsPackage': 'SaveUpdate_LabTestsPackage',
+    'Update_LabTestsPackage': 'Update_LabTestsPackage',
+    'Save_LabTestsPackage': 'Save_LabTestsPackage',
+    'Get_LabTestPackage': 'Get_LabTestPackage',
 }
 
 export const PATTERN_ERROR_MESSAGE = {

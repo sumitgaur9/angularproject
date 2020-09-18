@@ -79,19 +79,10 @@ export class RegistrationComponent implements OnInit {
       }
     }, error => {
        if (error && error.status==501) {
-        this.toastr.error(error.error.message);
+        this.toastr.success(error.error.message,'', {
+          timeOut: 8000,
+        });
         this.isVisibleSendOTPbutton = true;
-      }
-      // else if (error && error.error && error.error.message) {
-      //   this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-      // }
-      else if (error && error.error && error.error.code===11000) {
-        if(error.error.keyValue && error.error.keyValue.email){
-          this.errorMessage = error.error.keyValue.email+ ' is an InActive account registered with us.';
-           this.toastr.error(this.errorMessage);
-           this.isVisibleSendOTPbutton = true;
-           this.inActiveEmailID = error.error.keyValue.email;
-        }
       }
       else if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);

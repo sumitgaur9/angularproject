@@ -458,14 +458,7 @@ export class APIService {
       }));
   }
 
-  Save_LabTestsPackage(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTestsPackage}`
-    //let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Image}`
-    return this.http.post<any>(APIURL, data)
-      .pipe(map(userData => {
-        return userData;
-      }));
-  }
+ 
 
   Save_BookLabTest(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_BookLabTest}`
@@ -475,8 +468,8 @@ export class APIService {
       }));
   }
   
-  Get_LabTestsPackage(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackage}`
+  Get_LabTestsPackageList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackageList}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -739,8 +732,32 @@ export class APIService {
         return resdata;
       }));
   }
-  
-  
+
+  Save_LabTestsPackage(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTestsPackage}`
+    //let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Image}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  Update_LabTestsPackage(data,labtestpackageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTestsPackage +'/'+labtestpackageid}`
+     return this.http.put<any>(APIURL, data)
+       .pipe(map(userData => {
+         return userData;
+       }));
+   }
+   Get_LabTestsPackage(params,labtestpackageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackage+'/'+labtestpackageid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
   
 }
 

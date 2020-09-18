@@ -95,9 +95,6 @@ export class BooklabtestComponent implements OnInit {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
-
-
-
   public closeLabTestProfilePopup(calllistapi) {
     this.showLabTestProfilePopup = false;
     $('#showLabTestProfilePopup').modal('hide');

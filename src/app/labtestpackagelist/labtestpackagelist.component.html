@@ -1,7 +1,6 @@
-
-  <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
+<div class="container mt-2" style="position:absolute;top:17%;left:7%;">
     <div style="margin-bottom:1%;">
-      <!-- <a class="btn btn-primary" (click)="openLabTestPackageProfilePopup()" *ngIf="currentUser.user.role==1">Welcome to see book lab test list</a> -->
+      <a class="btn btn-primary" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" (click)="openLabTestPackageProfilePopup()">Welcome to see Lab Test Package</a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
@@ -15,8 +14,6 @@
               {{data.packageAmount.toLocaleString('en-IN')}}</label>
             
           </h5>
-          <!-- <p class="card-text" *ngIf="data.description">
-            {{data.description.length > 50 ? data.description.substring(0,95)+'...' : data.description  }}</p> -->
             <div style="float:left;width:100%">
               <div style="float:left;width:96%" class="card-title1">
                <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
@@ -33,15 +30,10 @@
     </div>
   </div>
  
-
-
   <div *ngIf="showConfirmationPopup">
     <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
     </app-confirmation>
   </div>
-
-
-  
   
   <div *ngIf="showLabTestPackageProfilePopup">
     <app-labtestpackageprofile [showModal]="showLabTestPackageProfilePopup" [getlabtestpackageid]="getlabtestpackageid"
