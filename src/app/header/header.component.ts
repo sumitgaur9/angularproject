@@ -12,7 +12,6 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
-
   unsubscribe;
   public showHelpAndSupportPopup = false;
   public isUserLoggedIn = false;
@@ -22,9 +21,8 @@ export class HeaderComponent implements OnInit {
   public showRequestPatMedHomeDelivery: boolean = false;
   public showPharmacistVisitCompleteIntimation: boolean = false;
   public showVisitForAll: boolean = false;
-  public showChangePasswordPopup:boolean=false;
-  public showSaveImageForWebPopup:boolean=false;
-
+  public showChangePasswordPopup: boolean = false;
+  public showSaveImageForWebPopup: boolean = false;
   public currentUser;
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
@@ -35,26 +33,21 @@ export class HeaderComponent implements OnInit {
         this.currentLoggedUserData = userSubs.user;
         this.username = userSubs.user.name;
         this.userme();
-
       } else {
         this.isUserLoggedIn = false;
         this.currentLoggedUserData = {};
         this.username = '';
       }
     });
-
-
   }
 
   ngOnInit() {
   }
 
-
   logout() {
     let dataparam: any = {};
     this._apiservice.logout(dataparam).subscribe(data => {
       // if (data) {
-
       this.router.navigate(['/login']);
       // }
     }, error => {
@@ -73,7 +66,6 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-
 
   public closeRequestPatMedHomeDelivery() {
     this.showRequestPatMedHomeDelivery = false;
@@ -112,7 +104,6 @@ export class HeaderComponent implements OnInit {
     }, 100);
   }
 
-
   public closeChangePasswordPopup() {
     this.showChangePasswordPopup = false;
     $('#showChangePasswordPopup').modal('hide');
@@ -125,7 +116,6 @@ export class HeaderComponent implements OnInit {
       $('#showChangePasswordPopup').modal('show');
     }, 100);
   }
-  
 
   public closeSaveImageForWebPopup() {
     this.showSaveImageForWebPopup = false;
@@ -140,13 +130,10 @@ export class HeaderComponent implements OnInit {
     }, 100);
   }
 
-
-
   showSuccess() {
     this.toastr.success('thanks for being my friend mr gauri');
   }
 
- 
   navigatetopage(menuname) {
     switch (menuname) {
       case 'home':
@@ -191,10 +178,6 @@ export class HeaderComponent implements OnInit {
           this.router.navigate(['/login']);
         }
         break;
-
     }
-
-
   }
-
 }
