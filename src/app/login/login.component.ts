@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { APIService } from 'src/app/service/api.service';
 import { LoginError } from 'src/app/shared/api.constant'
-
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 declare var $: any;
@@ -20,19 +19,16 @@ export class LoginComponent implements OnInit {
   public submitted: boolean = false;
   public errorMessage: string = "";
   passwordType = 'password';
-
-  public showForgotPasswordPopup:boolean=false;
-  public showVerifyOTPPopup:boolean=false;
-  public showPasswordSetupPopup:boolean=false;
-
-  public inputForVerifyOTP:any={};
+  public showForgotPasswordPopup: boolean = false;
+  public showVerifyOTPPopup: boolean = false;
+  public showPasswordSetupPopup: boolean = false;
+  public inputForVerifyOTP: any = {};
   public loginInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   });
 
-
-  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     localStorage.clear();
@@ -41,7 +37,6 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginInfo.controls; }
 
   loginUser() {
-    //this.GenerateOTP();
     this.submitted = true;
     if (this.loginInfo.invalid) {
       return;
@@ -60,30 +55,13 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-      if(this.errorMessage==LoginError.inactiveUserMSG)
-      {
+      if (this.errorMessage == LoginError.inactiveUserMSG) {
         this.toastr.error(error.error.message);
         this.router.navigate(['/registration'])
       }
 
     });
   }
-
-
-  GenerateOTP() {
-   let dataobj={
-     "email": this.loginInfo.controls.email.value
-   }
-    this._apiservice.GenerateOTP(dataobj).subscribe(data => {
-      if (data) {
-        console.log("OTP Data is this..", data);
-      }
-    }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-    });
-  }
-
-
 
   navigateToSpecificPage(roleType) {
     switch (roleType) {
@@ -96,7 +74,7 @@ export class LoginComponent implements OnInit {
       case 2:
       case 3:
       case 11:
-        case 5:
+      case 5:
         this.router.navigate(['/home']);
         break;
       case 4:
@@ -107,7 +85,22 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
+  GenerateOTP() {
+    this.submitted = true;
+    let dataobj = {
+      "email": this.inputForVerifyOTP.userEmail
+    }
+    this._apiservice.GenerateOTP(dataobj).subscribe(data => {
+      if (data) {
+        console.log("OTP Data is this..", data);
+        this.inputForVerifyOTP.OTPAPIValue = data.response.OTP;
+        this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
+        this.openVerifyOTPPopup();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
   public closeForgotPasswordPopup() {
     this.showForgotPasswordPopup = false;
     $('#showForgotPasswordPopup').modal('hide');
@@ -121,14 +114,10 @@ export class LoginComponent implements OnInit {
     }, 100);
   }
 
-
-
   forgotPasswordSet(value) {
-    console.log("valuevaluevalue",value);
-    this.inputForVerifyOTP.userEmail=value.userEmail;
-     this.inputForVerifyOTP.OTPAPIValue=value.OTPAPIValue;
-   this.closeForgotPasswordPopup();
-   this.openVerifyOTPPopup();
+    this.inputForVerifyOTP.userEmail = value.userEmail;
+    this.closeForgotPasswordPopup();
+    this.GenerateOTP();
   }
 
   public openVerifyOTPPopup() {
@@ -138,20 +127,20 @@ export class LoginComponent implements OnInit {
       $('#showVerifyOTPPopup').modal('show');
     }, 100);
   }
- 
-   public closeVerifyOTPPopup() {
-     this.showVerifyOTPPopup = false;
-     $('#showVerifyOTPPopup').modal('hide');
-   }
 
-   verifyOTPSet(email) {
-    console.log("valuevaluevalue",email);
-    this.inputForVerifyOTP.userEmail=email;
-    this.closeVerifyOTPPopup();
-   this.openPasswordSetupPopup();
+  public closeVerifyOTPPopup() {
+    this.showVerifyOTPPopup = false;
+    $('#showVerifyOTPPopup').modal('hide');
   }
 
-   public closePasswordSetupPopup() {
+  verifyOTPSet(email) {
+    console.log("valuevaluevalue", email);
+    this.inputForVerifyOTP.userEmail = email;
+    this.closeVerifyOTPPopup();
+    this.openPasswordSetupPopup();
+  }
+
+  public closePasswordSetupPopup() {
     this.showPasswordSetupPopup = false;
     $('#showPasswordSetupPopup').modal('hide');
   }
@@ -163,9 +152,5 @@ export class LoginComponent implements OnInit {
       $('#showPasswordSetupPopup').modal('show');
     }, 100);
   }
-
-
-
-
 }
 

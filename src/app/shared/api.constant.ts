@@ -103,6 +103,15 @@ export const LoginError={
     inactiveUserMSG:'Login failed! This is an InActive Account !! To Deactivate, register with same credentials'
 }
 
+export const RegistrationMsg={
+    activateAccountHint:'You are just one step away to accessing your account please click on Send OTP to Reg button'
+}
+
+export const VerifyOTP={
+    sendMobileNoStartMsg:'OTP is sent to ********',
+    sendMobileNoEndMsg:' mobile no'
+}
+
 
 export const firebase= {
     apiKey: "AIzaSyClG70mchAMak7Y3iJi-RfZsOQWcG52oWw",

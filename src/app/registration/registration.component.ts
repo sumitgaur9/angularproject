@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { APIService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { UtililtyFunctions } from 'src/app/utils/utils';
+import { RegistrationMsg } from 'src/app/shared/api.constant'
+
 declare var $: any;
 
 
@@ -13,23 +15,21 @@ declare var $: any;
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  public errorMessage: string = '';
 
-  //emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  public errorMessage: string = '';
   phoneNumberPattern = "^\\d{10}$";
-//    email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
 
   public submitted: boolean = false;
   code;
-  isInvalidCaptcha:boolean = false;
-  isVisibleSendOTPbutton:boolean = false;
+  isInvalidCaptcha: boolean = false;
+  isVisibleSendOTPbutton: boolean = false;
   inActiveEmailID = '';
-  public showForgotPasswordPopup:boolean=false;
-  public showVerifyOTPPopup:boolean=false;
-  public showPasswordSetupPopup:boolean=false;
-
-  public inputForVerifyOTP:any={}
-
+  public showForgotPasswordPopup: boolean = false;
+  public showVerifyOTPPopup: boolean = false;
+  public showPasswordSetupPopup: boolean = false;
+  public inActiveUserRegisterMsg: string = '';
+  public responseOTP: string = '';
+  public inputForVerifyOTP: any = {}
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
     this.createCaptcha();
   }
 
-  constructor(private router: Router,private utilityservice:UtililtyFunctions, private _apiservice: APIService, private toastr: ToastrService) { }
+  constructor(private router: Router, private utilityservice: UtililtyFunctions, private _apiservice: APIService, private toastr: ToastrService) { }
 
   registration() {
     this.errorMessage = '';
@@ -62,7 +62,7 @@ export class RegistrationComponent implements OnInit {
     }
     this.submitted = true;
     this.isInvalidCaptcha = false;
-    if(!this.validateCaptcha()){
+    if (!this.validateCaptcha()) {
       this.isInvalidCaptcha = true;
       return;
     }
@@ -78,10 +78,11 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     }, error => {
-       if (error && error.status==501) {
-        this.toastr.success(error.error.message,'', {
+      if (error && error.status == 501) {
+        this.toastr.success(error.error.message, '', {
           timeOut: 8000,
         });
+        this.inActiveUserRegisterMsg = RegistrationMsg.activateAccountHint;
         this.isVisibleSendOTPbutton = true;
       }
       else if (error && error.error && error.error.message) {
@@ -95,15 +96,71 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  openOTPpopup(){
-    alert("OTP sent to "+this.inActiveEmailID)
+  GenerateOTP() {
+    this.submitted = true;
+    let dataobj = {
+      "email": this.userInfo.value.email
+    }
+    this._apiservice.GenerateOTP(dataobj).subscribe(data => {
+      if (data) {
+        console.log("OTP Data is this..", data);
+        this.inputForVerifyOTP.userEmail = this.userInfo.value.email;
+        this.inputForVerifyOTP.OTPAPIValue = data.response.OTP;
+        this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
+        this.openVerifyOTPPopup();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  getMessage(formcontrol: any, formControlName: any, fieldDisplayName: string) {
+    return this.utilityservice.getErrorMessage(formcontrol, formControlName, fieldDisplayName);
+  }
+
+  public closeForgotPasswordPopup() {
+    this.showForgotPasswordPopup = false;
+    $('#showForgotPasswordPopup').modal('hide');
+  }
+
+  public openVerifyOTPPopup() {
+    this.showVerifyOTPPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVerifyOTPPopup').modal('show');
+    }, 100);
+  }
+
+  public closeVerifyOTPPopup() {
+    this.showVerifyOTPPopup = false;
+    $('#showVerifyOTPPopup').modal('hide');
+  }
+
+  verifyOTPSet(email) {
+    console.log("valuevaluevalue", email);
+    this.inputForVerifyOTP.userEmail = email;
+    this.closeVerifyOTPPopup();
+    this.openPasswordSetupPopup();
+  }
+
+  public closePasswordSetupPopup() {
+    this.showPasswordSetupPopup = false;
+    $('#showPasswordSetupPopup').modal('hide');
+  }
+
+  public openPasswordSetupPopup() {
+    this.showPasswordSetupPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showPasswordSetupPopup').modal('show');
+    }, 100);
   }
 
   createCaptcha() {
     //clear the contents of captcha div first 
     document.getElementById('captcha').innerHTML = "";
     var charsArray =
-    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
     var lengthOtp = 6;
     var captcha = [];
     for (var i = 0; i < lengthOtp; i++) {
@@ -131,74 +188,11 @@ export class RegistrationComponent implements OnInit {
     let docelement = document.getElementById("cpatchaTextBox") as HTMLInputElement
     if (docelement.value == this.code) {
       return true;
-    }else{
+    } else {
       this.createCaptcha();
       return false;
     }
   }
-  
-
-  getMessage(formcontrol: any, formControlName: any, fieldDisplayName: string) {
-    // if(formControlName=='billingRate' && this.addForm.controls.clientContractStatus.value == 'fp')
-    // {
-    //   fieldDisplayName = 'Fixed price';
-    // }
-    return this.utilityservice.getErrorMessage(formcontrol, formControlName, fieldDisplayName);
-  }
-
-  public closeForgotPasswordPopup() {
-    this.showForgotPasswordPopup = false;
-    $('#showForgotPasswordPopup').modal('hide');
-  }
-
-  public openForgotPasswordPopup() {
-    this.showForgotPasswordPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showForgotPasswordPopup').modal('show');
-    }, 100);
-  }
-
-
-
-  forgotPasswordSet(value) {
-    console.log("valuevaluevalue",value);
-    this.inputForVerifyOTP.userEmail=value.userEmail;
-     this.inputForVerifyOTP.OTPAPIValue=value.OTPAPIValue;
-   this.closeForgotPasswordPopup();
-   this.openVerifyOTPPopup();
-  }
-
-  public openVerifyOTPPopup() {
-    this.showVerifyOTPPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVerifyOTPPopup').modal('show');
-    }, 100);
-  }
- 
-   public closeVerifyOTPPopup() {
-     this.showVerifyOTPPopup = false;
-     $('#showVerifyOTPPopup').modal('hide');
-   }
-
-   verifyOTPSet(email) {
-    console.log("valuevaluevalue",email);
-    this.inputForVerifyOTP.userEmail=email;
-    this.closeVerifyOTPPopup();
-   this.openPasswordSetupPopup();
-  }
-
-   public closePasswordSetupPopup() {
-    this.showPasswordSetupPopup = false;
-    $('#showPasswordSetupPopup').modal('hide');
-  }
-
-  public openPasswordSetupPopup() {
-    this.showPasswordSetupPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showPasswordSetupPopup').modal('show');
-    }, 100);
-  }
 }
+  // email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
+  //emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";

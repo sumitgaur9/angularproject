@@ -1,7 +1,7 @@
 
 import { APIService } from 'src/app/service/api.service';
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Validators, FormGroup, FormControl,FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VALUE_CONSTANTS } from './../../utils/values.constants';
 import { ToastrService } from 'ngx-toastr';
@@ -15,68 +15,55 @@ declare var $: any;
   styleUrls: ['./forgotpassword.component.css']
 })
 export class ForgotpasswordComponent implements OnInit, OnDestroy {
-
- // @ViewChild("confirmPass", {static:false}) confirmPassField: ElementRef;
-
+  // @ViewChild("confirmPass", {static:false}) confirmPassField: ElementRef;
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
-  @Input() calledFrom:string;
-
-
-  
-  public showVerifyForgotPasswordPopup:boolean=false;
-
+  @Input() calledFrom: string;
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
-
-
-
- CloseModal() {
+  CloseModal() {
     this.ClosePopup.emit();
   }
 
- submitted = false;
+  submitted = false;
   errorMessage = '';
-  public inputForVerifyOTP:any={}
-
-  public responseOTP:string='';
-  //emailPattern = '^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$';
-
-
- forgotPasswordInfo = new FormGroup({
-  email: new FormControl("", [Validators.required, Validators.pattern(VALUE_CONSTANTS.emailPattern)]),
+  public showVerifyForgotPasswordPopup: boolean = false;
+  public inputForVerifyOTP: any = {}
+  passwordPatternError = false;
+  public responseOTP: string = '';
+  forgotPasswordInfo = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.pattern(VALUE_CONSTANTS.emailPattern)]),
   });
-
-
   passwordVerifyInfo = new FormGroup({
     Otp: new FormControl("", [Validators.required]),
     newPassword: new FormControl("", [Validators.required]),
   });
-  
 
-
-
-
-
-
- passwordPatternError = false;
-
-  constructor(private router: Router,private fb: FormBuilder, private toastr: ToastrService, private _apiservice: APIService, private el: ElementRef) { }
+  constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, private _apiservice: APIService, private el: ElementRef) { }
 
   ngOnInit() {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.CloseModal();
   }
-
-  ngAfterViewInit(){
-   // this.confirmPassField.nativeElement.focus();
-  }
-
   get f() { return this.passwordVerifyInfo.controls; }
 
   get forgotPWD() { return this.forgotPasswordInfo.controls; }
+
+  public closeVerifyForgotPasswordPopup() {
+    this.showVerifyForgotPasswordPopup = false;
+    $('#showVerifyForgotPasswordPopup').modal('hide');
+  }
+
+  public openVerifyOTPPopup() {
+    this.inputForVerifyOTP.userEmail = this.forgotPasswordInfo.controls.email.value;
+    this.forgotPasswordSet.emit(this.inputForVerifyOTP);
+  }
+
+  ngAfterViewInit() {
+    // this.confirmPassField.nativeElement.focus();
+  }
 
 
   // setUserPassword() {
@@ -110,100 +97,6 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   //  {
   //   this.submitted = false;
   //  }
-
-
-   GenerateOTP() {
-    // this.responseOTP="2222";
-    // this.openVerifyOTPPopup();
-    this.submitted = true;
-    if (this.forgotPasswordInfo.invalid) {
-      for (const key of Object.keys(this.forgotPasswordInfo.controls)) {
-        if (this.forgotPasswordInfo.controls[key].invalid) {
-          const invalidControl = this.el.nativeElement.querySelector('[formcontrolname="' + key + '"]');
-          invalidControl.focus();
-          this.forgotPasswordInfo.markAllAsTouched();
-          break;
-        }
-      }
-      return;
-    }
-    let dataobj={
-      "email": this.forgotPasswordInfo.controls.email.value
-    }
-     this._apiservice.GenerateOTP(dataobj).subscribe(data => {
-       if (data) {
-         console.log("OTP Data is this..", data);
-        this.responseOTP=data.response.OTP;
-        this.openVerifyOTPPopup();
-        //this.CloseModal();
-       //  this.openVerifyForgotPasswordPopup();
-       }
-     }, error => {
-       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-     });
-   }
-
-   forgotPassword() {
-    this.errorMessage = '';
-    this.submitted = true;
-    if (this.passwordVerifyInfo.controls['Otp'].value != this.responseOTP) {
-      this.toastr.error('Please Enter Correct OTP', '', {
-        timeOut: 5000
-      });
-      return;
-    }
-    this.passwordPatternError = false;
-    let values:any = {};    
-    values['newPassword'] = this.passwordVerifyInfo.controls.newPassword.value;
-    values['email'] = this.forgotPasswordInfo.controls.email.value; 
-      this._apiservice.ForgotPassword(values).subscribe(data => {
-      if (data) {
-        this.toastr.success('You have successfully changed your password', '', {
-          timeOut: 5000
-        });
-        this.closeVerifyForgotPasswordPopup();
-                  this.CloseModal();
-
-      }
-
-    }, error => {
-      if (error && error.error && error.error.message) {
-        this.toastr.error(error.error.message, '', {
-          timeOut: 5000
-        });
-      }     
-    });
-  }
-
-
-  public closeVerifyForgotPasswordPopup() {
-    this.showVerifyForgotPasswordPopup = false;
-    $('#showVerifyForgotPasswordPopup').modal('hide');
-  }
-
- 
-
-  // public openVerifyOTPPopup() {
-  //   this.inputForVerifyOTP.userEmail=this.forgotPasswordInfo.controls.email.value;
-  //   this.inputForVerifyOTP.calledfrom="login";
-  //   this.inputForVerifyOTP.OTPAPIValue=this.responseOTP;
-  //   this.inputForVerifyOTP.calledFrom=this.calledFrom;
-
-    
-  //   this.showVerifyOTPPopup = true;
-  //   setTimeout(() => {
-  //     $(window).scrollTop(0);
-  //     $('#showVerifyOTPPopup').modal('show');
-  //   }, 100);
-  // }
-
-
-  public openVerifyOTPPopup() {
-    this.inputForVerifyOTP.userEmail=this.forgotPasswordInfo.controls.email.value;
-    this.inputForVerifyOTP.OTPAPIValue=this.responseOTP;
-    this.forgotPasswordSet.emit(this.inputForVerifyOTP);
-  }
-
 }
 
 

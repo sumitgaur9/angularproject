@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { VerifyOTP } from 'src/app/shared/api.constant'
+
 declare var $: any;
 
 @Component({
@@ -10,15 +12,14 @@ declare var $: any;
 })
 export class VerifyotpComponent implements OnInit {
 
-
-  @Input() inputForVerifyOTP:any;
-  @Input() showModal:string;
-
+  @Input() inputForVerifyOTP: any;
+  @Input() showModal: string;
+  @Output() verifyOTPSet: EventEmitter<any> = new EventEmitter();
   @Output() ClosePopup = new EventEmitter();
 
-  public submitted:boolean=false;
-  
-  @Output() verifyOTPSet: EventEmitter<any> = new EventEmitter();
+  public submitted: boolean = false;
+  public sendMobileNoStartMsg = VerifyOTP.sendMobileNoStartMsg;
+  public sendMobileNoEndMsg = VerifyOTP.sendMobileNoEndMsg;
 
   CloseModal() {
     this.ClosePopup.emit();
@@ -38,19 +39,15 @@ export class VerifyotpComponent implements OnInit {
       userEmail: this.inputForVerifyOTP.userEmail
     });
   }
-  verifyOTPContinueBtnClick()
-  {
+  verifyOTPContinueBtnClick() {
     if (this.VerifyOTPInfo.controls['otp'].value != this.inputForVerifyOTP.OTPAPIValue) {
       this.toastr.error('Please Enter Correct OTP', '', {
         timeOut: 5000
       });
       return;
     }
-    else
-    {
+    else {
       this.verifyOTPSet.emit(this.inputForVerifyOTP.userEmail)
-     // this.CloseModal();
     }
   }
-  
 }

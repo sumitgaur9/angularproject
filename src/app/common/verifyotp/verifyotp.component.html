@@ -14,7 +14,10 @@
           <div class="formSection">
             <div class="col-12" style="margin-top:3%">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="margin-bottom: 8px;">
+                      <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="inputForVerifyOTP.regMobileNo!=''">
+                        <em style="color: red;">{{sendMobileNoStartMsg}}{{inputForVerifyOTP.regMobileNo.substring(8)}}{{sendMobileNoEndMsg}}</em>
+                      </div>
                         <div class="form-group">
                             <span class="has-float-label">
                                 <input disabled class="form-control" id="userEmail"  formControlName="userEmail"  type="text" placeholder="Registered email id" />
