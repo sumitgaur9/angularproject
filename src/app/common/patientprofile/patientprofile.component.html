@@ -1,4 +1,4 @@
-<form [formGroup]="patientform" (ngSubmit)="Update_PatientProfile()"  enctype="multipart/form-data">
+<form [formGroup]="patientform" (ngSubmit)="callUpdataAPI()"  enctype="multipart/form-data">
 
     <ad-modal [title]="'OTP'" [modalId]="'showpatientformpopup'">
       <ad-modal-body>

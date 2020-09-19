@@ -44,7 +44,7 @@
 
 
   <div *ngIf="showpatientformpopup">
-      <app-patientprofile [showModal]="showpatientformpopup" [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup($event)"> </app-patientprofile>
+      <app-patientprofile [calledFrom]="'frompatientlistpage'" [showModal]="showpatientformpopup" [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup($event)"  (patientProfileResponseReturn)="patientProfileResponseReturn($event)"> </app-patientprofile>
     </div>
 
     <div *ngIf="showConfirmationPopup">

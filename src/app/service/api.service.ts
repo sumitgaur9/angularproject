@@ -758,6 +758,15 @@ export class APIService {
         return resdata;
       }));
   }
+
+  Save_NewPatientProfileFromBookAppointment(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_NewPatientProfileFromBookAppointment}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  
   
 }
 

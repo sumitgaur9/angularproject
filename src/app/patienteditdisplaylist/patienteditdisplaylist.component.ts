@@ -45,7 +45,13 @@ export class PatienteditdisplaylistComponent implements OnInit {
   }
 
   public openPatientProfilePopup(id?) {
-    this.getpatientprofileid=id;
+    if(id==undefined || id==null ||id=='')
+    {
+      this.getpatientprofileid =this.currentUser.roleBaseId;
+    }
+    else{
+      this.getpatientprofileid=id;
+    }
     this.showpatientformpopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
@@ -103,6 +109,11 @@ export class PatienteditdisplaylistComponent implements OnInit {
     if (updateListRequired) {
       this.Delete_PatientProfile(this.getpatientprofileid);
     }
+  }
+
+  patientProfileResponseReturn(value)
+  {
+    //no use here but used in bookappointment and booklabtest
   }
 
 

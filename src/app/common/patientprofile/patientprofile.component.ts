@@ -13,9 +13,13 @@ export class PatientprofileComponent implements OnInit {
 
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
-  @Input() getpatientprofileid:string='';
+  @Input() calledFrom: string = '';
+
+  @Input() getpatientprofileid: string = '';
 
   @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
+  @Output() patientProfileResponseReturn: EventEmitter<any> = new EventEmitter();
+
 
   public CloseModal(calllistapi) {
     this.ClosePopup.emit(calllistapi);
@@ -28,7 +32,7 @@ export class PatientprofileComponent implements OnInit {
 
   public patientform = new FormGroup({
     name: new FormControl(""),
-    newimage: new FormControl(), 
+    newimage: new FormControl(),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
     disease: new FormControl(""),
@@ -43,22 +47,25 @@ export class PatientprofileComponent implements OnInit {
   public passwordPatternError = false;
 
 
-  public uploadreportdatainput:any;
+  public uploadreportdatainput: any;
   public testimageform = new FormGroup({
     image: new FormControl("")
   });
-  
+
   public uploadResult = "";
   public UploadFile = [];
   public UploadFileName = "";
   getImageValue;
 
-  constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
-    this.Get_PatientProfile();
-
+      if(this.getpatientprofileid!=undefined&& this.getpatientprofileid!=null && this.getpatientprofileid!='')
+      {
+        alert("helloo");
+        this.Get_PatientProfile();   
+      }
   }
 
 
@@ -66,83 +73,68 @@ export class PatientprofileComponent implements OnInit {
 
 
   Get_PatientProfile() {
-    let dataobj={
+    let dataobj = {
     };
-    let patientid=this.currentUser.roleBaseId;
-    if(this.currentUser.user.role==11)
-    {
-      patientid=this.getpatientprofileid;
-    }
-    this._apiservice.Get_PatientProfile(dataobj,patientid).subscribe(data => {
+    let patientid = this.getpatientprofileid;
+    this._apiservice.Get_PatientProfile(dataobj, patientid).subscribe(data => {
       if (data) {
-        console.log("data",data);
-        if(data.name!=undefined)
-        {
+        console.log("data", data);
+        if (data.name != undefined) {
           this.patientform.patchValue({
             name: data.name
           });
         }
-        if(data.email!=undefined)
-        {
+        if (data.email != undefined) {
           this.patientform.patchValue({
             email: data.email
           });
         }
-        if(data.image!=undefined)
-        {
+        if (data.image != undefined) {
           this.patientform.patchValue({
-            image: data.image            
+            image: data.image
           });
         }
-        if(data.newimage!=undefined && data.newimage.data!=undefined)
-        {
+        if (data.newimage != undefined && data.newimage.data != undefined) {
           this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
-          
+
           this.patientform.patchValue({
-            newimage: data.newimage            
+            newimage: data.newimage
           });
         }
 
-        if(data.disease!=undefined)
-        {
+        if (data.disease != undefined) {
           this.patientform.patchValue({
             disease: data.disease
           });
         }
-        if(data.phoneno!=undefined)
-        {
+        if (data.phoneno != undefined) {
           this.patientform.patchValue({
             phoneno: data.phoneno
           });
         }
-        if(data.address!=undefined)
-        {
+        if (data.address != undefined) {
           this.patientform.patchValue({
             address: data.address
           });
         }
-        if(data.qualification!=undefined)
-        {
+        if (data.qualification != undefined) {
           this.patientform.patchValue({
             qualification: data.qualification
           });
         }
-        if(data._id!=undefined)
-        {
+        if (data._id != undefined) {
           this.patientform.patchValue({
             id: data._id
           });
         }
-        if(data.description!=undefined)
-        {
+        if (data.description != undefined) {
           this.patientform.patchValue({
             description: data.description
           });
         }
 
 
-        if(data.participantID!=undefined)
-        {
+        if (data.participantID != undefined) {
           this.patientform.patchValue({
             participantID: data.participantID
           });
@@ -155,6 +147,64 @@ export class PatientprofileComponent implements OnInit {
   }
 
 
+  callUpdataAPI() {
+    // if (this.calledFrom == 'frompatientlistpage') {
+    //   this.Update_PatientProfile();
+    // }
+    // else {
+    //   if(this.currentUser.role<1)
+    //   {
+    //     this.Update_PatientProfile();
+    //   }
+    //   else
+    //   {
+    //     this.Save_NewPatientProfileFromBookAppointment();
+    //   }
+    // }
+    if(this.getpatientprofileid!=undefined&& this.getpatientprofileid!=null && this.getpatientprofileid!='')
+    {
+      this.Update_PatientProfile();
+    }
+    else{
+      this.Save_NewPatientProfileFromBookAppointment();
+    }
+  }
+
+  Save_NewPatientProfileFromBookAppointment() {
+    this.submitted = true;
+    // if (this.patientform.invalid) {
+    //   return;
+    // }
+    this.errorMessage = "";
+    let values = this.patientform.value;
+
+    var formData = new FormData();
+    formData.append('image', '');
+    if (this.UploadFile.length && this.UploadFileName) {
+      formData.append('newimage', this.UploadFile[0], this.UploadFileName);
+    } else {
+      formData.append('newimage', '');
+    }
+    formData.append('name', this.patientform.value.name);
+    formData.append('email', this.patientform.value.email);
+    formData.append('phoneno', this.patientform.value.phoneno);
+    formData.append('disease', this.patientform.value.disease);
+    formData.append('qualification', this.patientform.value.qualification);
+    formData.append('address', this.patientform.value.address);
+    formData.append('id', this.patientform.value.id);
+    formData.append('participantID', this.patientform.value.participantID);
+    formData.append('description', this.patientform.value.description);
+    this._apiservice.Save_NewPatientProfileFromBookAppointment(formData).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data.data);
+        this.toastr.success('thanks to being a part of our platform');
+        this.patientProfileResponseReturn.emit(data.patient)
+        this.CloseModal(true);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
   Update_PatientProfile() {
     this.submitted = true;
     if (this.patientform.invalid) {
@@ -165,9 +215,9 @@ export class PatientprofileComponent implements OnInit {
 
     var formData = new FormData();
     formData.append('image', '');
-    if(this.UploadFile.length && this.UploadFileName){
+    if (this.UploadFile.length && this.UploadFileName) {
       formData.append('newimage', this.UploadFile[0], this.UploadFileName);
-    } else{
+    } else {
       formData.append('newimage', '');
     }
     formData.append('name', this.patientform.value.name);
@@ -180,10 +230,11 @@ export class PatientprofileComponent implements OnInit {
     formData.append('participantID', this.patientform.value.participantID);
     formData.append('description', this.patientform.value.description);
 
-    this._apiservice.Update_PatientProfile(formData,this.patientform.value.id).subscribe(data => {
+    this._apiservice.Update_PatientProfile(formData, this.patientform.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks to being a part of our platform');
+        this.patientProfileResponseReturn.emit(data.pat)
         this.CloseModal(true);
       }
     }, error => {
@@ -191,37 +242,37 @@ export class PatientprofileComponent implements OnInit {
     });
   }
 
-  
-uploadFile(fileInput) {
-  if (fileInput.length === 0) {
-    return;
+
+  uploadFile(fileInput) {
+    if (fileInput.length === 0) {
+      return;
+    }
+    this.uploadResult = "";
+    this.UploadFile = <Array<File>>fileInput.target.files;
+    this.UploadFileName = this.UploadFile[0].name;
+
+    this.main();
+
   }
-  this.uploadResult = "";
-  this.UploadFile = <Array<File>>fileInput.target.files;
-  this.UploadFileName = this.UploadFile[0].name;
 
- this.main();
-
-}
-
-async main() {
-  const files = document.querySelector('#myfile') as HTMLInputElement;
-  const file = files.files[0];
-  const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
-  if(result instanceof Error) {
-     console.log('Error: ', result.message);
-     return;
+  async main() {
+    const files = document.querySelector('#myfile') as HTMLInputElement;
+    const file = files.files[0];
+    const result = await this.utilityservice.toBase64(file).catch(e => Error(e));
+    if (result instanceof Error) {
+      console.log('Error: ', result.message);
+      return;
+    }
+    this.getImageValue = result;
   }
-  this.getImageValue = result;
-}
 
 
 
 
 
 
-arrayBufferToBase64(buffer) {
-  return this.utilityservice.arrayBufferToBase64(buffer);
- 
-}
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+
+  }
 }
