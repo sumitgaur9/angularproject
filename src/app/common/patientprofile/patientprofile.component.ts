@@ -63,7 +63,6 @@ export class PatientprofileComponent implements OnInit {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
       if(this.getpatientprofileid!=undefined&& this.getpatientprofileid!=null && this.getpatientprofileid!='')
       {
-        alert("helloo");
         this.Get_PatientProfile();   
       }
   }
