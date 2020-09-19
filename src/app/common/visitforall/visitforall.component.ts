@@ -68,7 +68,7 @@ export class VisitforallComponent implements OnInit {
     dataobj= this.visitforallform.value;
     dataobj.appointmentId=this.appointmentid;
     dataobj.bookLabTestId=this.bookLabTestId;
-    dataobj.role=2;
+    dataobj.role=this.currentUser.user.role
 
     this._apiservice.Save_VisitCompleteIntimation(dataobj).subscribe(data => {
       if (data) {
