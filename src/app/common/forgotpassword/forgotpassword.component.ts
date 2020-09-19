@@ -19,6 +19,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() calledFrom: string;
+  @Input() email: string='';  
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
   CloseModal() {
@@ -42,6 +43,9 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, private _apiservice: APIService, private el: ElementRef) { }
 
   ngOnInit() {
+    this.forgotPasswordInfo.patchValue({
+      email: this.email
+    });
   }
 
   ngOnDestroy() {

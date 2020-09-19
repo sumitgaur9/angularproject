@@ -65,7 +65,7 @@
 </div>
 
 <div *ngIf="showForgotPasswordPopup">
-	<app-forgotpassword  [calledFrom]="'login'" [showModal]="showForgotPasswordPopup"  (ClosePopup)="closeForgotPasswordPopup()" (forgotPasswordSet)="forgotPasswordSet($event)"> </app-forgotpassword>
+	<app-forgotpassword  [calledFrom]="'login'" [showModal]="showForgotPasswordPopup" [email]="f.email.value" (ClosePopup)="closeForgotPasswordPopup()" (forgotPasswordSet)="forgotPasswordSet($event)"> </app-forgotpassword>
   </div>
   
 
