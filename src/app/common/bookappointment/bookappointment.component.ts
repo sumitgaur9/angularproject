@@ -67,8 +67,8 @@ export class BookappointmentComponent implements OnInit {
     format: "DD/MM/YYYY",
     monthFormat: "MMMM, YYYY",
     firstDayOfWeek: "mo",
-    min: "01/07/2020",
-    max: "30/08/2020"
+    min: "01/09/2020",
+    max: "30/11/2020"
   };
   textareaValue: string = '';
 
