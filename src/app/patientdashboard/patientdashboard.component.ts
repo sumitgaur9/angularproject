@@ -162,14 +162,14 @@ export class PatientdashboardComponent implements OnInit {
 
   public closeBookAppointmentPopup() {
     this.showBookAppointmentPopup = false;
-    $('#showphyscoprofileformpopup').modal('hide');
+    $('#showBookAppointmentPopup').modal('hide');
   }
 
   public openBookAppointmentPopup() {
     this.showBookAppointmentPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showphyscoprofileformpopup').modal('show');
+      $('#showBookAppointmentPopup').modal('show');
     }, 100);
   }
 
