@@ -33,6 +33,7 @@ export class BookappointmentComponent implements OnInit {
   public appointmentTypeData = [{ "name": "HomeVisit" }, { "name": "Online" }]
   public patientListData:any=[];
 
+  public visiblePatientNameSelect: boolean = false;
 
   public bookAppointmentForm = new FormGroup({
     patientNname: new FormControl(""),
@@ -81,6 +82,12 @@ export class BookappointmentComponent implements OnInit {
 
     if (this.currentUserMeRes.user && this.currentUserMeRes.user._id && this.currentUserLoginResponse.user.role < 1) {
       this.updatePatientDetails(this.currentUserMeRes.user);  //for admin no need to updatepatientdetail
+    }
+
+    if (this.currentUserLoginResponse.user && this.currentUserLoginResponse.user.role == 11) {
+      this.visiblePatientNameSelect = true;
+    } else {
+      this.visiblePatientNameSelect = false;
     }
   }
 

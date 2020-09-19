@@ -33,9 +33,9 @@
     <div class="card-body">
 
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="visiblePatientNameSelect">
         <label for="exampleFormControlSelect1">Patient Nname</label>
-        <select class="form-control" formControlName="patientID" (change)="patientNameChangeEvent($event)">
+        <select class="form-control"  formControlName="patientID" (change)="patientNameChangeEvent($event)">
             <option value=""></option>
             <option *ngFor="let opt of patientListData" [value]="opt._id">{{opt.name}}</option>
       </select>
