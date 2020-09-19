@@ -42,6 +42,7 @@ export class CreatebooklabtestComponent implements OnInit {
   public passwordPatternError = false;
   public expertiesArrayData: any = [];
   public sampleTypeListData = [{ "name": "package" }, { "name": "individual" }]
+  public visiblePatientNameSelect: boolean = false;
 
   public createBookLabTestform = new FormGroup({
     patientNname: new FormControl(""),
@@ -72,6 +73,13 @@ export class CreatebooklabtestComponent implements OnInit {
     if (this.currentUserMeRes.user && this.currentUserMeRes.user._id && this.currentUserLoginResponse.user.role < 1) {
       this.updatePatientDetails(this.currentUserMeRes.user);   //for admin no need to updatepatientdetail
     }
+
+    if (this.currentUserLoginResponse.user && this.currentUserLoginResponse.user.role == 11) {
+      this.visiblePatientNameSelect = true;
+    } else {
+      this.visiblePatientNameSelect = false;
+    }
+
     this.labTestData = [];
     this.selectedItems = [];
     this.settings = {
