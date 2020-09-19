@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   public showChangePasswordPopup: boolean = false;
   public showSaveImageForWebPopup: boolean = false;
   public currentUser;
+  public nameFirstChar:string='';
+
+  //public userNameDisplay:string="nidhi Bansal";
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -42,6 +45,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    if(this.currentUser!=undefined)
+    {
+      this.username = this.currentUser.user.name;
+      this.nameFirstChar = this.currentUser.user.name ? this.currentUser.user.name.substr(0, 1) : '';
+
+    }
   }
 
   logout() {
@@ -179,5 +189,10 @@ export class HeaderComponent implements OnInit {
         }
         break;
     }
+  }
+
+
+  ngOnDestroy() {
+   // this.unsubscribe.unsubscribe();
   }
 }

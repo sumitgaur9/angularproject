@@ -108,6 +108,10 @@ export class OtherlinksComponent implements OnInit {
     this.router.navigate(['/patientdashboard']);
   }
 
+  public openDoctorDashboard() {
+    this.router.navigate(['/doctordashboard']);
+  }
+
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }
@@ -166,9 +170,7 @@ export class OtherlinksComponent implements OnInit {
     }, 100);
   }
 
-  public openDoctorDashboard() {
-    this.router.navigate(['/doctordashboard']);
-  }
+ 
 
   Save_Image() {
     this.errorMessage = "";

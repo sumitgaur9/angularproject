@@ -489,8 +489,8 @@ export class APIService {
   }
 
   
-  Get_DiseaseWiseApptCount(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DiseaseWiseApptCount}`
+  Get_DiseaseWiseApptCount(params,doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DiseaseWiseApptCount +'/'+doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -499,8 +499,8 @@ export class APIService {
       }));
   }
 
-  Get_MonthlyHomeOnlineApptCount(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MonthlyHomeOnlineApptCount}`
+  Get_MonthlyHomeOnlineApptCount(params,doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MonthlyHomeOnlineApptCount+'/'+doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -509,8 +509,8 @@ export class APIService {
       }));
   }
   
-  Get_MedicineWiseApptCount(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicineWiseApptCount}`
+  Get_MedicineWiseApptCount(params,doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicineWiseApptCount+'/'+doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -520,8 +520,8 @@ export class APIService {
   }
 
   
-  Get_PharmacistWiseApptCount(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistWiseApptCount}`
+  Get_PharmacistWiseApptCount(params,doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistWiseApptCount+'/'+doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {

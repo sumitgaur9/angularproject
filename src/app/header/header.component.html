@@ -18,9 +18,24 @@
           </div>
 
           <div class="dropdown show" style="position: absolute;right: 0px;">
-            <a class="btn btn-secondary dropdown-toggle" style="background-color:white;color:black;border:transparent" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{username}}Admin
+            <!-- <a class="btn btn-secondary dropdown-toggle" style="background-color:white;color:black;border:transparent" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{username}}
+            </a> -->
+
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" style="background-color:white;color:black;border:transparent;float: right;
+            margin-right: 16px">
+              
+              <div style="width:100%;float:left;"></div>
+              <div style="width:30%;float:left;margin-right: 2px;">
+                <span class="namefirstchar" *ngIf="nameFirstChar">{{nameFirstChar}}</span> 
+
+              </div>
+              <div style="width:60%;float:left;">
+                <label style="cursor: pointer;" *ngIf="username">{{username}}</label>
+
+              </div>
             </a>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" (click)="openChangePasswordPopup()">Change Password</a>
               <a class="dropdown-item"  (click)="openSaveImageForWebPopup()">Image Upload</a>

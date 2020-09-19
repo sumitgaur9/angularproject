@@ -227,8 +227,13 @@ public completeDoctorVisitData:any=[];
   }
 
   Get_DiseaseWiseApptCount() {
-    let dataobj = {}
-    this._apiservice.Get_DiseaseWiseApptCount(dataobj).subscribe(data => {
+    let dataobj = {};
+    let doctorID='';
+    if(this.currentUser.user.role!=11)
+    {
+    doctorID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_DiseaseWiseApptCount(dataobj,doctorID).subscribe(data => {
       if (data) {
         this.diseaseWiseApptCount=data;
         if(this.diseaseWiseApptCount && this.diseaseWiseApptCount.length>0)
@@ -236,15 +241,17 @@ public completeDoctorVisitData:any=[];
           for(var i=0;i<this.diseaseWiseApptCount.length;i++)
           {
             this.pieChartLabels.push(this.diseaseWiseApptCount[i].diseaseName);
-            if(i==1)
-            {
-              this.pieChartData.push(4);
+            this.pieChartData.push(this.diseaseWiseApptCount[i].apptCount);
 
-            }
-            else
-            {
-              this.pieChartData.push(this.diseaseWiseApptCount[i].apptCount);
-            }
+            // if(i==1)
+            // {
+            //   this.pieChartData.push(4);
+
+            // }
+            // else
+            // {
+            //   this.pieChartData.push(this.diseaseWiseApptCount[i].apptCount);
+            // }
           }
         }
         console.log("  this.diseaseWiseApptCount  this.diseaseWiseApptCount",  this.diseaseWiseApptCount)
@@ -256,7 +263,12 @@ public completeDoctorVisitData:any=[];
 
   Get_MedicineWiseApptCount() {
     let dataobj = {}
-    this._apiservice.Get_MedicineWiseApptCount(dataobj).subscribe(data => {
+    let doctorID='';
+    if(this.currentUser.user.role!=11)
+    {
+    doctorID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_MedicineWiseApptCount(dataobj,doctorID).subscribe(data => {
       if (data) {
         this.medicineWiseApptCount=data;
         if(this.medicineWiseApptCount && this.medicineWiseApptCount.length>0)
@@ -264,15 +276,17 @@ public completeDoctorVisitData:any=[];
           for(var i=0;i<this.medicineWiseApptCount.length;i++)
           {
             this.doughnutChartLabels.push(this.medicineWiseApptCount[i].medicineName);
-            if(i==1)
-            {
-              this.doughnutChartData.push(4);
+            this.doughnutChartData.push(this.medicineWiseApptCount[i].apptCount);
 
-            }
-            else
-            {
-              this.doughnutChartData.push(this.medicineWiseApptCount[i].apptCount);
-            }
+            // if(i==1)
+            // {
+            //   this.doughnutChartData.push(4);
+
+            // }
+            // else
+            // {
+            //   this.doughnutChartData.push(this.medicineWiseApptCount[i].apptCount);
+            // }
           }
         }
         console.log("  this.medicineWiseApptCount  this.medicineWiseApptCount",  this.medicineWiseApptCount)
@@ -284,8 +298,13 @@ public completeDoctorVisitData:any=[];
   }
 
   Get_PharmacistWiseApptCount() {
-    let dataobj = {}
-    this._apiservice.Get_PharmacistWiseApptCount(dataobj).subscribe(data => {
+    let dataobj = {};
+    let doctorID='';
+    if(this.currentUser.user.role!=11)
+    {
+    doctorID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_PharmacistWiseApptCount(dataobj,doctorID).subscribe(data => {
       if (data) {
         this.pharmacistWiseApptCount=data;
         if(this.pharmacistWiseApptCount && this.pharmacistWiseApptCount.length>0)
@@ -293,15 +312,17 @@ public completeDoctorVisitData:any=[];
           for(var i=0;i<this.pharmacistWiseApptCount.length;i++)
           {
             this.pieChartPharmacistLabels.push(this.pharmacistWiseApptCount[i].pharmacistName);
-            if(i==1)
-            {
-              this.pieChartPharmacistData.push(4);
+            this.pieChartPharmacistData.push(this.pharmacistWiseApptCount[i].apptCount);
 
-            }
-            else
-            {
-              this.pieChartPharmacistData.push(this.pharmacistWiseApptCount[i].apptCount);
-            }
+            // if(i==1)
+            // {
+            //   this.pieChartPharmacistData.push(4);
+
+            // }
+            // else
+            // {
+            //   this.pieChartPharmacistData.push(this.pharmacistWiseApptCount[i].apptCount);
+            // }
           }
         }
       
@@ -314,8 +335,13 @@ public completeDoctorVisitData:any=[];
   }
 
   Get_MonthlyHomeOnlineApptCount() {
-    let dataobj = {}
-    this._apiservice.Get_MonthlyHomeOnlineApptCount(dataobj).subscribe(data => {
+    let dataobj = {};
+    let doctorID='';
+    if(this.currentUser.user.role!=11)
+    {
+    doctorID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_MonthlyHomeOnlineApptCount(dataobj,doctorID).subscribe(data => {
       if (data) {
         this.monthlyHomeOnlineApptCount=data;
         var lablehomevisitdataandseriesname:any={
@@ -331,8 +357,13 @@ public completeDoctorVisitData:any=[];
           for(var i=0;i<this.monthlyHomeOnlineApptCount.length;i++)
           {
             this.barChartLabels.push(this.monthlyHomeOnlineApptCount[i].Month);
-            this.barChartData[0].data.push(i*1);
-            this.barChartData[1].data.push(i*2);
+          //  this.barChartData[0].data.push(i*1);
+          //  this.barChartData[1].data.push(i*2);
+
+            this.barChartData[0].data.push(this.monthlyHomeOnlineApptCount[i].HomeVisitCount);
+            this.barChartData[1].data.push(this.monthlyHomeOnlineApptCount[i].OnlineConsultationCount);
+
+
             // lablehomevisitdataandseriesname.data.push(this.monthlyHomeOnlineApptCount[i].HomeVisitCount)
             // lableOnlineConsultationCountdataandseriesname.data.push(this.monthlyHomeOnlineApptCount[i].OnlineConsultationCount)
           }

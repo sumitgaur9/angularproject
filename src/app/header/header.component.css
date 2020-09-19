@@ -124,3 +124,18 @@ nav.main-menu .navbar-toggle {
         top: -2px;
     }
 }
+
+.namefirstchar
+{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    background: #015aac;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+    margin-right: 15px;
+}
