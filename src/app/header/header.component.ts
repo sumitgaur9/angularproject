@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
     {
       this.username = this.currentUser.user.name;
       this.nameFirstChar = this.currentUser.user.name ? this.currentUser.user.name.substr(0, 1) : '';
-
+      this.nameFirstChar = this.nameFirstChar.toUpperCase();
     }
   }
 
