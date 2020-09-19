@@ -329,10 +329,12 @@ export class CreatebooklabtestComponent implements OnInit {
       patientID: patientdetail._id,
     });
 
-    this.textareaValue = `Pat. Name: ${patientdetail.name}
-    Pat. Email: ${patientdetail.email}
-    Pat. Phone: ${patientdetail.phoneno}
-    Pat. Add: ${patientdetail.address}`;
+    this.textareaValue = 
+  `  ----Patient Details----
+  Name: ${patientdetail.name}
+  Email: ${patientdetail.email}
+  Phone: ${patientdetail.phoneno}
+  Add: ${patientdetail.address}`;
 
     this.getpatientprofileid = this.createBookLabTestform.controls.patientID.value;   //for sending in patient profile popup
   }
