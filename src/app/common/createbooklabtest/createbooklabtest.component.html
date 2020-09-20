@@ -43,7 +43,7 @@
 
 
                           <div class="form-group" *ngIf="visiblePatientNameSelect">
-                            <label for="exampleFormControlSelect1">Patient Nname</label>
+                            <label for="exampleFormControlSelect1">Patient Name</label>
                             <select class="form-control" formControlName="patientID" (change)="patientNameChangeEvent($event)">
                                 <option value=""></option>
                                 <option *ngFor="let opt of patientListData" [value]="opt._id">{{opt.name}}</option>
