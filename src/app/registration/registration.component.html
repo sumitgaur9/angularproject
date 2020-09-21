@@ -73,7 +73,7 @@
                     <option value="3"> Physio</option>
                     <option value="4"> Pharmacist</option>
                     <option value="5"> Lab Technician</option>
-                    <option value="11"> Admin</option>
+                    <!-- <option value="11"> Admin</option> -->  <!-- Don't commit this option to live, we will only register admin profile from localhost -->
                   </select>
                   <div *ngIf="submitted && userInfo.controls.role.invalid">
                     <div *ngIf="f.role.errors.required" style="color:red;font-size: 14px;font-family: auto;">
