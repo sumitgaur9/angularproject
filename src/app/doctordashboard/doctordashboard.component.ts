@@ -401,5 +401,7 @@ public completeDoctorVisitData:any=[];
     this.Get_AppointmentsByDocID();
   }
 
+  
+
 }
 
