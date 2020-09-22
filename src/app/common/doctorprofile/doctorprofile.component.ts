@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant'
+
+
+
 
 @Component({
   selector: 'app-doctorprofile',
@@ -56,7 +60,7 @@ export class DoctorprofileComponent implements OnInit {
   public uploadResult = "";
   public UploadFile = [];
   public UploadFileName = "";
-  getImageValue;
+  public getImageValue;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -107,6 +111,10 @@ export class DoctorprofileComponent implements OnInit {
           this.doctorform.patchValue({
             newimage: data.newimage
           });
+        }
+        else
+        {
+          this.getImageValue=defaultImage.link;
         }
         if (data.experties != undefined) {
           this.doctorform.patchValue({

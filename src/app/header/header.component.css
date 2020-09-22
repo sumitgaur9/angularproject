@@ -139,3 +139,9 @@ nav.main-menu .navbar-toggle {
     font-weight: 700;
     margin-right: 15px;
 }
+
+.dropdownText {
+    display: inline-block;
+    margin: 0;
+}
+
