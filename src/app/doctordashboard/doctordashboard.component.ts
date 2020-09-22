@@ -352,6 +352,7 @@ public completeDoctorVisitData:any=[];
           data:[],
           label:'OnlineConsultationCount',
         }
+
         if(this.monthlyHomeOnlineApptCount && this.monthlyHomeOnlineApptCount.length>0)
         {
           for(var i=0;i<this.monthlyHomeOnlineApptCount.length;i++)
@@ -359,7 +360,6 @@ public completeDoctorVisitData:any=[];
             this.barChartLabels.push(this.monthlyHomeOnlineApptCount[i].Month);
           //  this.barChartData[0].data.push(i*1);
           //  this.barChartData[1].data.push(i*2);
-
             this.barChartData[0].data.push(this.monthlyHomeOnlineApptCount[i].HomeVisitCount);
             this.barChartData[1].data.push(this.monthlyHomeOnlineApptCount[i].OnlineConsultationCount);
 
