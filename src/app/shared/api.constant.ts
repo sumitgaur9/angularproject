@@ -114,6 +114,11 @@ export const VerifyOTP={
     sendMobileNoEndMsg:' mobile no'
 }
 
+export const defaultImage={
+    link:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU'
+}
+
+
 
 export const firebase= {
     apiKey: "AIzaSyClG70mchAMak7Y3iJi-RfZsOQWcG52oWw",
