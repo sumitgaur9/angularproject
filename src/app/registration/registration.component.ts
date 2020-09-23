@@ -29,7 +29,8 @@ export class RegistrationComponent implements OnInit {
   public showPasswordSetupPopup: boolean = false;
   public inActiveUserRegisterMsg: string = '';
   public responseOTP: string = '';
-  public inputForVerifyOTP: any = {}
+  public inputForVerifyOTP: any = {};
+  public phoneNoCountryCode:string='+91';
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),

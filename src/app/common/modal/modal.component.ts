@@ -19,6 +19,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
         jQuery('.modal-footer').css({"display":"block"});
         jQuery('.modal-footer').css({"padding":"0"});
         jQuery('.modal-dialog.popupModel').css({"max-width":"800px"});
+        jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
+
       } else {
        jQuery('.modal-footer').css({"display":"flex"});
        jQuery('.modal-footer').css({"padding":"0.75rem"});

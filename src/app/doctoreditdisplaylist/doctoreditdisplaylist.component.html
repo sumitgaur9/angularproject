@@ -7,7 +7,7 @@
     <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
       <div class="card item-card card-block" style="padding: 2% 2%;">
         <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
-          src="../../assets/images/default.png" alt="Photo of sunset">
+          src="{{getDefaultImage}}" alt="Photo of sunset">
         <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
           src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
         <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;">Dr. {{data.name}} ({{data.experties}})

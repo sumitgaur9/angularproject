@@ -96,9 +96,19 @@
               <div class="row" style="margin-bottom:15px;">
                 <div class="col" style="margin-left:15px;">
                   <label  for="lname" style="padding-left:2px;">Phone Number:</label>
-
-                  <input class="form-control" id="tel" type="tel" maxlength="10" formControlName="phoneno" name="phoneno"
-                  placeholder="Phone Number" />
+                  <div style="width:100%;float:left">
+                    <div style="width:30%;float:left">
+                      <select class="form-control">
+                        <option value="+91" selected> +91</option>
+                      </select>
+                    </div>
+                    <div style="width:70%;float:left">
+                      <input class="form-control" id="tel" type="tel" maxlength="10" formControlName="phoneno" name="phoneno"
+                      placeholder="Phone Number" />
+                    </div>
+                  </div>
+             
+               
                 <div *ngIf="submitted">
                   <div style="color:red;font-size: 14px;font-family: auto;">
                     {{getMessage(userInfo.controls['phoneno'],'phoneno','Phoe No')}}</div>
