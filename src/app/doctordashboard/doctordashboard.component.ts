@@ -186,17 +186,12 @@ public completeDoctorVisitData:any=[];
 
 
   Get_AppointmentsByDocID() {
-    let doctorid = this.currentUser.roleBaseId;//"5f2e69e9afc7cc00045f7ccf";
-    
     let dataobj={
       doctorID:this.currentUser.roleBaseId,
       sortBy:this.usersParams.sortBy,
-
       sortDir:this.usersParams.sortDir
-
-
     }
-    this._apiservice.Get_AppointmentsByDocID(dataobj, doctorid).subscribe(data => {
+    this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
         this.completeDoctorVisitData=data;
         console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID",data)

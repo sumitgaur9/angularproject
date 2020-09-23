@@ -387,7 +387,7 @@ export class APIService {
         return resdata;
       }));
   }
-  Get_AppointmentsByDocID(params,doctorID) {
+  Get_AppointmentsByDocID(params) {
    // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
 
     // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID+'/'+doctorID}`

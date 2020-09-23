@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import { PATTERN_ERROR_MESSAGE } from 'src/app/shared/api.constant'
+import { AppEnum } from 'src/app/shared/app.enum';
+import * as moment from 'moment';
 
 declare var $: any;
 
@@ -115,6 +117,103 @@ export class UtililtyFunctions {
           case 'panNo': return PATTERN_ERROR_MESSAGE.panNo;
           case 'phoneno': return PATTERN_ERROR_MESSAGE.phoneno;
 
+        }
+      }
+      defaultDateDBFormat() {
+        return "1753-01-01 00:00:00";
+      }
+
+      ToDBDateFormat(input) {
+        if (input) {
+          if (input.length == 10) {
+            var dt = moment(input, 'DD/MM/YYYY').format('YYYY/MM/DD');
+            return dt;
+          }
+        }
+        if (this.isAbValidDate(input) == false) {
+          return this.defaultDateDBFormat();
+        }
+        if (input) {
+          var result = new Date(input);
+          if (result) {
+            return this.ToSpecificDateFormat(result, AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
+          }
+        }
+        return this.ToSpecificDateFormat(this.defaultDateDBFormat(), AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
+      }
+    
+      defaultDateDispFormat() {
+        return "01/01/1753";
+      }
+
+
+      ToDisplayDateFormat(input) {
+        if (this.isAbValidDate(input) == false) {
+            return this.defaultDateDispFormat();//change 4/24/2017 for financial period
+        }
+        input = new Date(input);
+        if (input.length == 19) {
+            var dt1 = moment(input).add(0, 'day').format('L')
+            if (this.isAbValidDate(dt1)) {
+                return this.ToSpecificDateFormat(dt1, AppEnum.AbDateTimeType.DD_MM_YYYY);
+            }
+        }
+        var result = new Date(input);
+        if (result) {
+            return this.ToSpecificDateFormat(result, AppEnum.AbDateTimeType.DD_MM_YYYY);
+        }
+
+        return this.ToSpecificDateFormat(this.defaultDateDispFormat(), AppEnum.AbDateTimeType.DD_MM_YYYY);
+    } //OK
+    
+    
+      ToSpecificDateFormat(input, format) {
+        var result = input;
+        try {
+          switch (format) {
+            case AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS:
+              result = moment(input, 'DD/MM/YYYY').format('YYYY-MM-DD');
+              break;
+            case AppEnum.AbDateTimeType.MM_DD_YYYY_HH_mm_ss:
+              result = moment(input, 'DD/MM/YYYY').format('DD/MM/YYYY');
+              break;
+            case AppEnum.AbDateTimeType.DD_MM_YYYY:
+              result = moment(input, 'DD/MM/YYYY').format('DD/MM/YYYY');
+              break;
+            case AppEnum.AbDateTimeType.DD_MM_YY:
+              result = moment(input, 'DD/MM/YYYY').format('dd/MM/yy');
+              break;
+            case AppEnum.AbDateTimeType.MM_DD_YYYY:
+              result = moment(input, 'DD/MM/YYYY').format('MM/dd/yyyy');
+              break;
+            case AppEnum.AbDateTimeType.YYYY_MM_DD:
+              result = moment(input, 'DD/MM/YYYY').format('YYYY-MM-DD');
+              break;
+    
+          }
+        }
+        catch (err) {
+          result = this.defaultDateDispFormat();
+        }
+        return result;
+      }
+    
+      isAbValidDate(input) {
+        //if ((new Date(input) != "Invalid Date") && !isNaN(new Date(input))) {  // to be correct
+        if (input != '') {
+    
+          if (input == '1753-01-01 00:00:00') {
+            return false;
+          }
+          if (new Date(input).getMonth() != undefined) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        else {
+          return false;
         }
       }
 }

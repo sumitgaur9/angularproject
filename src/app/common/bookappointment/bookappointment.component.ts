@@ -32,8 +32,24 @@ export class BookappointmentComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   public appointmentTypeData = [{ "name": "HomeVisit" }, { "name": "Online" }]
   public patientListData:any=[];
+  public  completeTimeSlotDataArray = [
+  { "id": 0,"name":"10-11" },
+  { "id": 1,"name":"11-12" },
+  { "id": 2,"name":"12-01" },
+  { "id": 3,"name":"01-02" },
+  { "id": 4,"name":"02-03" },
+  { "id": 5,"name":"03-04" },
+  { "id": 6,"name":"04-05" },
+  { "id": 7,"name":"05-06" },
+]
+
+  public  filterTimeSlotDataArray = [];
 
   public visiblePatientNameSelect: boolean = false;
+  public doctorWiseAppointmentData:any=[];
+  public completeDoctorWiseAppointmentData:any=[];
+  public availableSlotData:any=[];
+  public disableAvailableTimeSlotBtn:boolean=true;
 
   public bookAppointmentForm = new FormGroup({
     patientNname: new FormControl(""),
@@ -45,10 +61,11 @@ export class BookappointmentComponent implements OnInit {
     diseaseAge: new FormControl(""),
     doctorID: new FormControl(""),
     doctorName: new FormControl(""),
-    appointmentDate: new FormControl(""),
+    appointmentDate: new FormControl({ value: '', disabled: true }, Validators.required),
     appointmentType: new FormControl(""),
     description: new FormControl(""),
      patientID: new FormControl(""),
+     timeSlot: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -56,7 +73,7 @@ export class BookappointmentComponent implements OnInit {
   public diseasListData: any = [];
   public filterDoctorData: any = [];
   public selecteddoctorid;
-  public displayDate = '05/07/2020';
+  public displayDate = '';
   public getImageValue;
   public newArray1: any = [];
   public currentUserLoginResponse;
@@ -79,22 +96,58 @@ export class BookappointmentComponent implements OnInit {
     this.currentUserMeRes = JSON.parse(window.localStorage.getItem("currentusermedata"));
     this.Get_DiseasesList();
     this.Get_PatientsList();
-
     if (this.currentUserMeRes.user && this.currentUserMeRes.user._id && this.currentUserLoginResponse.user.role < 1) {
       this.updatePatientDetails(this.currentUserMeRes.user);  //for admin no need to updatepatientdetail
     }
-
     if (this.currentUserLoginResponse.user && this.currentUserLoginResponse.user.role == 11) {
       this.visiblePatientNameSelect = true;
     } else {
       this.visiblePatientNameSelect = false;
     }
+    this.displayDate=this.utilityservice.ToDisplayDateFormat(new Date());
   }
 
   get f() { return this.bookAppointmentForm.controls; }
 
+
+  Get_AppointmentsByDocID() {
+    let dataobj={
+      doctorID:this.bookAppointmentForm.controls.doctorID.value,
+      appointmentDate:this.utilityservice.ToDBDateFormat(this.bookAppointmentForm.controls.appointmentDate.value),
+    }
+    this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
+      if (data) {
+        if(data.length>0)
+        {
+          this.filterTimeSlotDataArray=[];
+          this.doctorWiseAppointmentData = data.filter(function (item) {
+            return item.isVisitCompleted == false;
+          });
+          for (var i = 0; i < this.completeTimeSlotDataArray.length; i++) {
+            var ispush=true;
+            for (var j = 0; j < this.doctorWiseAppointmentData.length; j++) {
+              if (this.completeTimeSlotDataArray[i].id == this.doctorWiseAppointmentData[j].timeSlot) {
+                ispush=false;
+                break;
+              }
+            }
+            if(ispush)
+            {
+              this.filterTimeSlotDataArray.push(this.completeTimeSlotDataArray[i])
+            }
+          }
+        }
+        else{
+          this.filterTimeSlotDataArray =this.completeTimeSlotDataArray;
+        }
+      }
+     
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
   Save_BookAppointment() {
-    console.log("this.bookAppointmentForm.valuethis.bookAppointmentForm.valuethis.bookAppointmentForm.value", this.bookAppointmentForm.value);
     this.submitted = true;
     if (this.bookAppointmentForm.invalid) {
       return;
@@ -102,8 +155,8 @@ export class BookappointmentComponent implements OnInit {
     this.errorMessage = "";
     let dataobj: any = {};
     dataobj = this.bookAppointmentForm.value;
-    // dataobj.appointmentDate="2020/07/29";
-    dataobj.appointmentDate = this.ToDBDateFormat(dataobj.appointmentDate);
+    dataobj.appointmentDate = this.utilityservice.ToDBDateFormat(dataobj.appointmentDate);
+    dataobj.timeSlot = parseInt(dataobj.timeSlot);
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
       if (data) {
         this.toastr.success('thanks to being a part of our platform');
@@ -114,132 +167,7 @@ export class BookappointmentComponent implements OnInit {
     });
   }
 
-  defaultDateDBFormat() {
-    return "1753-01-01 00:00:00";
-  }
-
-
-  ToDBDateFormat(input) {
-    if (input) {
-      if (input.length == 10) {
-        var dt = moment(input, 'DD/MM/YYYY').format('YYYY/MM/DD');
-        return dt;
-      }
-    }
-    if (this.isAbValidDate(input) == false) {
-      return this.defaultDateDBFormat();
-    }
-    if (input) {
-      var result = new Date(input);
-      if (result) {
-        return this.ToSpecificDateFormat(result, AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
-      }
-    }
-    return this.ToSpecificDateFormat(this.defaultDateDBFormat(), AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS);
-  }
-
-  defaultDateDispFormat() {
-    return "01/01/1753";
-  }
-
-
-  ToSpecificDateFormat(input, format) {
-    var result = input;
-    try {
-      switch (format) {
-        case AppEnum.AbDateTimeType.YYYY_MM_DD_HH_MM_SS:
-          result = moment(input, 'DD/MM/YYYY').format('YYYY-MM-DD');
-          break;
-        case AppEnum.AbDateTimeType.MM_DD_YYYY_HH_mm_ss:
-          result = moment(input, 'DD/MM/YYYY').format('DD/MM/YYYY');
-          break;
-        case AppEnum.AbDateTimeType.DD_MM_YYYY:
-          result = moment(input, 'DD/MM/YYYY').format('DD/MM/YYYY');
-          break;
-        case AppEnum.AbDateTimeType.DD_MM_YY:
-          result = moment(input, 'DD/MM/YYYY').format('dd/MM/yy');
-          break;
-        case AppEnum.AbDateTimeType.MM_DD_YYYY:
-          result = moment(input, 'DD/MM/YYYY').format('MM/dd/yyyy');
-          break;
-        // case AppEnum.AbDateTimeType.hh_mm:
-        //     result = moment(input, 'DD/MM/YYYY').format('hh:MM');
-        //     break;
-        // case AppEnum.AbDateTimeType.hh_mm_24:
-        //     result = moment(input, 'DD/MM/YYYY').format('HH:MM');
-        //     break;
-        // case AppEnum.AbDateTimeType.yyyy:
-        //     result = moment(input, 'DD/MM/YYYY').format('yyyy');
-        //     break;
-        // case AppEnum.AbDateTimeType.yy:
-        //     result = moment(input, 'DD/MM/YYYY').format('yy');
-        //     break;
-        // case AppEnum.AbDateTimeType.y:
-        //     result = moment(input, 'DD/MM/YYYY').format('y');
-        //     break;
-        // case AppEnum.AbDateTimeType.MMMM:
-        //     result = moment(input, 'DD/MM/YYYY').format('MMMM');
-        //     break;
-        // case AppEnum.AbDateTimeType.MMM:
-        //     result = moment(input, 'DD/MM/YYYY').format('MMM');
-        //     break;
-        // case AppEnum.AbDateTimeType.MM:
-        //     result = moment(input, 'DD/MM/YYYY').format('MM');
-        //     break;
-        // case AppEnum.AbDateTimeType.M:
-        //     result = moment(input, 'DD/MM/YYYY').format('M');
-        //     break;
-        // case AppEnum.AbDateTimeType.dd:
-        //     result = moment(input, 'DD/MM/YYYY').format('dd');
-        //     break;
-        // case AppEnum.AbDateTimeType.d:
-        //     result = moment(input, 'DD/MM/YYYY').format('d');
-        //     break;
-        // case AppEnum.AbDateTimeType.EEEE:
-        //     result = moment(input, 'DD/MM/YYYY').format('EEEE');
-        //     break;
-        // case AppEnum.AbDateTimeType.EEE:
-        //     result = moment(input, 'DD/MM/YYYY').format('EEE');
-        //     break;
-        // case AppEnum.AbDateTimeType.HH:
-        //     result = moment(input, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS');
-        //     break;
-        // case AppEnum.AbDateTimeType.H:
-        //     result = moment(input, 'DD/MM/YYYY').format('HH');
-        //     break;
-        // case AppEnum.AbDateTimeType.hh:
-        //     result = moment(input, 'DD/MM/YYYY').format('hh');
-        //     break;
-        case AppEnum.AbDateTimeType.YYYY_MM_DD:
-          result = moment(input, 'DD/MM/YYYY').format('YYYY-MM-DD');
-          break;
-
-      }
-    }
-    catch (err) {
-      result = this.defaultDateDispFormat();
-    }
-    return result;
-  }
-
-  isAbValidDate(input) {
-    //if ((new Date(input) != "Invalid Date") && !isNaN(new Date(input))) {  // to be correct
-    if (input != '') {
-
-      if (input == '1753-01-01 00:00:00') {
-        return false;
-      }
-      if (new Date(input).getMonth() != undefined) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-    else {
-      return false;
-    }
-  }
+ 
 
   Get_DiseasesList() {
     let dataobj = {
@@ -267,6 +195,12 @@ export class BookappointmentComponent implements OnInit {
 
   doctorChangeEvent($event) {
     this.getImageValue = '';
+    this.disableAvailableTimeSlotBtn=false;
+    this.bookAppointmentForm.controls.appointmentDate.enable();
+    this.bookAppointmentForm.controls.appointmentDate.updateValueAndValidity();
+    this.bookAppointmentForm.patchValue({
+      appointmentDate:''
+    })
     this.newArray1 = this.filterDoctorData.filter(function (item) {
       return item.name == $event.target.value;
     });
@@ -305,7 +239,6 @@ export class BookappointmentComponent implements OnInit {
     };
     this._apiservice.Get_PatientsList(dataobj).subscribe(data => {
       if (data) {
-        console.log("Get_PatientsList is ", data);
         this.patientListData = data;
       }
     }, error => {
