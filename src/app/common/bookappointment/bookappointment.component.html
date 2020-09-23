@@ -50,26 +50,7 @@
         </div>
       </div>
       
-      <div class="form-group">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
-          </div>
-          <input class="form-control" type="text" [dpDayPicker]="dayPickerConfig" [theme]="'dp-material'"
-            formControlName="appointmentDate" [mode]="'day'" [displayDate]="displayDate" placeholder="Appointment Date" />
-        </div>
-      </div>
-
-   
-
-
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Time Slot</label>
-        <select class="form-control"  formControlName="timeSlot">
-            <option value=""></option>
-            <option *ngFor="let opt of filterTimeSlotDataArray" [value]="opt.id">{{opt.name}}</option>
-      </select>
-      </div>
+      
 
 
 
@@ -80,6 +61,13 @@
             <option value=""></option>
             <option *ngFor="let opt of appointmentTypeData" [value]="opt.name">{{opt.name}}</option>
       </select>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group mb-2">
+          <textarea id="Description" name="Description" formControlName="description" rows="4" cols="30"
+          class="form-control" placeholder="Description"></textarea>
+        </div>
       </div>
 
       <!-- <div class="form-group">
@@ -180,14 +168,7 @@
               <option value=""></option>
               <option *ngFor="let opt of filterDoctorData" [value]="opt.name">{{opt.name}}</option>
         </select>
-        </div>
-
-        <div class="buttonSection">
-          <div class="text-center">
-            <h4 class="bookappointmentbtn">
-              <input type="button" [disabled]="disableAvailableTimeSlotBtn" style="color: white; background-color: #1589d8c7;" value="AvailableTimeSlot" (click)="Get_AppointmentsByDocID()"> </h4>
-            </div>
-        </div>
+        </div>        
 
         <div *ngIf="getImageValue">
           <div style="width: 60%; float: left;">
@@ -200,20 +181,35 @@
           </div>
         </div>
 
-       
+        <div class="form-group">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
+            </div>
+            <input class="form-control" type="text" [dpDayPicker]="dayPickerConfig" [theme]="'dp-material'"
+              formControlName="appointmentDate" [mode]="'day'" [displayDate]="displayDate" placeholder="Appointment Date" />
+          </div>
+        </div>  
+  
+        <div class="buttonSection">
+          <div class="text-center">
+            <h4 class="bookappointmentbtn">
+              <input type="button" [disabled]="disableAvailableTimeSlotBtn" style="color: white; background-color: #1589d8c7;" value="AvailableTimeSlot" (click)="Get_AppointmentsByDocID()"> </h4>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Time Slot</label>
+          <select class="form-control"  formControlName="timeSlot">
+              <option value=""></option>
+              <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked" [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.name}}</option>
+        </select>
+        </div>      
 
       
 </div>
 </div>
-       
-<div class="card-body" style="margin-top: -5%;margin-left: 2%;">
-  <div class="form-group">
-    <div class="input-group mb-2">
-      <textarea id="Description" name="Description" formControlName="description" rows="2" cols="30"
-      class="form-control" placeholder="Description"></textarea>
-    </div>
-  </div>
-</div>
+
 </div>
        
 

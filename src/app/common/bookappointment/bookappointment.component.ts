@@ -32,16 +32,8 @@ export class BookappointmentComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   public appointmentTypeData = [{ "name": "HomeVisit" }, { "name": "Online" }]
   public patientListData:any=[];
-  public  completeTimeSlotDataArray = [
-  { "id": 0,"name":"10-11" },
-  { "id": 1,"name":"11-12" },
-  { "id": 2,"name":"12-01" },
-  { "id": 3,"name":"01-02" },
-  { "id": 4,"name":"02-03" },
-  { "id": 5,"name":"03-04" },
-  { "id": 6,"name":"04-05" },
-  { "id": 7,"name":"05-06" },
-]
+
+  public  completeTimeSlotDataArray = [];
 
   public  filterTimeSlotDataArray = [];
 
@@ -105,6 +97,21 @@ export class BookappointmentComponent implements OnInit {
       this.visiblePatientNameSelect = false;
     }
     this.displayDate=this.utilityservice.ToDisplayDateFormat(new Date());
+
+    this.resetSlotData();
+  }
+
+  resetSlotData(){
+    this.completeTimeSlotDataArray = [
+      { "id": 0,"name":"10:00 AM - 11:00 AM", "isSlotBooked": false },
+      { "id": 1,"name":"11:00 AM - 12:00 PM", "isSlotBooked": false },
+      { "id": 2,"name":"12:00 PM - 01:00PM", "isSlotBooked": false },
+      { "id": 3,"name":"01:00 PM - 02:00PM", "isSlotBooked": false },
+      { "id": 4,"name":"02:00 PM - 03:00PM", "isSlotBooked": false },
+      { "id": 5,"name":"03:00 PM - 04:00PM", "isSlotBooked": false },
+      { "id": 6,"name":"04:00 PM - 05:00PM", "isSlotBooked": false },
+      { "id": 7,"name":"05:00 PM - 06:00PM", "isSlotBooked": false },
+    ]    
   }
 
   get f() { return this.bookAppointmentForm.controls; }
@@ -117,6 +124,7 @@ export class BookappointmentComponent implements OnInit {
     }
     this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
+        this.resetSlotData();
         if(data.length>0)
         {
           this.filterTimeSlotDataArray=[];
@@ -131,10 +139,12 @@ export class BookappointmentComponent implements OnInit {
                 break;
               }
             }
-            if(ispush)
-            {
-              this.filterTimeSlotDataArray.push(this.completeTimeSlotDataArray[i])
+            if (ispush) {
+              this.completeTimeSlotDataArray[i].isSlotBooked = false
+            } else {
+              this.completeTimeSlotDataArray[i].isSlotBooked = true
             }
+            this.filterTimeSlotDataArray.push(this.completeTimeSlotDataArray[i])
           }
         }
         else{
