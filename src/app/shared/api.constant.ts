@@ -114,7 +114,8 @@ export const VerifyOTP={
     sendMobileNoEndMsg:' mobile no'
 }
 export const defaultImage={
-    link:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU'
+    userlink:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU',
+    doctorlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png'
 }
 
 

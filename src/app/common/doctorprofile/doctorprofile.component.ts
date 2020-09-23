@@ -114,7 +114,7 @@ export class DoctorprofileComponent implements OnInit {
         }
         else
         {
-          this.getImageValue=defaultImage.link;
+          this.getImageValue=defaultImage.doctorlink;
         }
         if (data.experties != undefined) {
           this.doctorform.patchValue({
