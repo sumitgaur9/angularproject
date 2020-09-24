@@ -163,6 +163,7 @@ export class PatientdashboardComponent implements OnInit {
   public closeBookAppointmentPopup() {
     this.showBookAppointmentPopup = false;
     $('#showBookAppointmentPopup').modal('hide');
+    this.Get_AppointmentsByPatientID();
   }
 
   public openBookAppointmentPopup() {
