@@ -1,0 +1,75 @@
+    <div class="col-md-6 offset-md-3" style="position: absolute;top:3%">
+        <span class="anchor" id="formPayment"></span>
+        <hr class="my-5">
+        <div class="card card-outline-secondary">
+            <div class="card-body">
+                <h3 class="text-center">Razor Pay Payment</h3>
+                <hr>
+                <form class="form"  autocomplete="off" [formGroup]="paymentform" (ngSubmit)="proceedToPay()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" disabled placeholder="Name"
+                        formControlName="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" name="email" disabled
+                        placeholder="Doctor123@gmail.com" formControlName="email" autocomplete="off">
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label>AppointmentFor</label>
+                            <input type="appointmentfor" class="form-control" id="appointmentfor" name="appointmentfor" disabled
+                            placeholder="Appointmentfor" disabled formControlName="appointmentfor" autocomplete="off">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Date</label>
+                            <input type="paymentdate" class="form-control" id="paymentdate" name="paymentdate" disabled
+                            placeholder="Date" disabled formControlName="paymentdate" autocomplete="off">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Appointment Type</label>
+                            <input type="appointmentType" class="form-control" id="appointmentType" name="appointmentType" disabled
+                            placeholder="Appointment Type" disabled formControlName="appointmentType" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-12">Amount</label>
+                    </div>
+                    <div class="form-inline">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">रु</span></div>
+                            <input type="text" class="form-control text-right" id="amount" name="amount"  placeholder="Amount"
+                            formControlName="amount" disabled autocomplete="off">
+                            <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <button (click)="cancelPayment()" class="btn btn-default btn-lg btn-block">Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div *ngIf="showPaymentSuccessPopup">
+            <app-paymentsuccess [showModal]="showPaymentSuccessPopup" (ClosePopup)="closePaymentSuccessPopup()"> </app-paymentsuccess>
+          </div>
+        
+
+
+
+
+
+
+
+
+
+
+  

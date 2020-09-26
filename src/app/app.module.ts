@@ -44,6 +44,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { MessagingService } from './service/messaging.service';
 import { AsyncPipe } from '../../node_modules/@angular/common';
+import { PaymentComponent } from './payment/payment.component';
+import { WindowRefService } from './window-ref.service';
+
+
 
 @NgModule({
   declarations: [
@@ -67,6 +71,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     LabtechnicianeditdisplaylistComponent,
     LabtechniciandashboardComponent,
     LabtestpackagelistComponent,
+    PaymentComponent,
    // DoctorprofileComponent
   ],
   imports: [
@@ -106,7 +111,8 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     {
       provide: 'googleTagManagerId',
        useValue: API_PATH.GTM_ID
-    }
+    },
+    WindowRefService
   ],
   bootstrap: [AppComponent]
 })

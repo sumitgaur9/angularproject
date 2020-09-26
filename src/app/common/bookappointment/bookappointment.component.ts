@@ -56,8 +56,9 @@ export class BookappointmentComponent implements OnInit {
     appointmentDate: new FormControl({ value: '', disabled: true }, Validators.required),
     appointmentType: new FormControl(""),
     description: new FormControl(""),
-     patientID: new FormControl(""),
-     timeSlot: new FormControl(""),
+    patientID: new FormControl(""),
+    timeSlot: new FormControl(""),
+    charges: new FormControl(""),
   });
 
   public passwordPatternError = false;
@@ -216,6 +217,7 @@ export class BookappointmentComponent implements OnInit {
     });
     if (this.newArray1) {
       this.bookAppointmentForm.controls.doctorID.setValue(this.newArray1[0]._id);
+      this.bookAppointmentForm.controls.charges.setValue(this.newArray1[0].charges);
       this.getImageValue = this.arrayBufferToBase64(this.newArray1[0].newimage.data.data);//need to update data in base 64
     }
   }

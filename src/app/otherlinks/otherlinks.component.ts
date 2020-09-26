@@ -170,6 +170,11 @@ export class OtherlinksComponent implements OnInit {
     }, 100);
   }
 
+  public goToPaymentPage() {
+    this.router.navigate(['/paymentpage']);
+  }
+  
+
  
 
   Save_Image() {

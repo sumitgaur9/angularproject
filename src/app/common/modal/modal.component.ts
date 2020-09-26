@@ -21,6 +21,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
         jQuery('.modal-dialog.popupModel').css({"max-width":"800px"});
         jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
 
+        
+
       } else {
        jQuery('.modal-footer').css({"display":"flex"});
        jQuery('.modal-footer').css({"padding":"0.75rem"});
@@ -37,6 +39,11 @@ export class ModalComponent implements OnInit, AfterViewInit {
         jQuery('.modal-dialog.popupModel').css({"margin-bottom":"-32px"});
         jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
     }
+
+    if(this.modalId=="showPaymentSuccessPopup"){
+      jQuery('.modal-dialog.popupModel').css({"max-width":"325px"});
+      jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
+    } 
        }
   ngAfterViewInit(){
     const modal = jQuery(this.el.nativeElement.querySelector('.modal'));

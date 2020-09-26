@@ -1,6 +1,6 @@
 export const API_PATH: any = {
     'Commaon_Path':'https://mongowithnode.herokuapp.com/',
-    //'Commaon_Path':'http://localhost:5000/',
+    // 'Commaon_Path':'http://localhost:5000/',
     'GTM_ID': 'GTM-M476F8N',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
@@ -83,6 +83,8 @@ export const API_PATH: any = {
     'Save_LabTestsPackage': 'Save_LabTestsPackage',
     'Get_LabTestPackage': 'Get_LabTestPackage',
     'Save_NewPatientProfileFromBookAppointment': 'Save_NewPatientProfileFromBookAppointment',
+    'paymentverify':'payment/verify',
+    'createOrder':'payment/creteOrder',
     
 }
 
@@ -129,3 +131,11 @@ export const firebase= {
     appId: "1:571179537480:web:23ead2864f7c7933fc747d",
     measurementId: "G-LXVLR8JQ89"
   }
+
+
+  export const RAZORPAY= {
+    KEY_ID: "rzp_test_S6Oc7OAUlNhPz3",
+    SECRET_KEY: "9oad02hYU3YABqDfrd3msZfW",
+  }
+
+

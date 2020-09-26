@@ -34,10 +34,11 @@ import { VerifyotpComponent } from './verifyotp/verifyotp.component';
 import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component';
 import { LabtestprofileComponent } from './labtestprofile/labtestprofile.component';
 import { LabtestpackageprofileComponent } from './labtestpackageprofile/labtestpackageprofile.component';
+import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent],
    
   imports: [
     CommonModule,
@@ -74,7 +75,8 @@ import { LabtestpackageprofileComponent } from './labtestpackageprofile/labtestp
     VerifyotpComponent,
     PasswordsetupComponent,
     LabtestprofileComponent,
-    LabtestpackageprofileComponent
+    LabtestpackageprofileComponent,
+    PaymentsuccessComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

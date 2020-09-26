@@ -190,6 +190,8 @@
               formControlName="appointmentDate" [mode]="'day'" [displayDate]="displayDate" placeholder="Appointment Date" />
           </div>
         </div>  
+
+
   
         <div class="buttonSection">
           <div class="text-center">
@@ -204,7 +206,19 @@
               <option value=""></option>
               <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked" [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.name}}</option>
         </select>
-        </div>      
+        </div>   
+        
+        <div class="form-group">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-inr" aria-hidden="true"></i></div>
+          </div>
+            <input type="text" disabled class="form-control" id="charges" name="charges"
+            placeholder="Charges" formControlName="charges">     
+                                 </div>
+        </div>
+
+
 
       
 </div>

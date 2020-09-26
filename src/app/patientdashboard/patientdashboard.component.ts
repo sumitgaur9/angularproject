@@ -356,8 +356,15 @@ export class PatientdashboardComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
- 
+  makePayment(appointmentData)
+  {
+    let data={};
+    this.router.navigate(['/paymentpage']);
+    setTimeout(() => {
+      this.utilityservice.preparePaymentDetailsData.next(appointmentData);
+    }, 10);
+  }
+}
 
   
 

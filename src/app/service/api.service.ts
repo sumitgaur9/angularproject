@@ -766,6 +766,25 @@ export class APIService {
         return userData;
       }));
   }
+
+
+  
+  orders(data) {
+    //let APIURL = 'https://api.roazorpay.com/v1/orders'
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.createOrder}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  paymentverify(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.paymentverify}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
   
   
 }
