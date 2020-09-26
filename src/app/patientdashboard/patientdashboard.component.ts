@@ -179,8 +179,12 @@ export class PatientdashboardComponent implements OnInit {
   Get_AppointmentsByPatientID() {
     let dataobj = {
     };
-    let doctorid = this.currentUser.roleBaseId;//"5f2e69e9afc7cc00045f7ccf";
-    this._apiservice.Get_AppointmentsByPatientID(dataobj, doctorid).subscribe(data => {
+    let patientID='';
+    if(this.currentUser.user.role!=11)
+    {
+      patientID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_AppointmentsByPatientID(dataobj, patientID).subscribe(data => {
       if (data) {
         this.patientAppointmentData = data;
         console.log("this.patientAppointmentData",this.patientAppointmentData)
@@ -276,8 +280,12 @@ export class PatientdashboardComponent implements OnInit {
   Get_DoctorWiseApptCount() {
     let dataobj = {
     };
-    let patientid =this.currentUser.roleBaseId;// "5f2fa8d88c2e60000478f67c";
-    this._apiservice.Get_DoctorWiseApptCount(dataobj,patientid).subscribe(data => {
+    let patientID='';
+    if(this.currentUser.user.role!=11)
+    {
+      patientID = this.currentUser.roleBaseId;
+    }
+    this._apiservice.Get_DoctorWiseApptCount(dataobj,patientID).subscribe(data => {
       if (data) {
         this.doctorWiseApptCount=data;
         if(this.doctorWiseApptCount && this.doctorWiseApptCount.length>0)
