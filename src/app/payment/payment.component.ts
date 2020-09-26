@@ -58,12 +58,12 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  proceedToPay($event) {
+  proceedToPay() {
      this.payableAmount=this.paymentform.controls.amount.value;
-      this.initiatePaymentModal($event);
+      this.initiatePaymentModal();
   }
 
-  initiatePaymentModal(event) {
+  initiatePaymentModal() {
     let orderDetails = {
       amount: this.payableAmount,
       receipt: "receipt#1",
