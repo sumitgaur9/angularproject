@@ -30,7 +30,7 @@ import { OtherlinksComponent } from './otherlinks/otherlinks.component';
 import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
 import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
 import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
-import { BooklabtestComponent } from './booklabtest/booklabtest.component';
+import { LablistComponent } from './labtestlist/labtestlist.component';
 //import { DoctorprofileComponent } from './common/doctorprofile/doctorprofile.component';
 import { ChartsModule } from 'ng2-charts';
 import { NursedashboardComponent } from './nursedashboard/nursedashboard.component';
@@ -67,7 +67,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DoctordashboardComponent,
     PharmacistdashboardComponent,
     PatientdashboardComponent,
-    BooklabtestComponent,
+    LablistComponent,
     NursedashboardComponent,
     LabtechnicianeditdisplaylistComponent,
     LabtechniciandashboardComponent,

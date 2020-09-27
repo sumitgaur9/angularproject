@@ -13,7 +13,7 @@ import { OtherlinksComponent } from './otherlinks/otherlinks.component'
 import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
 import { PharmacistdashboardComponent } from './pharmacistdashboard/pharmacistdashboard.component';
 import { PatientdashboardComponent } from './patientdashboard/patientdashboard.component';
-import { BooklabtestComponent } from './booklabtest/booklabtest.component';
+import { LablistComponent } from './labtestlist/labtestlist.component';
 import { NursedashboardComponent } from './nursedashboard/nursedashboard.component';
 import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtechniciandashboard.component';
 import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdisplaylist/labtechnicianeditdisplaylist.component';
@@ -37,7 +37,7 @@ const routes: Routes = [
     { path: 'nursedashboard', component: NursedashboardComponent },
     { path: 'pharmacistdashboard', component: PharmacistdashboardComponent },
     { path: 'patientdashboard', component: PatientdashboardComponent },
-    { path: 'getlabtest', component: BooklabtestComponent },
+    { path: 'getlabtest', component: LablistComponent },
     { path: 'labtechnician', component: LabtechnicianeditdisplaylistComponent },
     { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },
     { path: 'getlabtestpackagelist', component: LabtestpackagelistComponent },

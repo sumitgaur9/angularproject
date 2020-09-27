@@ -10,10 +10,10 @@ declare var $: any;
 
 @Component({
   selector: 'app-booklabtest.',
-  templateUrl: './booklabtest.component.html',
-  styleUrls: ['./booklabtest.component.css']
+  templateUrl: './labtestlist.component.html',
+  styleUrls: ['./labtestlist.component.css']
 })
-export class BooklabtestComponent implements OnInit {
+export class LablistComponent implements OnInit {
 
   showForgotPasswordtPopup = false;
   public errorMessage: string = '';
