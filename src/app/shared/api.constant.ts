@@ -117,8 +117,15 @@ export const VerifyOTP={
 }
 export const defaultImage={
     userlink:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU',
-    doctorlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png'
+    doctorlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+    patientlink:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU',
+    nurselink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+    physiolink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+    pharmacistlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+    labtechnicianlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+
 }
+
 
 
 export const firebase= {

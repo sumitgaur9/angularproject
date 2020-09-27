@@ -16,8 +16,14 @@
 
           <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_PharmacistProfile(data._id)"></i>
         </h4> -->
-        <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
-        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+        <!-- <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset"> -->
+
+        <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+        src="{{getDefaultImage}}" alt="Photo of sunset">
+      <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+        src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+        
       <!-- <img src="https://www.careeraddict.com/uploads/article/52732/Photo_20of_20a_20professional_20pharmacist_20checking_20stock_20in_20an_20aisle_20of_20a_20local_20drugstore_202.jpg" alt="Photo of sunset"> -->
           <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
           <!-- <p class="card-text">{{data.experties}}</p> -->

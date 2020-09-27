@@ -18,8 +18,14 @@
 
         </h4> -->
       <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8XO3HWFLnuQQKlWrvAWAzeezLmPjpMkb50g&usqp=CAU" alt="Photo of sunset"> -->
-      <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
-      <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+      
+      <!-- <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+      <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset"> -->
+
+      <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+          src="{{getDefaultImage}}" alt="Photo of sunset">
+        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+          src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
       <h5 class="item-card-title mt-3 mb-3">{{data.name}}</h5>
       <!-- <p class="card-text">{{data.email}}</p> -->
       <p class="card-text">{{data.description}}</p>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant';
 
 @Component({
   selector: 'app-labtechnicianprofile',
@@ -108,6 +109,10 @@ public expertiesArrayData:any=[];
     this.labTechform.patchValue({
       newimage: data.newimage            
     });
+  }
+  else
+  {
+    this.getImageValue=defaultImage.labtechnicianlink;
   }
         if(data.description!=undefined)
         {

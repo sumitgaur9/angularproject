@@ -7,6 +7,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant'
 
 declare var $: any;
 
@@ -24,6 +25,8 @@ export class PatienteditdisplaylistComponent implements OnInit {
 
   public getpatientprofileid:string='';
   showConfirmationPopup = false;
+  public getDefaultImage=defaultImage.patientlink;
+
   public showData='Do you really want to delete these records? This process cannot be undone.';
 
 

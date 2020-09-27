@@ -6,6 +6,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from '../shared/api.constant';
 
 declare var $: any;
 @Component({
@@ -25,6 +26,8 @@ export class LabtechnicianeditdisplaylistComponent implements OnInit {
 
   public getlabtechnicianprofileid:string='';
   public showData='Do you really want to delete these records? This process cannot be undone.';
+  public getDefaultImage=defaultImage.labtechnicianlink;
+
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 

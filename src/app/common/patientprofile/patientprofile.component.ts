@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant';
 @Component({
   selector: 'app-patientprofile',
   templateUrl: './patientprofile.component.html',
@@ -99,6 +100,10 @@ export class PatientprofileComponent implements OnInit {
           this.patientform.patchValue({
             newimage: data.newimage
           });
+        }
+        else
+        {
+          this.getImageValue=defaultImage.patientlink;
         }
 
         if (data.disease != undefined) {

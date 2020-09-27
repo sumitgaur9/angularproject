@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant';
 
 @Component({
   selector: 'app-physcotherapistprofile',
@@ -115,6 +116,10 @@ export class PhyscotherapistprofileComponent implements OnInit {
           this.physioProfileForm.patchValue({
             newimage: data.newimage            
           });
+        }
+        else
+        {
+          this.getImageValue=defaultImage.physiolink;
         }
         if (data.experties != undefined) {
           this.physioProfileForm.patchValue({

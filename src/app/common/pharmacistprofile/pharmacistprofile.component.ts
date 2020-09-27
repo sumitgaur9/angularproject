@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant';
 
 @Component({
   selector: 'app-pharmacistprofile',
@@ -114,7 +115,10 @@ export class PharmacistprofileComponent implements OnInit {
       newimage: data.newimage            
     });
   }
-
+  else
+  {
+    this.getImageValue=defaultImage.pharmacistlink;
+  }
         if(data.experties!=undefined)
         {
           this.pharmacistProfileForm.patchValue({
