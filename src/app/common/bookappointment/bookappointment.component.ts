@@ -42,6 +42,8 @@ export class BookappointmentComponent implements OnInit {
   public completeDoctorWiseAppointmentData:any=[];
   public availableSlotData:any=[];
   public disableAvailableTimeSlotBtn:boolean=true;
+  public visibleTimeSlot:boolean = false;
+
 
   public bookAppointmentForm = new FormGroup({
     patientNname: new FormControl(""),
@@ -151,6 +153,7 @@ export class BookappointmentComponent implements OnInit {
         else{
           this.filterTimeSlotDataArray =this.completeTimeSlotDataArray;
         }
+        this.visibleTimeSlot = true;
       }
      
     }, error => {
@@ -194,6 +197,19 @@ export class BookappointmentComponent implements OnInit {
   }
 
   diseaseschangeevent($event) {
+    this.filterTimeSlotDataArray = [];
+    this.filterTimeSlotDataArray = [];
+    this.visibleTimeSlot = false;
+    this.bookAppointmentForm.patchValue({
+      doctorID:''
+    })
+    this.bookAppointmentForm.patchValue({
+      doctorName:''
+    })
+    this.disableAvailableTimeSlotBtn = true;
+    this.bookAppointmentForm.patchValue({
+      appointmentDate:''
+    })
     this.getImageValue = '';
     let newArray = this.diseasListData.filter(function (item) {
       return item.diseaseName == $event.target.value;
@@ -204,11 +220,17 @@ export class BookappointmentComponent implements OnInit {
     }
   }
 
+  datechange(){
+    this.disableAvailableTimeSlotBtn= false;
+    }
+
   doctorChangeEvent($event) {
     this.getImageValue = '';
-    this.disableAvailableTimeSlotBtn=false;
-    this.bookAppointmentForm.controls.appointmentDate.enable();
+
+     this.bookAppointmentForm.controls.appointmentDate.enable();
     this.bookAppointmentForm.controls.appointmentDate.updateValueAndValidity();
+
+
     this.bookAppointmentForm.patchValue({
       appointmentDate:''
     })
