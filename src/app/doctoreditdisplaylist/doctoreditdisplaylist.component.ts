@@ -26,6 +26,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public popuptitle: string;
   public showDoctorProfilePopup = false;
   showForgotPasswordtPopup = false;
+  showBookAppointmentPopup = false;  
   showConfirmationPopup = false;
   public errorMessage: string = '';
   public showData='Do you really want to delete these records? This process cannot be undone.';
@@ -141,6 +142,19 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   }
 
   
+  
+  public closeBookAppointmentPopup() {
+    this.showBookAppointmentPopup = false;
+    $('#showBookAppointmentPopup').modal('hide');
+  }
+
+  public openBookAppointmentPopup(id) {
+    this.showBookAppointmentPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showBookAppointmentPopup').modal('show');
+    }, 100);
+  }
 
   expertiesChangeEvent(value) {
     this.doctorListData = this.completeDoctorListData.filter(function (item) {
