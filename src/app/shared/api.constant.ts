@@ -116,13 +116,13 @@ export const VerifyOTP={
     sendMobileNoEndMsg:' mobile no'
 }
 export const defaultImage={
-    userlink:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU',
+    userlink:'https://i.dlpng.com/static/png/6191850-user-png-94-images-in-collection-page-2-user-png-800_800_preview.png',
     doctorlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
-    patientlink:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkjubl-0IDkE2HE_faYRRNPcLpQwpQUXhzTw&usqp=CAU',
-    nurselink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
-    physiolink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
-    pharmacistlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
-    labtechnicianlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',
+    patientlink:'https://w7.pngwing.com/pngs/452/997/png-transparent-computer-icons-patient-others-text-logo-medical.png',
+    nurselink:'https://w7.pngwing.com/pngs/243/481/png-transparent-history-of-nursing-health-care-medicine-national-council-licensure-examination-nurse-blue-logo-medicine.png',
+    physiolink:'https://www.clipartmax.com/png/middle/160-1600784_physical-therapy-icon-physical-therapy-assistant-logo.png',
+    pharmacistlink:'https://icons.iconarchive.com/icons/icons-land/medical/256/People-Pharmacist-Male-icon.png',
+    labtechnicianlink:'https://previews.123rf.com/images/dxinerz/dxinerz1801/dxinerz180102964/93710577-scientist-medical-laboratory-icon-vector-image-can-also-be-used-for-professionals-suitable-for-web-a.jpg',
 
 }
 
