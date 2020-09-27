@@ -116,50 +116,77 @@
 
         </div>
         <div class="gaadiex-list" *ngFor="let data of doctorListData | filter:searchText">
-          <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:161px;border: 3px solid rgb(57 180 155 / 32%);">
-            <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
-              src="{{getDefaultImage}}" alt="Photo of sunset">
-            <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
-              src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
-            <div class="gaadiex-list-item-text"> 
+          <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:175px;border: 3px solid rgb(57 180 155 / 32%);">
+            <div class="row" style="width: 100%;float:left;">
+              <div style="width: 11%;float:left;">
+                <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+                  src="{{getDefaultImage}}" alt="Photo of sunset">
+                <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+                  src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+              </div>
+              <div style="width: 1%;float:left;">
+              </div>
+              <div style="width: 67%;float:left;">
+                <div class="gaadiex-list-item-text">
+            
+                  <div style="width:86%;float:left;height: 55px;">
+                    <div style="width:40%;float:left;">
+                      <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;color:#39b49b">Dr. {{data.name}}
+                      </h5>
+                    </div>
+                    <div style="width:10%;float:right;">
+                      <div style="float:left;width:30%" class="card-title1">
+                        <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" style="font-size: 20px;" aria-hidden="true"
+                          (click)="openDoctorProfilePopup(data._id)"></i>
+                      </div>
+                      <div style="float:left;width:4%" class="card-title1">
+                        <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
+                          (click)="deleteDoctorProfilePopup(data._id)" style="color:red;font-size: 20px;"></i>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div style="width:60%;float:left;margin-bottom: 3%;">
+                    <div style="width:42%;float:left;">
+                      <h6 class="rupeesymbol">Specialist:
+                        <span style="font-weight: bold;"> {{data.experties}}</span></h6>
+                    </div>
+                    <div style="width:30%;float:right;">
+                      <h6 class="rupeesymbol">Charges:&#8377;
+                        <span style="font-weight: bold;"> {{data.charges.toLocaleString('en-IN')}}</span></h6>
+                    </div>
+                  </div>
+                  <p class="card-text" *ngIf="data.description" style="float: left;">
+                    {{data.description}}
+                    <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
+                  </p>
+                  <!-- <h3><a href="#">Eric Graves</a></h3>
+                                      <h4>Brunch this weekend?</h4>
+                                      <p> I'll be in your neighborhood doing errands</p> -->
+                </div>
+              </div>
+              <div style="width: 1%;float:left;">
+              </div>
+              <div style="width: 20%;float:left;padding-top: 2%;">
               
-              <div style="width:86%;float:left;height: 55px;">
-                <div style="width:40%;float:left;">
-                  <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;color:#39b49b">Dr. {{data.name}}
-                  </h5>
+                <p style="font-size: 18px !important; font-weight:bold;"><img src="https://www.blkhospital.com/images/phone-icon.png"
+                    style="float: left; vertical-align: middle;" width="30" height="30">
+                  +91-11-30403040</p><a
+                  style="background-color: #3eb299;height: 33px;color: #fff;padding: 5px 25px;display: inline-block;box-shadow: 5px 1px 30px rgba(0,0,0,0.4);"
+                  >Book an Appointment &nbsp;<span class="bgpink white">
+                    <!-- <i style="font-size:14px;" class="fa fa-chevron-right" aria-hidden="true"></i> -->
+                  </span></a>
+                
+                <div style="text-align: left;" class="mkssssssss">
+                  <p style="margin-bottom: 3px;margin-top: 8px;"><strong>Days: </strong>Mon - Sat</p>
+                  <p style="margin-bottom: 5px;"><strong>Time: </strong>9:00 am to 5:00 pm</p>
                 </div>
-                <div style="width:10%;float:right;">
-                  <div style="float:left;width:30%" class="card-title1">
-                    <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" style="font-size: 20px;" aria-hidden="true"
-                      (click)="openDoctorProfilePopup(data._id)"></i>
-                  </div>
-                  <div style="float:left;width:4%" class="card-title1">
-                    <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
-                      (click)="deleteDoctorProfilePopup(data._id)" style="color:red;font-size: 20px;"></i>
-                  </div>
-                </div>
+                  
+                  
               </div>
-
-              <div style="width:60%;float:left;">
-                <div style="width:40%;float:left;">
-                  <h6 class="rupeesymbol">Specialist:
-                    <span style="font-weight: bold;"> {{data.experties}}</span></h6>
-                </div>
-                <div style="width:20%;float:right;">
-                  <h6 class="rupeesymbol">Charges:&#8377;
-                    <span style="font-weight: bold;"> {{data.charges.toLocaleString('en-IN')}}</span></h6>
-                </div>
-              </div>
-              <br><br>
-              <br><br>
-              <p class="card-text" *ngIf="data.description" style="float: left;">
-                {{data.description}}
-                <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
-              </p>
-              <!-- <h3><a href="#">Eric Graves</a></h3>
-                      <h4>Brunch this weekend?</h4>
-                      <p> I'll be in your neighborhood doing errands</p> -->
             </div>
+            
+            
           </div>
           <!-- <div class="gaadiex-list-item border-b-1">
                    <img class="gaadiex-list-item-img" src="../../assets/images/doctor_01.jpg" alt="List user">

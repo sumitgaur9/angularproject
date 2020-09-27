@@ -94,3 +94,11 @@
     border-radius: 50%;
 }
 .border-b-1 {border: 3px solid rgb(57 180 155 / 32%)}
+
+.bgpink {
+  background-color: #711843 !important;
+}
+
+.white {
+  color: #fff !important;
+}
