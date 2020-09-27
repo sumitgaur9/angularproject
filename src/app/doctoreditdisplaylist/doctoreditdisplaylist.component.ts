@@ -31,9 +31,11 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   public showData='Do you really want to delete these records? This process cannot be undone.';
   public doctorListData: any = [];
   public currentUser;
-
+  public   searchText;
   public getdoctorprofileid:string='';
   public getDefaultImage=defaultImage.doctorlink;
+  public expertiesArrayData:any=[];
+  public completeDoctorListData:any=[];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -42,36 +44,10 @@ export class DoctorEditdisplaylistComponent implements OnInit {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
     console.log("currentUsercurrentUser", this.currentUser);
     this.Get_DoctorsList();
-    //  this.pageInitailization();
+    this.Get_ExpertiseList();
 
   }
-
-
-  pageInitailization() {
-    switch (this.menuID) {
-      case AppEnum.appListMenu.Doctor:
-        this.menuID = AppEnum.appListMenu.Doctor;
-        this.gridDataCols = this.prepareGridColumn(this.menuID);
-        this.pageheading = "Doctor";
-        this.btnNewName = "Doctor";
-        //this.FillDisplayList();
-        break;
-    }
-    this.popuptitle = this.pageheading;
-  }
-
-
-  prepareGridColumn(value) {
-    switch (this.menuID) {
-      case AppEnum.appListMenu.Doctor:
-        var gridItemSpecTypeDataColsItem = [
-        ];
-        return gridItemSpecTypeDataColsItem;
-        break;
-
-    }
-  }
-
+ 
 
   public closeDoctorProfilePopup(calllistapi) {
     this.showDoctorProfilePopup = false;
@@ -144,22 +120,34 @@ export class DoctorEditdisplaylistComponent implements OnInit {
     this._apiservice.Get_DoctorsList(dataobj).subscribe(data => {
       if (data) {
         this.doctorListData = data;
-
-        // this.toastr.success('thanks to being a part of our platform');
-        //  this.CloseModal();
-        // this.router.navigate(['/doctorlist']);
-        //   if (data.token && data.token != "" && data.token != null) {
-        //     let datainput: any = {};
-        //    // this.router.navigate(['/home']);
-        // //    this.utilityservice.onLoginSuccessfully.next();
-        //   }
+        this.completeDoctorListData=data;
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 
+  Get_ExpertiseList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_ExpertiseList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_ExpertiseListGet_ExpertiseList", data);
+        this.expertiesArrayData = data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
 
+  
+
+  expertiesChangeEvent(value) {
+    alert("hi");
+    this.doctorListData = this.completeDoctorListData.filter(function (item) {
+      return item.experties == value;
+    });
+  }
 
 
 

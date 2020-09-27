@@ -1,10 +1,40 @@
-<div class="container mt-2" style="position:absolute;top:17%;left:7%;">
+<!-- <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
   <div style="margin-bottom:1%;">
     <a class="btn btn-primary" (click)="openDoctorProfilePopup()" *ngIf="currentUser.user.role==1">Welcome for the
       Doctors to see their profile</a>
   </div>
+
+  <div style="width:100%;float:left;background:#39b49b;height:61px;margin-bottom: 1%;">
+    <div style="width:15%;float:left;margin-top: 1%;">
+<h5 style="padding-top:4px;">Find Your Doctor</h5>
+    </div>
+
+    <div style="width:40%;float:left;margin-top: 1%;">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search By Doctor Name">
+    </div>
+    <div style="width:15%;float:left;margin-top: 1%;">
+      <div class="buttonSection">
+        <div class="text-center">
+          <input type="button" style="width: 159px;line-height:20px" value="Search" class="btn btn-info btn-block rounded-0 py-2">
+        </div>
+      </div>
+
+    </div>
+
+    <div style="width:25%;float:left;margin-top: 1%;margin-left:4%">
+      <select class="form-control" (change)="expertiesChangeEvent($event.target.value)">
+   
+        <option value="Select Speciality" selected>Search by  Speciality</option>
+        <option *ngFor="let opt of expertiesArrayData" [value]="opt.expertiseName">
+          {{opt.expertiseName}}</option>
+      </select>
+        </div>
+
+
+  </div>
   <div class="row">
-    <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData">
+
+    <div class="col-md-3 col-sm-6 item" *ngFor="let data of doctorListData | filter:searchText">
       <div class="card item-card card-block" style="padding: 2% 2%;">
         <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
           src="{{getDefaultImage}}" alt="Photo of sunset">
@@ -32,6 +62,102 @@
   </div>
 </div>
 
+
+<div *ngIf="showDoctorProfilePopup">
+  <app-doctorprofile [showModal]="showDoctorProfilePopup" [getdoctorprofileid]="getdoctorprofileid"
+    (ClosePopup)="closeDoctorProfilePopup($event)"> </app-doctorprofile>
+</div>
+
+<div *ngIf="showConfirmationPopup">
+  <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+  </app-confirmation>
+</div> -->
+
+
+
+
+<div class="container" style="position:absolute;top:17%;left:7%;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- <h4>Icons with text items</h4> -->
+
+          <div style="width:100%;float:left;background:#39b49b;height:61px;margin-bottom: 1%;">
+            <div style="width:15%;float:left;margin-top: 1%;">
+              <h5 style="padding-top:4px;padding-left: 4px;">Find Your Doctor</h5>
+            </div>
+
+            <div style="width:40%;float:left;margin-top: 1%;">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="&#61442;  Search By Doctor Name">
+            </div>
+            <div style="width:15%;float:left;margin-top: 1%;">
+              <div class="buttonSection">
+                <div class="text-center">
+                  <input type="button" style="width: 159px;line-height:20px" value="Search"
+                    class="btn btn-info btn-block rounded-0 py-2">
+                </div>
+              </div>
+
+            </div>
+
+            <div style="width:25%;float:left;margin-top: 1%;margin-left:4%">
+              <select class="form-control" (change)="expertiesChangeEvent($event.target.value)">
+
+                <option value="Select Speciality" selected>Search by Speciality</option>
+                <option *ngFor="let opt of expertiesArrayData" [value]="opt.expertiseName">
+                  {{opt.expertiseName}}</option>
+              </select>
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="gaadiex-list" *ngFor="let data of doctorListData | filter:searchText">
+          <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:161px">
+            <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+              src="{{getDefaultImage}}" alt="Photo of sunset">
+            <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+              src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+            <div class="gaadiex-list-item-text">
+              <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;color:#39b49b">Dr. {{data.name}}
+              </h5>
+              <div style="width:60%;float:left;">
+                <div style="width:40%;float:left;">
+                  <h6 class="rupeesymbol">Specialist:
+                    <span style="font-weight: bold;"> {{data.experties}}</span></h6>
+                </div>
+                <div style="width:20%;float:right;">
+                  <h6 class="rupeesymbol">Charges:&#8377;
+                    <span style="font-weight: bold;"> {{data.charges.toLocaleString('en-IN')}}</span></h6>
+                </div>
+              </div>
+           <br>
+           <br>
+              <p class="card-text" *ngIf="data.description">
+                {{data.description}}
+                <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
+              </p>
+              <!-- <h3><a href="#">Eric Graves</a></h3>
+                      <h4>Brunch this weekend?</h4>
+                      <p> I'll be in your neighborhood doing errands</p> -->
+            </div>
+          </div>
+          <!-- <div class="gaadiex-list-item border-b-1">
+                   <img class="gaadiex-list-item-img" src="../../assets/images/doctor_01.jpg" alt="List user">
+                    <div class="gaadiex-list-item-text">
+                      <h3><a href="#">Eric Graves</a></h3>
+                      <h4>Brunch this weekend?</h4>
+                      <p> I'll be in your neighborhood doing errands</p>
+                    </div>
+                  </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="showDoctorProfilePopup">
   <app-doctorprofile [showModal]="showDoctorProfilePopup" [getdoctorprofileid]="getdoctorprofileid"

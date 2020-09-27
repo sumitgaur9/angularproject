@@ -46,7 +46,8 @@ import { MessagingService } from './service/messaging.service';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { PaymentComponent } from './payment/payment.component';
 import { WindowRefService } from './window-ref.service';
-
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { WindowRefService } from './window-ref.service';
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ChartsModule,
+    Ng2SearchPipeModule,
 
     ToastrModule.forRoot({
       timeOut: 1000,
