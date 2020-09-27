@@ -121,7 +121,7 @@
     </div>
 
     <div *ngIf="showpharmacistformpopup">
-      <app-pharmacistprofile [showModal]="showpharmacistformpopup"  [getpharmacistprofileid]="getpharmacistprofileid" (ClosePopup)="openPharmacistProfilePopup($event)"> </app-pharmacistprofile>
+      <app-pharmacistprofile [showModal]="showpharmacistformpopup"  [getpharmacistprofileid]="getpharmacistprofileid" (ClosePopup)="closePharmacistProfilePopup($event)"> </app-pharmacistprofile>
     </div>
 
     <div *ngIf="shownurseprofileformpopup">
