@@ -9,7 +9,7 @@ import { APIService } from 'src/app/service/api.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-booklabtest.',
+  selector: 'app-booklabtest',
   templateUrl: './labtestlist.component.html',
   styleUrls: ['./labtestlist.component.css']
 })
