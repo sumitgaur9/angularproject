@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js');// should be same as version specified in package.json
+importScripts('https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js'); // should be same as version specified in package.json
 
 firebase.initializeApp({
     apiKey: "AIzaSyClG70mchAMak7Y3iJi-RfZsOQWcG52oWw",
