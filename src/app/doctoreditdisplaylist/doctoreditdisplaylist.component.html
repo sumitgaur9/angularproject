@@ -116,14 +116,30 @@
 
         </div>
         <div class="gaadiex-list" *ngFor="let data of doctorListData | filter:searchText">
-          <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:161px">
+          <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:161px;border: 3px solid rgb(57 180 155 / 32%);">
             <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
               src="{{getDefaultImage}}" alt="Photo of sunset">
             <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
               src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
-            <div class="gaadiex-list-item-text">
-              <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;color:#39b49b">Dr. {{data.name}}
-              </h5>
+            <div class="gaadiex-list-item-text"> 
+              
+              <div style="width:86%;float:left;height: 55px;">
+                <div style="width:40%;float:left;">
+                  <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;color:#39b49b">Dr. {{data.name}}
+                  </h5>
+                </div>
+                <div style="width:10%;float:right;">
+                  <div style="float:left;width:30%" class="card-title1">
+                    <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" style="font-size: 20px;" aria-hidden="true"
+                      (click)="openDoctorProfilePopup(data._id)"></i>
+                  </div>
+                  <div style="float:left;width:4%" class="card-title1">
+                    <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
+                      (click)="deleteDoctorProfilePopup(data._id)" style="color:red;font-size: 20px;"></i>
+                  </div>
+                </div>
+              </div>
+
               <div style="width:60%;float:left;">
                 <div style="width:40%;float:left;">
                   <h6 class="rupeesymbol">Specialist:
@@ -134,9 +150,9 @@
                     <span style="font-weight: bold;"> {{data.charges.toLocaleString('en-IN')}}</span></h6>
                 </div>
               </div>
-           <br>
-           <br>
-              <p class="card-text" *ngIf="data.description">
+              <br><br>
+              <br><br>
+              <p class="card-text" *ngIf="data.description" style="float: left;">
                 {{data.description}}
                 <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
               </p>
