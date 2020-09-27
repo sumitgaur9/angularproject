@@ -312,4 +312,10 @@ export class HeaderComponent implements OnInit {
   ngOnDestroy() {
     // this.unsubscribe.unsubscribe();
   }
+
+  patientProfileResponseReturn(value)
+  {
+    //no use here but used in bookappointment and booklabtest
+  }
+
 }
