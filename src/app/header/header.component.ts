@@ -24,9 +24,20 @@ export class HeaderComponent implements OnInit {
   public showChangePasswordPopup: boolean = false;
   public showSaveImageForWebPopup: boolean = false;
   public currentUser;
-  public nameFirstChar:string='';
-
-  //public userNameDisplay:string="nidhi Bansal";
+  public nameFirstChar: string = '';
+  public showDoctorProfilePopup: boolean = false;
+  public showpatientformpopup: boolean = false;
+  public showpharmacistformpopup: boolean = false;
+  public shownurseprofileformpopup: boolean = false;
+  public showphyscoprofileformpopup: boolean = false;
+  public showlabtechnicianprofileformpopup: boolean = false;
+  public showConfirmationPopup;
+  public getpatientprofileid: string = '';
+  public getdoctorprofileid: string = '';
+  public getpharmacistprofileid: string = '';
+  public getnurseprofileid: string = '';
+  public getphyscoprofileid: string = '';
+  public getlabtechnicianprofileid: string = '';
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -46,8 +57,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
-    if(this.currentUser!=undefined)
-    {
+    if (this.currentUser != undefined) {
       this.username = this.currentUser.user.name;
       this.nameFirstChar = this.currentUser.user.name ? this.currentUser.user.name.substr(0, 1) : '';
       this.nameFirstChar = this.nameFirstChar.toUpperCase();
@@ -192,7 +202,114 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  public openProfilePopup() {
+    if (this.currentUser.user.role == 1) {
+      this.openDoctorProfilePopup();
+    }
+    else if (this.currentUser.user.role == 2) {
+      this.openNurseProfilePopup();
+    }
+    else if (this.currentUser.user.role == 3) {
+      this.openPhysiosProfilePopup();
+    }
+    else if (this.currentUser.user.role == 4) {
+      this.openPharmacistProfilePopup();
+    }
+    else if (this.currentUser.user.role == 5) {
+      this.openLabTechProfilePopup();
+    }
+    else if (this.currentUser.user.role < 1) {
+      this.openPatientProfilePopup();
+    }
+  }
+
+  public closeDoctorProfilePopup(calllistapi) {
+    this.showDoctorProfilePopup = false;
+    $('#showDoctorProfilePopup').modal('hide');
+  }
+
+  public openDoctorProfilePopup() {
+    this.getdoctorprofileid = this.currentUser.roleBaseId;
+    this.showDoctorProfilePopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showDoctorProfilePopup').modal('show');
+    }, 100);
+  }
+
+  public closePatientProfilePopup(calllistapi) {
+    this.showpatientformpopup = false;
+    $('#showpatientformpopup').modal('hide');
+  }
+
+  public openPatientProfilePopup(id?) {
+    this.getpatientprofileid = this.currentUser.roleBaseId;
+    this.showpatientformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showpatientformpopup').modal('show');
+    }, 100);
+  }
+
+  public closePharmacistProfilePopup(calllistapi) {
+    this.showpharmacistformpopup = false;
+    $('#showpharmacistformpopup').modal('hide');
+  }
+
+  public openPharmacistProfilePopup() {
+    this.getpharmacistprofileid = this.currentUser.roleBaseId;
+    this.showpharmacistformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showpharmacistformpopup').modal('show');
+    }, 100);
+  }
+
+  public closeNurseProfilePopup(calllistapi) {
+    this.shownurseprofileformpopup = false;
+    $('#shownurseprofileformpopup').modal('hide');
+  }
+
+  public openNurseProfilePopup() {
+    this.getnurseprofileid = this.currentUser.roleBaseId;
+    this.shownurseprofileformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#shownurseprofileformpopup').modal('show');
+    }, 100);
+  }
+
+  public closePhysiosProfilePopup(calllistapi) {
+    this.showphyscoprofileformpopup = false;
+    $('#showphyscoprofileformpopup').modal('hide');
+
+  }
+
+  public openPhysiosProfilePopup(id?) {
+    this.getphyscoprofileid = this.currentUser.roleBaseId;
+    this.showphyscoprofileformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showphyscoprofileformpopup').modal('show');
+    }, 100);
+  }
+
+  public closeLabTechProfilePopup(calllistapi) {
+    this.showlabtechnicianprofileformpopup = false;
+    $('#showlabtechnicianprofileformpopup').modal('hide');
+  }
+
+  public openLabTechProfilePopup(id?) {
+    this.getlabtechnicianprofileid = this.currentUser.roleBaseId;
+    this.showlabtechnicianprofileformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showlabtechnicianprofileformpopup').modal('show');
+    }, 100);
+  }
+
+
   ngOnDestroy() {
-   // this.unsubscribe.unsubscribe();
+    // this.unsubscribe.unsubscribe();
   }
 }
