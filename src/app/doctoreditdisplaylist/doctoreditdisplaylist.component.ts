@@ -143,7 +143,6 @@ export class DoctorEditdisplaylistComponent implements OnInit {
   
 
   expertiesChangeEvent(value) {
-    alert("hi");
     this.doctorListData = this.completeDoctorListData.filter(function (item) {
       return item.experties == value;
     });

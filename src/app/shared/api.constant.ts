@@ -123,7 +123,7 @@ export const defaultImage={
     physiolink:'https://www.clipartmax.com/png/middle/160-1600784_physical-therapy-icon-physical-therapy-assistant-logo.png',
     pharmacistlink:'https://icons.iconarchive.com/icons/icons-land/medical/256/People-Pharmacist-Male-icon.png',
     labtechnicianlink:'https://previews.123rf.com/images/dxinerz/dxinerz1801/dxinerz180102964/93710577-scientist-medical-laboratory-icon-vector-image-can-also-be-used-for-professionals-suitable-for-web-a.jpg',
-
+    labtestlink:'https://previews.123rf.com/images/dxinerz/dxinerz1801/dxinerz180102964/93710577-scientist-medical-laboratory-icon-vector-image-can-also-be-used-for-professionals-suitable-for-web-a.jpg',
 }
 
 

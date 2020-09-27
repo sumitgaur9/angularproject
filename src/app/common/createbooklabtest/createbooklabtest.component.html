@@ -1,4 +1,4 @@
-<form [formGroup]="createBookLabTestform" (ngSubmit)="Save_BookLabTest()">
+<!-- <form [formGroup]="createBookLabTestform" (ngSubmit)="Save_BookLabTest()">
 
     <ad-modal [title]="'OTP'" [modalId]="'showSaveBookLabTestPopup'">
       <ad-modal-body>
@@ -23,25 +23,9 @@
                 <h2 class="text-center"></h2>
                 <div class="row justify-content-center">
                   <div class="col-8">
-                    <!--Form with header-->
                       <div class="card" style="border: transparent!important;">
-                       
+
                         <div class="card-body p-3">
-                          <!--Body-->
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientNname" name="patientNname"
-                                placeholder="patientNname" formControlName="patientNname">
-                            </div>
-                          </div> -->
-
-                          
-
-
-
                           <div class="form-group" *ngIf="visiblePatientNameSelect">
                             <label for="exampleFormControlSelect1">Patient Name</label>
                             <select class="form-control" formControlName="patientID" (change)="patientNameChangeEvent($event)">
@@ -55,40 +39,6 @@
                               <textarea name="comment" rows="8" cols="100" style="color: slategray;" disabled [value]="textareaValue">Enter text here...</textarea>
                             </div>
                           </div>
-
-
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientMob" name="patientMob"
-                                placeholder="Patient Mob" formControlName="patientMob">
-                            </div>
-                          </div> -->
-
-
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="email" class="form-control" id="patientEmail" name="patientEmail"
-                              placeholder="ejemplo@gmail.com" formControlName="patientEmail">
-                            </div>
-                          </div> -->
-
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="patientAddres" name="patientAddres"
-                                placeholder="Patient Address" formControlName="patientAddres">
-                            </div>
-                          </div> -->
-
-
                           <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
@@ -98,9 +48,6 @@
                                 placeholder="Patient PIN" formControlName="patientPIN">
                             </div>
                           </div>
-
-
-
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">Test Type</label>
                             <select class="form-control" formControlName="testType">
@@ -108,10 +55,6 @@
                                 <option *ngFor="let opt of sampleTypeListData" [value]="opt.name">{{opt.name}}</option>
                           </select>
                           </div>
-                          
-
-
-
                           <div class="form-group" *ngIf="createBookLabTestform.value.testType=='package'">
                             <label for="exampleFormControlSelect1">PackageName</label>
                             <select class="form-control" formControlName="packageName" (change)="packageNameChangeEvent($event)">
@@ -119,36 +62,21 @@
                                 <option *ngFor="let opt of testPackageListData" [value]="opt.packageNname">{{opt.packageNname}}</option>
                           </select>
                           </div>
-
-
-
-                          <!-- <div class="form-group">
-                            <label for="exampleFormControlSelect1">Test</label>
-                            <select class="form-control" formControlName="testsDataUIName" (change)="testChangeEvent($event)">
-                                <option value=""></option>
-                                <option *ngFor="let opt of labTestData" [value]="opt.testName">{{opt.testName}}</option>
-                          </select>
-                          </div> -->
-                          
                           <div class="form-group" *ngIf="createBookLabTestform.value.testType=='individual'">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                               </div>
-                              <!-- <input type="number" class="form-control" id="packageAmount" name="packageAmount"
-                                placeholder="packageAmount" > -->
-                              <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems" 
-                              [settings]="settings" 
+
+                              <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems"
+                              [settings]="settings"
                               (onSelect)="onItemSelect($event)"
-                              (onDeSelect)="OnItemDeSelect($event)" 
-                              (onSelectAll)="onSelectAll($event)" 
+                              (onDeSelect)="OnItemDeSelect($event)"
+                              (onSelectAll)="onSelectAll($event)"
                               (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills" style="width: 89%;">
         </angular2-multiselect>
                             </div>
                           </div>
-
-
-                         
                           <div class="form-group">
                             <div class="input-group mb-2">
                               <div class="input-group-prepend">
@@ -168,50 +96,14 @@
                           </select>
                           </div>
 
-
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="text" class="form-control" id="testsData" name="testsData"
-                                placeholder="testsData" formControlName="testsData">
-                            </div>
-                          </div> -->
-
-
-
-                          <!-- <div class="form-group">
-                            <label for="exampleFormControlSelect1">Test</label>
-                            <select class="form-control" formControlName="testsData">
-                                <option value=""></option>
-                                <option *ngFor="let opt of labTestData" [value]="opt.name">{{opt.name}}</option>
-                          </select>
-                          </div> -->
-
-                          <!-- <div class="form-group">
-                            <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                              </div>
-                              <input type="number" class="form-control" id="packageAmount" name="packageAmount"
-                                placeholder="packageAmount" formControlName="packageAmount">
-                            </div>
-                          </div> -->
-
-                         
                         </div>
                       </div>
                   </div>
-                  <!-- <div class="col-md-4">
-                      <img class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg">
-  
-                  </div> -->
                 </div>
               </div>
-  
+
             </div>
-  
+
           </div>
         </div>
       </ad-modal-body>
@@ -220,16 +112,184 @@
           <div class="text-center">
               <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
             </div>
-          <!-- <button class="primartButton" type="submit">Send OTP</button>
-          <button class="secondryButton" type="reset" (click)="CloseModal()">Cancel</button> -->
         </div>
       </ad-modal-footer>
-  
+
     </ad-modal>
-  
+
   </form>
-  
+
 
   <div *ngIf="showpatientformpopup">
     <app-patientprofile [calledFrom]="'booklabtestpopup'" [showModal]="showpatientformpopup" [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup()" (patientProfileResponseReturn)="patientProfileResponseReturn($event)" > </app-patientprofile>
-  </div>
+  </div> -->
+
+
+
+
+
+<form [formGroup]="createBookLabTestform" (ngSubmit)="Save_BookLabTest()">
+
+  <ad-modal [title]="'OTP'" [modalId]="'showSaveBookLabTestPopup'">
+    <ad-modal-body>
+      <div class="modal-header" style="height:47px; background: linear-gradient(to right, #39b49a 0%, #1d86df 100%);">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+            class="closebtnspan" (click)="CloseModal()">&times;</span></button>
+        <p class="cc popupheaderheading"><i class="fa fa-medkit"></i><span style="margin-left:5px"> Welcome
+            &nbsp;<span style="color:white">Book Lab Test</span></span>
+        </p>
+      </div>
+
+      <div class="closebtnmodal">
+        <button type="button"><span aria-hidden="true" class="closebtntext" (click)="openPatientProfilePopup()"><i
+              class="fa fa-pencil" aria-hidden="true"></i>
+          </span></button>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="card-body">
+
+
+            <div class="form-group" *ngIf="visiblePatientNameSelect">
+              <label for="exampleFormControlSelect1">Patient Name</label>
+              <select class="form-control" formControlName="patientID" (change)="patientNameChangeEvent($event)">
+                <option value=""></option>
+                <option *ngFor="let opt of patientListData" [value]="opt._id">{{opt.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-2" style="border: 0.1px dashed slategray;" (click)="openPatientProfilePopup()">
+                <textarea name="comment" rows="8" cols="100" style="color: slategray;" disabled
+                  [value]="textareaValue">Enter text here...</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                </div>
+                <input type="text" class="form-control" id="patientPIN" name="patientPIN" placeholder="Patient PIN"
+                  formControlName="patientPIN">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Test Type</label>
+              <select class="form-control" formControlName="testType" (change)="testTypeChangeEvent($event)">
+                <option value=""></option>
+                <option *ngFor="let opt of sampleTypeListData" [value]="opt.name" >{{opt.name}}</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="card-body">
+            <div class="form-group" *ngIf="createBookLabTestform.value.testType=='package'">
+              <label for="exampleFormControlSelect1">PackageName</label>
+              <select class="form-control" formControlName="packageName" (change)="packageNameChangeEvent($event)">
+                <option value=""></option>
+                <option *ngFor="let opt of testPackageListData" [value]="opt.packageNname">{{opt.packageNname}}</option>
+              </select>
+            </div>
+            <div class="form-group" *ngIf="createBookLabTestform.value.testType=='individual'">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                </div>
+                <angular2-multiselect [data]="labTestData" [(ngModel)]="selectedItems" [settings]="settings"
+                  (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
+                  (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" formControlName="skills"
+                  style="width: 80%;">
+                </angular2-multiselect>
+              </div>
+            </div>
+            <div class="form-group" [hidden]="true">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                </div>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Price"
+                  formControlName="price">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Nurse</label>
+              <select class="form-control" formControlName="nurseName" (change)="nurseNameChangeEvent($event)">
+                <option value=""></option>
+                <option *ngFor="let opt of nurseListData" [value]="opt.name">{{opt.name}}</option>
+              </select>
+            </div>
+
+          
+          <div class="card" *ngIf="showSelectedTestInfoData.length>0" style="overflow: auto;height: 200px;">
+                  <div class="gaadiex-list" *ngFor="let data of showSelectedTestInfoData">
+                    <div class="gaadiex-list-item border-b-1">
+                        <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+                        src="{{getDefaultImage}}" alt="Photo of sunset">
+                      <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+                        src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+                        <div class="gaadiex-list-item-text">
+                          <h6>{{data?.testName || data?.packageNname}}</h6>
+                          <div class="text-right" *ngIf="createBookLabTestform.value.testType=='individual'">Price:&nbsp;<span class="rupee">₹</span>&nbsp;{{data?.price.toLocaleString('en-IN')}} </div>
+                          <div class="text-right" *ngIf="createBookLabTestform.value.testType!='individual'">Price:&nbsp;<span class="rupee">₹</span>&nbsp;{{data?.packageAmount.toLocaleString('en-IN')}} </div>
+                          <!-- <div class="text-right">Price:&nbsp;<span class="rupee">₹</span>&nbsp;{{data?.price.toLocaleString('en-IN') || data?.packageAmount.toLocaleString('en-IN')}} </div> -->
+                          <!-- <span style="margin-left:16%">Price: <i class="fa fa-inr" style="font-size: 12px;" aria-hidden="true"></i>&nbsp;{{data.price.toLocaleString('en-IN')}}</span> -->
+                        </div>
+                      </div>
+                      </div>
+
+          </div>
+
+
+
+        
+
+
+    
+
+
+
+         <div style="width:100%;float:left;background-color: #36b0a145;" *ngIf="showSelectedTestInfoData.length>0">
+         <div style="width:65%;float:left;">
+          <h6>SubTotal:</h6>
+        </div>
+        <div style="width:21%;float:left;">
+          <i class="fa fa-inr" aria-hidden="true"></i> &nbsp;{{createBookLabTestform.controls.price.value.toLocaleString('en-IN')}}
+        </div>
+        </div>
+
+
+
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </ad-modal-body>
+    <ad-modal-footer>
+      <div class="buttonSection">
+        <div class="text-center">
+          <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
+        </div>
+      </div>
+    </ad-modal-footer>
+
+  </ad-modal>
+
+</form>
+<div *ngIf="showpatientformpopup">
+  <app-patientprofile [calledFrom]="'booklabtestpopup'" [showModal]="showpatientformpopup"
+    [getpatientprofileid]="getpatientprofileid" (ClosePopup)="closePatientProfilePopup()"
+    (patientProfileResponseReturn)="patientProfileResponseReturn($event)"> </app-patientprofile>
+</div>

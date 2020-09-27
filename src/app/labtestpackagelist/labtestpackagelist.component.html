@@ -1,6 +1,6 @@
 <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
     <div style="margin-bottom:1%;">
-      <a class="btn btn-primary" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" (click)="openLabTestPackageProfilePopup()">Welcome to see Lab Test Package</a>
+      <a class="btn btn-primary" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" (click)="openLabTestPackageProfilePopup()">Create Lab Test Package</a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">

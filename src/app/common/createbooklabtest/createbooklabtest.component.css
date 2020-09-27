@@ -1,8 +1,8 @@
 .closebtnmodal {
-    margin: 0;
+  margin: 0;
     position: absolute;
-    top: 25%;
-    right: 22%;
+    top: 29%;
+    left: 43%;
     width: 23px;
     height: 23px;
     border-radius: 4px;
@@ -20,4 +20,35 @@
     right: 3px;
     color: #0f0fe4;
 
+}
+
+
+.card {position: relative; border-radius: 3px; background-color: #fff;color: #4f5256;border: 1px solid #f2f2f2;margin-bottom: 16px;background:#fff;}
+.card-header{ padding: 16px;margin:0px;}
+.card-body {position: relative; padding: 16px;}
+
+.gaadiex-list {list-style-type: none; margin: 0;padding: 0;}
+.gaadiex-list>.gaadiex-list-item {padding: 0 22px;}
+.gaadiex-list-item-img  {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.border-b-1 {border:3px solid rgb(200 234 230)}
+
+
+
+ .cartitemdesc {
+    display: flex;
+    align-items: center;
+}
+
+.img-round {
+  max-width: 50px;
+  max-height: 50px;
 }

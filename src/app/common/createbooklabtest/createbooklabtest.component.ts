@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant'
+
 declare var $: any;
 
 @Component({
@@ -43,6 +45,10 @@ export class CreatebooklabtestComponent implements OnInit {
   public expertiesArrayData: any = [];
   public sampleTypeListData = [{ "name": "package" }, { "name": "individual" }]
   public visiblePatientNameSelect: boolean = false;
+  public getDefaultImage=defaultImage.labtestlink;
+
+
+  public showSelectedTestInfoData:any=[];
 
   public createBookLabTestform = new FormGroup({
     patientNname: new FormControl(""),
@@ -97,11 +103,13 @@ export class CreatebooklabtestComponent implements OnInit {
 
   calculatePrice(selecteddata) {
     let pricearray = [];
+    let selectedlabtestInfo=[];
     for (var i = 0; i < selecteddata.length; i++) {
       let newArray = this.completelabTestData.filter(function (item) {
         return item._id == selecteddata[i].id;
       });
-      pricearray.push(newArray[0].price)
+      pricearray.push(newArray[0].price);
+      selectedlabtestInfo.push(newArray[0]);
     }
     let sum = 0;
     for (var i = 0; i < pricearray.length; i++) {
@@ -112,6 +120,7 @@ export class CreatebooklabtestComponent implements OnInit {
         price: sum
       }
     )
+    this.showSelectedTestInfoData=selectedlabtestInfo;
   }
 
   onItemSelect(item: any) {
@@ -133,6 +142,8 @@ export class CreatebooklabtestComponent implements OnInit {
   OnItemDeSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
+    this.calculatePrice(this.selectedItems);
+
   }
   onSelectAll(items: any) {
     console.log(items);
@@ -146,7 +157,7 @@ export class CreatebooklabtestComponent implements OnInit {
         price: 0
       }
     )
-
+    this.showSelectedTestInfoData=[];
   }
   Save_BookLabTest() {
     this.submitted = true;
@@ -194,6 +205,7 @@ export class CreatebooklabtestComponent implements OnInit {
     this._apiservice.Get_LabTestsList(dataobj).subscribe(data => {
       if (data) {
         this.completelabTestData = data;
+        console.log("completelabTestDatacompletelabTestData",this.completelabTestData)
         for (var i = 0; i < data.length; i++) {
           let dataobj1 = {
             "id": data[i]._id,
@@ -235,6 +247,7 @@ export class CreatebooklabtestComponent implements OnInit {
   }
 
   packageNameChangeEvent($event) {
+    this.showSelectedTestInfoData=[];
     let newArray = this.testPackageListData.filter(function (item) {
       return item.packageNname == $event.target.value;
     });
@@ -245,6 +258,7 @@ export class CreatebooklabtestComponent implements OnInit {
           price: newArray[0].packageAmount,
         }
       )
+      this.showSelectedTestInfoData.push(newArray[0]);
     }
   }
 
@@ -347,6 +361,26 @@ export class CreatebooklabtestComponent implements OnInit {
     this.Get_PatientsList();     //update list in return if new patient added and any updation in list
     this.updatePatientDetails(value);
   }
+
+  arrayBufferToBase64(buffer) {
+    return this.utilityservice.arrayBufferToBase64(buffer);
+  }
+
+  testTypeChangeEvent($event)
+  {
+    this.createBookLabTestform.patchValue(
+      {
+        packageName: '',
+        packageID:'',
+        testsDataUIName:'',
+        testsDataUIID:'',
+        skills:[],
+        priice:0,
+      }
+    )
+    this.showSelectedTestInfoData=[];
+  }
+
 
 }
 
