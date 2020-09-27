@@ -222,6 +222,7 @@ export class BookappointmentComponent implements OnInit {
 
   datechange(){
     this.disableAvailableTimeSlotBtn= false;
+    this.visibleTimeSlot= false;
     }
 
   doctorChangeEvent($event) {
@@ -229,6 +230,7 @@ export class BookappointmentComponent implements OnInit {
 
      this.bookAppointmentForm.controls.appointmentDate.enable();
     this.bookAppointmentForm.controls.appointmentDate.updateValueAndValidity();
+    this.visibleTimeSlot= false;
 
 
     this.bookAppointmentForm.patchValue({
