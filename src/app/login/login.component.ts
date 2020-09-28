@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   public showForgotPasswordPopup: boolean = false;
   public showVerifyOTPPopup: boolean = false;
   public showPasswordSetupPopup: boolean = false;
+  public isTandCChequed: boolean = false;  
   public inputForVerifyOTP: any = {};
   public loginInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -31,10 +32,43 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    localStorage.clear();
+    let object = JSON.parse(window.localStorage.getItem("currentuseremailpassword"));
+    if(object && object!==null){
+      this.autoFillCredentials();
+    }
   }
 
   get f() { return this.loginInfo.controls; }
+
+  readTandC(event) {
+    this.isTandCChequed = event.target.checked;    
+  }
+
+  rememberCredentials(){
+    let obj = {
+      email: this.loginInfo.controls.email.value,
+      password: this.loginInfo.controls.password.value,
+    }
+    localStorage.setItem("currentuseremailpassword", JSON.stringify(obj));    
+  }
+
+  autoFillCredentials(){
+    let object = JSON.parse(window.localStorage.getItem("currentuseremailpassword"));
+    if(object && object!= null && object.email && object.email != '' && object.password && object.password!= '' ){
+      this.loginInfo.patchValue({
+        email: object.email
+      })
+      this.loginInfo.patchValue({
+        password: object.password
+      })
+    }
+
+    let obj = {
+      email: this.loginInfo.controls.email.value,
+      password: this.loginInfo.controls.password.value,
+    }
+    localStorage.setItem("currentusermedata", JSON.stringify(obj));    
+  }
 
   loginUser() {
     this.submitted = true;
@@ -49,6 +83,9 @@ export class LoginComponent implements OnInit {
         if (data.token && data.token != "" && data.token != null) {
           let datainput: any = {};
           //this.router.navigate(['/home']);
+          if (this.isTandCChequed) {
+            this.rememberCredentials();
+          }
           this.navigateToSpecificPage(data.user.role);
           this.utilityservice.onLoginSuccessfully.next();
         }
