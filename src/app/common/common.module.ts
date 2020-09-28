@@ -18,8 +18,6 @@ import { BookappointmentComponent } from './bookappointment/bookappointment.comp
 import { DiseasmasterComponent } from './diseasmaster/diseasmaster.component';
 import { ExpertiesmasterComponent } from './expertiesmaster/expertiesmaster.component';
 import { MedicinemasterComponent } from './medicinemaster/medicinemaster.component';
-import { CreatelabtestComponent } from './createlabtest/createlabtest.component';
-import { CreatelabtestpackageComponent } from './createlabtestpackage/createlabtestpackage.component';
 import { CreatebooklabtestComponent } from './createbooklabtest/createbooklabtest.component';
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
@@ -38,7 +36,7 @@ import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.compone
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatelabtestComponent, CreatelabtestpackageComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent],
    
   imports: [
     CommonModule,
@@ -63,8 +61,6 @@ import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.compone
     DiseasmasterComponent,
     ExpertiesmasterComponent,
     MedicinemasterComponent,
-    CreatelabtestComponent,
-    CreatelabtestpackageComponent,
     CreatebooklabtestComponent,
     LabtechnicianprofileComponent,
     UploadtestreportComponent,
