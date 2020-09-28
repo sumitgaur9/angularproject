@@ -31,7 +31,7 @@ showConfirmationPopup = false;
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
 
     this.Get_PharmacistsList();
   }

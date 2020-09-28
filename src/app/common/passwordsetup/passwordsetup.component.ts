@@ -46,7 +46,7 @@ export class PasswordsetupComponent implements OnInit {
     private el: ElementRef, private toastr: ToastrService, private fb: FormBuilder ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
 
     console.log("this.currentUserthis.currentUser",this.currentUser);
 

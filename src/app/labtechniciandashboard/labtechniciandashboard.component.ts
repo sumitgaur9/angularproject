@@ -30,7 +30,7 @@ public uploadreportdatainput:any={};
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
 
     console.log("this.currentUser this.currentUser ",this.currentUser )
     this.Get_LabTestsBookings();

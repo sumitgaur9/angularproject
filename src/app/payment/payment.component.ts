@@ -38,7 +38,7 @@ export class PaymentComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.currentUserLoginResponse = JSON.parse(window.localStorage.getItem("userToken"));//role not coming in userme api so need to take value from both storage because patient all info come in userme not in login response
+    this.currentUserLoginResponse = JSON.parse(window.sessionStorage.getItem("userToken"));//role not coming in userme api so need to take value from both storage because patient all info come in userme not in login response
     this.paymentform.patchValue({
       name: this.currentUserLoginResponse.user.name,
       email: this.currentUserLoginResponse.user.email,

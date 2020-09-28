@@ -73,8 +73,8 @@ export class CreatebooklabtestComponent implements OnInit {
 
 
   ngOnInit() {
-    this.currentUserLoginResponse = JSON.parse(window.localStorage.getItem("userToken"));  //role not coming in userme api so need to take value from both storage because patient all info come in userme not in login response
-    this.currentUserMeRes = JSON.parse(window.localStorage.getItem("currentusermedata"));
+    this.currentUserLoginResponse = JSON.parse(window.sessionStorage.getItem("userToken"));  //role not coming in userme api so need to take value from both storage because patient all info come in userme not in login response
+    this.currentUserMeRes = JSON.parse(window.sessionStorage.getItem("currentusermedata"));
     this.Get_PatientsList();
     if (this.currentUserMeRes.user && this.currentUserMeRes.user._id && this.currentUserLoginResponse.user.role < 1) {
       this.updatePatientDetails(this.currentUserMeRes.user);   //for admin no need to updatepatientdetail
@@ -326,7 +326,7 @@ export class CreatebooklabtestComponent implements OnInit {
     let dataparam: any = {};
     this._apiservice.userme(dataparam).subscribe(data => {
       console.log("userme data is this", JSON.stringify(data));
-      this.currentUserMeRes = JSON.parse(window.localStorage.getItem("currentusermedata"));
+      this.currentUserMeRes = JSON.parse(window.sessionStorage.getItem("currentusermedata"));
     }, error => {
       if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);

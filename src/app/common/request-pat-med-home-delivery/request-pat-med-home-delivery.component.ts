@@ -54,7 +54,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
 
   ngOnInit() {
-  this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
   this.Get_MedicinesList();
   this.Get_PharmacistsList();
   this.reqPatientMedicinesHomeDeliveryForm.patchValue({

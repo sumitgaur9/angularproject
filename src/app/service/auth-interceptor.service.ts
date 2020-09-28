@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthInterceptor implements HttpInterceptor{
     intercept( request : HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>>{
-        let currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+        let currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
         if(currentUser && currentUser.token){
             if(request.url=='https://api.roazorpay.com/v1/orders')
             {

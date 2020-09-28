@@ -18,7 +18,6 @@ export class LoaderInterceptorService implements HttpInterceptor {
     },
       (err: any) => {
         if(err.status == 401){
-          localStorage.clear();
           sessionStorage.clear();
           this.router.navigateByUrl('/login');          
         }

@@ -73,7 +73,7 @@ public expertiesArrayData:any=[];
 
 
   ngOnInit() {
-  this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
   this.onChangesonChanges();
   }
 

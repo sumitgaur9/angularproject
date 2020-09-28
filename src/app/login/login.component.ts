@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       email: this.loginInfo.controls.email.value,
       password: this.loginInfo.controls.password.value,
     }
-    localStorage.setItem("currentusermedata", JSON.stringify(obj));    
+    sessionStorage.setItem("currentusermedata", JSON.stringify(obj));    
   }
 
   loginUser() {

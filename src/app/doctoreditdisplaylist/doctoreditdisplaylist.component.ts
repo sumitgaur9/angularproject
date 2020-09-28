@@ -42,7 +42,7 @@ export class DoctorEditdisplaylistComponent implements OnInit {
 
   ngOnInit() {
     this.menuID = AppEnum.appListMenu.Doctor;
-    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     console.log("currentUsercurrentUser", this.currentUser);
     this.Get_DoctorsList();
     this.Get_ExpertiseList();

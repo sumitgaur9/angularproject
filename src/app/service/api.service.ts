@@ -259,7 +259,7 @@ export class APIService {
     return this.http.post<any>(APIURL, data)
       .pipe(map(userData => {
         if (userData && userData.token) {
-          localStorage.setItem("userToken", JSON.stringify(userData));
+          sessionStorage.setItem("userToken", JSON.stringify(userData));
         }
         return userData;
       }));
@@ -283,7 +283,7 @@ export class APIService {
       .pipe(map(resdata => {
         if (resdata) {
           if (resdata && resdata.roleBaseId) {
-            localStorage.setItem("currentusermedata", JSON.stringify(resdata));
+            sessionStorage.setItem("currentusermedata", JSON.stringify(resdata));
           }
 
         }
@@ -296,7 +296,7 @@ export class APIService {
     return this.http.post<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
-          localStorage.clear();
+          sessionStorage.clear();
         }
         return resdata;
       }));

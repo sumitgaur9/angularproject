@@ -48,7 +48,7 @@ export class VisitforallComponent implements OnInit {
 
   ngOnInit() {
     
-  this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
   this.visitforallform.patchValue({
     patientName:this.patientname
   })

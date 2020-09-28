@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     if (this.currentUser != undefined) {
       this.username = this.currentUser.user.name;
       this.nameFirstChar = this.currentUser.user.name ? this.currentUser.user.name.substr(0, 1) : '';

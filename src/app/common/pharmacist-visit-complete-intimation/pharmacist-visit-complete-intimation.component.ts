@@ -50,7 +50,7 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
 
 
   ngOnInit() {
-  this.currentUser = JSON.parse(window.localStorage.getItem("userToken"));
+  this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
   this.Get_MedicinesList();
   this.Get_DoctorsList();
   this.pharmaVisitCompleteIntimationForm.patchValue({
