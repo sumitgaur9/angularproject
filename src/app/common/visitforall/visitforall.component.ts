@@ -26,8 +26,8 @@ export class VisitforallComponent implements OnInit {
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
 
   public submitted = false;
@@ -74,7 +74,7 @@ export class VisitforallComponent implements OnInit {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks for submit visiting form');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

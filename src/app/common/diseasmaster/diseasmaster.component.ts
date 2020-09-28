@@ -19,8 +19,8 @@ export class DiseasmasterComponent implements OnInit {
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
 
 
@@ -83,7 +83,7 @@ export class DiseasmasterComponent implements OnInit {
     this._apiservice.Save_Disease(dataobj).subscribe(data => {
       if (data) {
         this.toastr.success('thanks to being a part of our platform');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

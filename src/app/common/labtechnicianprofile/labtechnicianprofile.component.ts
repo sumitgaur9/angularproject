@@ -20,8 +20,8 @@ export class LabtechnicianprofileComponent implements OnInit {
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
   @Input() getlabtechnicianprofileid:string='';
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
 
   public submitted = false;
@@ -209,7 +209,7 @@ public expertiesArrayData:any=[];
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('thanks for lab technician doctor profile');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

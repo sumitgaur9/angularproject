@@ -7,6 +7,10 @@
 
         <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
           <ad-modal-body>
+            <div class="modal-header" style="height:10px;">
+              <button type="button" class="close" (click)="CloseModal(false)"><span aria-hidden="true" class="closebtnspan">&times;</span></button>          
+            </div>
+            
             <div class="overlay"></div>
             <div class="popupContainer">
               <div class="containerBlock">

@@ -2,6 +2,10 @@
 
     <ad-modal [title]="'OTP'" [modalId]="'showVisitForAllModal'">
       <ad-modal-body>
+        <div class="modal-header" style="height:10px;">
+          <button type="button" class="close" (click)="CloseModal(false)"><span aria-hidden="true" class="closebtnspan">&times;</span></button>          
+        </div>
+
         <div class="overlay"></div>
         <div class="popupContainer">
           <div class="containerBlock">
@@ -15,8 +19,7 @@
                       <div class="card" style="border: transparent!important;">
                         <div class="card-header p-0">
                           <div class="bg-info text-white text-center py-2">
-                            <h3><i class="fa fa-medkit"></i>Diseases Master</h3>
-                            <!-- <p class="m-0">Con gusto te ayudaremos</p> -->
+                            <h3><i class="fa fa-medkit"></i>Diseases Master</h3>                            
                           </div>
                         </div>
 

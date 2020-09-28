@@ -20,8 +20,8 @@ export class UploadtestreportComponent implements OnInit {
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
   public currentUser;
 
@@ -66,7 +66,7 @@ public UploadFileName = "";
     this._apiservice.Save_UploadLabTestReport (formData).subscribe(data => {
       if (data) {
         this.toastr.success('Report Uploaded sucessfully');
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
