@@ -3,9 +3,9 @@
 
 
 
-      <form [formGroup]="doctorform" (ngSubmit)="Update_DoctorProfile()"  enctype="multipart/form-data">
+      <form [formGroup]="uploadImageForm" (ngSubmit)="SaveUpdate_UploadWebsiteImages()"  enctype="multipart/form-data">
 
-        <ad-modal [title]="'OTP'" [modalId]="'forgotPasswordModal'">
+        <ad-modal [title]="'OTP'" [modalId]="'showSaveImageForWebPopup'">
           <ad-modal-body>
             <div class="modal-header" style="height:10px;">
               <button type="button" class="close" (click)="CloseModal(false)"><span aria-hidden="true" class="closebtnspan">&times;</span></button>          

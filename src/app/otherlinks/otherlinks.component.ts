@@ -63,27 +63,27 @@ export class OtherlinksComponent implements OnInit {
 
   public closeDiseasMasterPopup() {
     this.showDiseasMasterPopup = false;
-    $('#showphyscoprofileformpopup').modal('hide');
+    $('#showDiseasMasterPopup').modal('hide');
   }
 
   public openDiseasMasterPopup() {
     this.showDiseasMasterPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showphyscoprofileformpopup').modal('show');
+      $('#showDiseasMasterPopup').modal('show');
     }, 100);
   }
 
   public closeExpertiesMasterPopup() {
     this.showExpertiesMasterPopup = false;
-    $('#showphyscoprofileformpopup').modal('hide');
+    $('#showExpertiesMasterPopup').modal('hide');
   }
 
   public openExpertiesMasterPopup() {
     this.showExpertiesMasterPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);
-      $('#showphyscoprofileformpopup').modal('show');
+      $('#showExpertiesMasterPopup').modal('show');
     }, 100);
   }
 

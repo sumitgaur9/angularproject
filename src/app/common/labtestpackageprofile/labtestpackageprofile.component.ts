@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { defaultImage } from 'src/app/shared/api.constant'
 
 
 @Component({
@@ -120,10 +121,13 @@ export class LabtestpackageprofileComponent implements OnInit {
         // }
         if (data.newimage != undefined && data.newimage.data != undefined) {
           this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
-
           this.createlabtestpackageform.patchValue({
             newimage: data.newimage
           });
+        }
+        else
+        {
+          this.getImageValue=defaultImage.labtestlink;
         }
         if (data.skills != undefined) {
           this.createlabtestpackageform.patchValue({
