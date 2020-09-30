@@ -61,11 +61,15 @@ export class MedicinemasterComponent implements OnInit {
     dataobj= this.medicineMasterForm.value;
     this._apiservice.Save_Medicine(dataobj).subscribe(data => {
       if (data) {
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Saved Sucessfully');
         this.CloseModal(true);
       }
     }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      if(error.error.code ===11000){
+        this.errorMessage = error.error.errmsg; this.toastr.error(this.errorMessage);        
+      } else {
+        this.errorMessage = error.error.message; this.toastr.error(this.errorMessage);
+      }
     });
   }
 }

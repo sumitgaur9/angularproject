@@ -201,7 +201,7 @@ export class PatientprofileComponent implements OnInit {
     this._apiservice.Save_NewPatientProfileFromBookAppointment(formData).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Thanks to being a part of our platform');
         this.patientProfileResponseReturn.emit(data.patient)
         this.CloseModal(true);
       }
@@ -237,7 +237,7 @@ export class PatientprofileComponent implements OnInit {
     this._apiservice.Update_PatientProfile(formData, this.patientform.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Updated Sucessfully');
         this.patientProfileResponseReturn.emit(data.pat)
         this.CloseModal(true);
       }

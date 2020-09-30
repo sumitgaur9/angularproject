@@ -106,7 +106,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this._apiservice.Request_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Thanks to being a part of our platform');
         this.CloseModal();
       }
     }, error => {

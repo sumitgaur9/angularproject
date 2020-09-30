@@ -207,7 +207,7 @@ export class NurseprofileComponent implements OnInit {
       this._apiservice.Update_NurseProfile(formData,this.nurseProfileForm.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Thanks to being a part of our platform');
         this.CloseModal(true);
        // this.router.navigate(['/nurselist']);
       }

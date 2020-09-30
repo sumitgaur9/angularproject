@@ -173,7 +173,7 @@ export class BookappointmentComponent implements OnInit {
     dataobj.timeSlot = parseInt(dataobj.timeSlot);
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
       if (data) {
-        this.toastr.success('thanks to being a part of our platform');
+        this.toastr.success('Thanks to booking an Appointment');
         this.CloseModal();
       }
     }, error => {
