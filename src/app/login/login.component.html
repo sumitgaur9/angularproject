@@ -17,8 +17,8 @@
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="email" formControlName="email" class="form-control" placeholder="Email Address"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-					  <div *ngIf="submitted && f.email.errors" style="color:red">
+						onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" style="width: auto;">
+					  <div *ngIf="submitted && f.email.errors" style="color:red;font-size: 10px;">
 						<div *ngIf="f.email.errors.required">Email Address is required</div>
 					  </div>
 
@@ -30,11 +30,11 @@
 						</div>
 						
 						<input [type]="passwordType" formControlName="password" class="form-control" placeholder="Password"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+						onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" style="width: auto;">
 						<img src="../../assets/images/eye-outline.png" *ngIf="passwordType == 'password'" (click)="passwordType = 'text'" class="eyeIcon">
 						<img src="../../assets/images/eye-off-outline.png" *ngIf="passwordType == 'text'" (click)="passwordType = 'password'" class="eyeIcon">
 						
-					  <div *ngIf="submitted && f.password.errors" style="color:red">
+					  <div *ngIf="submitted && f.password.errors" style="color:red;font-size: 10px;">
 						<div *ngIf="f.password.errors.required">Password is required</div>
 					  </div>     					</div>
 
