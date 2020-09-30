@@ -61,7 +61,7 @@ export class LablistComponent implements OnInit {
     };
     this._apiservice.Delete_LabTest(dataobj, id).subscribe(data => {
       if (data) {
-        this.toastr.success('doctor deleted successfully');
+        this.toastr.success('Lab Test deleted successfully');
         this.Get_LabTestsList();
       }
     }, error => {

@@ -70,7 +70,7 @@ export class NurseeditdisplaylistComponent implements OnInit {
     };
     this._apiservice.Delete_Nurse(dataobj,id).subscribe(data => {
       if (data) {
-        this.toastr.success('doctor deleted successfully');
+        this.toastr.success('Nurse deleted successfully');
         this.Get_NursesList();
       }
     }, error => {

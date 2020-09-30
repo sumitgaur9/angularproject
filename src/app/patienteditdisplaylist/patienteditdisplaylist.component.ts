@@ -80,7 +80,7 @@ export class PatienteditdisplaylistComponent implements OnInit {
     };
     this._apiservice.Delete_Patient(dataobj, id).subscribe(data => {
       if (data) {
-        this.toastr.success('doctor deleted successfully');
+        this.toastr.success('Patient deleted successfully');
         this.Get_PatientsList();
       }
     }, error => {

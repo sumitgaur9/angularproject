@@ -74,7 +74,7 @@ showConfirmationPopup = false;
     };
     this._apiservice.Delete_Pharmacist(dataobj,id).subscribe(data => {
       if (data) {
-        this.toastr.success('doctor deleted successfully');
+        this.toastr.success('Pharmacist deleted successfully');
         this.Get_PharmacistsList();
       }
     }, error => {

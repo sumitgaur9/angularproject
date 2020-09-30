@@ -71,7 +71,7 @@ export class PhyscotherapisteditdisplaylistComponent implements OnInit {
     };
     this._apiservice.Delete_Physio(dataobj, id).subscribe(data => {
       if (data) {
-        this.toastr.success('doctor deleted successfully');
+        this.toastr.success('Physiotherapist deleted successfully');
         this.Get_PhysiosList();
       }
     }, error => {

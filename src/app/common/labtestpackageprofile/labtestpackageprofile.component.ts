@@ -131,8 +131,16 @@ export class LabtestpackageprofileComponent implements OnInit {
         }
         if (data.skills != undefined) {
           this.createlabtestpackageform.patchValue({
-            skills: data.testsData
+           // skills: data.testsData
           });
+        }
+        this.selectedItems = [];//
+        for (var i = 0; i < data.testsData.length; i++) {
+          let dataobj1 = {
+            "id": data.testsData[i].testID,
+            "itemName": data.testsData[i].testname
+          }
+          this.selectedItems.push(dataobj1);
         }
         if (data._id != undefined) {
           this.createlabtestpackageform.patchValue({
@@ -187,10 +195,10 @@ export class LabtestpackageprofileComponent implements OnInit {
     }
     formData.append('packageNname', this.createlabtestpackageform.value.packageNname);
     formData.append('packageAmount', this.createlabtestpackageform.value.packageAmount);
-    for (var i = 0; i < this.createlabtestpackageform.value.skills.length; i++) {
+    for (var i = 0; i < this.selectedItems.length; i++) {
       let testdataobj = {
-        "testID": this.createlabtestpackageform.value.skills[i].id,
-        "testname": this.createlabtestpackageform.value.skills[i].itemName,
+        "testID": this.selectedItems[i].id,
+        "testname": this.selectedItems[i].itemName,
       }
       labtestdata.push(testdataobj);
     }
@@ -223,10 +231,10 @@ export class LabtestpackageprofileComponent implements OnInit {
     }
     formData.append('packageNname', this.createlabtestpackageform.value.packageNname);
     formData.append('packageAmount', this.createlabtestpackageform.value.packageAmount);
-    for (var i = 0; i < this.createlabtestpackageform.value.skills.length; i++) {
+    for (var i = 0; i < this.selectedItems.length; i++) {
       let testdataobj = {
-        "testID": this.createlabtestpackageform.value.skills[i].id,
-        "testname": this.createlabtestpackageform.value.skills[i].itemName,
+        "testID": this.selectedItems[i].id,
+        "testname": this.selectedItems[i].itemName,
       }
       labtestdata.push(testdataobj);
     }
