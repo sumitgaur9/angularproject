@@ -15,11 +15,12 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
        if(this.modalId=="confirmationModal" 
-       || this.modalId=="showVerifyOTPPopup"|| this.modalId=="showPasswordSetupPopup" || this.modalId=="showChangePasswordPopup" ){
+       || this.modalId=="showVerifyOTPPopup"|| this.modalId=="showPasswordSetupPopup" || this.modalId=="showChangePasswordPopup"){
         jQuery('.modal-footer').css({"display":"block"});
         jQuery('.modal-footer').css({"padding":"0"});
         jQuery('.modal-dialog.popupModel').css({"max-width":"800px"});
         jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
+        
 
         
 
@@ -43,6 +44,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
     if(this.modalId=="showPaymentSuccessPopup"){
       jQuery('.modal-dialog.popupModel').css({"max-width":"325px"});
       jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
+    } 
+    if(this.modalId=="showRequestPatMedHomeDeliveryModal"){
+      jQuery('.modal-dialog.popupModel').css({"max-width":"900px"});
     } 
        }
   ngAfterViewInit(){
