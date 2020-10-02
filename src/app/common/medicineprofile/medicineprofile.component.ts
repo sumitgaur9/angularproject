@@ -31,8 +31,8 @@ export class MedicineprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  public medicineDataArray = [{ "name": "cipla" }, { "name": "crosin" },{ "name": "Jufex Fort" }];
-  public companyNameDataArray = [{ "name": "Aimil" }, { "name": "cipla" }];
+  public medicineDataArray = [{ "name": "Cipla" }, { "name": "Crosin" },{ "name": "Jufex Fort" }];
+  public companyNameDataArray = [{ "name": "Aimil" }, { "name": "cipla" }, {"name":"GSK"}];
   /************************** */
 
   public uploadreportdatainput: any;

@@ -41,7 +41,7 @@
               {{data.price.toLocaleString('en-IN')}}</label>
           </h5>
           <p class="card-text" *ngIf="data.description">
-            {{data.description.length > 50 ? data.description.substring(0,95)+'...' : data.description  }}</p>
+            {{data.description.length > 85 ? data.description.substring(0,85)+'...' : data.description  }}</p>
             <div style="float:left;width:100%">
               <div style="float:left;width:96%" class="card-title1">
                <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"

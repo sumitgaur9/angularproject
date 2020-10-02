@@ -17,7 +17,6 @@ export class OtherlinksComponent implements OnInit {
   public showDiseasMasterPopup: boolean = false;
   public showExpertiesMasterPopup: boolean = false;
   public showSaveImageForWebPopup: boolean = false;
-  public showMedicineMasterPopup: boolean = false;
   public showBookAppointmentPopup: boolean = false;
   public showCreateLabTestPopup: boolean = false;
   public showSaveBookLabTestPopup: boolean = false;
@@ -88,18 +87,6 @@ export class OtherlinksComponent implements OnInit {
     }, 100);
   }
 
-  public closeMedicineMaster() {
-    this.showMedicineMasterPopup = false;
-    $('#showMedicineMasterPopup').modal('hide');
-  }
-
-  public openMedicineMaster() {
-    this.showMedicineMasterPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showMedicineMasterPopup').modal('show');
-    }, 100);
-  }
 
   public openPharmacistDashboard() {
     this.router.navigate(['/pharmacistdashboard']);
@@ -191,7 +178,7 @@ export class OtherlinksComponent implements OnInit {
   }
 
   public openMedicineList() {
-    this.router.navigate(['/meicinelist']);
+    this.router.navigate(['/medicinelist']);
   }
 
 

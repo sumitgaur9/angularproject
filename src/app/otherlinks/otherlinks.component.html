@@ -176,9 +176,7 @@
   </app-bookappointment>
 </div>
 
-<div *ngIf="showMedicineMasterPopup">
-  <app-medicinemaster [showModal]="showMedicineMasterPopup" (ClosePopup)="closeMedicineMaster()"> </app-medicinemaster>
-</div>
+
 
 <div *ngIf="showSaveBookLabTestPopup">
   <app-createbooklabtest [showModal]="showSaveBookLabTestPopup" (ClosePopup)="closeSaveBookLabTestMaster()">

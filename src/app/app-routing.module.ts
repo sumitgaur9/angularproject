@@ -43,7 +43,7 @@ const routes: Routes = [
     { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },
     { path: 'getlabtestpackagelist', component: LabtestpackagelistComponent },
     { path: 'paymentpage', component: PaymentComponent },
-    { path: 'meicinelist', component: MedicinelistComponent },
+    { path: 'medicinelist', component: MedicinelistComponent },
     { path: '**', component: LoginComponent }
 ];
 
