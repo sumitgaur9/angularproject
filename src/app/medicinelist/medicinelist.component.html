@@ -9,36 +9,6 @@
       <a class="btn btn-primary" (click)="openMedicineProfilePopup()" *ngIf="currentUser.user.role==11"><i class="fa fa-plus" style="color: white;font-size: 20px;padding-right: 5px;"></i> Medicine</a>
     </div>
     <div class="row">
-      <!-- <div class="col-md-3 col-sm-6 item" *ngFor="let data of medicineListDataArray">
-        <div class="card item-card card-block" style="padding: 2% 2%;">
-    
-          <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="{{getDefaultImage}}"
-            alt="Photo of sunset">
-          <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
-            src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
-    
-          <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;font-size: 17px;">{{data.medicineName}}</h5>
-          <div style="width: 100%;float: left;">
-            <a style="float: left;">&#8377;</a>
-            <div class="card-text" style="float:left;width:60%;font-weight: 600;">{{data.price}}</div>
-            <div class="card-text" style="float: left;width:30%;">By: {{data.companyName}}</div>
-          </div>
-    
-          <p class="card-text" *ngIf="data.description">
-            {{data.description.length > 85 ? data.description.substring(0,85)+'...' : data.description  }}</p>
-    
-          <div style="float:left;width:100%">
-            <div style="float:left;width:96%" class="card-title1">
-              <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
-                (click)="openMedicineProfilePopup(data._id)"></i>
-            </div>
-            <div style="float:left;width:4%" class="card-title1">
-              <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
-                (click)="openDeleteConfirmationPopup(data._id)" style="color:red"></i>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <table class="table table-hover my-0" style="text-align: center;">
         <thead style="background-color: #39b49b;">
           <tr>
