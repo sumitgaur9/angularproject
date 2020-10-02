@@ -27,7 +27,7 @@ export class MedicinelistComponent implements OnInit {
 
   showConfirmationPopup = false;
   public showData = 'Do you really want to delete these records? This process cannot be undone.';
-  public getDefaultImage = defaultImage.nurselink;
+  public getDefaultImage = defaultImage.medicinelink;
 
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }

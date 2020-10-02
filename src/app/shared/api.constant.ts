@@ -128,6 +128,7 @@ export const defaultImage={
     pharmacistlink:'https://icons.iconarchive.com/icons/icons-land/medical/256/People-Pharmacist-Male-icon.png',
     labtechnicianlink:'https://previews.123rf.com/images/dxinerz/dxinerz1801/dxinerz180102964/93710577-scientist-medical-laboratory-icon-vector-image-can-also-be-used-for-professionals-suitable-for-web-a.jpg',
     labtestlink:'https://previews.123rf.com/images/dxinerz/dxinerz1801/dxinerz180102964/93710577-scientist-medical-laboratory-icon-vector-image-can-also-be-used-for-professionals-suitable-for-web-a.jpg',
+    medicinelink: 'https://images.moneycontrol.com/static-mcnews/2019/05/Pharma_medicines_health_drugs2-770x433.jpg',
 }
 
 

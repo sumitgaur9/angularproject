@@ -117,7 +117,7 @@ export class MedicineprofileComponent implements OnInit {
           });
         }
         else {
-          this.getImageValue = defaultImage.nurselink;
+          this.getImageValue = defaultImage.medicinelink;
         }
 
 
