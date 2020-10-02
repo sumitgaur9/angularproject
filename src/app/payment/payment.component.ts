@@ -35,6 +35,9 @@ export class PaymentComponent implements OnInit {
     appointmentfor: new FormControl(""),
     paymentdate: new FormControl(""),
     appointmentType: new FormControl(""),
+    paymentTypeEnumKey: new FormControl(""),
+    paymentTypeEnumValue: new FormControl(""),
+    localUIOrderID: new FormControl(""),
   });
 
   ngOnInit() {
@@ -52,7 +55,10 @@ export class PaymentComponent implements OnInit {
         this.paymentform.patchValue({
           amount: dataobj.charges,
           appointmentfor: dataobj.disease,
-          appointmentType: dataobj.appointmentType,
+          appointmentType: dataobj.appointmentType,  //homevisit/online
+          paymentTypeEnumKey: dataobj.paymentTypeEnumKey,  //appointment or labtest enum id
+          paymentTypeEnumValue: dataobj.paymentTypeEnumValue,  // //appointment or labtest enum name
+          localUIOrderID: dataobj.localUIOrderID,// //appointment or labtest id 
         });
       }
     });
@@ -116,11 +122,19 @@ export class PaymentComponent implements OnInit {
     };
   }
 
+
+
+  
+
   handlePayment(response) {
     let dataobj = {
       "razorpay_payment_id": response.razorpay_payment_id,
       "razorpay_order_id": response.razorpay_order_id,
-      "razorpay_signature": response.razorpay_signature
+      "razorpay_signature": response.razorpay_signature,
+      "paymentTypeEnumKey": this.paymentform.controls.paymentTypeEnumKey.value,
+      "paymentTypeEnumValue": this.paymentform.controls.paymentTypeEnumValue.value,
+      "localUIOrderID": this.paymentform.controls.localUIOrderID.value,
+      "patientEmail":this.currentUserLoginResponse.user.email,
     }
     this._apiservice.paymentverify(dataobj).subscribe(data => {
       if (data) {

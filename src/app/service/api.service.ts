@@ -785,9 +785,58 @@ export class APIService {
         return userData;
       }));
   }
+
+  SaveUpdate_WebsiteTextData(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.SaveUpdate_WebsiteTextData}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
   
+  Get_WebsiteTextDataByLocationEnum(params,locationenum) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteTextDataByLocationEnum+'/'+locationenum}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+    
+  Get_WebsiteTextDataByLocationEnumList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteTextDataByLocationEnumList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
   
+Update_Medicine(data,medicineid) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_Medicine +'/'+medicineid}`
+   return this.http.put<any>(APIURL, data)
+     .pipe(map(userData => {
+       return userData;
+     }));
+ }
+
+ Get_Medicine(params,medicineid) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_Medicine+'/'+medicineid}`
+  return this.http.get<any>(APIURL, { params: params })
+    .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+    }));
 }
+
+ //Get_Medicine
+
+}
+
 
 
 

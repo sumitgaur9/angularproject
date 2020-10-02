@@ -369,6 +369,11 @@ export class PatientdashboardComponent implements OnInit {
     let data={};
     this.router.navigate(['/paymentpage']);
     setTimeout(() => {
+      var dataobj:any={};
+      dataobj=appointmentData;
+      dataobj["paymentTypeEnumKey"]="1";
+      dataobj["paymentTypeEnumValue"]="BookAppointment";
+      dataobj["localUIOrderID"]=appointmentData._id;
       this.utilityservice.preparePaymentDetailsData.next(appointmentData);
     }, 10);
   }

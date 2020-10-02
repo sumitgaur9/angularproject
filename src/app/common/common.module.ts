@@ -33,10 +33,12 @@ import { PasswordsetupComponent } from './passwordsetup/passwordsetup.component'
 import { LabtestprofileComponent } from './labtestprofile/labtestprofile.component';
 import { LabtestpackageprofileComponent } from './labtestpackageprofile/labtestpackageprofile.component';
 import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.component';
+import { SavewebsitetextdataComponent } from './savewebsitetextdata/savewebsitetextdata.component';
+import { MedicineprofileComponent } from './medicineprofile/medicineprofile.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, MedicinemasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent, SavewebsitetextdataComponent, MedicineprofileComponent],
    
   imports: [
     CommonModule,
@@ -72,7 +74,9 @@ import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.compone
     PasswordsetupComponent,
     LabtestprofileComponent,
     LabtestpackageprofileComponent,
-    PaymentsuccessComponent
+    PaymentsuccessComponent,
+    SavewebsitetextdataComponent,
+    MedicineprofileComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

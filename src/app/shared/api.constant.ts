@@ -85,7 +85,11 @@ export const API_PATH: any = {
     'Save_NewPatientProfileFromBookAppointment': 'Save_NewPatientProfileFromBookAppointment',
     'paymentverify':'payment/verify',
     'createOrder':'payment/creteOrder',
-    
+    'SaveUpdate_WebsiteTextData':'SaveUpdate_WebsiteTextData',
+    'Get_WebsiteTextDataByLocationEnum':'Get_WebsiteTextDataByLocationEnum',
+    'Get_WebsiteTextDataByLocationEnumList':'Get_WebsiteTextDataByLocationEnumList',
+    'Update_Medicine':'Update_Medicine',
+    'Get_Medicine':'Get_Medicine',
 }
 
 export const PATTERN_ERROR_MESSAGE = {

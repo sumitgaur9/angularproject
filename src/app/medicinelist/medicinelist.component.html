@@ -1,0 +1,61 @@
+
+
+
+<div class="container mt-2" style="position:absolute;top:17%;left:7%;">
+
+    <div style="margin-bottom:1%;">
+      <!-- <h4 class="card-title">Card 1</h4>
+      <p class="card-text">Welcom to bootstrap card styles</p> -->
+      <a class="btn btn-primary" (click)="openMedicineProfilePopup()" *ngIf="currentUser.user.role==11">Create New Medicine</a>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 item" *ngFor="let data of medicineListDataArray">
+        <div class="card item-card card-block" style="padding: 2% 2%;">
+        <!-- <h4 class="card-title text-right">
+          <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true" (click)="openMedicineProfilePopup(data._id)"></i>
+
+          <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_NurseProfile(data._id)"></i>
+        </h4> -->
+        <!-- <img *ngIf="data.image==''" src="https://i2.wp.com/www.navpradesh.com/wp-content/uploads/2019/10/AIIMS.jpg?fit=1024%2C575&ssl=1" alt="Photo of sunset">
+        <img *ngIf="data.image!=''" src="https://mongowithnode.herokuapp.com/uploads/{{data.image}}" alt="Photo of sunset"> -->
+
+        <!-- <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="https://cyclonethemes.com/demo/html/swasthye/images/home/appointment.png" alt="Photo of sunset">
+        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data" src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset"> -->
+        
+        <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+          src="{{getDefaultImage}}" alt="Photo of sunset">
+        <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+          src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+        
+        <h5 class="item-card-title mt-3 mb-3">{{data.medicineName}}</h5>
+          <!-- <p class="card-text">{{data.experties}}</p> -->
+          <p class="card-text">{{data.description}}</p>
+          <div style="float:left;width:100%">
+            <div style="float:left;width:96%" class="card-title1">
+             <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" aria-hidden="true"
+             (click)="openMedicineProfilePopup(data._id)"></i>
+               </div>
+               <div style="float:left;width:4%" class="card-title1">
+                 <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
+                 (click)="openDeleteConfirmationPopup(data._id)" style="color:red"></i>
+               </div>
+               </div>
+    </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div *ngIf="showMedicineprofileformpopup">
+      <app-medicineprofile [showModal]="showMedicineprofileformpopup"  [getmedicineprofileid]="getmedicineprofileid" (ClosePopup)="closeMedicineProfilePopup($event)"> </app-medicineprofile>
+    </div>
+
+    <div *ngIf="showConfirmationPopup">
+      <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+      </app-confirmation>
+    </div>
+
+

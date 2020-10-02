@@ -48,6 +48,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { WindowRefService } from './window-ref.service';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     LabtechniciandashboardComponent,
     LabtestpackagelistComponent,
     PaymentComponent,
+    MedicinelistComponent,
    // DoctorprofileComponent
   ],
   imports: [

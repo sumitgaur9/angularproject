@@ -22,6 +22,7 @@ export class OtherlinksComponent implements OnInit {
   public showCreateLabTestPopup: boolean = false;
   public showSaveBookLabTestPopup: boolean = false;
   public showChangePasswordPopup: boolean = false;
+  public showSaveTextForWebPopup: boolean = false;
 
   public currentUser;
 
@@ -170,12 +171,31 @@ export class OtherlinksComponent implements OnInit {
     }, 100);
   }
 
+
+
   public goToPaymentPage() {
     this.router.navigate(['/paymentpage']);
   }
-  
 
- 
+  public closeSaveTextForWebPopup() {
+    this.showSaveTextForWebPopup = false;
+    $('#showSaveTextForWebPopup').modal('hide');
+  }
+
+  public openSaveTextForWebPopup() {
+    this.showSaveTextForWebPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showSaveTextForWebPopup').modal('show');
+    }, 100);
+  }
+
+  public openMedicineList() {
+    this.router.navigate(['/meicinelist']);
+  }
+
+
+
 
   Save_Image() {
     this.errorMessage = "";

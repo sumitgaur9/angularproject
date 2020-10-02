@@ -333,7 +333,7 @@
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
                   <td>
-                    <a  (click)="makePayment(data)" class="btn" style="font-size:13px;"><i class="fa fa-paypal" aria-hidden="true"></i>
+                    <a  *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i class="fa fa-paypal" aria-hidden="true"></i>
                      Make Payment</a>
                   </td>
 

@@ -19,6 +19,7 @@ import { LabtechniciandashboardComponent } from './labtechniciandashboard/labtec
 import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdisplaylist/labtechnicianeditdisplaylist.component';
 import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackagelist.component';
 import { PaymentComponent } from './payment/payment.component';
+import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
     { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },
     { path: 'getlabtestpackagelist', component: LabtestpackagelistComponent },
     { path: 'paymentpage', component: PaymentComponent },
+    { path: 'meicinelist', component: MedicinelistComponent },
     { path: '**', component: LoginComponent }
 ];
 
