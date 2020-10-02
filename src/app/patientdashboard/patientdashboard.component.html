@@ -325,7 +325,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of patientAppointmentData" >
+                <tr *ngFor="let data of patientAppointmentData" [ngStyle]="{  'background-color': data.isPaymentDone ? '#80808045': '' }" >                  
                   <td>{{data.doctorName}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <!-- <td class="d-none d-md-table-cell">{{data.patientMob}}</td> -->
@@ -335,6 +335,8 @@
                   <td>
                     <a  *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i class="fa fa-paypal" aria-hidden="true"></i>
                      Make Payment</a>
+                     <a  *ngIf="data.isPaymentDone" class="btn" style="font-size:13px;background-color: green;cursor: not-allowed;"><i class="fa fa-paypal" aria-hidden="true"></i>
+                      Payment Done</a>
                   </td>
 
 
