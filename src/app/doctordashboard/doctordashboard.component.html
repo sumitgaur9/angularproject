@@ -327,5 +327,5 @@
     <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
   </div>
   <div *ngIf="showRequestPatMedHomeDelivery">
-    <app-request-pat-med-home-delivery  [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery" [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+    <app-request-pat-med-home-delivery  [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery" [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId"  [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
   </div> 
