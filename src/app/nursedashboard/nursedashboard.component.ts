@@ -15,64 +15,51 @@ declare var $: any;
 })
 export class NursedashboardComponent implements OnInit {
 
-
-  public labTestBookingData:any=[];
-
+  public labTestBookingData: any = [];
   public errorMessage;
   public currentUser;
-
-  public showVisitForAll:boolean=false;
-  public bookLabTestId:string='';
-  public visitAppointmentId:string='';
-  public patientname:string='';
-  
+  public showVisitForAll: boolean = false;
+  public bookLabTestId: string = '';
+  public visitAppointmentId: string = '';
+  public patientname: string = '';
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-
     this.Get_LabTestsBookings();
-  
   }
- //Get_AppointmentsByDocID
- public closeshowVisitForAll() {
-  this.showVisitForAll = false;
-  $('#showVisitForAllModal').modal('hide');
-}
 
-public openShowVisitForAll(data) {
-  this.showVisitForAll = true;
-  console.log("data is this",data);
-  this.visitAppointmentId = '';
-  this.bookLabTestId= data._id;
-  this.patientname = data.patientNname;
+  public closeshowVisitForAll(value) {
+    if (value) {
+      this.Get_LabTestsBookings();
+    }
+    this.showVisitForAll = false;
+    $('#showVisitForAllModal').modal('hide');
+  }
 
-  
-  setTimeout(() => {
-    $(window).scrollTop(0);
-    $('#showVisitForAllModal').modal('show');
-  }, 100);
-}
-
-  
+  public openShowVisitForAll(data) {
+    this.showVisitForAll = true;
+    console.log("data is this", data);
+    this.visitAppointmentId = '';
+    this.bookLabTestId = data._id;
+    this.patientname = data.patientNname;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showVisitForAllModal').modal('show');
+    }, 100);
+  }
   Get_LabTestsBookings() {
-    let dataobj:any = {}
-    dataobj.nurseID=this.currentUser.roleBaseId;
+    let dataobj: any = {}
+    dataobj.nurseID = this.currentUser.roleBaseId;
     this._apiservice.Get_LabTestsBookings(dataobj).subscribe(data => {
       if (data) {
-        this.labTestBookingData = data.filter(function (item) {
-          return item.isCollectionCollected == false;
-        });
+        this.labTestBookingData = data;
+        console.log("this.labTestBookingDatathis.labTestBookingData",this.labTestBookingData);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
-  
-
-
-
 }
 

@@ -32,12 +32,9 @@ export class LabtechnicianprofileComponent implements OnInit {
     name: new FormControl(""),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    experties: new FormControl(""),
     phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
     charges: new FormControl(""),
     area: new FormControl(""),
-    qualification: new FormControl(""),
     id: new FormControl(""),
     participantID:new FormControl(""),
     description: new FormControl(""),
@@ -121,22 +118,11 @@ public expertiesArrayData:any=[];
           });
         }
 
-        if(data.experties!=undefined)
-        {
-          this.labTechform.patchValue({
-            experties: data.experties
-          });
-        }
+       
         if(data.phoneno!=undefined)
         {
           this.labTechform.patchValue({
             phoneno: data.phoneno
-          });
-        }
-        if(data.timeAvailablity!=undefined)
-        {
-          this.labTechform.patchValue({
-            timeAvailablity: data.timeAvailablity
           });
         }
         if(data.charges!=undefined)
@@ -150,12 +136,6 @@ public expertiesArrayData:any=[];
         {
           this.labTechform.patchValue({
             area: data.area
-          });
-        }
-        if(data.qualification!=undefined)
-        {
-          this.labTechform.patchValue({
-            qualification: data.qualification
           });
         }
         if(data._id!=undefined)
@@ -197,11 +177,8 @@ public expertiesArrayData:any=[];
  formData.append('name', this.labTechform.value.name);
  formData.append('email', this.labTechform.value.email);
  formData.append('phoneno', this.labTechform.value.phoneno);
- formData.append('experties', this.labTechform.value.experties);
- formData.append('timeAvailablity', this.labTechform.value.timeAvailablity);
  formData.append('charges', this.labTechform.value.charges);
  formData.append('area', this.labTechform.value.area);
- formData.append('qualification', this.labTechform.value.qualification);
  formData.append('id', this.labTechform.value.id);
  formData.append('participantID', this.labTechform.value.participantID);
  formData.append('description', this.labTechform.value.description);

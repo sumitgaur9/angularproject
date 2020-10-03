@@ -47,12 +47,9 @@ export class NurseprofileComponent implements OnInit {
     newimage: new FormControl(), 
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    experties: new FormControl(""),
     phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
     charges: new FormControl(""),
     area: new FormControl(""),
-    qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -119,24 +116,14 @@ export class NurseprofileComponent implements OnInit {
         {
           this.getImageValue=defaultImage.nurselink;
         }
-        if(data.experties!=undefined)
-        {
-          this.nurseProfileForm.patchValue({
-            experties: data.experties
-          });
-        }
+      
         if(data.phoneno!=undefined)
         {
           this.nurseProfileForm.patchValue({
             phoneno: data.phoneno
           });
         }
-        if(data.timeAvailablity!=undefined)
-        {
-          this.nurseProfileForm.patchValue({
-            timeAvailablity: data.timeAvailablity
-          });
-        }
+      
         if(data.charges!=undefined)
         {
           this.nurseProfileForm.patchValue({
@@ -150,12 +137,7 @@ export class NurseprofileComponent implements OnInit {
             area: data.area
           });
         }
-        if(data.qualification!=undefined)
-        {
-          this.nurseProfileForm.patchValue({
-            qualification: data.qualification
-          });
-        }
+      
         if(data._id!=undefined)
         {
           this.nurseProfileForm.patchValue({
@@ -196,11 +178,8 @@ export class NurseprofileComponent implements OnInit {
     formData.append('name', this.nurseProfileForm.value.name);
     formData.append('email', this.nurseProfileForm.value.email);
     formData.append('phoneno', this.nurseProfileForm.value.phoneno);
-    formData.append('experties', this.nurseProfileForm.value.experties);
-    formData.append('timeAvailablity', this.nurseProfileForm.value.timeAvailablity);
     formData.append('charges', this.nurseProfileForm.value.charges);
     formData.append('area', this.nurseProfileForm.value.area);
-    formData.append('qualification', this.nurseProfileForm.value.qualification);
     formData.append('id', this.nurseProfileForm.value.id);
     formData.append('participantID', this.nurseProfileForm.value.participantID);
     formData.append('description', this.nurseProfileForm.value.description);

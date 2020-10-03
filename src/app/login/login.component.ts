@@ -109,6 +109,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/doctordashboard']);
         break;
       case 2:
+        this.router.navigate(['/nursedashboard']);
+        break;
       case 3:
       case 11:
       case 5:

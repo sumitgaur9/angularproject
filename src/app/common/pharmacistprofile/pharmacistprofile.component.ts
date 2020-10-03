@@ -32,12 +32,9 @@ export class PharmacistprofileComponent implements OnInit {
     name: new FormControl(""),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    experties: new FormControl(""),
     phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
     charges: new FormControl(""),
     area: new FormControl(""),
-    qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -119,24 +116,14 @@ export class PharmacistprofileComponent implements OnInit {
   {
     this.getImageValue=defaultImage.pharmacistlink;
   }
-        if(data.experties!=undefined)
-        {
-          this.pharmacistProfileForm.patchValue({
-            experties: data.experties
-          });
-        }
+       
         if(data.phoneno!=undefined)
         {
           this.pharmacistProfileForm.patchValue({
             phoneno: data.phoneno
           });
         }
-        if(data.timeAvailablity!=undefined)
-        {
-          this.pharmacistProfileForm.patchValue({
-            timeAvailablity: data.timeAvailablity
-          });
-        }
+      
         if(data.charges!=undefined)
         {
           this.pharmacistProfileForm.patchValue({
@@ -148,12 +135,6 @@ export class PharmacistprofileComponent implements OnInit {
         {
           this.pharmacistProfileForm.patchValue({
             area: data.area
-          });
-        }
-        if(data.qualification!=undefined)
-        {
-          this.pharmacistProfileForm.patchValue({
-            qualification: data.qualification
           });
         }
         if(data._id!=undefined)
@@ -191,11 +172,8 @@ export class PharmacistprofileComponent implements OnInit {
     formData.append('name', this.pharmacistProfileForm.value.name);
     formData.append('email', this.pharmacistProfileForm.value.email);
     formData.append('phoneno', this.pharmacistProfileForm.value.phoneno);
-    formData.append('experties', this.pharmacistProfileForm.value.experties);
-    formData.append('timeAvailablity', this.pharmacistProfileForm.value.timeAvailablity);
     formData.append('charges', this.pharmacistProfileForm.value.charges);
     formData.append('area', this.pharmacistProfileForm.value.area);
-    formData.append('qualification', this.pharmacistProfileForm.value.qualification);
     formData.append('id', this.pharmacistProfileForm.value.id);
     formData.append('participantID', this.pharmacistProfileForm.value.participantID);
     formData.append('description', this.pharmacistProfileForm.value.description);

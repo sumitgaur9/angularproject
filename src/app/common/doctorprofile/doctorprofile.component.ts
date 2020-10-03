@@ -35,7 +35,6 @@ export class DoctorprofileComponent implements OnInit {
     newimage: new FormControl(),
     experties: new FormControl(""),
     phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
     charges: new FormControl(""),
     area: new FormControl(""),
     qualification: new FormControl(""),
@@ -126,11 +125,7 @@ export class DoctorprofileComponent implements OnInit {
             phoneno: data.phoneno
           });
         }
-        if (data.timeAvailablity != undefined) {
-          this.doctorform.patchValue({
-            timeAvailablity: data.timeAvailablity
-          });
-        }
+      
         if (data.charges != undefined) {
           this.doctorform.patchValue({
             charges: data.charges
@@ -182,7 +177,6 @@ export class DoctorprofileComponent implements OnInit {
     formData.append('email', this.doctorform.value.email);
     formData.append('phoneno', this.doctorform.value.phoneno);
     formData.append('experties', this.doctorform.value.experties);
-    formData.append('timeAvailablity', this.doctorform.value.timeAvailablity);
     formData.append('charges', this.doctorform.value.charges);
     formData.append('area', this.doctorform.value.area);
     formData.append('qualification', this.doctorform.value.qualification);

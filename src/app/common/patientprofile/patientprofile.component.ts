@@ -36,10 +36,8 @@ export class PatientprofileComponent implements OnInit {
     newimage: new FormControl(),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    disease: new FormControl(""),
     phoneno: new FormControl(""),
     address: new FormControl(""),
-    qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -106,11 +104,7 @@ export class PatientprofileComponent implements OnInit {
           this.getImageValue=defaultImage.patientlink;
         }
 
-        if (data.disease != undefined) {
-          this.patientform.patchValue({
-            disease: data.disease
-          });
-        }
+      
         if (data.phoneno != undefined) {
           this.patientform.patchValue({
             phoneno: data.phoneno
@@ -119,11 +113,6 @@ export class PatientprofileComponent implements OnInit {
         if (data.address != undefined) {
           this.patientform.patchValue({
             address: data.address
-          });
-        }
-        if (data.qualification != undefined) {
-          this.patientform.patchValue({
-            qualification: data.qualification
           });
         }
         if (data._id != undefined) {
@@ -192,8 +181,6 @@ export class PatientprofileComponent implements OnInit {
     formData.append('name', this.patientform.value.name);
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
-    formData.append('disease', this.patientform.value.disease);
-    formData.append('qualification', this.patientform.value.qualification);
     formData.append('address', this.patientform.value.address);
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);
@@ -227,8 +214,6 @@ export class PatientprofileComponent implements OnInit {
     formData.append('name', this.patientform.value.name);
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
-    formData.append('disease', this.patientform.value.disease);
-    formData.append('qualification', this.patientform.value.qualification);
     formData.append('address', this.patientform.value.address);
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);

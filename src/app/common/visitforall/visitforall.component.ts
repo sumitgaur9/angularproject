@@ -17,12 +17,6 @@ export class VisitforallComponent implements OnInit {
   @Input() patientname;
   @Input() bookLabTestId;
 
-  
-
-  
-
-  
-
   @Output() ClosePopup = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
@@ -36,7 +30,7 @@ export class VisitforallComponent implements OnInit {
 
   public visitforallform = new FormGroup({
     patientName:new FormControl(""),
-    isNextVisitRequired: new FormControl(""),
+    isNextVisitRequired: new FormControl(false),
   });
 
   public passwordPatternError = false;
@@ -69,11 +63,10 @@ export class VisitforallComponent implements OnInit {
     dataobj.appointmentId=this.appointmentid;
     dataobj.bookLabTestId=this.bookLabTestId;
     dataobj.role=this.currentUser.user.role
-
     this._apiservice.Save_VisitCompleteIntimation(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks for submit visiting form');
+        this.toastr.success('Thanks for submit visiting form');
         this.CloseModal(true);
       }
     }, error => {

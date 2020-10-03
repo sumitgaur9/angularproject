@@ -38,12 +38,9 @@ export class PhyscotherapistprofileComponent implements OnInit {
     name: new FormControl(""),
     email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     image: new FormControl(""),
-    experties: new FormControl(""),
     phoneno: new FormControl(""),
-    timeAvailablity: new FormControl(""),
     charges: new FormControl(""),
     area: new FormControl(""),
-    qualification: new FormControl(""),
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -121,19 +118,9 @@ export class PhyscotherapistprofileComponent implements OnInit {
         {
           this.getImageValue=defaultImage.physiolink;
         }
-        if (data.experties != undefined) {
-          this.physioProfileForm.patchValue({
-            experties: data.experties
-          });
-        }
         if (data.phoneno != undefined) {
           this.physioProfileForm.patchValue({
             phoneno: data.phoneno
-          });
-        }
-        if (data.timeAvailablity != undefined) {
-          this.physioProfileForm.patchValue({
-            timeAvailablity: data.timeAvailablity
           });
         }
         if (data.charges != undefined) {
@@ -145,11 +132,6 @@ export class PhyscotherapistprofileComponent implements OnInit {
         if (data.area != undefined) {
           this.physioProfileForm.patchValue({
             area: data.area
-          });
-        }
-        if (data.qualification != undefined) {
-          this.physioProfileForm.patchValue({
-            qualification: data.qualification
           });
         }
         if (data._id != undefined) {
@@ -186,11 +168,8 @@ export class PhyscotherapistprofileComponent implements OnInit {
     formData.append('name', this.physioProfileForm.value.name);
     formData.append('email', this.physioProfileForm.value.email);
     formData.append('phoneno', this.physioProfileForm.value.phoneno);
-    formData.append('experties', this.physioProfileForm.value.experties);
-    formData.append('timeAvailablity', this.physioProfileForm.value.timeAvailablity);
     formData.append('charges', this.physioProfileForm.value.charges);
     formData.append('area', this.physioProfileForm.value.area);
-    formData.append('qualification', this.physioProfileForm.value.qualification);
     formData.append('id', this.physioProfileForm.value.id);
     formData.append('participantID', this.physioProfileForm.value.participantID);
     formData.append('description', this.physioProfileForm.value.description);
