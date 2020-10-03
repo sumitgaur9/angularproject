@@ -10449,3 +10449,104 @@
     margin-left: -1px;
 }
 
+
+/* cookies related classes */
+div#hs-eu-cookie-confirmation.can-use-gradients {
+   background: #778899;
+   border-bottom: none;
+   box-shadow: 2px 2px 2px black;
+   border-radius: 5px;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
+  font-family: sans-serif!important;
+  height: 7px 0 0px 0px!important; 
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button {
+   background: #2d3e50!important;
+   border: none!important;
+   box-shadow: 2px 2px 1px black;
+   font-family: sans-serif!important;
+   transition: 0.2s ease;
+   -webkit-transition: 0.2s ease;
+   -moz-transition: 0.2s ease;
+   -o-transition: 0.2s ease;
+   -ms-transition: 0.2s ease;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button:hover {
+   box-shadow: 3px 3px 1px black;
+   transition: 0.2s ease;
+   -webkit-transition: 0.2s ease;
+   -moz-transition: 0.2s ease;
+   -o-transition: 0.2s ease;
+   -ms-transition: 0.2s ease;
+}
+
+
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+  background: #fff;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 5px!important;
+}
+
+div#hs-eu-cookie-confirmation {
+  background: #fff;
+  height: auto;
+  left: 5%!important;
+  /* right: 11%; */
+  position: absolute;
+  top: 0;
+  width: 89%!important;
+  z-index: 100000000!important;
+  border-bottom: 1px solid #cbd6e2;
+  border-top: 1px solid #cbd6e2;
+  box-shadow: 0 1px 5px #eaf0f6;
+  color: #33475b;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400!important;
+  line-height: inherit;
+  text-align: left;
+  text-shadow: none!important;
+  font-size: 12px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  line-height: 18px;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-policy-wording {
+  margin-bottom: -10px;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area {
+  margin: 10px 0 0!important;
+  text-align: right!important;
+  width: 10%;
+  float: right;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button {
+  background-color: #2fb3c7!important;
+  border: 1px solid #2fb3c7!important;
+  margin-right: 12px!important;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400!important;
+  line-height: inherit;
+  text-align: left;
+  text-shadow: none!important;
+  height: 31px!important;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button {
+  border-radius: 3px;
+  display: inline-block;
+  padding: 3px 16px!important;
+  text-decoration: none!important;
+}
+
+/* End of  cookies related classes */
