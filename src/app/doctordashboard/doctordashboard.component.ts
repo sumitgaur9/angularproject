@@ -22,6 +22,8 @@ export class DoctordashboardComponent implements OnInit {
   public showRequestPatMedHomeDelivery:boolean=false;
   public reqByDoctorId:string='';
   public reqByPatientId:string='';
+  public reqByDoctorName:string='';
+
 
   public commonDashBoardCountData:any={
     total_no_of_doctors:0,
@@ -174,6 +176,8 @@ public completeDoctorVisitData:any=[];
     this.visitAppointmentId = data._id;
     this.reqByDoctorId = data.doctorID;
     this.reqByPatientId = data.patientID;
+    this.reqByDoctorName = data.doctorName;
+    
     console.log("data is this",data);
     this.inputrequesPatMedHomeDelivery.patientNname=data.patientNname;
     this.inputrequesPatMedHomeDelivery.patientMob=data.patientMob;

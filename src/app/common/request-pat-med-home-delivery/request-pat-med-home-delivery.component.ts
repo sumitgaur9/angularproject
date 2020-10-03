@@ -18,6 +18,9 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() appointmentid: string = '';
   @Input() reqByDoctorId: string = ''; 
   @Input() reqByPatientId: string = ''; 
+  @Input() reqByDoctorName: string = ''; 
+
+  
 
 
   @Input() inputrequesPatMedHomeDeliveryData: any;
@@ -158,6 +161,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     dataobj.appointmentID = this.appointmentid;
     dataobj.doctorID = this.reqByDoctorId;
     dataobj.patientID = this.reqByPatientId;
+    dataobj.doctorName = this.reqByDoctorName;
     dataobj.pharmacistID = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistID.value;
     dataobj.pharmacistName = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistName.value;
     dataobj.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;

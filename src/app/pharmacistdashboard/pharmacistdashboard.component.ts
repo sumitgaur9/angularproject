@@ -25,10 +25,7 @@ export class PharmacistdashboardComponent implements OnInit {
   public errorMessage;
   public showVisitForAll:boolean=false;
   public visitAppointmentId:string='';
-  public inputPharmacistVisitCompleteIntimationModal:any={
-    patientName:'',
-    patientContactNo:''
-  };
+  public inputPharmacistVisitCompleteIntimationModal:any={};
 
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
@@ -52,8 +49,7 @@ export class PharmacistdashboardComponent implements OnInit {
   public openPharmacistVisitCompleteIntimation(data) {
     this.showPharmacistVisitCompleteIntimation = true;
       this.visitAppointmentId = data.appointmentID;
-      this.inputPharmacistVisitCompleteIntimationModal.patientName=data.patientName;
-      this.inputPharmacistVisitCompleteIntimationModal.patientContactNo=data.patientContactNo;
+      this.inputPharmacistVisitCompleteIntimationModal=data;
 
     setTimeout(() => {
       $(window).scrollTop(0);
