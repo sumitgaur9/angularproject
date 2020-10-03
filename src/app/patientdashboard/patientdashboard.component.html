@@ -25,15 +25,21 @@
             </div>
             <div class="card-body py-3">
               <div class="chart chart-sm">
-                <div *ngFor="let data of pharmaReqForHomeDelData ; let odd=odd; let even=even;"  [ngClass]="{ odd: odd, even: even }" style="float: left;width:100%;padding-left:3%">
-                  <div style="float: left;width:20%">
-                    <p>{{data.medicineScheduleDate}}</p>
+                <div *ngFor="let data of pharmaReqForHomeDelData ; let odd=odd; let even=even;"  [ngClass]="{ odd: odd, even: even }" style="float: left;width:100%;padding-left:3%;line-height:1.15">
+                  <div style="float: left;width:15%">
+                    
+
+                    <a style="font-size: 20px;display: block;padding-left: 10%;">‡</a>
+                    <a style="font-size: 30px;display: block;">✝</a>                    
+                    <a style="font-size: 20px;display: block;padding-left: 10%;">‡</a>
+                    <!-- <p style="display:inline;">{{data.medicineScheduleDate}}</p> -->
                   </div>
-                  <div style="float: left;width:20%">
-                    <p>{{data.medicineScheduleTime}}</p>
+                  <div style="float: left;width:40%;padding-top: 4%;">
+                    <a style="display: block;padding-left: 10%;font-size: small;">today</a>
+                    <p style="display: inline;font-size:20px;">{{data.medicineScheduleTime.substring(0,2)}}</p><p style="display: inline;">{{data.medicineScheduleTime.substring(2,5)}} pm</p><p style="display: inline;font-size: small;"> (After Lunch)</p>
                   </div>
-                  <div style="float: left;width:60%">
-                    <p>{{data.medicineName}}</p>
+                  <div style="float: left;width:40%;padding-top: 6%;">
+                    <a style="font-size: 16px;"><img src="https://www.logolynx.com/images/logolynx/97/9781fd9c436d7323a93c48f03f51d7af.png" style="width: 9%;display: inherit;"> {{data.medicineName}}</a>                    
                   </div>
   
   
