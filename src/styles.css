@@ -10521,12 +10521,7 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-poli
   margin-bottom: -10px;
 }
 
-div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area {
-  margin: 10px 0 0!important;
-  text-align: right!important;
-  width: 10%;
-  float: right;
-}
+
 
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button {
   background-color: #2fb3c7!important;
@@ -10547,6 +10542,30 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confir
   display: inline-block;
   padding: 3px 16px!important;
   text-decoration: none!important;
+}
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area {
+  margin: 10px 0 0!important;
+  text-align: right!important;
+  position: absolute!important;
+  width: 10%!important;
+  top: -13%!important;
+  right: 3%!important;
+  /* float: right; */
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+  background: #fff;
+  margin: 0px auto;
+  margin-top: 2px!important;
+
+  max-width: 977px!important;
+
+  padding: 20px;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
+  margin: 5px 0 12px!important;;
+
 }
 
 /* End of  cookies related classes */
