@@ -45,7 +45,7 @@ export const API_PATH: any = {
     'Save_Expertise': 'Save_Expertise',
     'Save_Medicine': 'Save_Medicine',
     'Get_MedicinesList': 'Get_MedicinesList',
-    'Get_PharmaReqByPhamacistID': 'Get_PharmaReqByPhamacistID',
+    'Get_PharmaReqForHomeDel': 'Get_PharmaReqForHomeDel',
     'Get_AppointmentsByPatientID': 'Get_AppointmentsByPatientID',
     'Get_LabTestsList': 'Get_LabTestsList',
     'Save_Image': 'api/photo',
@@ -90,6 +90,8 @@ export const API_PATH: any = {
     'Get_WebsiteTextDataByLocationEnumList':'Get_WebsiteTextDataByLocationEnumList',
     'Update_Medicine':'Update_Medicine',
     'Get_Medicine':'Get_Medicine',
+    'Delete_Medicine':'Delete_Medicine',
+    
 }
 
 export const PATTERN_ERROR_MESSAGE = {

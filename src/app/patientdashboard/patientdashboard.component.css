@@ -12,3 +12,9 @@
   .btn:hover {
     background-color: #39b49b;
   }
+  .odd{
+    background-color: #85e0ce;
+  }
+  .even{
+    background-color:#e5f9f5;
+  }

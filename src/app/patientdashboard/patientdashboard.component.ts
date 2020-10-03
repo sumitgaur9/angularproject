@@ -20,7 +20,7 @@ export class PatientdashboardComponent implements OnInit {
   public doctorAppointmentListData: any = [];
   public doctorAppointmentHistoryData: any = [];
   public showRequestPatMedHomeDelivery: boolean = false;
-
+  public pharmaReqForHomeDelData:any=[];
   public errorMessage;
   public showVisitForAll: boolean = false;
   public showBookAppointmentPopup: boolean = false;
@@ -128,6 +128,7 @@ export class PatientdashboardComponent implements OnInit {
      this.Get_DoctorWiseApptCount();
      this.Get_IndividualToPackageLabTestCount();
      this.Get_LabTestsBookings();
+     this.Get_PharmaReqForHomeDel();
   }
 
   //Get_AppointmentsByDocID
@@ -376,6 +377,47 @@ export class PatientdashboardComponent implements OnInit {
       dataobj["localUIOrderID"]=appointmentData._id;
       this.utilityservice.preparePaymentDetailsData.next(appointmentData);
     }, 10);
+  }
+
+  Get_PharmaReqForHomeDel() {
+    let dataobj={
+      patientID:this.currentUser.roleBaseId
+    };
+    this._apiservice.Get_PharmaReqForHomeDel(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_PharmaReqForHomeDelGet_PharmaReqForHomeDel",data);
+        //this.pharmaReqForHomeDelData=data;
+
+        for(var i=0;i<data.length;i++)
+        {
+          for(var j=0;j<data[i].medicinesData.length;j++)
+          {
+            let temp:any={};
+           let tempMedicineName:any=[];
+            temp.medicineSNo=data[i].medicinesData[j].medicineSNo;
+            temp.medicineScheduleDate=data[i].medicinesData[j].medicineScheduleDate;
+            temp.medicineScheduleTime=data[i].medicinesData[j].medicineScheduleTime;
+            for(var k=0;k<data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot.length;k++)
+            {
+              //medicinesdataArrayForFixTimeSlot
+
+            //  for(var l=0;l<data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].length;l++)
+             // {
+                tempMedicineName.push(data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
+
+             // }
+
+            }
+            temp.medicineName=tempMedicineName.toString();
+            this.pharmaReqForHomeDelData.push(temp);
+          }
+        }
+        console.log("orignalapiarray ", data);
+        console.log("pharmaReqForHomeDelData ",this.pharmaReqForHomeDelData);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 }
 

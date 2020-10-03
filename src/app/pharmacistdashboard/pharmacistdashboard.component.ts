@@ -19,6 +19,7 @@ export class PharmacistdashboardComponent implements OnInit {
 
   public doctorAppointmentListData:any=[];
   public doctorAppointmentHistoryData:any=[];
+  public currentUser;
 
   public showPharmacistVisitCompleteIntimation:boolean=false;
   public errorMessage;
@@ -32,7 +33,9 @@ export class PharmacistdashboardComponent implements OnInit {
   constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
 
   ngOnInit() {
-    this.Get_PharmaReqByPhamacistID();
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
+
+    this.Get_PharmaReqForHomeDel();
    
 
   }
@@ -43,7 +46,7 @@ export class PharmacistdashboardComponent implements OnInit {
   public closePharmacistVisitCompleteIntimation() {
     this.showPharmacistVisitCompleteIntimation = false;
     $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
-    this.Get_PharmaReqByPhamacistID();
+    this.Get_PharmaReqForHomeDel();
   }
   
   public openPharmacistVisitCompleteIntimation(data) {
@@ -58,11 +61,11 @@ export class PharmacistdashboardComponent implements OnInit {
     }, 100);
   }
 
-  Get_PharmaReqByPhamacistID() {
+  Get_PharmaReqForHomeDel() {
     let dataobj={
+      pharmacistID:this.currentUser.roleBaseId
     };
-    let pharmacistID="5f255d7bbb2631000488c8b0";
-    this._apiservice.Get_PharmaReqByPhamacistID(dataobj,pharmacistID).subscribe(data => {
+    this._apiservice.Get_PharmaReqForHomeDel(dataobj).subscribe(data => {
       if (data) {
         //this.doctorAppointmentListData=data;
         console.log("  this.doctorAppointmentListData",data);

@@ -427,13 +427,11 @@ export class APIService {
       }));
   }
 
-  Get_PharmaReqByPhamacistID(params,pharmacistID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmaReqByPhamacistID+'/'+pharmacistID}`
-    return this.http.get<any>(APIURL, { params: params })
-      .pipe(map(resdata => {
-        if (resdata) {
-        }
-        return resdata;
+  Get_PharmaReqForHomeDel(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmaReqForHomeDel}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
       }));
   }
   
@@ -588,6 +586,9 @@ export class APIService {
         return resdata;
       }));
   }
+  
+
+  
 
   Get_LabTestsBookings(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsBookings}`
@@ -833,8 +834,15 @@ Update_Medicine(data,medicineid) {
     }));
 }
 
- //Get_Medicine
-
+Delete_Medicine(params,delid) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Medicine+'/'+delid}`
+  return this.http.delete<any>(APIURL, { params: params })
+    .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+    }));
+}
 }
 
 
