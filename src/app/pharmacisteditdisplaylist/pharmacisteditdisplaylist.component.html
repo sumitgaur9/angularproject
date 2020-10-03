@@ -4,9 +4,6 @@
 <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
 
     <div style="margin-bottom:1%;">
-      <!-- <h4 class="card-title">Card 1</h4>
-      <p class="card-text">Welcom to bootstrap card styles</p> -->
-      <a  class="btn btn-primary"  *ngIf="currentUser.user.role==4" (click)="openPatientProfilePopup()">Welcome for the Pharmacist to see their profile</a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item" *ngFor="let data of patientListData">
