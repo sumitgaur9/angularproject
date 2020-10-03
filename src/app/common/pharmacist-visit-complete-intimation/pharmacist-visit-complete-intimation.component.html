@@ -9,7 +9,7 @@
         </p>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="card-body">
             <div class="form-group">
               <div class="input-group mb-2">
@@ -19,23 +19,11 @@
                 <input type="text" class="form-control" id="patientName" name="patientName" placeholder="Patient Name"
                   formControlName="patientName">
               </div>
-            </div>
-            <!-- <div class="form-group">
-              <label for="exampleFormControlSelect1">Medicine</label>
-              <select class="form-control" formControlName="medicineName" (change)="medicineChangeEvent($event)">
-                <option value=""></option>
-                <option *ngFor="let opt of medicineListDataArray" [value]="opt.medicineName">{{opt.medicineName}}
-                </option>
-              </select>
-            </div> -->
-            <!-- <div class="form-group">
-              <label for="exampleFormControlSelect1">Doctor</label>
-              <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
-                <option value=""></option>
-                <option *ngFor="let opt of doctorListDataArray" [value]="opt.name">{{opt.name}}</option>
-              </select>
-            </div> -->
-
+            </div>      
+          </div>
+        </div>    
+        <div class="col-md-4">
+          <div class="card-body">            
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -45,8 +33,10 @@
                   formControlName="doctorName">
               </div>
             </div>
-
-
+          </div>
+        </div>  
+        <div class="col-md-4">
+          <div class="card-body">      
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -55,59 +45,71 @@
                 <input type="text" class="form-control" id="pharmacyPersonContactNo" name="pharmacyPersonContactNo"
                   placeholder="Pharmacy Person ContactNo" formControlName="pharmacyPersonContactNo">
               </div>
-            </div>
-
+            </div>      
           </div>
+        </div>   
+        <div class="col-md-2">          
         </div>
-        <div class="col-md-6">
+        <div class="col-md-10">
           <div class="card-body">
-            <div class="card" *ngIf="medicineToBeDeliver.length>0" style="overflow: auto;height: 200px;">
+            <div class="card" *ngIf="medicineToBeDeliver.length>0" style="overflow: auto;height: 130px;">
               <div class="gaadiex-list" *ngFor="let data of medicineToBeDeliver">
-                <div class="gaadiex-list-item border-b-1" style="margin-bottom:5px;height:60px;border: 3px solid rgb(57 180 155 / 32%);">
-
-                <div class="row" style="width: 100%;float:left;">
-                  <div style="width: 20%;float:left;">
-                    <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
-                      src="{{getDefaultImage}}" alt="Photo of sunset">
-                    <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
-                      src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
-                  </div>
-                  <div style="width: 1%;float:left;">
-                  </div>
-                  <div style="width: 39%;float:left;">
-                    <h6>{{data.medicineName}}</h6>
-                    <h6>Qty:{{data.medicineOccurance}}</h6>
-
-                  </div>
-                  <div style="width: 40%;float:left;">
-<div>Price: <i class="fa fa-inr" aria-hidden="true"></i>{{data.price.toLocaleString('en-IN')}} </div>
-
-                  </div>
-                  <!-- <div style="width: 20%;float:left;padding-top: 2%;">
-                  
+                <div class="gaadiex-list-item border-b-1"
+                  style="margin-bottom:5px;height:60px;border: 3px solid rgb(57 180 155 / 32%);">
+      
+                  <div class="row" style="width: 100%;float:left;">
+                    <div style="width: 15%;float:left;">
+                      <img class="gaadiex-list-item-img"
+                        *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="{{getDefaultImage}}"
+                        alt="Photo of sunset">
+                      <img class="gaadiex-list-item-img"
+                        *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+                        src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+                    </div>
+                    <div style="width: 1%;float:left;">
+                    </div>
+                    <div style="width: 35%;float:left;padding-top: 15px;">
+                      <h6>{{data.medicineName}}</h6>      
+                    </div>
+                    <div style="width: 15%;float:left;padding-top: 15px;">
+                      <div>Rate: <i class="fa fa-inr" aria-hidden="true"></i> {{(data.price/data.medicineOccurance).toLocaleString('en-IN')}} </div>      
+                    </div>
+                    <div style="width: 4%;float:left;padding-top: 15px;">
+                      <h6>X</h6>      
+                    </div>
+                    <div style="width: 15%;float:left;padding-top: 15px;">
+                      <h6>Qty: {{data.medicineOccurance}}</h6>      
+                    </div>
+                    <div style="width: 15%;float:left;font-weight: 600;padding-top: 15px;">
+                      <div>Price: <i class="fa fa-inr" aria-hidden="true"></i> {{data.price.toLocaleString('en-IN')}} </div>      
+                    </div>
                     
-                 
-                      
-                  </div> -->
+                    <!-- <div style="width: 20%;float:left;padding-top: 2%;">
+                        
+                          
+                       
+                            
+                        </div> -->
+                  </div>
                 </div>
-</div>
-
-
+      
+      
               </div>
-
+      
             </div>
             <div style="width:100%;float:left;background-color: #36b0a145;" *ngIf="medicineToBeDeliver.length>0">
-              <div style="width:65%;float:left;">
+              <div style="width:86%;float:left;padding-left: 63%;">
                 <h6>SubTotal:</h6>
               </div>
-              <div style="width:22%;float:left;">
+              <div style="width:10%;float:left;font-weight: 700;">
                 <i class="fa fa-inr" aria-hidden="true"></i>
-                &nbsp;{{priceTotal.toLocaleString('en-IN')}}
+                &nbsp;{{priceTotal.toLocaleString('en-IN')}}.00
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       </div>
+      
     </ad-modal-body>
     <ad-modal-footer>
       <div class="buttonSection">
