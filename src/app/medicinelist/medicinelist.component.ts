@@ -63,10 +63,10 @@ export class MedicinelistComponent implements OnInit {
 
 
 
-  Get_MedicinesList() {
+  Get_MedicinesList(companyName?) {
     let dataobj = {
     };
-    this._apiservice.Get_MedicinesList(dataobj).subscribe(data => {
+    this._apiservice.Get_MedicinesList(dataobj,companyName).subscribe(data => {
       if (data) {
         this.medicineListDataArray = data;
         console.log("medicineListDataArray ", data);

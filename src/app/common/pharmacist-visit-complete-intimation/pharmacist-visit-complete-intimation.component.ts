@@ -173,10 +173,10 @@ export class PharmacistVisitCompleteIntimationComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-  Get_MedicinesList() {
+  Get_MedicinesList(companyName?) {
     let dataobj = {
     };
-    this._apiservice.Get_MedicinesList(dataobj).subscribe(data => {
+    this._apiservice.Get_MedicinesList(dataobj,companyName).subscribe(data => {
       if (data) {
         this.medicineListDataArray = data;
         this.getMedicineName(this.inputPharmacistVisitCompleteIntimationModalData);

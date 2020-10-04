@@ -417,8 +417,12 @@ export class APIService {
   }
 
   
-  Get_MedicinesList(params) {
+  Get_MedicinesList(params,companyName) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_MedicinesList}`
+    if(companyName)
+    {
+       APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_MedicinesList+'/'+companyName}`
+    }
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
