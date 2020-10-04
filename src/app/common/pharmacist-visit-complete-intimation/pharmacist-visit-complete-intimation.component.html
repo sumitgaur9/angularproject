@@ -48,14 +48,43 @@
             </div>      
           </div>
         </div>   
-        <div class="col-md-2">          
+        <div class="col-md-1">          
         </div>
-        <div class="col-md-10">
+        <div class="col-md-11">
           <div class="card-body">
-            <div class="card" *ngIf="medicineToBeDeliver.length>0" style="overflow: auto;height: 130px;">
+            <div class="gaadiex-list">
+              <div class="gaadiex-list-item border-b-1"
+                style="font-size: 13px; margin-bottom:5px;border: 3px solid rgba(17, 17, 17, 0.25);height: 45px;">
+            
+                <div class="row" style="width: 100%;float:left;">
+                  <div style="width: 15%;float:left;padding-top: 13px;">
+                    Image
+                  </div>
+                  <div style="width: 1%;float:left;">
+                  </div>
+                  <div style="width: 32%;float:left;padding-top: 15px;">
+                    <div>Medicine Name</div>
+                  </div>
+                  <div style="width: 15%;float:left;font-weight: 600;padding-top: 15px;">
+                    <div>Rate (in <i class="fa fa-inr" aria-hidden="true"></i>)</div>
+                  </div>
+                  <div style="width: 3%;float:left;padding-top: 15px;">
+                    <h6></h6>
+                  </div>
+                  <div style="width: 26%;float:left;padding-top: 15px;">
+                    <h6>Qty</h6>
+                  </div>
+                  <div style="width: 8%;float:left;font-weight: 600;padding-top: 15px;">
+                    <div>Price</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card" *ngIf="medicineToBeDeliver.length>0" style="overflow: auto;height: 110px;">
+              
               <div class="gaadiex-list" *ngFor="let data of medicineToBeDeliver">
                 <div class="gaadiex-list-item border-b-1"
-                  style="margin-bottom:5px;height:60px;border: 3px solid rgb(57 180 155 / 32%);">
+                  style="margin-bottom:5px;height:54px; border: 2px solid rgba(57, 180, 155, 0.21);">
       
                   <div class="row" style="width: 100%;float:left;">
                     <div style="width: 15%;float:left;">
@@ -71,17 +100,17 @@
                     <div style="width: 35%;float:left;padding-top: 15px;">
                       <h6>{{data.medicineName}}</h6>      
                     </div>
-                    <div style="width: 15%;float:left;padding-top: 15px;">
-                      <div>Rate: <i class="fa fa-inr" aria-hidden="true"></i> {{(data.price/data.medicineOccurance).toLocaleString('en-IN')}} </div>      
+                    <div style="width: 11%;float:left;padding-top: 15px;">
+                      <div><i class="fa fa-inr" aria-hidden="true"></i> {{(data.price/data.medicineOccurance).toLocaleString('en-IN')}} </div>      
                     </div>
-                    <div style="width: 4%;float:left;padding-top: 15px;">
+                    <div style="width: 7%;float:left;padding-top: 15px;">
                       <h6>X</h6>      
                     </div>
-                    <div style="width: 15%;float:left;padding-top: 15px;">
-                      <h6>Qty: {{data.medicineOccurance}}</h6>      
+                    <div style="width: 23%;float:left;padding-top: 15px;">
+                      <h6>{{data.medicineOccurance}}</h6>      
                     </div>
-                    <div style="width: 15%;float:left;font-weight: 600;padding-top: 15px;">
-                      <div>Price: <i class="fa fa-inr" aria-hidden="true"></i> {{data.price.toLocaleString('en-IN')}} </div>      
+                    <div style="width: 7%;float:left;font-weight: 600;padding-top: 15px;text-align: right;">
+                      <div><i class="fa fa-inr" aria-hidden="true"></i> {{data.price.toLocaleString('en-IN')}} </div>      
                     </div>
                     
                     <!-- <div style="width: 20%;float:left;padding-top: 2%;">
