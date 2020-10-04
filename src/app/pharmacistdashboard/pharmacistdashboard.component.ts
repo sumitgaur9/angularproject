@@ -65,12 +65,16 @@ export class PharmacistdashboardComponent implements OnInit {
       if (data) {
         //this.doctorAppointmentListData=data;
         console.log("  this.doctorAppointmentListData",data);
-        this.doctorAppointmentListData = data.filter(function (item) {
-          return item.isPharmacyProvided == false;
-        });
-        this.doctorAppointmentHistoryData = data.filter(function (item) {
-          return item.isPharmacyProvided == true;
-        });
+
+        this.doctorAppointmentListData=data;
+
+
+        // this.doctorAppointmentListData = data.filter(function (item) {
+        //   return item.isPharmacyProvided == false;
+        // });
+        // this.doctorAppointmentHistoryData = data.filter(function (item) {
+        //   return item.isPharmacyProvided == true;
+        // });
 
       }
     }, error => {
