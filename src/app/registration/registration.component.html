@@ -203,9 +203,7 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="isVisibleSendOTPbutton">
-                    <em style="color: red;">{{inActiveUserRegisterMsg}}</em>
-                  </div>
+                  
                   <div style="float:left;width:100%">
                     <div style="float:left;width:40%">
                       <div class="buttonSection">
@@ -215,14 +213,7 @@
                         </div>
                       </div>
                     </div>
-                    <div style="float:left;width:60%" *ngIf="isVisibleSendOTPbutton">
-                      <div class="buttonSection">
-                        <div class="text-center">
-                          <input type="submit" style="width: 200px;" value="Send OTP to Reg. Mobile"
-                            (click)="GenerateOTP()" class="btn btn-info btn-block rounded-0 py-2">
-                        </div>
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
