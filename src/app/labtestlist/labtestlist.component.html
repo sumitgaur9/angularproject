@@ -1,36 +1,10 @@
-<!-- <div class="container mt-2" style="position:absolute;top:21%;left:7%;">
+
+  <div class="mt-2" style="width:65%;position:absolute;top:17%;left:10%;">
     <div style="margin-bottom:1%;">
-     
-      <a  class="btn btn-primary">Welcome to see book lab test list</a>
+      <a class="btn btn-primary" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" (click)="openLabTestProfilePopup()"><i class="fa fa-plus" style="color: white;font-size: 20px;padding-right: 5px;"></i> Lab Test</a>
     </div>
     <div class="row">
-      <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
-        <div class="card item-card card-block" style="padding: 2% 2%;">
-      <h4 class="card-title text-right">
-      
-
-          <i  *ngIf="currentUser.user.role==11" class="fa fa-times" aria-hidden="true" (click)="Delete_LabTest(data._id)"></i>
-
-
-        </h4>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQqBPK5FnorNl-QxakUC6VNnKSm2MnAH7SYg&usqp=CAU" alt="Photo of sunset">
-          <h5 class="item-card-title mt-3 mb-3">{{data.testName}} • LabTest {{data.price}}</h5>
-          <p class="card-text">{{data.sampleType}}</p>
-    </div>
-      </div>
-
-    </div>
-  </div> -->
-  
-
-
-
-  <div class="container mt-2" style="position:absolute;top:17%;left:7%;">
-    <div style="margin-bottom:1%;">
-      <a class="btn btn-primary" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" (click)="openLabTestProfilePopup()">Create New Lab Test</a>
-    </div>
-    <div class="row">
-      <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
+      <!-- <div class="col-md-3 col-sm-6 item" *ngFor="let data of labTestData">
         <div class="card item-card card-block" style="padding: 2% 2%;">
           <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQqBPK5FnorNl-QxakUC6VNnKSm2MnAH7SYg&usqp=CAU" alt="Photo of sunset">
@@ -54,6 +28,99 @@
                  </div>
        
           </div>
+      </div> -->
+
+      <div class="gaadiex-list" *ngFor="let data of labTestData">
+        <div class="gaadiex-list-item border-b-1"
+          style="padding-left:15px;margin-bottom:5px;height:225px;border: 3px solid rgba(57, 180, 155, 0.08);">
+          <div class="row" style="width: 100%;float:left;">
+            <div style="width: 25%;float:left;">
+              <!-- <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"              
+                    src="{{getDefaultImage}}" alt="Photo of sunset"> -->
+              <img class="gaadiex-list-item-img" *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQqBPK5FnorNl-QxakUC6VNnKSm2MnAH7SYg&usqp=CAU"
+                alt="Photo of sunset">
+      
+              <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+                src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+            </div>
+            <div style="width: 1%;float:left;">
+            </div>
+            <div style="width: 70%;float:left;">
+              <div class="gaadiex-list-item-text">
+      
+                <div style="width:100%;float:left;">
+                  <div style="width:50%;float:left;">
+                    <h5 class="item-card-title mt-3 mb-3" style="font-weight: 700;font-size: 18px;"> {{data.testName}}
+                    </h5>
+                  </div>
+                  <div style="width:13%;float:right;padding-top: 12px;">
+                    <h6 class="rupeesymbol">&#8377;
+                      <span style="font-weight: bold;font-size: 18px;"> {{data.price.toLocaleString('en-IN')}}</span></h6>
+                  </div>
+                  <div style="width:10%;float:left;padding-top: 12px;">
+                    <div style="float:left;width:30%" class="card-title1">
+                      <i class="fa fa-pencil" *ngIf="currentUser.user.role==11" style="font-size: 20px;" aria-hidden="true"
+                        (click)="openLabTestProfilePopup(data._id)"></i>
+                    </div>
+                    <div style="float:left;width:4%;" class="card-title1">
+                      <i *ngIf="currentUser.user.role==11" class="fa fa-trash" aria-hidden="true"
+                        (click)="openDeleteConfirmationPopup(data._id)" style="color:red;font-size: 20px;"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="card-text" *ngIf="data.description" style="float: left;font-weight: 300;font-size: 14px;color: #5d5d5d;margin-top: 8px;">                  {{data.description}}
+                  <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
+                </p>
+                <div class="report-button" style="float: left;width: 100%;padding:0 0 8px 0;">
+                  <div class="form_data" style="float: left;width: 25%;">                    
+                    <button class="btn-blue">Book Now</button>
+                  </div>
+                  <div class="form_data" style="width: 80%;">                    
+                    <button type="submit" class="btn-blue-outline add-to-basket-btn">Add to Basket</button>
+                  </div>
+                </div>
+                <div class="row fetuter-report" style="width: 100%;">
+                  <div class="col-md-3 col-6 pr-sm-0 mb-3 mb-sm-0">
+                      <div class="d-flex">
+                          <img style="width: 40px;height: 40px;" src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/home.svg" alt="home">
+                          <div>
+                              Blood Collection at Home
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3  col-6 pr-sm-0  mb-3 mb-sm-0">
+                      <div class="d-flex">
+                          <img style="width: 40px;height: 40px;" src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/repport.svg" alt="home">
+                          <div>
+                              Smart Report with Trend Analysis
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3  col-6 pr-sm-0  mb-3 mb-sm-0">
+                      <div class="d-flex">
+                          <img style="width: 40px;height: 40px;" src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/eight-stage.svg" alt="home">
+                          <div>
+                              8-stage MET Protocol
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3  col-6 pr-sm-0  mb-3 mb-sm-0">
+                      <div class="d-flex">
+                          <img style="width: 40px;height: 40px;" src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/certified.svg" alt="home">
+                          <div>
+                              Certified CAP &amp; NABL Labs
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+            </div>
+      
+          </div>
+      
+      
+        </div>
       </div>
     </div>
   </div>

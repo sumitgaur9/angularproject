@@ -1,6 +1,8 @@
 img{
-    height:150px;
+    height:210px;
     width:100%;
+    padding: 5%;
+    border-radius: 10%;
   }
   
   .item{
@@ -56,3 +58,40 @@ img{
   .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
     transform: scale3d(1, 1, 1);
   }
+
+
+
+
+
+  /* ////////// */
+  .fetuter-report {
+    font-weight: 300;
+    font-size: 11px;
+    margin-top: 20px;
+    margin-right: -30px;
+}
+.btn-blue {
+  color: #fff;
+  background: #0CB6E1;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 28px;
+  border: 1px solid #0CB6E1;
+}
+
+
+
+.add-to-basket-btn {
+  font-size: 13px;
+}
+.btn-blue-outline {
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #0CB6E1;
+  color: #0CB6E1;
+  border-radius: 6px;
+  background: transparent;
+  padding: 9px 15px;
+}
