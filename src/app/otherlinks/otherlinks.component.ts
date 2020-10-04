@@ -181,8 +181,9 @@ export class OtherlinksComponent implements OnInit {
     this.router.navigate(['/medicinelist']);
   }
 
-
-
+  public openPaymentListPage() {
+    this.router.navigate(['/paymentlist']);
+  }
 
   Save_Image() {
     this.errorMessage = "";

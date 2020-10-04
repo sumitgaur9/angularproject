@@ -53,6 +53,15 @@ export class HeaderComponent implements OnInit {
         this.username = '';
       }
     });
+
+    this.utilityservice.addIntoCart.subscribe((dataobj) => {
+      if (dataobj) {
+        console.log("addIntoCart", dataobj);
+      
+      }
+    });
+
+
   }
 
   ngOnInit() {

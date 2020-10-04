@@ -77,12 +77,12 @@ export class MedicinelistComponent implements OnInit {
   }
 
 
-  Delete_NurseProfile(id) {   //need medine del api
+  Delete_Medicine(id) {   //need medine del api
     let dataobj = {
     };
-    this._apiservice.Delete_Nurse(dataobj, id).subscribe(data => {
+    this._apiservice.Delete_Medicine(dataobj, id).subscribe(data => {
       if (data) {
-        this.toastr.success('Nurse deleted successfully');
+        this.toastr.success('Medicine deleted successfully');
         this.Get_MedicinesList();
       }
     }, error => {
@@ -108,7 +108,22 @@ export class MedicinelistComponent implements OnInit {
     this.showConfirmationPopup = false;
     $('#confirmationModal').modal('hide');
     if (updateListRequired) {
-      this.Delete_NurseProfile(this.getmedicineprofileid);
+      this.Delete_Medicine(this.getmedicineprofileid);
     }
   }
+
+
+  addToCart(dataobj) {
+    let medicineInfo:any={};
+    medicineInfo=dataobj;
+    medicineInfo.qty=1;
+    var modifycartdata = Object.assign({}, medicineInfo);
+    this.utilityservice.addIntoCart.next(medicineInfo);
+}
+
+
+
+
+
+
 }

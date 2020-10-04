@@ -843,6 +843,18 @@ Delete_Medicine(params,delid) {
       return resdata;
     }));
 }
+
+Get_PaymentLists(params) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PaymentLists}`
+  return this.http.get<any>(APIURL, { params: params })
+    .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+    }));
+}
+
+
 }
 
 

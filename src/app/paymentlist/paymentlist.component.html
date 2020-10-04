@@ -1,0 +1,42 @@
+
+
+
+<div  style="position:absolute;top:17%;left: 3%;width: 93%;right: 3%;">
+    <div class="row">
+      <table class="table table-hover my-0" style="text-align: center;">
+        <thead style="background-color: #39b49b;">
+          <tr>
+            <th style="width: 5%;">S.No</th>
+            <!-- <th style="width: 13%;">Image</th> -->
+            <th style="width: 13%;">Patient Email</th>
+            <th style="width: 13%;" class="d-none d-xl-table-cell">Bank</th>
+            <th style="width: 13%;" class="d-none d-xl-table-cell">Payment Type</th>
+            <th style="width: 13%;" class="d-none d-xl-table-cell">Contact</th>
+            <th style="width: 13%;" class="d-none d-xl-table-cell">Order ID</th>
+            <th class="d-none d-xl-table-cell">Amount</th>
+            <th class="d-none d-xl-table-cell">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of paymentListData;let i = index;">
+            <td>{{i+1}}.</td>
+            <!-- <td>
+              <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="{{getDefaultImage}}"
+                alt="Photo of sunset">
+              <img *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
+                src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
+            </td> -->
+            <td style="font-weight: 600;">{{data.patientEmail}}</td>
+            <td class="d-none d-xl-table-cell">{{data.bank}}</td>
+            <td class="d-none d-md-table-cell" style="font-weight: 600;">{{data.paymentTypeEnumValue}}</td>
+            <td class="d-none d-xl-table-cell">{{data.contact}}</td>
+            <td class="d-none d-xl-table-cell">{{data.order_id}}</td>
+            <td class="d-none d-md-table-cell" style="font-weight: 600;">&#8377; {{data.amount}}</td>
+            <td class="d-none d-xl-table-cell">{{data.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+

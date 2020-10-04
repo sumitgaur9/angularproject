@@ -1,7 +1,7 @@
 
 
 
-<div class="container mt-2" style="position:absolute;top:17%;left:7%;">
+<div  style="position:absolute;top:17%;left: 3%;width: 93%;right: 3%;">
 
     <div style="margin-bottom:1%;">
       <!-- <h4 class="card-title">Card 1</h4>
@@ -18,7 +18,9 @@
             <th style="width: 13%;" class="d-none d-xl-table-cell">Company</th>
             <th style="width: 13%;" class="d-none d-xl-table-cell">Price</th>
             <th *ngIf="currentUser.user.role==11" style="width: 5%;" class="d-none d-xl-table-cell">Edit</th>
-            <th *ngIf="currentUser.user.role==11" style="width: 5%;" class="d-none d-xl-table-cell">Delete</th>
+            <th *ngIf="currentUser.user.role==11"  style="width: 5%;" class="d-none d-xl-table-cell">Delete</th>
+            <th style="width: 11%;" class="d-none d-xl-table-cell">ADD TO CART</th>
+
             <th class="d-none d-xl-table-cell">Description</th>
           </tr>
         </thead>
@@ -38,8 +40,17 @@
               (click)="openMedicineProfilePopup(data._id)"></i></td>
             <td  *ngIf="currentUser.user.role==11" class="d-none d-xl-table-cell"><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;"
               (click)="openDeleteConfirmationPopup(data._id)" style="color:red"></i></td>
+
+              <td class="d-none d-xl-table-cell"><i class="fa fa-cart-plus" aria-hidden="true" style="cursor: pointer;"
+                (click)="addToCart(data)" style="color:red"></i></td>
+
             <td class="d-none d-xl-table-cell">{{data.description.length > 180 ? data.description.substring(0,180)+'...' : data.description  }}</td>
             
+<!-- 
+            <div style="width:100%; float:left;">
+              <div class="item_button" ng-click="addtocart(itemdata)"><a style="cursor:pointer;"><i class="fa fa-cart-plus"></i> ADD TO CART</a></div>
+              <div class="item_button" ng-click="addtowishlist(itemdata)" style="cursor:pointer; float:right; background-color:#e3714b;"><a><i class="fa fa-heart-o"></i> ADD TO WISHLIST</a></div>
+          </div> -->
           </tr>
         </tbody>
       </table>

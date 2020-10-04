@@ -91,7 +91,7 @@ export const API_PATH: any = {
     'Update_Medicine':'Update_Medicine',
     'Get_Medicine':'Get_Medicine',
     'Delete_Medicine':'Delete_Medicine',
-    
+    'Get_PaymentLists':'Get_PaymentLists',
 }
 
 export const PATTERN_ERROR_MESSAGE = {
@@ -110,7 +110,8 @@ export const PATTERN_ERROR_MESSAGE = {
     phoneno:'Ten Character allowed'
 }
 export const LoginError={
-    inactiveUserMSG:'Login failed! This is an InActive Account !! To Deactivate, register with same credentials'
+    inactiveUserMSG:'Login failed! This is an InActive Account !! To Deactivate, register with same credentials',
+    activateAccountHint:'You are just one step away to accessing your account click on PLEASE ACTIVATE ACCOUNT'
 }
 
 export const RegistrationMsg={

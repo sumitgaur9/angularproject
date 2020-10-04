@@ -6,6 +6,8 @@ import { APIService } from 'src/app/service/api.service';
 import { LoginError } from 'src/app/shared/api.constant'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { RegistrationMsg } from 'src/app/shared/api.constant'
+
 declare var $: any;
 
 
@@ -24,12 +26,26 @@ export class LoginComponent implements OnInit {
   public showPasswordSetupPopup: boolean = false;
   public isTandCChequed: boolean = false;  
   public inputForVerifyOTP: any = {};
+  public inActiveUserRegisterMsg: string = '';
+  public isActivateAccountRequired:boolean=false;
+  
+
   public loginInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   });
 
-  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { 
+    this.utilityservice.fromRegPageSendDataToLogin.subscribe((dataobj) => {
+      if (dataobj) {
+        console.log("fromRegPageSendDataToLogin", dataobj);
+        this.loginInfo.patchValue({
+          email: dataobj.email,
+          password: dataobj.password,  //homevisit/online
+        });
+      }
+    });
+  }
 
   ngOnInit() {
     let object = JSON.parse(window.localStorage.getItem("currentuseremailpassword"));
@@ -72,6 +88,8 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.submitted = true;
+    this.isActivateAccountRequired = false;
+
     if (this.loginInfo.invalid) {
       return;
     }
@@ -94,7 +112,11 @@ export class LoginComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       if (this.errorMessage == LoginError.inactiveUserMSG) {
         this.toastr.error(error.error.message);
-        this.router.navigate(['/registration'])
+
+        this.inActiveUserRegisterMsg = LoginError.activateAccountHint;
+        this.isActivateAccountRequired = true;
+
+      //  this.router.navigate(['/registration'])
       }
 
     });
@@ -126,14 +148,21 @@ export class LoginComponent implements OnInit {
 
   GenerateOTP() {
     this.submitted = true;
+
+    if(this.loginInfo.controls.email.value=='' || this.loginInfo.controls.email.value==undefined)
+    {
+      this.toastr.error("Please Enter Email Id to forgot password");
+      return;
+    }
     let dataobj = {
-      "email": this.inputForVerifyOTP.userEmail
+      "email": this.loginInfo.controls.email.value//this.inputForVerifyOTP.userEmail
     }
     this._apiservice.GenerateOTP(dataobj).subscribe(data => {
       if (data) {
         console.log("OTP Data is this..", data);
         this.inputForVerifyOTP.OTPAPIValue = data.response.OTP;
         this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
+        this.inputForVerifyOTP.userEmail = this.loginInfo.controls.email.value;
         this.openVerifyOTPPopup();
       }
     }, error => {
@@ -182,6 +211,8 @@ export class LoginComponent implements OnInit {
   public closePasswordSetupPopup() {
     this.showPasswordSetupPopup = false;
     $('#showPasswordSetupPopup').modal('hide');
+    this.inActiveUserRegisterMsg = '';
+    this.isActivateAccountRequired = false;
   }
 
   public openPasswordSetupPopup() {

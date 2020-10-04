@@ -20,6 +20,10 @@ import { LabtechnicianeditdisplaylistComponent } from './labtechnicianeditdispla
 import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackagelist.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MedicinelistComponent } from './medicinelist/medicinelist.component';
+import { PaymentlistComponent } from './paymentlist/paymentlist.component';
+
+
+
 
 
 const routes: Routes = [
@@ -44,6 +48,7 @@ const routes: Routes = [
     { path: 'getlabtestpackagelist', component: LabtestpackagelistComponent },
     { path: 'paymentpage', component: PaymentComponent },
     { path: 'medicinelist', component: MedicinelistComponent },
+    { path: 'paymentlist', component: PaymentlistComponent },
     { path: '**', component: LoginComponent }
 ];
 

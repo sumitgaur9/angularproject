@@ -38,7 +38,9 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   public dayPickerTimeConfig = <IDayCalendarConfig>{
     locale: "in",
-    format: "hh:mm:ss",
+    showTwentyFourHours:false,
+    meridiemFormat:"A"
+    //format: "hh:mm:ss",
   };
 
   //just for now

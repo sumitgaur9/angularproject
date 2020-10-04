@@ -234,19 +234,3 @@
   </section>
 </div>
 
-<!-- <div *ngIf="showForgotPasswordPopup">
-  <app-forgotpassword [calledFrom]="'Registration'" [showModal]="showForgotPasswordPopup"
-    (ClosePopup)="closeForgotPasswordPopup()" (forgotPasswordSet)="forgotPasswordSet($event)"> </app-forgotpassword>
-</div> -->
-
-
-<div *ngIf="showVerifyOTPPopup">
-  <app-verifyotp [showModal]="showVerifyOTPPopup" [inputForVerifyOTP]="inputForVerifyOTP"
-    (ClosePopup)="closeVerifyOTPPopup()" (verifyOTPSet)="verifyOTPSet($event)"> </app-verifyotp>
-</div>
-
-
-<div *ngIf="showPasswordSetupPopup">
-  <app-passwordsetup [calledFrom]="'Registration'" [showModal]="showPasswordSetupPopup"
-    [userEmail]="inputForVerifyOTP.userEmail" (ClosePopup)="closePasswordSetupPopup()"> </app-passwordsetup>
-</div>

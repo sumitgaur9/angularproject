@@ -24,12 +24,6 @@ export class RegistrationComponent implements OnInit {
   isInvalidCaptcha: boolean = false;
   isVisibleSendOTPbutton: boolean = false;
   inActiveEmailID = '';
-  public showForgotPasswordPopup: boolean = false;
-  public showVerifyOTPPopup: boolean = false;
-  public showPasswordSetupPopup: boolean = false;
-  public inActiveUserRegisterMsg: string = '';
-  public responseOTP: string = '';
-  public inputForVerifyOTP: any = {};
   public phoneNoCountryCode:string='+91';
 
   public userInfo = new FormGroup({
@@ -80,11 +74,17 @@ export class RegistrationComponent implements OnInit {
       }
     }, error => {
       if (error && error.status == 501) {
-        this.toastr.success(error.error.message, '', {
+        this.toastr.warning("Account is already registered", '', {
           timeOut: 8000,
         });
-        this.inActiveUserRegisterMsg = RegistrationMsg.activateAccountHint;
-        this.isVisibleSendOTPbutton = true;
+        let tempdataobj = {
+          email: this.userInfo.value.email,
+          password: this.userInfo.value.password,
+        }
+        this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.utilityservice.fromRegPageSendDataToLogin.next(tempdataobj);
+        }, 10);
       }
       else if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -97,64 +97,10 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  GenerateOTP() {
-    this.submitted = true;
-    let dataobj = {
-      "email": this.userInfo.value.email
-    }
-    this._apiservice.GenerateOTP(dataobj).subscribe(data => {
-      if (data) {
-        console.log("OTP Data is this..", data);
-        this.inputForVerifyOTP.userEmail = this.userInfo.value.email;
-        this.inputForVerifyOTP.OTPAPIValue = data.response.OTP;
-        this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
-        this.openVerifyOTPPopup();
-      }
-    }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-    });
-  }
+ 
 
   getMessage(formcontrol: any, formControlName: any, fieldDisplayName: string) {
     return this.utilityservice.getErrorMessage(formcontrol, formControlName, fieldDisplayName);
-  }
-
-  public closeForgotPasswordPopup() {
-    this.showForgotPasswordPopup = false;
-    $('#showForgotPasswordPopup').modal('hide');
-  }
-
-  public openVerifyOTPPopup() {
-    this.showVerifyOTPPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVerifyOTPPopup').modal('show');
-    }, 100);
-  }
-
-  public closeVerifyOTPPopup() {
-    this.showVerifyOTPPopup = false;
-    $('#showVerifyOTPPopup').modal('hide');
-  }
-
-  verifyOTPSet(email) {
-    console.log("valuevaluevalue", email);
-    this.inputForVerifyOTP.userEmail = email;
-    this.closeVerifyOTPPopup();
-    this.openPasswordSetupPopup();
-  }
-
-  public closePasswordSetupPopup() {
-    this.showPasswordSetupPopup = false;
-    $('#showPasswordSetupPopup').modal('hide');
-  }
-
-  public openPasswordSetupPopup() {
-    this.showPasswordSetupPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showPasswordSetupPopup').modal('show');
-    }, 100);
   }
 
   createCaptcha() {

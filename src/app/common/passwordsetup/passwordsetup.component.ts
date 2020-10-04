@@ -16,10 +16,7 @@ export class PasswordsetupComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Output() ClosePopup = new EventEmitter();
   @Input() userEmail:string;
-  @Input() calledFrom:string;
-
-  
-
+  @Input() isActivateAccountRequired:string;
   
   CloseModal() {
     this.ClosePopup.emit();
@@ -47,9 +44,7 @@ export class PasswordsetupComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-
     console.log("this.currentUserthis.currentUser",this.currentUser);
-
   }
 
   ngOnDestroy() {
@@ -57,9 +52,6 @@ export class PasswordsetupComponent implements OnInit {
   }
 
   get f() { return this.passwordInfo.controls; }
-
-  
-
 
   forgotPassword() {
     this.errorMessage = '';
@@ -83,11 +75,11 @@ export class PasswordsetupComponent implements OnInit {
     let values:any = {};    
     values['newPassword'] = this.passwordInfo.controls.newPassword.value;
     values['email'] = this.userEmail;
-    values['isActivationRequired'] = false;
-    if(this.calledFrom=='Registration')
-    {
-      values['isActivationRequired'] = true;
-    }
+    values['isActivationRequired'] = this.isActivateAccountRequired;
+    // if(this.calledFrom=='Registration')
+    // {
+    //   values['isActivationRequired'] = true;
+    // }
       this._apiservice.ForgotPassword(values).subscribe(data => {
       if (data) {
         this.toastr.success('You have successfully changed your password', '', {
@@ -104,5 +96,4 @@ export class PasswordsetupComponent implements OnInit {
       }     
     });
   }
-
 }
