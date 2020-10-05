@@ -14,13 +14,12 @@ import { APIService } from 'src/app/service/api.service';
 export class SavewebsitetextdataComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Output() ClosePopup = new EventEmitter();
+
   public CloseModal(calllistapi) {
     this.ClosePopup.emit(calllistapi);
   }
   errorMessage = '';
   public submitted: boolean;
-
-
   public imageForDataArray: any = [
     { "id": '1', "name": "TopNavFirstSectionFirstHeading" },
     { "id": '2', "name": "TopNavFirstSectionSecondHeading" },
@@ -55,26 +54,18 @@ export class SavewebsitetextdataComponent implements OnInit {
     { "id": '31', "name": "FooterThirdSectionHeading1" },
     { "id": '32', "name": "FooterThirdSectionHeading2" },
   ]
-
-
   public currentUser;
-
   public webTextForm = new FormGroup({
     textData: new FormControl(""),
     locationEnum: new FormControl("")
   });
 
-
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
-
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-    this.onChangesonChanges();
   }
   get f() { return this.webTextForm.controls; }
-
-
 
   SaveUpdate_WebsiteTextData() {
     this.submitted = true;
@@ -95,14 +86,10 @@ export class SavewebsitetextdataComponent implements OnInit {
       this.toastr.error(error.error.message);
     });
   }
-
-
-
-
-  onChangesonChanges(): void {
-    this.webTextForm.get('locationEnum').valueChanges.subscribe(val => {
-      this.Get_WebsiteTextDataByLocationEnum(val);
-    })
+ 
+  textChangeForChangeEvent($event)
+  {
+    this.Get_WebsiteTextDataByLocationEnum($event.target.value);
   }
 
   Get_WebsiteTextDataByLocationEnum(val) {
@@ -114,14 +101,16 @@ export class SavewebsitetextdataComponent implements OnInit {
           textData: data.textData,
           locationEnum: data.locationEnum
         })
-        //set description value
-
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
+   // onChangesonChanges(): void {
+  //   this.webTextForm.get('locationEnum').valueChanges.subscribe(val => {
+  //     this.Get_WebsiteTextDataByLocationEnum(val);
+  //   })
+  // }
 }
 
 

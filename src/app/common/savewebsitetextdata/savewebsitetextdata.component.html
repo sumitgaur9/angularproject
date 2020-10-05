@@ -32,7 +32,7 @@
                               <!--Body-->
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">TextChangeFor</label>
-                                <select class="form-control" formControlName="locationEnum">
+                                <select class="form-control" formControlName="locationEnum" (change)="textChangeForChangeEvent($event)">
                                     <option value=""></option>
                                     <option *ngFor="let opt of imageForDataArray" [value]="opt.id">{{opt.name}}</option>
                               </select>
