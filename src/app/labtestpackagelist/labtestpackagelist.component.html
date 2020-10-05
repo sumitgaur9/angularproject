@@ -43,7 +43,7 @@
               <img class="gaadiex-list-item-img" *ngIf="data.newimage && data.newimage.data && data.newimage.data.data"
                 src="{{arrayBufferToBase64(data.newimage.data.data)}}" alt="Photo of sunset">
                 <div class="health-report-offer">
-                  <span>73% OFF</span>
+                  <span>50% OFF</span>
                 </div>
             </div>
             
@@ -58,11 +58,11 @@
                     </h5>
                   </div>
                   <div style="width:23%;float:right;padding-top: 12px;">
-                    <h6 class="rupeesymbol" style="padding-right: 10%;">&#8377;
-                      <span style="text-decoration-line: line-through;font-size: 18px;color: slategray;"> {{data.packageAmount.toLocaleString('en-IN')}}</span></h6>
+                    <h6 class="rupeesymbol" style="text-decoration-line: line-through;padding-right: 10%;">&#8377;
+                      <span style="font-size: 18px;color: slategray;"> {{(data.packageAmount*2).toLocaleString('en-IN')}}</span></h6>
 
                       <h6 class="rupeesymbol">&#8377;
-                        <span style="font-weight: bold;font-size: 18px;"> {{(data.packageAmount/2).toLocaleString('en-IN')}}</span></h6>
+                        <span style="font-weight: bold;font-size: 18px;"> {{data.packageAmount.toLocaleString('en-IN')}}</span></h6>
                   </div>
                   <div style="width:10%;float:left;padding-top: 12px;">
                     <div style="float:left;width:30%" class="card-title1">
@@ -88,7 +88,7 @@
                           Teasts Included
                         </h6>
                         <h4 style="font-size: 15px;font-weight: 600;">
-                          25 Parameters
+                          {{data?.testsData.length}} Parameters
                         </h4>
                       </div>
                     </div>
