@@ -39,6 +39,7 @@ export class LabtestpackageprofileComponent implements OnInit {
     packageNname: new FormControl(""),
     packageAmount: new FormControl(""),
     id: new FormControl(""),
+    description: new FormControl(""),
     skills: new FormControl([[], Validators.required])
   });
   /************************** */
@@ -114,11 +115,11 @@ export class LabtestpackageprofileComponent implements OnInit {
             packageAmount: data.packageAmount
           });
         }
-        // if (data.description != undefined) {
-        //   this.createlabtestpackageform.patchValue({
-        //     description: data.description
-        //   });
-        // }
+        if (data.description != undefined) {
+          this.createlabtestpackageform.patchValue({
+            description: data.description
+          });
+        }
         if (data.newimage != undefined && data.newimage.data != undefined) {
           this.getImageValue = this.arrayBufferToBase64(data.newimage.data.data);//need to update data in base 64
           this.createlabtestpackageform.patchValue({
@@ -193,6 +194,8 @@ export class LabtestpackageprofileComponent implements OnInit {
     } else {
       formData.append('newimage', '');
     }
+    
+    formData.append('description', this.createlabtestpackageform.value.description);
     formData.append('packageNname', this.createlabtestpackageform.value.packageNname);
     formData.append('packageAmount', this.createlabtestpackageform.value.packageAmount);
     for (var i = 0; i < this.selectedItems.length; i++) {
@@ -229,6 +232,7 @@ export class LabtestpackageprofileComponent implements OnInit {
     } else {
       formData.append('newimage', '');
     }
+    formData.append('description', this.createlabtestpackageform.value.description);
     formData.append('packageNname', this.createlabtestpackageform.value.packageNname);
     formData.append('packageAmount', this.createlabtestpackageform.value.packageAmount);
     for (var i = 0; i < this.selectedItems.length; i++) {
