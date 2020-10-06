@@ -38,6 +38,7 @@ export class PatientprofileComponent implements OnInit {
     image: new FormControl(""),
     phoneno: new FormControl(""),
     address: new FormControl(""),
+    age: new FormControl(18),    
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -115,6 +116,12 @@ export class PatientprofileComponent implements OnInit {
             address: data.address
           });
         }
+        if (data.age != undefined) {
+          this.patientform.patchValue({
+            age: data.age
+          });
+        }
+        
         if (data._id != undefined) {
           this.patientform.patchValue({
             id: data._id
@@ -182,6 +189,7 @@ export class PatientprofileComponent implements OnInit {
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
     formData.append('address', this.patientform.value.address);
+    formData.append('age', this.patientform.value.age);    
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);
     formData.append('description', this.patientform.value.description);
@@ -215,6 +223,7 @@ export class PatientprofileComponent implements OnInit {
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
     formData.append('address', this.patientform.value.address);
+    formData.append('age', this.patientform.value.age);    
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);
     formData.append('description', this.patientform.value.description);

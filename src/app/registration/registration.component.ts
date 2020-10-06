@@ -30,9 +30,10 @@ export class RegistrationComponent implements OnInit {
     email: new FormControl("", [Validators.required]),
     name: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
-    role: new FormControl("", [Validators.required]),
-    description: new FormControl("", [Validators.required]),
-    phoneno: new FormControl("", [Validators.required, Validators.pattern(this.phoneNumberPattern)])
+    role: new FormControl(0, [Validators.required]),
+    phoneno: new FormControl("", [Validators.required, Validators.pattern(this.phoneNumberPattern)]),   
+    gender: new FormControl(1, [Validators.required]),
+
   });
 
   get f() { return this.userInfo.controls; }
@@ -53,7 +54,7 @@ export class RegistrationComponent implements OnInit {
       password: this.userInfo.value.password,
       role: Number(this.userInfo.value.role),
       phoneno: Number(this.userInfo.value.phoneno),
-      description: this.userInfo.value.description,
+      gender: Number(this.userInfo.value.phoneno),      
     }
     this.submitted = true;
     this.isInvalidCaptcha = false;
