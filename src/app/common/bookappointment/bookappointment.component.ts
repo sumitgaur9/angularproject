@@ -47,6 +47,8 @@ export class BookappointmentComponent implements OnInit {
 
   public bookAppointmentForm = new FormGroup({
     patientNname: new FormControl(""),
+    patientAge: new FormControl(18),
+    patientSex: new FormControl(1),
     patientEmail: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
     patientMob: new FormControl(""),
     patientAddres: new FormControl(""),
@@ -310,6 +312,8 @@ export class BookappointmentComponent implements OnInit {
   updatePatientDetails(patientdetail) {
     this.bookAppointmentForm.patchValue({
       patientNname: patientdetail.name,
+      patientAge: patientdetail.age,
+      patientSex: patientdetail.gender,
       patientEmail: patientdetail.email,
       patientMob: patientdetail.phoneno,
       patientAddres: patientdetail.address,
@@ -319,6 +323,8 @@ export class BookappointmentComponent implements OnInit {
     this.textareaValue = 
   `  ----Patient Details----
   Name: ${patientdetail.name}
+  Age: ${patientdetail.age}
+  Sex: ${patientdetail.gender==1?'Male':'Female'}
   Email: ${patientdetail.email}
   Phone: ${patientdetail.phoneno}
   Add: ${patientdetail.address}`;
