@@ -41,12 +41,12 @@
                       style="margin-left:5px;">Doctor Dashboard</span></button>
                 </div>
                 <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
                     (click)="openGetLabTest()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">GetLabTestList</span></button>
                 </div>
                 <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
                     (click)="openGetLabPackageTest()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">GetLabTestPackageList</span></button>
                 </div>
