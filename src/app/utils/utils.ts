@@ -18,6 +18,8 @@ export class UtililtyFunctions {
     public addIntoCart: Subject<any> = new Subject<any>();
     public fromRegPageSendDataToLogin: Subject<any> = new Subject<any>();
     public subOnCartDetailPage: Subject<any> = new Subject<any>();
+    public subRemoveFromCart: Subject<any> = new Subject<any>();
+
 
     isUserLoggedIn() {
         let loginedUserData = JSON.parse(window.sessionStorage.getItem("userToken"));  //need to do get current user data api need 

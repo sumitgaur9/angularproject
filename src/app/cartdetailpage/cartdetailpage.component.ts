@@ -76,18 +76,38 @@ export class CartdetailpageComponent implements OnInit {
 
   checkOutBtnClick() {
     let data = {};
+    let paymentTypeEnumKey;
+    let paymentTypeEnumValue;;
     this.router.navigate(['/paymentpage']);
+    let itemFromMedicineList = this.cartDetailPageInfo.filter(function (item) {
+      return item.paymentTypeEnumKey == AppEnum.paymentType.Medicine;
+    });
+    let itemFromLabTestist = this.cartDetailPageInfo.filter(function (item) {
+      return item.paymentTypeEnumKey == AppEnum.paymentType.LabTest;
+    });
+    
+    if (itemFromMedicineList && itemFromMedicineList.length > 0 && itemFromLabTestist && itemFromLabTestist.length > 0) {
+      paymentTypeEnumKey=AppEnum.paymentType.MedicineLabTest;
+      paymentTypeEnumValue="MedicineLabTest";
+    }
+    else if (itemFromMedicineList && itemFromMedicineList.length > 0) {
+      paymentTypeEnumKey=AppEnum.paymentType.Medicine;
+      paymentTypeEnumValue="Medicine";
+    }
+    else if (itemFromLabTestist && itemFromLabTestist.length > 0) {
+      paymentTypeEnumKey=AppEnum.paymentType.LabTest;
+      paymentTypeEnumValue="LabTest";
+    }
     setTimeout(() => {
       var dataobj: any = {};
       dataobj.charges = this.cartPriceTotal;
       dataobj.disease = '';
-      dataobj["paymentTypeEnumKey"] = AppEnum.paymentType.Medicine;
-      dataobj["paymentTypeEnumValue"] = "Medicine";
+      dataobj["paymentTypeEnumKey"] = paymentTypeEnumKey;
+      dataobj["paymentTypeEnumValue"] =paymentTypeEnumValue;
       dataobj["localUIOrderID"] = '';
       this.utilityservice.preparePaymentDetailsData.next(dataobj);
     }, 10);
   }
-
 
   RemoveCartDetails(itemID) {
     let dataobj = {
@@ -109,6 +129,8 @@ export class CartdetailpageComponent implements OnInit {
     if (newArray && newArray.length > 0) {
       let index = this.cartDetailPageInfo.findIndex(x => x.itemID === newArray[0].itemID);
       this.cartDetailPageInfo.splice(index, 1);
+      this.utilityservice.subRemoveFromCart.next(this.cartDetailPageInfo);
+      //subRemoveFromCart
       this.getPriceTotal();
     }
   }

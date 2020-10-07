@@ -3,6 +3,7 @@ import { UtililtyFunctions } from 'src/app/utils/utils';
 import { Router } from '@angular/router';
 import { APIService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { AppEnum } from 'src/app/shared/app.enum';
 declare var $: any;
 
 @Component({
@@ -60,9 +61,6 @@ export class HeaderComponent implements OnInit {
     this.utilityservice.addIntoCart.subscribe((dataobj) => {
       if (dataobj) {
         console.log("addIntoCart", dataobj);
-       // this.cartInfoData.push(dataobj);
-       // this.cartInfoCount=dataobj.qty;
-
        let comingDataExistInCart =false;
        if(this.cartInfoData.length>0)
        {
@@ -71,6 +69,23 @@ export class HeaderComponent implements OnInit {
        if(comingDataExistInCart==false)
        {
         this.cartInfoData.push(dataobj);
+        this.Save_AddtoCart(dataobj);
+       }
+       else
+       {
+        this.toastr.warning("This item has already added in the cart,Please select another item")
+       }
+        sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
+      }
+    });
+
+    
+    this.utilityservice.subRemoveFromCart.subscribe((dataobj) => {
+      if (dataobj) {
+        console.log("subRemoveFromCart", dataobj);
+       if(dataobj)
+       {
+        this.cartInfoData=dataobj;
        }
         sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
       }
@@ -363,7 +378,7 @@ export class HeaderComponent implements OnInit {
   CheckMedIdAlreadyExistInCart(checkwithdata)
   {
       let newArray =this.cartInfoData.filter(function (item) {
-        return item._id == checkwithdata._id;
+        return item.itemID == checkwithdata.itemID;
       });
       if (newArray && newArray.length>0) {
       return true;
@@ -371,6 +386,7 @@ export class HeaderComponent implements OnInit {
       return false;
     
   }
+
 
 
   Get_CartDetails() {
@@ -387,5 +403,29 @@ export class HeaderComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  Save_AddtoCart(itemInfo) {
+    let dataobj: any = {};
+    dataobj.itemID = itemInfo.itemID;
+    dataobj.itemName = itemInfo.itemName;
+    dataobj.companyName = itemInfo.companyName;
+    dataobj.price = itemInfo.price;
+    dataobj.qty = itemInfo.qty;
+    dataobj.paymentTypeEnumKey = itemInfo.paymentTypeEnumKey;
+    dataobj.paymentTypeEnumValue = itemInfo.paymentTypeEnumValue;
+    dataobj.userId = this.currentUser.roleBaseId;
+    this._apiservice.Save_AddtoCart(dataobj).subscribe(data => {
+      if (data) {
+        // this.toastr.success('Saved Sucessfully');
+      }
+    }, error => {
+      if (error.error.code === 11000) {
+        this.errorMessage = error.error.errmsg; this.toastr.error(this.errorMessage);
+      } else {
+        this.errorMessage = error.error.message; this.toastr.error(this.errorMessage);
+      }
+    });
+  }
+
 
 }

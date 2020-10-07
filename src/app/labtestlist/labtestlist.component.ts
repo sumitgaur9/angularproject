@@ -123,14 +123,14 @@ export class LablistComponent implements OnInit {
     dataobj.companyName = '';
     dataobj.price = labtestInfo.price;
     dataobj.qty = 1;
-    dataobj.paymentTypeEnumKey = AppEnum.paymentType.Medicine;;
-    dataobj.paymentTypeEnumValue = "Medicine"
+    dataobj.paymentTypeEnumKey = AppEnum.paymentType.LabTest;;
+    dataobj.paymentTypeEnumValue = "LabTest"
     dataobj.userId = this.currentUser.roleBaseId;
     var modifycartdata = Object.assign({}, dataobj);
     this.utilityservice.addIntoCart.next(modifycartdata);
     this.labTestBasketData.push(modifycartdata);
     this.getPriceTotal();
-    this.Save_AddtoCart(modifycartdata);
+   // this.Save_AddtoCart(modifycartdata);
   }
 
   Save_AddtoCart(medicineInfo) {
