@@ -59,6 +59,10 @@ export class LabtestpackagelistComponent implements OnInit {
     });
   }
 
+  redirectToCartDetailPage(){
+    this.router.navigate(['/cartdetail']);
+  }
+
   public openDeleteConfirmationPopup(id) {
     this.getlabtestpackageid = id;
     this.openConfirmationPopup();

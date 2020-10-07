@@ -79,8 +79,20 @@ border: none;
 border-radius: 6px;
 padding: 9px 28px;
 border: 1px solid #0CB6E1;
+cursor: pointer;
 }
 
+.checkout-btn-blue {
+  color: #fff;
+  background: #0CB6E1;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 28px;
+  border: 1px solid #0CB6E1;
+  cursor: pointer;
+  }
 
 
 .add-to-basket-btn {

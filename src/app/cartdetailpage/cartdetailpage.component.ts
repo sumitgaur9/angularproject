@@ -63,16 +63,29 @@ export class CartdetailpageComponent implements OnInit {
     }
   }
 
-  qtyChange(event, data) {
+  qtyChange(qty, data) {
     let newArray = this.cartDetailPageInfo.filter(function (item) {
       return item.itemID == data.itemID;
     });
     if (newArray && newArray.length > 0) {
       let index = this.cartDetailPageInfo.findIndex(x => x.itemID === newArray[0].itemID);
-      this.cartDetailPageInfo[index].price = event.target.value * this.cartDetailPageInfo[index].orignalPrice;
+      this.cartDetailPageInfo[index].price = qty * this.cartDetailPageInfo[index].orignalPrice;
       this.getPriceTotal();
     }
   }
+
+
+  reduceQtyByOne(data) {
+    if (data.qty >= 1) {
+      data.qty = (data.qty) - 1;
+      this.qtyChange(data.qty, data);
+    }
+  }
+  addQtyByOne(data) {
+    data.qty++;
+    this.qtyChange(data.qty, data);
+  }
+
 
   checkOutBtnClick() {
     let data = {};

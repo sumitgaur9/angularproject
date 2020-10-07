@@ -123,6 +123,7 @@ export class MedicinelistComponent implements OnInit {
     dataobj.paymentTypeEnumKey = AppEnum.paymentType.Medicine;;
     dataobj.paymentTypeEnumValue = "Medicine"
     dataobj.userId = this.currentUser.roleBaseId;
+    dataobj.isAddedInCart = true;
     var modifycartdata = Object.assign({}, dataobj);
     this.utilityservice.addIntoCart.next(modifycartdata);
     //this.Save_AddtoCart(modifycartdata);

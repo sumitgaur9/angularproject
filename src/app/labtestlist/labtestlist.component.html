@@ -125,7 +125,7 @@
     </div>
   </div>
   
-  <div class="mt-2" style="width:21%;position:absolute;top:14%;right:6%;">
+  <div class="mt-2" style="width:22%;position:absolute;top:14%;right:6%;">
     <div class="col-lg-12 d-none d-sm-block">
       <div class="basket-side-bar">
         <div class="row basket-row">
@@ -135,7 +135,7 @@
             <h5 style="padding-top: 5px;font-size: 15px;font-weight: 600;color: #212121;">Basket</h5>
           </div>
           <div class="col-5 d-flex pl-0  justify-content-end" style="padding-top: 5px;">
-            <span>(1 items)</span>
+            <span>({{labTestBasketData.length}} items)</span>
             <img src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/down-arrow-sidebar.svg"
               style="width: 20px;height: 20px;" class="img-fluid">
   
@@ -148,11 +148,11 @@
             </p>
           </div>
           <div class="col-4 text-right">
-            <p> <span class="rupee">₹</span>  {{data.price}}</p>
+            <p> <span class="rupee">₹</span>  {{data.price.toLocaleString('en-IN')}}</p>
           </div>
         
         </div>
-        <div class="row side-bar-total">
+        <div class="row side-bar-total" *ngIf="labTestBasketData.length>0">
           <div class="col-8" style="padding: 0;">
             <p>
               Total Amount
@@ -160,14 +160,14 @@
           </div>
           <div class="col-4 text-right" style="padding: 0;">
             <p>
-              <span class="rupee">₹</span>{{labTestBasketTotalPriceCount}}
+              <span class="rupee">₹</span>{{labTestBasketTotalPriceCount.toLocaleString('en-IN')}}
             </p>
           </div>
         </div>
         <div>
-          <button class="btn-blue" type="submit" style="width:100%;height: 42px;">Checkout &nbsp;<img
+          <button class="checkout-btn-blue" (click)="redirectToCartDetailPage()" type="submit" style="width:100%;height: 42px;">Checkout &nbsp;<img
               src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/btn-right-arrow.svg" alt="img"
-              style="height: 28px;width: 30px;display: inherit;" class="img-fluid"></button>
+              style="height: 22px;width: 22px;display: inherit;padding: 2%;" class="img-fluid"></button>
         </div>
       </div>
     </div>

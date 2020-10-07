@@ -31,6 +31,7 @@ export class LablistComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_LabTestsList();
+    this.disablityCheckoutButton();
   }
 
   public closeForgotPasswordPopup() {
@@ -97,6 +98,10 @@ export class LablistComponent implements OnInit {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
+  redirectToCartDetailPage(){
+    this.router.navigate(['/cartdetail']);
+  }
+
   public closeLabTestProfilePopup(calllistapi) {
     this.showLabTestProfilePopup = false;
     $('#showLabTestProfilePopup').modal('hide');
@@ -114,6 +119,18 @@ export class LablistComponent implements OnInit {
     }, 100);
   }
 
+  disablityCheckoutButton(){
+    if(this.labTestBasketData.length>0){
+      $('.checkout-btn-blue').css({"cursor":"pointer"});
+      $('.checkout-btn-blue').css({"background":"#0CB6E1"});
+      $('.checkout-btn-blue').css({"border":"1px solid #0CB6E1"});
+
+    } else {      
+      $('.checkout-btn-blue').css({"cursor":"not-allowed"});
+      $('.checkout-btn-blue').css({"background":"#CBCBCB"});
+      $('.checkout-btn-blue').css({"border":"1px solid #CBCBCB"});
+    }
+  }
 
 
   addToCart(labtestInfo) {
@@ -129,6 +146,7 @@ export class LablistComponent implements OnInit {
     var modifycartdata = Object.assign({}, dataobj);
     this.utilityservice.addIntoCart.next(modifycartdata);
     this.labTestBasketData.push(modifycartdata);
+    this.disablityCheckoutButton();
     this.getPriceTotal();
    // this.Save_AddtoCart(modifycartdata);
   }
