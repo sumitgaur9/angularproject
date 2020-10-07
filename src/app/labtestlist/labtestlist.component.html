@@ -76,8 +76,8 @@
                   <div class="form_data" style="float: left;width: 25%;">                    
                     <button class="btn-blue">Book Now</button>
                   </div>
-                  <div class="form_data" style="width: 80%;">                    
-                    <button type="button" class="btn-blue-outline add-to-basket-btn" (click)="addToCart(data)">Add to Basket</button>
+                  <div class="form_data" style="width: 80%;" [ngStyle]="{ 'color': data.isAddedInCart ? 'green': 'rgb(20, 127, 218)' }">                    
+                    <button type="button" class="btn-blue-outline add-to-basket-btn" (click)="CheckItemIdAlreadyExistInCart(data)" >{{data.isAddedInCart?"Go To Basket":"Add to Basket"}}</button>
                   </div>
                 </div>
                 <div class="row fetuter-report" style="width: 100%;">

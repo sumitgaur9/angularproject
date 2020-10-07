@@ -105,9 +105,9 @@ export class HeaderComponent implements OnInit {
     if(this.cartDataFromSessionStorage)
     {
       this.cartInfoData=this.cartDataFromSessionStorage;
-      setTimeout(() => {
-        this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
-      }, 10);
+      // setTimeout(() => {
+      // //  this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      // }, 10);
     }
     else{
       this.Get_CartDetails();
@@ -242,9 +242,9 @@ export class HeaderComponent implements OnInit {
         break;
       case 'cartdetail':
         this.router.navigate(['/cartdetail']);
-        setTimeout(() => {
-          this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
-        }, 10);
+      //   setTimeout(() => {
+      //  //   this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      //   }, 10);
         break;
         
       case 'logo':
@@ -395,9 +395,11 @@ export class HeaderComponent implements OnInit {
     this._apiservice.Get_CartDetails(dataobj,this.currentUser.roleBaseId).subscribe(data => {
       if (data) {
         this.cartInfoData=data;
-      setTimeout(() => {
-        this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
-      }, 10);
+        sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
+
+      // setTimeout(() => {
+      //   this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      // }, 10);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

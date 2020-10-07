@@ -72,7 +72,7 @@ export class MedicinelistComponent implements OnInit {
         this.medicineListDataArray.forEach(element => {
           element.isAddedInCart=false;
         });
-
+        this.checkDataInSessionStorageOnInit();   //this  function call  is here because need to update add basket text
         console.log("medicineListDataArray ", data);
       }
     }, error => {
@@ -134,9 +134,36 @@ export class MedicinelistComponent implements OnInit {
   }
 
   
+  textChangeAddToBAsketToGoToBasket(dataobj)
+  {
+    if (dataobj) {
+      let newArray = this.medicineListDataArray.filter(function (item) {
+        return item._id == dataobj.itemID
+      });
+      if (newArray) {
+        let index = this.medicineListDataArray.findIndex(x => x._id === newArray[0]._id);
+        this.medicineListDataArray[index].isAddedInCart=true;
+       //isAddedInCart
+      }
+    }
+  }
 
 
-
+  checkDataInSessionStorageOnInit()
+  {
+    let cartInfo = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
+    if (cartInfo) {
+      let newArray = cartInfo.filter(function (item) {
+        return item.paymentTypeEnumKey == AppEnum.paymentType.Medicine;
+      });
+      if (newArray) {
+        for(var i=0;i<newArray.length;i++)
+        {
+          this.textChangeAddToBAsketToGoToBasket(newArray[i]);
+        }
+      }
+    }
+  }
 
 
 

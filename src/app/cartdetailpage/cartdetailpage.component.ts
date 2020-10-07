@@ -24,20 +24,30 @@ export class CartdetailpageComponent implements OnInit {
   public tempCartDetailPageInfo: any = [];
   public cartPriceTotal: number = 0;
   public errorMessage: string = '';
+  public cartDataFromSessionStorage:any=[];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) {
-    this.utilityservice.subOnCartDetailPage.subscribe((dataobj) => {
-      if (dataobj) {
-        this.tempCartDetailPageInfo = dataobj;
-        this.addedSomeExtraFieldInCartInfo();
-        console.log("this.tempCartDetailPageInfo", this.tempCartDetailPageInfo);
-      }
-    });
+    // this.utilityservice.subOnCartDetailPage.subscribe((dataobj) => {
+    //   if (dataobj) {
+    //     this.tempCartDetailPageInfo = dataobj;
+    //     this.addedSomeExtraFieldInCartInfo();
+    //     console.log("this.tempCartDetailPageInfo", this.tempCartDetailPageInfo);
+    //   }
+    // });
 
   }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
+    this.cartDataFromSessionStorage = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
+    if(this.cartDataFromSessionStorage)
+    {
+    this.tempCartDetailPageInfo=this.cartDataFromSessionStorage;
+    this.addedSomeExtraFieldInCartInfo();
+      // setTimeout(() => {
+      //   this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      // }, 10);
+    }
   }
 
 

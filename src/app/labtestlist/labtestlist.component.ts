@@ -23,12 +23,13 @@ export class LablistComponent implements OnInit {
   public showData = 'Do you really want to delete these records? This process cannot be undone.';
   public showLabTestProfilePopup: boolean = false;
   public getbookedlabtestid: string = '';
-  public labTestBasketData:any=[];
-  public labTestBasketTotalPriceCount:number=0;
+  public labTestBasketData: any = [];
+  public labTestBasketTotalPriceCount: number = 0;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
+    
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_LabTestsList();
     this.disablityCheckoutButton();
@@ -53,6 +54,12 @@ export class LablistComponent implements OnInit {
     this._apiservice.Get_LabTestsList(dataobj).subscribe(data => {
       if (data) {
         this.labTestData = data;
+        this.labTestData.forEach(element => {
+          element.isAddedInCart=false;
+        });
+        this.checkDataInSessionStorageOnInit();   //this  function call  is here because need to update add basket text
+     
+     
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -98,7 +105,7 @@ export class LablistComponent implements OnInit {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
-  redirectToCartDetailPage(){
+  redirectToCartDetailPage() {
     this.router.navigate(['/cartdetail']);
   }
 
@@ -119,16 +126,16 @@ export class LablistComponent implements OnInit {
     }, 100);
   }
 
-  disablityCheckoutButton(){
-    if(this.labTestBasketData.length>0){
-      $('.checkout-btn-blue').css({"cursor":"pointer"});
-      $('.checkout-btn-blue').css({"background":"#0CB6E1"});
-      $('.checkout-btn-blue').css({"border":"1px solid #0CB6E1"});
+  disablityCheckoutButton() {
+    if (this.labTestBasketData.length > 0) {
+      $('.checkout-btn-blue').css({ "cursor": "pointer" });
+      $('.checkout-btn-blue').css({ "background": "#0CB6E1" });
+      $('.checkout-btn-blue').css({ "border": "1px solid #0CB6E1" });
 
-    } else {      
-      $('.checkout-btn-blue').css({"cursor":"not-allowed"});
-      $('.checkout-btn-blue').css({"background":"#CBCBCB"});
-      $('.checkout-btn-blue').css({"border":"1px solid #CBCBCB"});
+    } else {
+      $('.checkout-btn-blue').css({ "cursor": "not-allowed" });
+      $('.checkout-btn-blue').css({ "background": "#CBCBCB" });
+      $('.checkout-btn-blue').css({ "border": "1px solid #CBCBCB" });
     }
   }
 
@@ -140,7 +147,7 @@ export class LablistComponent implements OnInit {
     dataobj.companyName = '';
     dataobj.price = labtestInfo.price;
     dataobj.qty = 1;
-    dataobj.paymentTypeEnumKey = AppEnum.paymentType.LabTest;;
+    dataobj.paymentTypeEnumKey = AppEnum.paymentType.LabTest;
     dataobj.paymentTypeEnumValue = "LabTest"
     dataobj.userId = this.currentUser.roleBaseId;
     var modifycartdata = Object.assign({}, dataobj);
@@ -148,7 +155,7 @@ export class LablistComponent implements OnInit {
     this.labTestBasketData.push(modifycartdata);
     this.disablityCheckoutButton();
     this.getPriceTotal();
-   // this.Save_AddtoCart(modifycartdata);
+    // this.Save_AddtoCart(modifycartdata);
   }
 
   Save_AddtoCart(medicineInfo) {
@@ -177,11 +184,52 @@ export class LablistComponent implements OnInit {
   getPriceTotal() {
     this.labTestBasketTotalPriceCount = 0;
     for (var i = 0; i < this.labTestBasketData.length; i++) {
+      //this.labTestBasketData[i].isAddedInCart=true;
       this.labTestBasketTotalPriceCount = this.labTestBasketTotalPriceCount + this.labTestBasketData[i].price;
+      this.textChangeAddToBAsketToGoToBasket(this.labTestBasketData[i]);
+    }
+  }
+
+  textChangeAddToBAsketToGoToBasket(dataobj)
+  {
+    if (dataobj) {
+      let newArray = this.labTestData.filter(function (item) {
+        return item._id == dataobj.itemID
+      });
+      if (newArray) {
+        let index = this.labTestData.findIndex(x => x._id === newArray[0]._id);
+        this.labTestData[index].isAddedInCart=true;
+       //isAddedInCart
+      }
     }
   }
 
 
+  CheckItemIdAlreadyExistInCart(labtestInfo) {
+    let cartInfo = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
+    let newArray = cartInfo.filter(function (item) {
+      return item.itemID == labtestInfo._id;
+    });
+    if (newArray && newArray.length > 0) {
+      this.toastr.warning("This item has already added in the cart,Please select another item")
+      return;
+    }
+    this.addToCart(labtestInfo)
+  }
 
+  checkDataInSessionStorageOnInit()
+  {
+    let cartInfo = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
+    if (cartInfo) {
+      let newArray = cartInfo.filter(function (item) {
+        return item.paymentTypeEnumKey == AppEnum.paymentType.LabTest;
+      });
+      if (newArray) {
+        this.labTestBasketData = newArray;
+        this.getPriceTotal();
+        console.log("this.labTestBasketDatathis.labTestBasketData", this.labTestBasketData);
+      }
+    }
+  }
 }
 

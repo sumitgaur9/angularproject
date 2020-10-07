@@ -17,7 +17,7 @@ export class UtililtyFunctions {
     public preparePaymentDetailsData: Subject<any> = new Subject<any>();
     public addIntoCart: Subject<any> = new Subject<any>();
     public fromRegPageSendDataToLogin: Subject<any> = new Subject<any>();
-    public subOnCartDetailPage: Subject<any> = new Subject<any>();
+    //public subOnCartDetailPage: Subject<any> = new Subject<any>();
     public subRemoveFromCart: Subject<any> = new Subject<any>();
 
 
