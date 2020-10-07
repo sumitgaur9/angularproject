@@ -21,6 +21,7 @@ import { LabtestpackagelistComponent } from './labtestpackagelist/labtestpackage
 import { PaymentComponent } from './payment/payment.component';
 import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
+import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.component';
 
 
 
@@ -49,6 +50,7 @@ const routes: Routes = [
     { path: 'paymentpage', component: PaymentComponent },
     { path: 'medicinelist', component: MedicinelistComponent },
     { path: 'paymentlist', component: PaymentlistComponent },
+    { path: 'cartdetail', component: CartdetailpageComponent },
     { path: '**', component: LoginComponent }
 ];
 

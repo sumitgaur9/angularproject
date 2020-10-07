@@ -858,7 +858,42 @@ Get_PaymentLists(params) {
     }));
 }
 
+Save_AddtoCart(data) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_AddtoCart}`
+  return this.http.post<any>(APIURL, data)
+    .pipe(map(userData => {
+      return userData;
+    }));
+}
 
+Get_CartDetails(params,userid) {
+  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CartDetails+'/'+userid}`
+  return this.http.get<any>(APIURL, { params: params })
+    .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+    }));
+}
+
+RemoveCartDetails(params,userId,itemID) {
+  let APIURL;
+  if(userId && itemID)
+  {
+     APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails+'/'+userId+'/'+itemID}`
+  }
+  else{
+     APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails+'/'+userId}`
+  }
+  return this.http.delete<any>(APIURL, { params: params })
+    .pipe(map(resdata => {
+      if (resdata) {
+      }
+      return resdata;
+    }));
+}
+
+//RemoveCartDetails
 }
 
 

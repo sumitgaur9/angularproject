@@ -5,6 +5,14 @@ export enum appListMenu {
     Patient = 2,
     Pharmacist = 3,
 }
+
+export enum paymentType {
+    BookAppointment = 1,
+    LabTest = 2,
+    Medicine = 3,
+    MedicineLabTest = 4,
+}
+
 export enum AbDateTimeType {
     YYYY_MM_DD_HH_MM_SS = 'YYYY_MM_DD_HH_MM_SS',
     MM_DD_YYYY_HH_mm_ss = 'MM_DD_YYYY_HH_mm_ss',

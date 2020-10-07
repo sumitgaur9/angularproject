@@ -92,6 +92,9 @@ export const API_PATH: any = {
     'Get_Medicine':'Get_Medicine',
     'Delete_Medicine':'Delete_Medicine',
     'Get_PaymentLists':'Get_PaymentLists',
+    'Save_AddtoCart':'Save_AddtoCart',
+    'Get_CartDetails':'Get_CartDetails',
+    'RemoveCartDetails':'RemoveCartDetails',
 }
 
 export const PATTERN_ERROR_MESSAGE = {

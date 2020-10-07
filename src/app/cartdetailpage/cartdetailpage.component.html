@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container" style="position: absolute;top:17%">
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
@@ -10,7 +10,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr >
 							<td data-th="Product">
 								<div class="row">
 									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
@@ -43,4 +43,70 @@
 						</tr>
 					</tfoot>
 				</table>
-</div>
+</div> -->
+
+
+
+
+<div  style="position:absolute;top:17%;left: 3%;width: 93%;right: 3%;">
+
+    
+    <div class="row">
+      <table class="table table-hover my-0" style="text-align: center;">
+        <thead style="background-color: #39b49b;">
+          <tr>
+            <th style="width: 5%;">S.No</th>
+			<th style="width: 13%;">First</th>
+			<th style="width: 13%;">Item Name</th>
+			<th style="width: 13%;">Rate</th>
+			<th  class="d-none d-xl-table-cell" style="width: 8%;">Qty</th>
+			<th style="width: 13%;" class="d-none d-xl-table-cell">Price</th>
+			<th  class="d-none d-xl-table-cell">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+
+		
+
+
+          <tr *ngFor="let data of cartDetailPageInfo;let i = index;">
+            <td style="vertical-align: middle;">{{i+1}}.</td>
+				<td style="font-weight: 600;vertical-align: middle;">{{data.itemName.substr(0, 1).toUpperCase()}}</td>
+			<td style="font-weight: 600;vertical-align: middle;">{{data.itemName}}</td>
+			<td style="font-weight: 600;vertical-align: middle;">{{data.orignalPrice}}</td>
+
+            <!-- <td class="d-none d-xl-table-cell" style="vertical-align: middle;">{{data.companyName}}</td> -->
+			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;">
+
+				<input type="text" style="width:50%;text-align: right;border:2px solid black;" (change)="qtyChange($event,data)">
+			</td>
+			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;">&#8377; {{data.price}}</td>
+
+			<td   class="d-none d-xl-table-cell" style="vertical-align: middle;"><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;"
+				(click)="RemoveCartDetails(data.itemID)" style="color:red"></i></td>
+
+
+            
+<!-- 
+            <div style="width:100%; float:left;">
+              <div class="item_button" ng-click="addtocart(itemdata)"><a style="cursor:pointer;"><i class="fa fa-cart-plus"></i> ADD TO CART</a></div>
+              <div class="item_button" ng-click="addtowishlist(itemdata)" style="cursor:pointer; float:right; background-color:#e3714b;"><a><i class="fa fa-heart-o"></i> ADD TO WISHLIST</a></div>
+          </div> -->
+          </tr>
+		</tbody>
+		
+		<tfoot *ngIf="cartDetailPageInfo.length>0">
+			<!-- <tr class="visible-xs">
+				<td class="text-center"><strong>Total 1.99</strong></td>
+			</tr> -->
+			<tr>
+				<!-- <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td> -->
+				<td colspan="2" class="hidden-xs"></td>
+				<td class="hidden-xs text-center"><strong>Total ${{cartPriceTotal}}</strong></td>
+				<td><a class="btn btn-success btn-block" (click)="checkOutBtnClick()">Checkout <i class="fa fa-angle-right"></i></a></td>
+			</tr>
+		</tfoot>
+      </table>
+    </div>
+
+  </div>

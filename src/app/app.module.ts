@@ -50,6 +50,7 @@ import { WindowRefService } from './window-ref.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
+import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { PaymentlistComponent } from './paymentlist/paymentlist.component';
     PaymentComponent,
     MedicinelistComponent,
     PaymentlistComponent,
+    CartdetailpageComponent,
    // DoctorprofileComponent
   ],
   imports: [

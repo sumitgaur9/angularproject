@@ -3,6 +3,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import { LoaderComponent } from '../loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
@@ -45,7 +46,8 @@ import { MedicineprofileComponent } from './medicineprofile/medicineprofile.comp
     ReactiveFormsModule,
     RouterModule,
     AngularMultiSelectModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    AutocompleteLibModule
     // NgMultiSelectDropDownModule.forRoot()
   ], exports: [
     LoaderComponent,

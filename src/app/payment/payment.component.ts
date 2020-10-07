@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
     amount: new FormControl(""),
     appointmentfor: new FormControl(""),
     paymentdate: new FormControl(""),
-    appointmentType: new FormControl(""),
+    //appointmentType: new FormControl(""),
     paymentTypeEnumKey: new FormControl(""),
     paymentTypeEnumValue: new FormControl(""),
     localUIOrderID: new FormControl(""),
@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
         this.paymentform.patchValue({
           amount: dataobj.charges,
           appointmentfor: dataobj.disease,
-          appointmentType: dataobj.appointmentType,  //homevisit/online
+         // appointmentType: dataobj.appointmentType,  //homevisit/online
           paymentTypeEnumKey: dataobj.paymentTypeEnumKey,  //appointment or labtest enum id
           paymentTypeEnumValue: dataobj.paymentTypeEnumValue,  // //appointment or labtest enum name
           localUIOrderID: dataobj.localUIOrderID,// //appointment or labtest id 

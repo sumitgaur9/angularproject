@@ -38,6 +38,9 @@ export class HeaderComponent implements OnInit {
   public getnurseprofileid: string = '';
   public getphyscoprofileid: string = '';
   public getlabtechnicianprofileid: string = '';
+  public cartInfoData:any=[];
+  public cartInfoCount:number=0;
+  public cartDataFromSessionStorage:any=[];
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -57,7 +60,19 @@ export class HeaderComponent implements OnInit {
     this.utilityservice.addIntoCart.subscribe((dataobj) => {
       if (dataobj) {
         console.log("addIntoCart", dataobj);
-      
+       // this.cartInfoData.push(dataobj);
+       // this.cartInfoCount=dataobj.qty;
+
+       let comingDataExistInCart =false;
+       if(this.cartInfoData.length>0)
+       {
+         comingDataExistInCart = this.CheckMedIdAlreadyExistInCart(dataobj);
+       }
+       if(comingDataExistInCart==false)
+       {
+        this.cartInfoData.push(dataobj);
+       }
+        sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
       }
     });
 
@@ -66,10 +81,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
+    this.cartDataFromSessionStorage = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
     if (this.currentUser != undefined) {
       this.username = this.currentUser.user.name;
       this.nameFirstChar = this.currentUser.user.name ? this.currentUser.user.name.substr(0, 1) : '';
       this.nameFirstChar = this.nameFirstChar.toUpperCase();
+    }
+    if(this.cartDataFromSessionStorage)
+    {
+      this.cartInfoData=this.cartDataFromSessionStorage;
+      setTimeout(() => {
+        this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      }, 10);
+    }
+    else{
+      this.Get_CartDetails();
     }
   }
 
@@ -199,6 +225,13 @@ export class HeaderComponent implements OnInit {
       case 'visitforall':
         this.openShowVisitForAll();
         break;
+      case 'cartdetail':
+        this.router.navigate(['/cartdetail']);
+        setTimeout(() => {
+          this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+        }, 10);
+        break;
+        
       case 'logo':
         let userSubs = this.utilityservice.isUserLoggedIn();
         if (userSubs.user && userSubs.user.tokens != null) {
@@ -325,6 +358,34 @@ export class HeaderComponent implements OnInit {
   patientProfileResponseReturn(value)
   {
     //no use here but used in bookappointment and booklabtest
+  }
+
+  CheckMedIdAlreadyExistInCart(checkwithdata)
+  {
+      let newArray =this.cartInfoData.filter(function (item) {
+        return item._id == checkwithdata._id;
+      });
+      if (newArray && newArray.length>0) {
+      return true;
+      }
+      return false;
+    
+  }
+
+
+  Get_CartDetails() {
+    let dataobj = {
+    };
+    this._apiservice.Get_CartDetails(dataobj,this.currentUser.roleBaseId).subscribe(data => {
+      if (data) {
+        this.cartInfoData=data;
+      setTimeout(() => {
+        this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
+      }, 10);
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 
 }
