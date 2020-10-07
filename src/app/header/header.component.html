@@ -12,10 +12,12 @@
             <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">knowledgerelated96@gmail.com</a></span>
           </div>
-          <div class="info-inner" style="padding-right: 60px;">
-            <span class="badge badge-light" (click)="navigatetopage('cartdetail')">{{cartInfoData.length}}</span>
-            <!-- <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span> -->
-            <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span>
+          <div *ngIf="cartInfoData.length>0" class="info-inner" style="padding-right: 60px;">
+            <i class="fa fa-cart-plus" style="font-size: 30px;color: #3eb49b;"></i>       
+            <span class="badge badge-light" (click)="navigatetopage('cartdetail')" style="font-size: 13px;color: white;border: 1px solid;border-radius: 12px;background-color: red;position: absolute;top: 7%;">           
+                {{cartInfoData.length}}</span>   
+                     <!-- <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span> -->
+            <!-- <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span> -->
           </div>
 
           <div class="dropdown show" style="position: absolute;right: 0px;top: 20px;">
