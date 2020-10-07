@@ -58,9 +58,9 @@
             <th style="width: 5%;">S.No</th>
 			<th style="width: 13%;">First</th>
 			<th style="width: 13%;">Item Name</th>
-			<th style="width: 13%;">Rate</th>
-			<th  class="d-none d-xl-table-cell" style="width: 8%;">Qty</th>
-			<th style="width: 13%;" class="d-none d-xl-table-cell">Price</th>
+			<th style="width: 5%;">Rate</th>
+			<th  class="d-none d-xl-table-cell" style="width: 19%;">Qty</th>
+			<th style="width: 7%;" class="d-none d-xl-table-cell">Price</th>
 			<th  class="d-none d-xl-table-cell" style="width: 10%;">Delete</th>
           </tr>
         </thead>
@@ -72,16 +72,16 @@
           <tr *ngFor="let data of cartDetailPageInfo;let i = index;">
             <td style="vertical-align: middle;">{{i+1}}.</td>
 				<td style="font-weight: 500;margin-top: 4%;margin-left: 40%;" class="namefirstchar">{{data.itemName.substr(0, 1).toUpperCase()}}</td>
-			<td style="font-weight: 600;vertical-align: middle;">{{data.itemName}}</td>
-			<td style="font-weight: 600;vertical-align: middle;">&#8377; {{data.orignalPrice.toLocaleString('en-IN')}}</td>
+			<td style="vertical-align: middle;">{{data.itemName}}</td>
+			<td style="vertical-align: middle;text-align: right;">&#8377; {{data.orignalPrice.toLocaleString('en-IN')}}</td>
 
             <!-- <td class="d-none d-xl-table-cell" style="vertical-align: middle;">{{data.companyName}}</td> -->
 			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;">
-				<i class="fa fa-plus" (click)="addQtyByOne(data)" style="width: 25%;font-size: 20;color: blue;"></i>
-				<input type="text" style="width:50%;text-align: right;border:2px solid #0000001c;" [(ngModel)]="data.qty" (change)="qtyChange(data.qty,data)">
-				<i class="fa fa-minus" (click)="reduceQtyByOne(data)" style="width: 25%;font-size: 20;color: #ff00008c;"></i>
+				<i class="fa fa-plus" (click)="addQtyByOne(data)" style="width: 12%;font-size: 20;color: blue;"></i>
+				<input type="text" style="width:23%;text-align: center;border:2px solid #0000001c;" [(ngModel)]="data.qty" (change)="qtyChange(data.qty,data)">
+				<i class="fa fa-minus" (click)="reduceQtyByOne(data)" style="width: 12%;font-size: 20;color: #ff00008c;"></i>
 			</td>
-			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;">&#8377; {{data.price.toLocaleString('en-IN')}}</td>
+			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;text-align: right;">&#8377; {{data.price.toLocaleString('en-IN')}}</td>
 
 			<td   class="d-none d-xl-table-cell" style="vertical-align: middle;"><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;"
 				(click)="RemoveCartDetails(data.itemID)" style="color:#ff0000b8"></i></td>

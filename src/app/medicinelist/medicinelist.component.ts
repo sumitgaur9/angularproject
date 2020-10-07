@@ -69,6 +69,10 @@ export class MedicinelistComponent implements OnInit {
     this._apiservice.Get_MedicinesList(dataobj,companyName).subscribe(data => {
       if (data) {
         this.medicineListDataArray = data;
+        this.medicineListDataArray.forEach(element => {
+          element.isAddedInCart=false;
+        });
+
         console.log("medicineListDataArray ", data);
       }
     }, error => {
@@ -123,7 +127,7 @@ export class MedicinelistComponent implements OnInit {
     dataobj.paymentTypeEnumKey = AppEnum.paymentType.Medicine;;
     dataobj.paymentTypeEnumValue = "Medicine"
     dataobj.userId = this.currentUser.roleBaseId;
-    dataobj.isAddedInCart = true;
+    medicineInfo.isAddedInCart = true;
     var modifycartdata = Object.assign({}, dataobj);
     this.utilityservice.addIntoCart.next(modifycartdata);
     //this.Save_AddtoCart(modifycartdata);
