@@ -30,7 +30,7 @@
                    <div class="service-time one" style="background:#4cc0b9d1;">
                       <span class="info-icon"><i class="fa fa-ambulance" aria-hidden="true"></i></span>
                       <h3>{{webText.TopNavFirstSectionFirstHeading}}</h3>
-                      <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas mole.</p>
+                      <p>{{webText.TopNavFirstSectionSecondHeading}}</p>
                    </div>
                 </div>
              </div>
@@ -38,12 +38,12 @@
                 <div class="row">
                    <div class="service-time middle" style="background:#53cac578;">
                       <span class="info-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span> 
-                      <h3>Working Hours</h3>
+                      <h3>{{webText.TopNavSecondSectionFirstHeading}}</h3>
                       <div class="time-table-section">
                          <ul style="color: #000000cc;">
-                            <li><span class="left">Monday - Friday</span><span class="right">8.00 – 18.00</span></li>
-                            <li><span class="left">Saturday</span><span class="right">8.00 – 16.00</span></li>
-                            <li><span class="left">Sunday</span><span class="right">8.00 – 13.00</span></li>
+                           <li><span class="left">{{webText.TopNavSecondSectionSecondHeading}}</span></li>
+                           <li><span class="left">{{webText.TopNavSecondSectionThirdHeading}}</span></li>
+                           <li><span class="left">{{webText.TopNavSecondSectionFourthHeading}}</span></li>                           
                          </ul>
                       </div>
                    </div>
@@ -53,8 +53,8 @@
                 <div class="row">
                    <div class="service-time three" style="background:#4cc0b9d1;">
                       <span class="info-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
-                      <h3>Clinic Timetable</h3>
-                      <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas mole.</p>
+                      <h3>{{webText.TopNavThirdSectionFirstHeading}}</h3>
+                      <p>{{webText.TopNavThirdSectionSecondHeading}}</p>
                    </div>
                 </div>
              </div>
@@ -71,10 +71,10 @@
     <div class="row" style="margin-top: 4%;">
       <div class="col-md-6">
          <div class="message-box">
-            <h4>What We Do</h4>
-            <h2>Clinic Service</h2>
-            <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-            <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  </p>
+            <h4>{{webText.WhatWeDoFirstHeading}}</h4>
+            <h2>{{webText.WhatWeDoSecondHeading}}</h2>
+            <p class="lead">{{webText.WhatWeDoThirdHeading}}</p>
+            <p>{{webText.WhatWeDoFourthHeading}}</p>
             <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</a>
          </div>
          <!-- end messagebox -->
@@ -102,7 +102,7 @@
              <img alt="" class="img-responsive" [src]="Services.image1">
 
             </div>
-          <h3>Digital Control Center</h3>
+          <h3>{{webText.WhatWeDoFirstImgHeading}}</h3>
        </div>
        <!-- end service -->
     </div>
@@ -115,7 +115,7 @@
            
              <!-- <img src="../../assets/images/clinic_02.jpg" alt="" class="img-responsive"> -->
           </div>
-          <h3>Hygienic Operating Room</h3>
+          <h3>{{webText.WhatWeDoSecondImgHeading}}</h3>
        </div>
        <!-- end service -->
     </div>
@@ -127,7 +127,7 @@
 
              <!-- <img src="../../assets/images/clinic_03.jpg" alt="" class="img-responsive"> -->
           </div>
-          <h3>Specialist Physicians</h3>
+          <h3>{{webText.WhatWeDoThirdImgHeading}}</h3>
        </div>
        <!-- end service -->
     </div>
@@ -139,11 +139,11 @@
 
              <!-- <img src="../../assets/images/clinic_01.jpg" alt="" class="img-responsive"> -->
           </div>
-          <h3>Digital Control Center</h3>
+          <h3>{{webText.WhatWeDoForthImgHeading}}</h3>
        </div>
        <!-- end service -->
     </div>
- </div>
+ </div>  
 
 
 
@@ -162,11 +162,11 @@
                   <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image1">
 
                   <div class="widget-title">
-                      <h3 class="testclass">Soren Bo Bostian</h3>
-                      <small class="smallheading">Clinic Owner</small>
+                      <h3 class="testclass">{{webText.SpecialistImage1Heading1}}</h3>
+                      <small class="smallheading">{{webText.SpecialistImage1Heading2}}</small>
                   </div>
                   <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
+                  <p>{{webText.SpecialistImage1Heading3}}</p>
 
                   <div class="footer-social">
                       <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
@@ -183,11 +183,11 @@
                   <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image2">
 
                   <div class="widget-title">
-                      <h3 class="testclass">Bryan Saftler</h3>
-                      <small class="smallheading">Internal Diseases</small>
+                      <h3 class="testclass">{{webText.SpecialistImage2Heading1}}</h3>
+                      <small class="smallheading">{{webText.SpecialistImage2Heading2}}</small>
                   </div>
                   <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
+                  <p>{{webText.SpecialistImage2Heading3}}</p>
 
                   <div class="footer-social">
                       <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
@@ -204,11 +204,11 @@
                   <img alt="" class="img-responsive img-rounded" [src]="SpecialistClinic.image3">
 
                   <div class="widget-title">
-                      <h3 class="testclass">Matthew Bayliss</h3>
-                      <small class="smallheading">Orthopedics Expert</small>
+                      <h3 class="testclass">{{webText.SpecialistImage3Heading1}}</h3>
+                      <small class="smallheading">{{webText.SpecialistImage3Heading2}}</small>
                   </div>
                   <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
+                  <p>{{webText.SpecialistImage3Heading3}}</p>
 
                   <div class="footer-social">
                       <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
@@ -232,21 +232,21 @@
           <div class="col-md-4">
              <div class="logo padding">
                 <a href=""><img style="height: 46px;" src="../../assets/images/logo.png" alt=""></a>
-                <p>Locavore pork belly scen ester pine est chill wave microdosing pop uple itarian cliche artisan.</p>
+                <p>{{webText.FooterFisrtSectionHeading1}}</p>
              </div>
           </div>
           <div class="col-md-4">
              <div class="footer-info padding">
-                <h3>CONTACT US</h3>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> PO Box 16122 Collins Street West Victoria 8007 Australia</p>
-                <p><i class="fa fa-paper-plane" aria-hidden="true"></i> knowledgerelated96@gmail.com</p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> (+91) 971 634 2619</p>
+                <h3>{{webText.FooterSecondSectionHeading1}}</h3>
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{webText.FooterSecondSectionHeading2}}</p>
+                <p><i class="fa fa-paper-plane" aria-hidden="true"></i>{{webText.FooterSecondSectionHeading3}}</p>
+                <p><i class="fa fa-phone" aria-hidden="true"></i> {{webText.FooterSecondSectionHeading4}}</p>
              </div>
           </div>
           <div class="col-md-4">
              <div class="subcriber-info">
-                <h3>SUBSCRIBE</h3>
-                <p>Get healthy news, tip and solutions to your problems from our experts.</p>
+                <h3>{{webText.FooterThirdSectionHeading1}}</h3>
+                <p>{{webText.FooterThirdSectionHeading2}}</p>
                 <div class="subcriber-box">
                    <form id="mc-form" class="mc-form">
                       <div class="newsletter-form">

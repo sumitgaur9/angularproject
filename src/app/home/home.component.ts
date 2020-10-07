@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     TopNavSecondSectionThirdHeading: ' ',
     TopNavSecondSectionFourthHeading: ' ',
     TopNavThirdSectionFirstHeading: ' ',
-    TopNavFourthSectionSecondHeading: ' ',
+    TopNavThirdSectionSecondHeading: ' ',
     WhatWeDoFirstHeading: ' ',
     WhatWeDoSecondHeading: ' ',
     WhatWeDoThirdHeading: ' ',
@@ -227,7 +227,7 @@ export class HomeComponent implements OnInit {
               this.webText.TopNavThirdSectionFirstHeading = data[i].textData;
             }
             if (data[i].locationEnum == 8) {
-              this.webText.TopNavFourthSectionSecondHeading = data[i].textData;
+              this.webText.TopNavThirdSectionSecondHeading = data[i].textData;
             }
             if (data[i].locationEnum == 9) {
               this.webText.WhatWeDoFirstHeading = data[i].textData;

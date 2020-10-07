@@ -28,7 +28,7 @@ export class SavewebsitetextdataComponent implements OnInit {
     { "id": '5', "name": "TopNavSecondSectionThirdHeading" },
     { "id": '6', "name": "TopNavSecondSectionFourthHeading" },
     { "id": '7', "name": "TopNavThirdSectionFirstHeading" },
-    { "id": '8', "name": "TopNavFourthSectionSecondHeading" },
+    { "id": '8', "name": "TopNavThirdSectionSecondHeading" },
     { "id": '9', "name": "WhatWeDoFirstHeading" },
     { "id": '10', "name": "WhatWeDoSecondHeading" },
     { "id": '11', "name": "WhatWeDoThirdHeading" },
@@ -89,6 +89,10 @@ export class SavewebsitetextdataComponent implements OnInit {
  
   textChangeForChangeEvent($event)
   {
+    this.webTextForm.patchValue({
+      textData: '',
+      locationEnum: $event.target.value
+    })
     this.Get_WebsiteTextDataByLocationEnum($event.target.value);
   }
 
