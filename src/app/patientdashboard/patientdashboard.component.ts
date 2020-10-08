@@ -393,10 +393,61 @@ export class PatientdashboardComponent implements OnInit {
           for(var j=0;j<data[i].medicinesData.length;j++)
           {
             let temp:any={};
-           let tempMedicineName:any=[];
+            let tempMedicineName:any=[];
             temp.medicineSNo=data[i].medicinesData[j].medicineSNo;
             temp.medicineScheduleDate=data[i].medicinesData[j].medicineScheduleDate;
+            temp.processInfo='After Lunch';
+
+            let month = (new Date().getMonth() + 1).toString();
+            let year = (new Date().getFullYear()).toString();
+
+            let yesterdayDateFromNewDate;
+            let yest_date = (new Date().getDate() < 9 ? '0' + (new Date().getDate()+1) : new Date().getDate()+1).toString();
+            yesterdayDateFromNewDate = (yest_date +'/'+ month +'/'+ year);
+
+            let todayDateFromNewDate;
+            let today_date = (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()).toString();            
+            todayDateFromNewDate = (today_date +'/'+ month +'/'+ year);
+
+            let tommorowDateFromNewDate;
+            let tomm_date = (new Date().getDate() < 11 ? '0' + (new Date().getDate()-1) : new Date().getDate()-1).toString();          
+            tommorowDateFromNewDate = (tomm_date +'/'+ month +'/'+ year);
+
+            if (yesterdayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              temp.yesterday_today_tommorrow = 'yesterday';
+              temp.circleBackgroundColor = '#3fb49a';
+            } else if (todayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              temp.yesterday_today_tommorrow = 'today';
+              temp.circleBackgroundColor = '#147fda';
+            } else if (tommorowDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              temp.yesterday_today_tommorrow = 'tommorow';
+              temp.circleBackgroundColor = '#f6a52d';
+            } else {
+              if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() < new Date().getTime()) {
+                temp.circleBackgroundColor = '#3fb49a';
+              }
+              else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() == new Date().getTime()) {
+                temp.circleBackgroundColor = '#147fda';
+              }
+              else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() > new Date().getTime()) {
+                temp.circleBackgroundColor = '#f6a52d';
+              }
+              temp.yesterday_today_tommorrow = data[i].medicinesData[j].medicineScheduleDate;
+            }
+
             temp.medicineScheduleTime=data[i].medicinesData[j].medicineScheduleTime;
+            if(parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0,2))<12){
+              temp.am_pm = 'am';
+            } else {
+              temp.am_pm = 'pm';
+              if(parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0,2))==12){
+                temp.medicineScheduleTime=data[i].medicinesData[j].medicineScheduleTime;
+              } else {
+                let hours = parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0,2)) - 12;
+                temp.medicineScheduleTime = hours+ data[i].medicinesData[j].medicineScheduleTime.substring(2,5);
+              }
+              
+            }
             for(var k=0;k<data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot.length;k++)
             {
               //medicinesdataArrayForFixTimeSlot
@@ -410,6 +461,7 @@ export class PatientdashboardComponent implements OnInit {
             }
             temp.medicineName=tempMedicineName.toString();
             this.pharmaReqForHomeDelData.push(temp);
+            this.pharmaReqForHomeDelData.reverse();
           }
         }
         console.log("orignalapiarray ", data);
