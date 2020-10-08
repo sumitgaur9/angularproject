@@ -74,7 +74,7 @@
                 </p>
                 <div class="report-button" style="float: left;width: 100%;padding:0 0 8px 0;">
                   <div class="form_data" style="float: left;width: 25%;">                    
-                    <button class="btn-blue">Book Now</button>
+                    <button class="btn-blue" (click)="bookNow(data)">Book Now</button>
                   </div>
                   <div class="form_data" style="width: 80%;" [ngStyle]="{ 'color': data.isAddedInCart ? 'green': 'rgb(20, 127, 218)' }">                    
                     <button type="button" class="btn-blue-outline add-to-basket-btn" (click)="CheckItemIdAlreadyExistInCart(data)" >{{data.isAddedInCart?"Go To Basket":"Add to Basket"}}</button>

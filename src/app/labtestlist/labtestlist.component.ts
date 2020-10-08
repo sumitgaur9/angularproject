@@ -204,6 +204,20 @@ export class LablistComponent implements OnInit {
     }
   }
 
+  
+  bookNow(labtestInfo) {
+    let cartInfo = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
+    let newArray = cartInfo.filter(function (item) {
+      return item.itemID == labtestInfo._id;
+    });
+    if (newArray && newArray.length > 0) {
+      this.redirectToCartDetailPage();
+    }
+    else {
+      this.addToCart(labtestInfo)
+      this.redirectToCartDetailPage();
+    }
+  }
 
   CheckItemIdAlreadyExistInCart(labtestInfo) {
     let cartInfo = JSON.parse(window.sessionStorage.getItem("sessionCartData"));
@@ -211,10 +225,12 @@ export class LablistComponent implements OnInit {
       return item.itemID == labtestInfo._id;
     });
     if (newArray && newArray.length > 0) {
-      this.toastr.warning("This item has already added in the cart,Please select another item")
-      return;
+      this.redirectToCartDetailPage();
+      // this.toastr.warning("This item has already added in the cart,Please select another item")
+       
+    } else {
+      this.addToCart(labtestInfo)
     }
-    this.addToCart(labtestInfo)
   }
 
   checkDataInSessionStorageOnInit()

@@ -84,6 +84,10 @@ export class CartdetailpageComponent implements OnInit {
     }
   }
 
+  continueShoppoing(){
+    window.history.back();
+  }
+
 
   reduceQtyByOne(data) {
     if (data.qty >= 1) {
