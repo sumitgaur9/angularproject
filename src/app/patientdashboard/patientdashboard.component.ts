@@ -188,6 +188,37 @@ export class PatientdashboardComponent implements OnInit {
     this._apiservice.Get_AppointmentsByPatientID(dataobj, patientID).subscribe(data => {
       if (data) {
         this.patientAppointmentData = data;
+        this.patientAppointmentData.forEach(element => {
+          element.timeSlotValue='';
+          
+            switch(element.timeSlot){
+              case 0: 
+              element.timeSlotValue='10:00 AM - 11:00 AM';
+              break;
+              case 1: 
+              element.timeSlotValue='11:00 AM - 12:00 AM';
+              break;
+              case 2: 
+              element.timeSlotValue='12:00 PM - 01:00 PM';
+              break;
+              case 3: 
+              element.timeSlotValue='01:00 PM - 02:00 PM';
+              break;
+              case 4: 
+              element.timeSlotValue='02:00 PM - 03:00 PM';
+              break;
+              case 5: 
+              element.timeSlotValue='03:00 PM - 04:00 PM';
+              break;
+              case 6: 
+              element.timeSlotValue='04:00 PM - 05:00 PM';
+              break;
+              case 7: 
+              element.timeSlotValue='05:00 PM - 06:00 PM';
+              break;
+            }
+          
+        });
         console.log("this.patientAppointmentData",this.patientAppointmentData)
       }
     }, error => {

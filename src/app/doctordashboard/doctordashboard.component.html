@@ -250,7 +250,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+        <div class="col-12 col-lg-9 col-xxl-9 d-flex">
           <div class="card flex-fill">
             <div class="card-header">
 
@@ -268,19 +268,21 @@
 
                 <tr  style="background-color: #8a8a71;">
                   <!-- <th>#</th> -->
-                  <th>   <span (click)="sortUserList('doctorName')">
-                    <span style="cursor: pointer;">DoctorName</span>
-                    <img class="sortIcon" [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='doctorName'" src="../../assets/images/left-arrow.png">
+                  <th>   <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
+                    <span>DoctorName</span>
+                    <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='doctorName'" src="../../assets/images/left-arrow.png">
                   </span></th>
 
                   <th class="d-none d-xl-table-cell">
                     
-                    <span (click)="sortUserList('patientNname')">
-                      <span style="cursor: pointer;">Pat Name</span>
-                      <img class="sortIcon" [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='patientNname'" src="../../assets/images/left-arrow.png">
+                    <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
+                      <span>Pat Name</span>
+                      <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='patientNname'" src="../../assets/images/left-arrow.png">
                     </span></th>
-                  <th class="d-none d-xl-table-cell">Disease</th>
-                  <th class="d-none d-md-table-cell">Pat Contact</th>
+                    <th class="d-none d-xl-table-cell">Gender</th>
+                    <th class="d-none d-xl-table-cell">Age</th>
+                    <th class="d-none d-xl-table-cell">Disease</th>
+                    <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-xl-table-cell">IsVisitComplete</th>
                   <th>IsPharmacyProvided</th>
                 </tr>
@@ -289,6 +291,8 @@
                 <tr *ngFor="let data of completeDoctorVisitData" >
                   <td>{{data.doctorName}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.patientSex==1 ? 'Male': 'Female'}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.patientAge}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td><span  (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"  [ngClass]="data.isVisitCompleted ? 'badge badge-warning deactivevisitispharmacyprovide ' : 'badge badge-success activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span></td>
@@ -298,7 +302,7 @@
             </table>
           </div>
         </div>
-        <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+        <div class="col-12 col-lg-3 col-xxl-3 d-flex">
           <div class="card flex-fill w-100">
             <div class="card-header">
 

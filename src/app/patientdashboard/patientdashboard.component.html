@@ -248,7 +248,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+        <div class="col-12 col-lg-9 col-xxl-9 d-flex">
           <div class="card flex-fill">
             <div class="card-header">
 
@@ -271,8 +271,9 @@
                   <!-- <th class="d-none d-md-table-cell">Pat Contact</th> -->
               <th class="d-none d-xl-table-cell">Pat Email</th>
               <th class="d-none d-xl-table-cell">Disease</th>
-                  <th>Appt Date</th>
-                  <th>Payment</th>
+              <th>Appt Date</th>
+              <th>Slot</th>
+              <th>Payment</th>
                 </tr>
               </thead>
               <tbody>
@@ -283,8 +284,9 @@
                   <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
+                  <td class="d-none d-md-table-cell">{{data.timeSlotValue}}</td>
                   <td>
-                    <a  *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i class="fa fa-paypal" aria-hidden="true"></i>
+                    <a  *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i class="fa fa-rupee" aria-hidden="true"></i>
                      Make Payment</a>
                      <a  *ngIf="data.isPaymentDone" class="btn" style="font-size:13px;background-color: green;cursor: not-allowed;"><i class="fa fa-paypal" aria-hidden="true"></i>
                       Payment Done</a>
@@ -307,7 +309,7 @@
             
           </div>
         </div>
-        <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+        <div class="col-12 col-lg-3 col-xxl-3 d-flex">
           <div class="card flex-fill w-100">
             <div class="card-header">
 
