@@ -108,6 +108,17 @@ background: transparent;
 padding: 9px 15px;
 }
 
+.btn-blue-outline:hover{
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #0CB6E1;
+  color:white;
+  background:#0CB6E1;
+  border-radius: 6px;
+  padding: 9px 15px;
+  
+}
+
 .health-report-description-img .health-report-offer {
   width: 27%;
 }
