@@ -295,9 +295,7 @@ export class APIService {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.logout}`
     return this.http.post<any>(APIURL, { params: params })
       .pipe(map(resdata => {
-        if (resdata) {
           sessionStorage.clear();
-        }
         return resdata;
       }));
   }
