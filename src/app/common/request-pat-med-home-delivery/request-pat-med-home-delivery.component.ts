@@ -82,6 +82,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     patientPIN: new FormControl(""),
     scheduleDate: new FormControl(""),
     scheduleTime: new FormControl(""),
+    processInfo: new FormControl(""),
     skills: new FormControl([[], Validators.required]),
   });
 
@@ -178,6 +179,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       let medicinesdataArrayForFixTimeSlot: any = [];
       let selectedMedicineData: any = [];
       tempObj.medicineSNo = i + 1;
+      tempObj.processInfo = this.sheduleMedicineTableData[i].processInfo;
       tempObj.medicineScheduleTime = this.sheduleMedicineTableData[i].medicineScheduleTime;
       tempObj.medicineScheduleDate = this.sheduleMedicineTableData[i].medicneScheduleDate;
       for (var j = 0; j < splitMedicineName.length; j++) {
@@ -269,6 +271,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     let dataobj: any = {};
     dataobj.medicneScheduleDate = this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value;
     dataobj.medicineScheduleTime = this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value;
+    dataobj.processInfo = this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value;
     for (var i = 0; i < this.selectedItems.length; i++) {
       let testdataobj = {
         "id": this.selectedItems[i].id,
@@ -287,6 +290,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.reqPatientMedicinesHomeDeliveryForm.patchValue({
       scheduleDate: '',
       scheduleTime: '',
+      processInfo:'',
     })
     this.selectedItems = [];
   }

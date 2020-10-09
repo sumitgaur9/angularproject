@@ -6,3 +6,20 @@
 {
     cursor: none
 }
+
+.sortIcon{
+    height: 15px;
+    margin-left: 5px;
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+}
+.sortIconRotated{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+.blurSortingArrow{
+  opacity: 0.3;
+}

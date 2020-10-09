@@ -35,10 +35,11 @@ import { LabtestpackageprofileComponent } from './labtestpackageprofile/labtestp
 import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.component';
 import { SavewebsitetextdataComponent } from './savewebsitetextdata/savewebsitetextdata.component';
 import { MedicineprofileComponent } from './medicineprofile/medicineprofile.component';
+import { CompanymasterComponent } from './companymaster/companymaster.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent, SavewebsitetextdataComponent, MedicineprofileComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent, SavewebsitetextdataComponent, MedicineprofileComponent, CompanymasterComponent],
    
   imports: [
     CommonModule,
@@ -76,7 +77,8 @@ import { MedicineprofileComponent } from './medicineprofile/medicineprofile.comp
     LabtestpackageprofileComponent,
     PaymentsuccessComponent,
     SavewebsitetextdataComponent,
-    MedicineprofileComponent
+    MedicineprofileComponent,
+    CompanymasterComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

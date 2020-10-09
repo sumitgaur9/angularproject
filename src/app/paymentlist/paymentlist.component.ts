@@ -19,11 +19,12 @@ declare var $: any;
 })
 export class PaymentlistComponent implements OnInit {
 
-
   public paymentListData: any = [];
   public currentUser;
-public errorMessage:string='';
-
+  public errorMessage: string = '';
+  public PaymentEnumTypeArray: any = [{ "id": 1, "name": "BookAppointment" },
+  { "id": 2, "name": "LabTest" }, { "id": 3, "name": "Medicine" },
+  { "id": 4, "name": "MedicineLabTest" }]
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -32,12 +33,10 @@ public errorMessage:string='';
     this.Get_PaymentLists();
   }
 
-
-
-  Get_PaymentLists() {
+  Get_PaymentLists(paymentTypeEnumKey?) {
     let dataobj = {
     };
-    this._apiservice.Get_PaymentLists(dataobj).subscribe(data => {
+    this._apiservice.Get_PaymentLists(dataobj, paymentTypeEnumKey).subscribe(data => {
       if (data) {
         this.paymentListData = data;
         console.log("Get_PaymentLists ", data);
@@ -47,6 +46,11 @@ public errorMessage:string='';
     });
   }
 
-
+  paymentTypeChangeEvent(value) {
+    if(value!="Select PaymentType")
+    {
+      this.Get_PaymentLists(value);
+    }
+  }
 }
 

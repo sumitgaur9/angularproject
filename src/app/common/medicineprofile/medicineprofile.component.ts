@@ -33,6 +33,8 @@ export class MedicineprofileComponent implements OnInit {
 
   public medicineDataArray = [{ "name": "Cipla" }, { "name": "Crosin" },{ "name": "Jufex Fort" }];
   public companyNameDataArray = [{ "name": "Aimil" }, { "name": "cipla" }, {"name":"GSK"}];
+  public companyArrayData:any=[];
+
   /************************** */
 
   public uploadreportdatainput: any;
@@ -67,6 +69,7 @@ export class MedicineprofileComponent implements OnInit {
     if (this.getmedicineprofileid != undefined && this.getmedicineprofileid != null && this.getmedicineprofileid != '') {
       this.Get_Medicine();
     }
+    this.Get_CompanyList();
   }
 
   get f() { return this.medicineProfileForm.controls; }
@@ -244,5 +247,20 @@ export class MedicineprofileComponent implements OnInit {
       }
     });
   }
+
+  Get_CompanyList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_CompanyList(dataobj).subscribe(data => {
+      if (data) {
+        this.companyArrayData =data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+ 
+
 }
 

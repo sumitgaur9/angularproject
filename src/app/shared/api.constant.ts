@@ -1,6 +1,6 @@
 export const API_PATH: any = {
     'Commaon_Path':'https://mongowithnode.herokuapp.com/',
-    // 'Commaon_Path':'http://localhost:5000/',
+    //  'Commaon_Path':'http://localhost:5000/',
     'GTM_ID': 'GTM-M476F8N',
     'API_VERSION_V1': 'api/userModel/',
     'login': 'users/login',
@@ -95,6 +95,10 @@ export const API_PATH: any = {
     'Save_AddtoCart':'Save_AddtoCart',
     'Get_CartDetails':'Get_CartDetails',
     'RemoveCartDetails':'RemoveCartDetails',
+    'Get_CompanyList':'Get_CompanyList',
+    'Save_Company':'Save_Company',
+    
+
 }
 
 export const PATTERN_ERROR_MESSAGE = {

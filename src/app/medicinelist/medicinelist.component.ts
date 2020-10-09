@@ -24,6 +24,7 @@ export class MedicinelistComponent implements OnInit {
   public medicineListDataArray: any = [];
   public currentUser;
   public getmedicineprofileid: string = '';
+  public companyArrayData:any=[];
 
   showConfirmationPopup = false;
   public showData = 'Do you really want to delete these records? This process cannot be undone.';
@@ -35,6 +36,7 @@ export class MedicinelistComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_MedicinesList();
+    this.Get_CompanyList();
   }
 
   public closeMedicineProfilePopup(calllistapi) {
@@ -165,6 +167,25 @@ export class MedicinelistComponent implements OnInit {
     }
   }
 
+  Get_CompanyList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_CompanyList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("Get_CompanyListGet_CompanyList", data);
+        this.companyArrayData =data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  companyNameChangeEvent(value) {
+    if(value!="Select Company Name")
+    {
+      this.Get_MedicinesList(value);
+    }
+  }
 
 
 

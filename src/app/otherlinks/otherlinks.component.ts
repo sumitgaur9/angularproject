@@ -22,6 +22,9 @@ export class OtherlinksComponent implements OnInit {
   public showSaveBookLabTestPopup: boolean = false;
   public showChangePasswordPopup: boolean = false;
   public showSaveTextForWebPopup: boolean = false;
+  public showCompanyMasterPopup: boolean = false;
+
+  
 
   public currentUser;
 
@@ -184,6 +187,22 @@ export class OtherlinksComponent implements OnInit {
   public openPaymentListPage() {
     this.router.navigate(['/paymentlist']);
   }
+
+  public closeCompanyMasterPopup() {
+    this.showCompanyMasterPopup = false;
+    $('#showCompanyMasterPopup').modal('hide');
+  }
+
+  public openCompanyMasterPopup() {
+    this.showCompanyMasterPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showCompanyMasterPopup').modal('show');
+    }, 100);
+  }
+
+
+  
 
   Save_Image() {
     this.errorMessage = "";

@@ -256,19 +256,9 @@
             </div>
             <table class="table table-hover my-0">
               <thead style="background-color: #39b49b;">
-                <!-- <tr>
-                  <th>doctorName</th>
-                  <th class="d-none d-xl-table-cell">patientNname</th>
-                  <th class="d-none d-xl-table-cell">disease</th>
-                  <th>Status</th>
-                  <th class="d-none d-md-table-cell">Assignee</th>
-                </tr> -->
-
                 <tr>
-                  <!-- <th>#</th> -->
                   <th>DoctorName</th>
                   <th class="d-none d-xl-table-cell">Pat Name</th>
-                  <!-- <th class="d-none d-md-table-cell">Pat Contact</th> -->
               <th class="d-none d-xl-table-cell">Pat Email</th>
               <th class="d-none d-xl-table-cell">Disease</th>
               <th>Appt Date</th>
@@ -278,9 +268,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let data of patientAppointmentData" [ngStyle]="{  'background-color': data.isPaymentDone ? '#80808045': '' }" >                  
-                  <td>{{data.doctorName}}</td>
+                  <td [ngStyle]="{ 'color': data.doctorIsInActive ? 'red': 'black', 'cursor': data.isAddedInCart ? 'not-allowed': 'pointer' }" >{{data.doctorName}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
-                  <!-- <td class="d-none d-md-table-cell">{{data.patientMob}}</td> -->
                   <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>

@@ -253,28 +253,16 @@
         <div class="col-12 col-lg-9 col-xxl-9 d-flex">
           <div class="card flex-fill">
             <div class="card-header">
-
               <h5 class="card-title mb-0">Appointments</h5>
             </div>
             <table class="table table-hover my-0">
               <thead>
-                <!-- <tr>
-                  <th>doctorName</th>
-                  <th class="d-none d-xl-table-cell">patientNname</th>
-                  <th class="d-none d-xl-table-cell">disease</th>
-                  <th>Status</th>
-                  <th class="d-none d-md-table-cell">Assignee</th>
-                </tr> -->
-
                 <tr  style="background-color: #8a8a71;">
-                  <!-- <th>#</th> -->
                   <th>   <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
                     <span>DoctorName</span>
                     <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='doctorName'" src="../../assets/images/left-arrow.png">
                   </span></th>
-
                   <th class="d-none d-xl-table-cell">
-                    
                     <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
                       <span>Pat Name</span>
                       <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='patientNname'" src="../../assets/images/left-arrow.png">
@@ -295,8 +283,8 @@
                   <td class="d-none d-xl-table-cell">{{data.patientAge}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
-                  <td><span  (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"  [ngClass]="data.isVisitCompleted ? 'badge badge-warning deactivevisitispharmacyprovide ' : 'badge badge-success activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span></td>
-                  <td><span  (click)="!data.isPharmacyProvided? openRequestPatMedHomeDelivery(data) : false"  [ngClass]="data.isPharmacyProvided ? 'badge badge-warning deactivevisitispharmacyprovide ' : 'badge badge-success activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span></td>
+                  <td><span  (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"  [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span></td>
+                  <td><span  (click)="!data.isPharmacyProvided? openRequestPatMedHomeDelivery(data) : false"  [ngClass]="data.isPharmacyProvided ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span></td>
                 </tr>
               </tbody>
             </table>

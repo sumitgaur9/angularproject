@@ -43,7 +43,7 @@
                                 <label for="exampleFormControlSelect1">Company Name</label>
                                 <select class="form-control" formControlName="companyName">
                                     <option value=""></option>
-                                    <option *ngFor="let opt of companyNameDataArray" [value]="opt.name">{{opt.name}}</option>
+                                    <option *ngFor="let opt of companyArrayData" [value]="opt.companyName">{{opt.companyName}}</option>
                               </select>
                               </div>
 
