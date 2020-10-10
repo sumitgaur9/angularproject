@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   public showPharmacistVisitCompleteIntimation: boolean = false;
   public showVisitForAll: boolean = false;
   public showChangePasswordPopup: boolean = false;
-  public showSaveImageForWebPopup: boolean = false;
   public currentUser;
   public nameFirstChar: string = '';
   public showDoctorProfilePopup: boolean = false;
@@ -187,18 +186,6 @@ export class HeaderComponent implements OnInit {
     }, 100);
   }
 
-  public closeSaveImageForWebPopup() {
-    this.showSaveImageForWebPopup = false;
-    $('#showSaveImageForWebPopup').modal('hide');
-  }
-
-  public openSaveImageForWebPopup() {
-    this.showSaveImageForWebPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showSaveImageForWebPopup').modal('show');
-    }, 100);
-  }
 
   showSuccess() {
     this.toastr.success('thanks for being my friend mr gauri');

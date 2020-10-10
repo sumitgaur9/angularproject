@@ -56,16 +56,16 @@
                     class="btn" (click)="openSaveBookLabTestMaster()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">BookLabTest</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==2 || currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openNurseDashboard()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Nurse Dashboard</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==5 || currentUser.user.role==11">
                   <button style="width: 225px" *ngIf="currentUser.user.role==5 || currentUser.user.role==11" class="btn"
                     (click)="openLabTechnicianList()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">LabTehnicianList</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==5 || currentUser.user.role==11">
                   <button style="width: 225px" *ngIf="currentUser.user.role==5 || currentUser.user.role==11" class="btn"
                     (click)="openLabTechnicianDashboard()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">LabTehnicianDashboard</span></button>
@@ -74,7 +74,7 @@
                   <button style="width: 225px" class="btn" (click)="openChangePasswordPopup()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Change Password</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openSaveImageForWebPopup()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Image Upload</span></button>
                 </div>
@@ -84,7 +84,7 @@
                       aria-hidden="true"></i><span style="margin-left:5px;">Payment</span></button>
                 </div>
 
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openSaveTextForWebPopup()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Web Text</span></button>
                 </div>
@@ -94,12 +94,12 @@
                       aria-hidden="true"></i><span style="margin-left:5px;">Medicine List</span></button>
                 </div>
                 
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openPaymentListPage()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">All Payment List</span></button>
                 </div>
 
-                <div class="text-center" style="margin-top: 5%;">
+                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openCompanyMasterPopup()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Company Master</span></button>
                 </div>
@@ -151,7 +151,7 @@
 
                   <div class="buttonSection">
                     <div class="text-center">
-                      <input type="submit" style="width: 225px" value="Save"
+                      <input type="submit" style="width: 225px" value="✔️ &nbsp;&nbsp;Save"
                         class="btn btn-info btn-block rounded-0 py-2">
                     </div>
                   </div>

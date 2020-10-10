@@ -47,10 +47,16 @@ export class PaymentlistComponent implements OnInit {
   }
 
   paymentTypeChangeEvent(value) {
-    if(value!="Select PaymentType")
+    if(value=="Select PaymentType")
+    {
+      this.Get_PaymentLists();
+    }
+    else
     {
       this.Get_PaymentLists(value);
+
     }
+
   }
 }
 

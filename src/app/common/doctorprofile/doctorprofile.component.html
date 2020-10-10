@@ -16,7 +16,7 @@
               <div class="row justify-content-center">
                 <div class="col-8">
                   <div class="card" style="border: transparent!important;flex-direction:column-reverse;">
-                    <div class="card-header p-0">
+                    <div class="card-header p-0" style="border-bottom: none;">
                     </div>
                     <div class="card-body p-3">
                       <div class="form-group">
@@ -48,7 +48,7 @@
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                            <div class="input-group-text"><i class="fa fa-phone text-info"></i></div>
                           </div>
                           <input type="text" class="form-control" id="phoneno" maxlength="10" name="phoneno" disabled placeholder="Phone No"
                             formControlName="phoneno">
@@ -57,39 +57,24 @@
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                          </div>
-                          <input type="text" class="form-control" id="charges" name="charges" placeholder="Charges"
-                            formControlName="charges">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-                          </div>
-                          <input type="text" class="form-control" id="area" name="area" placeholder="Area"
-                            formControlName="area">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                            <div class="input-group-text"><i class="fa fa-graduation-cap text-info"></i></div>
                           </div>
                           <input type="text" class="form-control" id="qualification" name="qualification"
                             placeholder="Qualification" formControlName="qualification">
                         </div>
                       </div>
+                    
                       <div class="form-group">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                            <div class="input-group-text"><i class="fa fa-address-card-o text-info"></i></div>
                           </div>
-                          <textarea id="Description" name="Description" formControlName="description" cols="40" rows="3"
-                            class="form-control" placeholder="Description"></textarea>
+                          <input type="text" class="form-control" id="area" name="area" placeholder="Area"
+                            formControlName="area">
                         </div>
                       </div>
+                   
+                    
                     </div>
                   </div>
                 </div>
@@ -97,14 +82,44 @@
                   <img class="otpPopup-img" [src]="getImageValue" alt="passwordsetImg" style="border-radius: 10%;">
                   <div class="form-group" style="margin-top: 10%;">
                     <div class="input-group mb-2">
+                      <input type="file" id="myfile" class="form-control" name="file" title="Choose a file to upload" (change)="uploadFile($event)"
+                      style="padding: 5px;font-size: 11px;border: 2px dashed #0000ff9c;background-color: #36afa37a;height: 39px;">
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top:36%">
+                    <div class="input-group mb-2">
                       <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                        <div class="input-group-text"><i class="fa fa-inr text-info"></i></div>
                       </div>
-                      <input type="file" id="myfile" class="form-control" name="file" (change)="uploadFile($event)">
+                      <input type="text" class="form-control" id="charges" name="charges" placeholder="Charges"
+                        formControlName="charges">
+                    </div>
+                  </div>
 
+                 
+                </div>
+
+                <div class="col-12">
+                  <div class="card" style="border: transparent!important;flex-direction:column-reverse;">
+                    <div class="card-header p-0">
+                    </div>
+                    <div class="card-body p-3">
+                     
+                      <div class="form-group">
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                          </div>
+                          <textarea id="Description" name="Description" formControlName="description" cols="80" rows="2"
+                            class="form-control" placeholder="Description"></textarea>
+                        </div>
+                      </div>
+                    
                     </div>
                   </div>
                 </div>
+
+             
               </div>
             </div>
           </div>
@@ -114,7 +129,7 @@
     <ad-modal-footer>
       <div class="buttonSection">
         <div class="text-center">
-          <input type="submit" style="width: 200px;" value="Save" class="btn btn-info btn-block rounded-0 py-2">
+          <input type="submit" style="width: 200px;font-weight: 600;" value="✔️ &nbsp;&nbsp;Save" class="btn btn-info btn-block rounded-0 py-2">
         </div>
       </div>
     </ad-modal-footer>

@@ -181,7 +181,11 @@ export class MedicinelistComponent implements OnInit {
   }
 
   companyNameChangeEvent(value) {
-    if(value!="Select Company Name")
+    if(value=="Select Company Name")
+    {
+      this.Get_MedicinesList();
+    }
+    else
     {
       this.Get_MedicinesList(value);
     }
