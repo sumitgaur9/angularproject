@@ -1,12 +1,12 @@
 <div  style="position:absolute;top:17%;left: 3%;width: 93%;right: 3%;">
-    <div style="width:100%;float:left;background:#39b49b;height:61px;margin-bottom: 1%;">
-      <div style="width:62%;float:left;margin-top: 1%;margin-left:4%">
-        <a class="btn btn-primary" (click)="openMedicineProfilePopup()" *ngIf="currentUser.user.role==11"><i class="fa fa-plus" style="color: white;font-size: 20px;padding-right: 5px;"></i> Medicine</a>
+    <div style="width:100%;float:left;height:50px;margin-bottom: 1%;">
+      <div style="width: 23%;float: left;margin-top: 6px;margin-left: 4%;">
+        <a class="btn btn-primary" style="font-size: 14px;height: 35px;" (click)="openMedicineProfilePopup()" *ngIf="currentUser.user.role==11"><i class="fa fa-plus" style="color: white;font-size: 18px;padding-right: 5px;"></i> Medicine</a>
 
       </div>
    
-      <div style="width:25%;float:left;margin-top: 1%;margin-left:4%">
-        <select class="form-control" (change)="companyNameChangeEvent($event.target.value)">
+      <div style="width: 15%;float: left;margin-top: 1%;margin-left: 4%;">
+        <select class="form-control" (change)="companyNameChangeEvent($event.target.value)" style="height: 29px;font-size: 12px;">
 
           <option value="Select Company Name" selected>Search by Company</option>
           <option *ngFor="let opt of companyArrayData" [value]="opt.companyName">

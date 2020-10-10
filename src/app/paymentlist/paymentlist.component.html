@@ -4,12 +4,12 @@
 <div  style="position:absolute;top:17%;left: 3%;width: 93%;right: 3%;">
     <div class="row">
 
-      <div style="width:100%;float:left;background:#39b49b;height:61px;margin-bottom: 1%;">
+      <div style="width: 100%;float: left;margin-bottom: 1%;">
         <!-- <div style="width:15%;float:left;margin-top: 1%;">
           <h5 style="padding-top:4px;padding-left: 4px;">Find Your Doctor</h5>
         </div> -->
-        <div style="width:25%;float:left;margin-top: 1%;margin-left:4%">
-          <select class="form-control" (change)="paymentTypeChangeEvent($event.target.value)">
+        <div style="width: 16%;float: left;margin-left: 32%;">
+          <select class="form-control" style="font-size: 12px;height: 28px;" (change)="paymentTypeChangeEvent($event.target.value)">
 
             <option value="Select PaymentType" selected>Search by PaymentType</option>
             <option *ngFor="let opt of PaymentEnumTypeArray" [value]="opt.id">
