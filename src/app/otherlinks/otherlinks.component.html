@@ -1,7 +1,7 @@
 <div class="content" style="position: absolute;top: 23%;width:96%;left:2%;right:2%;">
   <div class="container-fluid p-0">
     <div class="row">
-      <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+      <div class="col-12 col-lg-4 col-xxl-3">
         <div class="card flex-fill w-100">
           <div class="card-header">
             <h5 class="card-title mb-0">Other Services</h5>
@@ -14,17 +14,13 @@
                     class="btn" (click)="openBookAppointmentPopup()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">Book Appointment</span></button>
                 </div>
+
                 <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn"
-                    (click)="openDiseasMasterPopup()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">Diseases Master</span></button>
+                  <button style="width: 225px" *ngIf="currentUser.user.role < 1 || currentUser.user.role==11"
+                    class="btn" (click)="openSaveBookLabTestMaster()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">BookLabTest</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role==11" class="btn"
-                    (click)="openExpertiesMasterPopup()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">Experties Master</span></button>
-                </div>
-                
+
                 <div class="text-center" style="margin-top: 5%;">
                   <button style="width: 225px" *ngIf="currentUser.user.role==4 || currentUser.user.role==11" class="btn"
                     (click)="openPharmacistDashboard()"><i class="fa fa-list" aria-hidden="true"></i><span
@@ -40,22 +36,8 @@
                     class="btn" (click)="openDoctorDashboard()"><i class="fa fa-list" aria-hidden="true"></i><span
                       style="margin-left:5px;">Doctor Dashboard</span></button>
                 </div>
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
-                    (click)="openGetLabTest()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">GetLabTestList</span></button>
-                </div>
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
-                    (click)="openGetLabPackageTest()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">GetLabTestPackageList</span></button>
-                </div>
 
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role < 1 || currentUser.user.role==11"
-                    class="btn" (click)="openSaveBookLabTestMaster()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">BookLabTest</span></button>
-                </div>
+               
                 <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==2 || currentUser.user.role==11">
                   <button style="width: 225px" class="btn" (click)="openNurseDashboard()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Nurse Dashboard</span></button>
@@ -63,20 +45,16 @@
                 <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==5 || currentUser.user.role==11">
                   <button style="width: 225px" *ngIf="currentUser.user.role==5 || currentUser.user.role==11" class="btn"
                     (click)="openLabTechnicianList()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">LabTehnicianList</span></button>
+                      style="margin-left:5px;">LabTechList</span></button>
                 </div>
                 <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role ==5 || currentUser.user.role==11">
                   <button style="width: 225px" *ngIf="currentUser.user.role==5 || currentUser.user.role==11" class="btn"
                     (click)="openLabTechnicianDashboard()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">LabTehnicianDashboard</span></button>
+                      style="margin-left:5px;">LabTechDashboard</span></button>
                 </div>
                 <div class="text-center" style="margin-top: 5%;">
                   <button style="width: 225px" class="btn" (click)="openChangePasswordPopup()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Change Password</span></button>
-                </div>
-                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
-                  <button style="width: 225px" class="btn" (click)="openSaveImageForWebPopup()"><i class="fa fa-list"
-                      aria-hidden="true"></i><span style="margin-left:5px;">Image Upload</span></button>
                 </div>
 
                 <div class="text-center" style="margin-top: 5%;">
@@ -84,25 +62,7 @@
                       aria-hidden="true"></i><span style="margin-left:5px;">Payment</span></button>
                 </div>
 
-                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
-                  <button style="width: 225px" class="btn" (click)="openSaveTextForWebPopup()"><i class="fa fa-list"
-                      aria-hidden="true"></i><span style="margin-left:5px;">Web Text</span></button>
-                </div>
-
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" class="btn" (click)="openMedicineList()"><i class="fa fa-list"
-                      aria-hidden="true"></i><span style="margin-left:5px;">Medicine List</span></button>
-                </div>
                 
-                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
-                  <button style="width: 225px" class="btn" (click)="openPaymentListPage()"><i class="fa fa-list"
-                      aria-hidden="true"></i><span style="margin-left:5px;">All Payment List</span></button>
-                </div>
-
-                <div class="text-center" style="margin-top: 5%;" *ngIf="currentUser.user.role==11">
-                  <button style="width: 225px" class="btn" (click)="openCompanyMasterPopup()"><i class="fa fa-list"
-                      aria-hidden="true"></i><span style="margin-left:5px;">Company Master</span></button>
-                </div>
 
               </div>
             </div>
@@ -156,6 +116,68 @@
                     </div>
                   </div>
                 </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 col-xxl-3">
+        <div class="card flex-fill w-100">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Other Services</h5>
+          </div>
+          <div class="card-body d-flex w-100">
+            <div class="align-self-center chart chart-lg">
+              <div style="display: block;">
+                
+                                
+                
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                    (click)="openGetLabTest()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">GetLabTestList</span></button>
+                </div>
+
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" class="btn" (click)="openMedicineList()"><i class="fa fa-list"
+                      aria-hidden="true"></i><span style="margin-left:5px;">Medicine List</span></button>
+                </div>
+                
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" class="btn" (click)="openPaymentListPage()"><i class="fa fa-list"
+                      aria-hidden="true"></i><span style="margin-left:5px;">All Payment List</span></button>
+                </div>
+
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                    (click)="openGetLabPackageTest()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">GetLabTestPackageList</span></button>
+                </div>
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" class="btn" (click)="openSaveImageForWebPopup()"><i class="fa fa-list"
+                      aria-hidden="true"></i><span style="margin-left:5px;">Image Upload</span></button>
+                </div>
+
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" class="btn" (click)="openSaveTextForWebPopup()"><i class="fa fa-list"
+                      aria-hidden="true"></i><span style="margin-left:5px;">Web Text</span></button>
+                </div>
+
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" *ngIf="currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                    (click)="openDiseasMasterPopup()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">Diseases Master</span></button>
+                </div>
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" *ngIf="currentUser.user.role==11" class="btn"
+                    (click)="openExpertiesMasterPopup()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">Experties Master</span></button>
+                </div>
+                <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" class="btn" (click)="openCompanyMasterPopup()"><i class="fa fa-list"
+                      aria-hidden="true"></i><span style="margin-left:5px;">Company Master</span></button>
+                </div>
 
               </div>
             </div>
