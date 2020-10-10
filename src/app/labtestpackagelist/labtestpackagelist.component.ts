@@ -32,7 +32,7 @@ export class LabtestpackagelistComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_LabTestsPackageList();
-    this.disablityCheckoutButton();
+
   }
 
   Get_LabTestsPackageList() {
@@ -225,6 +225,7 @@ export class LabtestpackagelistComponent implements OnInit {
       });
       if (newArray) {
         this.labTestBasketData = newArray;
+        this.disablityCheckoutButton();
         this.getPriceTotal();
         console.log("this.labTestBasketDatathis.labTestBasketData", this.labTestBasketData);
       }

@@ -32,7 +32,6 @@ export class LablistComponent implements OnInit {
     
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_LabTestsList();
-    this.disablityCheckoutButton();
   }
 
   public closeForgotPasswordPopup() {
@@ -242,6 +241,7 @@ export class LablistComponent implements OnInit {
       });
       if (newArray) {
         this.labTestBasketData = newArray;
+        this.disablityCheckoutButton();
         this.getPriceTotal();
         console.log("this.labTestBasketDatathis.labTestBasketData", this.labTestBasketData);
       }
