@@ -133,15 +133,17 @@ export class LoginComponent implements OnInit {
       case 2:
         this.router.navigate(['/nursedashboard']);
         break;
+        case 5:
+        this.router.navigate(['/labtechniciandashboard']);
+        break;
       case 3:
       case 11:
-      case 5:
         this.router.navigate(['/home']);
         break;
       case 4:
         this.router.navigate(['/pharmacistdashboard']);
         break;
-
+        
 
     }
   }

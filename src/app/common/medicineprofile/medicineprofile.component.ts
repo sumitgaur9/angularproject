@@ -31,9 +31,10 @@ export class MedicineprofileComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  public medicineDataArray = [{ "name": "Cipla" }, { "name": "Crosin" },{ "name": "Jufex Fort" }];
+  // public medicineDataArray = [{ "name": "Cipla" }, { "name": "Crosin" },{ "name": "Jufex Fort" }];
   public companyNameDataArray = [{ "name": "Aimil" }, { "name": "cipla" }, {"name":"GSK"}];
   public companyArrayData:any=[];
+  public medicineListDataArray:any=[];
 
   /************************** */
 
@@ -47,7 +48,7 @@ export class MedicineprofileComponent implements OnInit {
   public UploadFileName = "";
   getImageValue;
 
-
+  keyword = 'name';
   public medicineProfileForm = new FormGroup({
     medicineName: new FormControl(""),
     newimage: new FormControl(),
@@ -70,6 +71,7 @@ export class MedicineprofileComponent implements OnInit {
       this.Get_Medicine();
     }
     this.Get_CompanyList();
+    this.Get_MedicinesList();
   }
 
   get f() { return this.medicineProfileForm.controls; }
@@ -260,6 +262,46 @@ export class MedicineprofileComponent implements OnInit {
     });
   }
 
+  Get_MedicinesList(companyName?) {
+    let dataobj = {
+    };
+    this._apiservice.Get_MedicinesList(dataobj,companyName).subscribe(data => {
+      if (data) {
+        this.medicineListDataArray = [];
+        for(var i=0;i<data.length;i++)
+        {
+          let dataobj:any={};
+          dataobj.id=data[i]._id;
+          dataobj.name=data[i].medicineName;
+          this.medicineListDataArray.push(dataobj);
+        }
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  
+  selectEvent(item) {
+    // do something with selected item
+    console.log("selectEvent",item);
+    this.toastr.warning("Medicine Already created from this name,please add another text", '', {
+      timeOut: 8000,
+    });
+  }
+ 
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    console.log("onChangeSearch",val);
+    this.medicineProfileForm.patchValue({
+      medicineName:val
+    })
+  }
+  
+  onFocused(e){
+    // do something when input is focused
+  }
  
 
 }
