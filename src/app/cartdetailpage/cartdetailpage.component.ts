@@ -27,14 +27,6 @@ export class CartdetailpageComponent implements OnInit {
   public cartDataFromSessionStorage:any=[];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) {
-    // this.utilityservice.subOnCartDetailPage.subscribe((dataobj) => {
-    //   if (dataobj) {
-    //     this.tempCartDetailPageInfo = dataobj;
-    //     this.addedSomeExtraFieldInCartInfo();
-    //     console.log("this.tempCartDetailPageInfo", this.tempCartDetailPageInfo);
-    //   }
-    // });
-
   }
 
   ngOnInit() {
@@ -44,9 +36,6 @@ export class CartdetailpageComponent implements OnInit {
     {
     this.tempCartDetailPageInfo=this.cartDataFromSessionStorage;
     this.addedSomeExtraFieldInCartInfo();
-      // setTimeout(() => {
-      //   this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
-      // }, 10);
     }
   }
 
@@ -157,12 +146,9 @@ export class CartdetailpageComponent implements OnInit {
       let index = this.cartDetailPageInfo.findIndex(x => x.itemID === newArray[0].itemID);
       this.cartDetailPageInfo.splice(index, 1);
       this.utilityservice.subRemoveFromCart.next(this.cartDetailPageInfo);
-      //subRemoveFromCart
       this.getPriceTotal();
     }
   }
-
-  
 }
 
 

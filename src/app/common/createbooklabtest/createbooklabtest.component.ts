@@ -179,10 +179,7 @@ export class CreatebooklabtestComponent implements OnInit {
     dataobj.nurseID = this.createBookLabTestform.value.nurseID;
     dataobj.nurseName = this.createBookLabTestform.value.nurseName;
     dataobj.price = this.createBookLabTestform.value.price;
-    if(this.createBookLabTestform.value.testType!='individual')
-    {
-      dataobj["testsData"] = [{ "testID": '', "testname": '' }]; // in case of package  selection if testdata goes blank then api give error
-    }
+    dataobj["testsData"] = [];
     if (dataobj.packageID == null || dataobj.packageID == '' || dataobj.packageID == undefined) {
       dataobj["testsData"]=[];
       for (var i = 0; i < this.createBookLabTestform.value.skills.length; i++) {

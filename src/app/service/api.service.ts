@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_PATH } from 'src/app/shared/api.constant'
 import { map } from 'rxjs/operators';
 
@@ -18,17 +18,17 @@ export class APIService {
         return userData;
       }));
   }
-  Update_DoctorProfile(data,doctorid) {
+  Update_DoctorProfile(data, doctorid) {
     let headers = new HttpHeaders({ "enctype": "multipart/form-data" });
 
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile +'/'+doctorid}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_DoctorProfile + '/' + doctorid}`
     return this.http.put<any>(APIURL, data, { headers: headers })
       .pipe(map(userData => {
         return userData;
       }));
   }
-  Get_DoctorProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorProfile+'/'+rolebasedid}`
+  Get_DoctorProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -47,8 +47,8 @@ export class APIService {
       }));
   }
 
-  Delete_Doctor(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Doctor+'/'+delid}`
+  Delete_Doctor(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Doctor + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -67,8 +67,8 @@ export class APIService {
       }));
   }
 
-  Get_PatientProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientProfile+'/'+rolebasedid}`
+  Get_PatientProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PatientProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -77,18 +77,18 @@ export class APIService {
       }));
   }
 
-  
 
-  Update_PatientProfile(data,id) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile +'/'+id}`
+
+  Update_PatientProfile(data, id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PatientProfile + '/' + id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
 
-  Delete_Patient(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Patient+'/'+delid}`
+  Delete_Patient(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Patient + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -109,15 +109,15 @@ export class APIService {
   }
 
   Save_NurseProfile(data) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Save_NurseProfile}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_NurseProfile}`
     return this.http.post<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
 
   }
-  Update_NurseProfile(data,nurseId) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile +'/'+nurseId}`
+  Update_NurseProfile(data, nurseId) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_NurseProfile + '/' + nurseId}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -134,8 +134,8 @@ export class APIService {
       }));
   }
 
-  Delete_Nurse(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Nurse+'/'+delid}`
+  Delete_Nurse(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Nurse + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -144,8 +144,8 @@ export class APIService {
       }));
   }
 
-  Get_NurseProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_NurseProfile+'/'+rolebasedid}`
+  Get_NurseProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_NurseProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -164,16 +164,16 @@ export class APIService {
 
   }
 
-  Update_PharmacistProfile(data,id) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile +'/'+id}`
+  Update_PharmacistProfile(data, id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PharmacistProfile + '/' + id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
 
-  Delete_Pharmacist(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Pharmacist+'/'+delid}`
+  Delete_Pharmacist(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Pharmacist + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -183,7 +183,7 @@ export class APIService {
   }
 
   Get_PharmacistsList(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_PharmacistsList}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistsList}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -192,8 +192,8 @@ export class APIService {
       }));
   }
 
-  Get_PhysioProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PhysioProfile+'/'+rolebasedid}`
+  Get_PhysioProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PhysioProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -201,7 +201,7 @@ export class APIService {
         return resdata;
       }));
   }
-  
+
 
 
   Save_PhysioProfile(data) {
@@ -213,8 +213,8 @@ export class APIService {
 
   }
 
-  Delete_Physio(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Physio+'/'+delid}`
+  Delete_Physio(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Physio + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -223,8 +223,8 @@ export class APIService {
       }));
   }
 
-  Update_PhysioProfile(data,id) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile +'/'+id}`
+  Update_PhysioProfile(data, id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_PhysioProfile + '/' + id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
@@ -242,10 +242,10 @@ export class APIService {
   }
 
 
-  
 
-  Get_PharmacistProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistProfile+'/'+rolebasedid}`
+
+  Get_PharmacistProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -295,7 +295,7 @@ export class APIService {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.logout}`
     return this.http.post<any>(APIURL, { params: params })
       .pipe(map(resdata => {
-          sessionStorage.clear();
+        sessionStorage.clear();
         return resdata;
       }));
   }
@@ -374,10 +374,10 @@ export class APIService {
   }
 
 
-  
 
-  Get_FilteredDoctors(params,experties) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_FilteredDoctors+'/'+experties}`
+
+  Get_FilteredDoctors(params, experties) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_FilteredDoctors + '/' + experties}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -386,7 +386,7 @@ export class APIService {
       }));
   }
   Get_AppointmentsByDocID(params) {
-   // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
+    // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
 
     // let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID+'/'+doctorID}`
     // return this.http.get<any>(APIURL, { params: params })
@@ -397,13 +397,13 @@ export class APIService {
     //   }));
 
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByDocID}`
-      return this.http.post<any>(APIURL, params)
-        .pipe(map(userData => {
-          return userData;
-        }));
+    return this.http.post<any>(APIURL, params)
+      .pipe(map(userData => {
+        return userData;
+      }));
 
   }
-  
+
 
 
   Save_Medicine(data) {
@@ -414,12 +414,11 @@ export class APIService {
       }));
   }
 
-  
-  Get_MedicinesList(params,companyName) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_MedicinesList}`
-    if(companyName)
-    {
-       APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH. Get_MedicinesList+'/'+companyName}`
+
+  Get_MedicinesList(params, companyName) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicinesList}`
+    if (companyName) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicinesList + '/' + companyName}`
     }
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
@@ -436,9 +435,9 @@ export class APIService {
         return userData;
       }));
   }
-  
-  Get_AppointmentsByPatientID(params,patientID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByPatientID+'/'+patientID}`
+
+  Get_AppointmentsByPatientID(params, patientID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_AppointmentsByPatientID + '/' + patientID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -458,7 +457,7 @@ export class APIService {
       }));
   }
 
- 
+
 
   Save_BookLabTest(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_BookLabTest}`
@@ -467,7 +466,7 @@ export class APIService {
         return userData;
       }));
   }
-  
+
   Get_LabTestsPackageList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackageList}`
     return this.http.get<any>(APIURL, { params: params })
@@ -488,9 +487,9 @@ export class APIService {
       }));
   }
 
-  
-  Get_DiseaseWiseApptCount(params,doctorID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DiseaseWiseApptCount +'/'+doctorID}`
+
+  Get_DiseaseWiseApptCount(params, doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DiseaseWiseApptCount + '/' + doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -499,18 +498,8 @@ export class APIService {
       }));
   }
 
-  Get_MonthlyHomeOnlineApptCount(params,doctorID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MonthlyHomeOnlineApptCount+'/'+doctorID}`
-    return this.http.get<any>(APIURL, { params: params })
-      .pipe(map(resdata => {
-        if (resdata) {
-        }
-        return resdata;
-      }));
-  }
-  
-  Get_MedicineWiseApptCount(params,doctorID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicineWiseApptCount+'/'+doctorID}`
+  Get_MonthlyHomeOnlineApptCount(params, doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MonthlyHomeOnlineApptCount + '/' + doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -519,19 +508,8 @@ export class APIService {
       }));
   }
 
-  
-  Get_PharmacistWiseApptCount(params,doctorID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistWiseApptCount+'/'+doctorID}`
-    return this.http.get<any>(APIURL, { params: params })
-      .pipe(map(resdata => {
-        if (resdata) {
-        }
-        return resdata;
-      }));
-  }
-
-  Get_DoctorWiseApptCount(params,patientID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorWiseApptCount+'/'+patientID}`
+  Get_MedicineWiseApptCount(params, doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_MedicineWiseApptCount + '/' + doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -541,8 +519,8 @@ export class APIService {
   }
 
 
-  Get_LabTestWiseTestCount(params,patientID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestWiseTestCount+'/'+patientID}`
+  Get_PharmacistWiseApptCount(params, doctorID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PharmacistWiseApptCount + '/' + doctorID}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -551,8 +529,41 @@ export class APIService {
       }));
   }
 
-  Get_IndividualToPackageLabTestCount(params,patientID) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_IndividualToPackageLabTestCount+'/'+patientID}`
+  Get_DoctorWiseApptCount(params, patientID) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_DoctorWiseApptCount + '/' + patientID}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+
+  Get_LabTestWiseTestCount(params, patientID?) {
+    let APIURL;
+    if (patientID) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestWiseTestCount + '/' + patientID}`
+    }
+    else {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestWiseTestCount}`
+    }
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_IndividualToPackageLabTestCount(params, patientID) {
+    let APIURL;
+    if (patientID) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_IndividualToPackageLabTestCount + '/' + patientID}`
+    }
+    else {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_IndividualToPackageLabTestCount}`
+    }
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -577,10 +588,10 @@ export class APIService {
       }));
   }
 
-  
 
-  Delete_LabTest(params,delid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTest+'/'+delid}`
+
+  Delete_LabTest(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTest + '/' + delid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -588,7 +599,7 @@ export class APIService {
         return resdata;
       }));
   }
-  
+
 
   Get_LabTestsBookings(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsBookings}`
@@ -599,15 +610,15 @@ export class APIService {
   }
 
 
-  Update_LabTechnicianProfile(data,id) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTechnicianProfile +'/'+id}`
+  Update_LabTechnicianProfile(data, id) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTechnicianProfile + '/' + id}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
-  Get_LabTechnicianProfile(params,rolebasedid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTechnicianProfile+'/'+rolebasedid}`
+  Get_LabTechnicianProfile(params, rolebasedid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTechnicianProfile + '/' + rolebasedid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -626,8 +637,8 @@ export class APIService {
       }));
   }
 
-  Get_UploadedTestReportbyLabTestID(params,booklabtestid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadedTestReportbyLabTestID+'/'+booklabtestid}`
+  Get_UploadedTestReportbyLabTestID(params, booklabtestid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadedTestReportbyLabTestID + '/' + booklabtestid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -668,8 +679,8 @@ export class APIService {
 
   }
 
-  Get_WebsiteImageByLocationEnum(params,locationenum) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteImageByLocationEnum+'/'+locationenum}`
+  Get_WebsiteImageByLocationEnum(params, locationenum) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteImageByLocationEnum + '/' + locationenum}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -677,8 +688,8 @@ export class APIService {
         return resdata;
       }));
   }
-  
-    
+
+
   Get_WebsiteImageByLocationEnumList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteImageByLocationEnumList}`
     return this.http.get<any>(APIURL, { params: params })
@@ -688,9 +699,9 @@ export class APIService {
         return resdata;
       }));
   }
-  
-  Delete_LabTestsPackage(params,packageid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTestsPackage+'/'+packageid}`
+
+  Delete_LabTestsPackage(params, packageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTestsPackage + '/' + packageid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -699,8 +710,8 @@ export class APIService {
       }));
   }
 
-  Delete_LabTechnician(params,labtechnicianid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTechnician+'/'+labtechnicianid}`
+  Delete_LabTechnician(params, labtechnicianid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_LabTechnician + '/' + labtechnicianid}`
     return this.http.delete<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -708,23 +719,23 @@ export class APIService {
         return resdata;
       }));
   }
-  
-  Update_LabTest(data,labtestid) {
-   let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTest +'/'+labtestid}`
+
+  Update_LabTest(data, labtestid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTest + '/' + labtestid}`
     return this.http.put<any>(APIURL, data)
       .pipe(map(userData => {
         return userData;
       }));
   }
   Save_LabTest(data) {
-      let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTest}`
-      return this.http.post<any>(APIURL, data)
-        .pipe(map(userData => {
-          return userData;
-        }));
-    }
-  Get_LabTest(params,labtestid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTest+'/'+labtestid}`
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_LabTest}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  Get_LabTest(params, labtestid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTest + '/' + labtestid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -742,15 +753,15 @@ export class APIService {
       }));
   }
 
-  Update_LabTestsPackage(data,labtestpackageid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTestsPackage +'/'+labtestpackageid}`
-     return this.http.put<any>(APIURL, data)
-       .pipe(map(userData => {
-         return userData;
-       }));
-   }
-   Get_LabTestsPackage(params,labtestpackageid) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackage+'/'+labtestpackageid}`
+  Update_LabTestsPackage(data, labtestpackageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_LabTestsPackage + '/' + labtestpackageid}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+  Get_LabTestsPackage(params, labtestpackageid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_LabTestsPackage + '/' + labtestpackageid}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -768,7 +779,7 @@ export class APIService {
   }
 
 
-  
+
   orders(data) {
     //let APIURL = 'https://api.roazorpay.com/v1/orders'
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.createOrder}`
@@ -793,9 +804,9 @@ export class APIService {
         return userData;
       }));
   }
-  
-  Get_WebsiteTextDataByLocationEnum(params,locationenum) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteTextDataByLocationEnum+'/'+locationenum}`
+
+  Get_WebsiteTextDataByLocationEnum(params, locationenum) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteTextDataByLocationEnum + '/' + locationenum}`
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -803,7 +814,7 @@ export class APIService {
         return resdata;
       }));
   }
-    
+
   Get_WebsiteTextDataByLocationEnumList(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_WebsiteTextDataByLocationEnumList}`
     return this.http.get<any>(APIURL, { params: params })
@@ -814,106 +825,103 @@ export class APIService {
       }));
   }
 
-  
-Update_Medicine(data,medicineid) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_Medicine +'/'+medicineid}`
-   return this.http.put<any>(APIURL, data)
-     .pipe(map(userData => {
-       return userData;
-     }));
- }
 
- Get_Medicine(params,medicineid) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_Medicine+'/'+medicineid}`
-  return this.http.get<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
-
-Delete_Medicine(params,delid) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Medicine+'/'+delid}`
-  return this.http.delete<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
-
-Get_PaymentLists(params,paymentTypeEnumKey) {
-  let APIURL;
-  if(paymentTypeEnumKey)
-  {
-    APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PaymentLists+'/'+paymentTypeEnumKey}`
+  Update_Medicine(data, medicineid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_Medicine + '/' + medicineid}`
+    return this.http.put<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
   }
-  else
-  {
-    APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PaymentLists}`
+
+  Get_Medicine(params, medicineid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_Medicine + '/' + medicineid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
   }
-  return this.http.get<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
 
-Save_AddtoCart(data) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_AddtoCart}`
-  return this.http.post<any>(APIURL, data)
-    .pipe(map(userData => {
-      return userData;
-    }));
-}
-
-Get_CartDetails(params,userid) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CartDetails+'/'+userid}`
-  return this.http.get<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
-
-RemoveCartDetails(params,userId,itemID) {
-  let APIURL;
-  if(userId && itemID)
-  {
-     APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails+'/'+userId+'/'+itemID}`
+  Delete_Medicine(params, delid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Delete_Medicine + '/' + delid}`
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
   }
-  else{
-     APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails+'/'+userId}`
+
+  Get_PaymentLists(params, paymentTypeEnumKey) {
+    let APIURL;
+    if (paymentTypeEnumKey) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PaymentLists + '/' + paymentTypeEnumKey}`
+    }
+    else {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_PaymentLists}`
+    }
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
   }
-  return this.http.delete<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
 
-Get_CompanyList(params) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CompanyList}`
-  return this.http.get<any>(APIURL, { params: params })
-    .pipe(map(resdata => {
-      if (resdata) {
-      }
-      return resdata;
-    }));
-}
+  Save_AddtoCart(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_AddtoCart}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
+  Get_CartDetails(params, userid) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CartDetails + '/' + userid}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  RemoveCartDetails(params, userId, itemID?) {
+    let APIURL;
+    if (userId && itemID) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails + '/' + userId + '/' + itemID}`
+    }
+    else {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.RemoveCartDetails + '/' + userId}`
+    }
+    return this.http.delete<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
+  Get_CompanyList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CompanyList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
 
 
-Save_Company(data) {
-  let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Company}`
-  return this.http.post<any>(APIURL, data)
-    .pipe(map(userData => {
-      return userData;
-    }));
-}
+  Save_Company(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_Company}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
 
 }
 

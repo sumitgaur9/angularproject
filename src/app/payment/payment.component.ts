@@ -121,11 +121,7 @@ export class PaymentComponent implements OnInit {
       }
     };
   }
-
-
-
   
-
   handlePayment(response) {
     let dataobj = {
       "razorpay_payment_id": response.razorpay_payment_id,
@@ -140,6 +136,7 @@ export class PaymentComponent implements OnInit {
       if (data) {
         console.log("paymentverify", data);
         this.openPaymentSuccessPopup();
+        this.RemoveCartDetails();
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -164,6 +161,23 @@ export class PaymentComponent implements OnInit {
   cancelPayment()
   {
     this.router.navigate(['/home'])
+  }
+
+  RemoveCartDetails() {
+    let dataobj = {
+    };
+    this._apiservice.RemoveCartDetails(dataobj, this.currentUserLoginResponse.roleBaseId).subscribe(data => {
+      if (data) {
+        this.removeDataFromCartArray();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  removeDataFromCartArray() {
+    let blankCart:any=[];
+    this.utilityservice.subRemoveFromCart.next(blankCart);
   }
 
 }

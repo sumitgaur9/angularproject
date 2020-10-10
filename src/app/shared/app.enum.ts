@@ -11,6 +11,7 @@ export enum paymentType {
     LabTest = 2,
     Medicine = 3,
     MedicineLabTest = 4,
+    LabTestPackage=5
 }
 
 export enum AbDateTimeType {

@@ -24,7 +24,7 @@ export class PaymentlistComponent implements OnInit {
   public errorMessage: string = '';
   public PaymentEnumTypeArray: any = [{ "id": 1, "name": "BookAppointment" },
   { "id": 2, "name": "LabTest" }, { "id": 3, "name": "Medicine" },
-  { "id": 4, "name": "MedicineLabTest" }]
+  { "id": 4, "name": "MedicineLabTest" },{"id":5,"name":"LabTestPackage"}]
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 

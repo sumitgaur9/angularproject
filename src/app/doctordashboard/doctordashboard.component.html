@@ -1,74 +1,5 @@
-<!-- <div style="position: absolute;top: 23%;width:100%;">
-    <div class="row">
-        <div class="col-md-6">
-            <table class="table">
-              <thead style="background-color:#17a2b8">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">DoctorName</th>
-                    <th scope="col">IsVisitComplete</th>
-                    <th scope="col">Visit</th>
-                    <th scope="col">ReqMed</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let data of doctorAppointmentHistoryData;let i = index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{data.doctorName}}</td>
-
-<td>                  
-    <input type="checkbox" [checked]="data.doctorName" id="markAtt{{i}}"/>
-</td>
-
-                    <td>{{data.patientNname}}</td>
-                    <td>    <button (click)="openRequestPatMedHomeDelivery(data)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Req med</button></td>
-
-                
-
-
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div class="col-md-6">
-            <table class="table">
-              <thead style="background-color:#17a2b8">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">DoctorName</th>
-                    <th scope="col">IsVisitComplete</th>
-                    <th scope="col">Comp Visit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let data of doctorAppointmentListData;let i = index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{data.doctorName}}</td>
-                    <td>{{data.isVisitCompleted}}</td>
-                    <td>    <button (click)="openShowVisitForAll(data)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Comp Visit</button></td>
-
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-
-    </div>
-
-</div>
-
-
-<div *ngIf="showVisitForAll">
-    <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
-  </div>
-  <div *ngIf="showRequestPatMedHomeDelivery">
-    <app-request-pat-med-home-delivery  [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery" [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
-  </div> -->
-
-
-
-  <div class="content"  style="position: absolute;top: 17%;width:96%;left:2%;right:2%;">
+  <div class="content" style="position: absolute;top: 17%;width:96%;left:2%;right:2%;">
     <div class="container-fluid p-0">
-
       <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
           <h3 style="color:#39b49b"><strong style="color:#39b49b">Doctor</strong> Dashboard</h3>
@@ -77,9 +8,6 @@
         <div class="col-auto ml-auto text-right mt-n1">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-              <!-- <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
-              <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Analytics</li> -->
             </ol>
           </nav>
         </div>
@@ -97,8 +25,6 @@
                     <h5 class="card-title mb-4">Total Doctors</h5>
                     <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_doctors}}</h1>
                     <div class="mb-1">
-                      <!-- <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-                      <span class="text-muted">Since last week</span> -->
                     </div>
                   </div>
                 </div>
@@ -107,8 +33,6 @@
                     <h5 class="card-title mb-4">Total Nurses</h5>
                     <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_nurses}}</h1>
                     <div class="mb-1">
-                      <!-- <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-                      <span class="text-muted">Since last week</span> -->
                     </div>
                   </div>
                 </div>
@@ -119,18 +43,14 @@
                     <h5 class="card-title mb-4">Total Patient</h5>
                     <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_patients}}</h1>
                     <div class="mb-1">
-                      <!-- <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-                      <span class="text-muted">Since last week</span> -->
                     </div>
                   </div>
                 </div>
                 <div class="card" style="background-color: #8383ef;margin-top: 8px;">
                   <div class="card-body">
-                    <h5 class="card-title mb-4">Total  Pharmacist</h5>
+                    <h5 class="card-title mb-4">Total Pharmacist</h5>
                     <h1 class="display-5 mt-1 mb-3">{{commonDashBoardCountData.total_no_of_pharmacists}}</h1>
                     <div class="mb-1">
-                      <!-- <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-                      <span class="text-muted">Since last week</span> -->
                     </div>
                   </div>
                 </div>
@@ -142,26 +62,16 @@
         <div class="col-xl-6 col-xxl-7">
           <div class="card flex-fill w-100">
             <div class="card-header">
-
               <h5 class="card-title mb-0">Diseases Wise Count</h5>
             </div>
             <div class="card-body py-3">
               <div class="chart chart-sm">
-                <!-- <canvas id="chartjs-dashboard-line"></canvas> -->
-
                 <div style="display: block;">
-                  <canvas baseChart 
-                    [data]="pieChartData" 
-                    [labels]="pieChartLabels" 
-                    [chartType]="pieChartType"
-                    [options]="pieChartOptions"
-                    [plugins]="pieChartPlugins"
-                    [legend]="pieChartLegend"
+                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
                     [colors]="pieChartColor">
                   </canvas>
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -172,80 +82,42 @@
         <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
           <div class="card flex-fill w-100">
             <div class="card-header">
-
               <h5 class="card-title mb-0">Online/Home Visit</h5>
             </div>
             <div class="card-body d-flex">
               <div class="align-self-center w-100">
                 <div class="py-3">
                   <div class="chart chart-xs">
-                    <!-- <canvas id="chartjs-dashboard-pie"></canvas> -->
                     <div style="display: block;">
-                      <canvas baseChart 
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [plugins]="barChartPlugins"
-                        [legend]="barChartLegend"
-                        [colors]="barChartColors"
+                      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                        [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors"
                         [chartType]="barChartType">
                       </canvas>
                     </div>
-                    
                   </div>
                 </div>
-
-               
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
-          <div class="card flex-fill w-100">
-            <div class="card-header">
-
-              <h5 class="card-title mb-0">Real-Time</h5>
-            </div>
-            <div class="card-body px-4">
-              <div id="world_map" style="height:350px;"></div>
-            </div>
-          </div>
-        </div> -->
         <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
           <div class="card flex-fill">
             <div class="card-header">
-
               <h5 class="card-title mb-0">Medicine Wise Count</h5>
             </div>
             <div class="card-body d-flex">
               <div class="align-self-center w-100">
                 <div class="chart">
                   <div>
-                    <canvas baseChart 
-                    [data]="pieChartPharmacistData" 
-                    [labels]="pieChartPharmacistLabels" 
-                    [chartType]="pieChartType"
-                    [options]="pieChartOptions"
-                    [plugins]="pieChartPlugins"
-                    [legend]="pieChartLegend"
-                    [colors]="pieChartColor">
-                  </canvas>
+                    <canvas baseChart [data]="pieChartPharmacistData" [labels]="pieChartPharmacistLabels"
+                      [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                      [legend]="pieChartLegend" [colors]="pieChartColor">
+                    </canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-        
-
-
-
-
-
-
-
-
         </div>
       </div>
 
@@ -256,35 +128,45 @@
               <h5 class="card-title mb-0">Appointments</h5>
             </div>
             <table class="table table-hover my-0">
-              <thead>
-                <tr  style="background-color: #8a8a71;">
-                  <th>   <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
-                    <span>DoctorName</span>
-                    <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='doctorName'" src="../../assets/images/left-arrow.png">
-                  </span></th>
+              <thead style="background-color: #39b49b;">
+                <tr>
+                  <th> <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
+                      <span>DoctorName</span>
+                      <img class="sortIcon" style="display: inline;"
+                        [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'"
+                        [class.blurSortingArrow]="usersParams.sortBy!='doctorName'"
+                        src="../../assets/images/left-arrow.png">
+                    </span></th>
                   <th class="d-none d-xl-table-cell">
                     <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
                       <span>Pat Name</span>
-                      <img class="sortIcon" style="display: inline;" [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'" [class.blurSortingArrow]="usersParams.sortBy!='patientNname'" src="../../assets/images/left-arrow.png">
+                      <img class="sortIcon" style="display: inline;"
+                        [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'"
+                        [class.blurSortingArrow]="usersParams.sortBy!='patientNname'"
+                        src="../../assets/images/left-arrow.png">
                     </span></th>
-                    <th class="d-none d-xl-table-cell">Gender</th>
-                    <th class="d-none d-xl-table-cell">Age</th>
-                    <th class="d-none d-xl-table-cell">Disease</th>
-                    <th class="d-none d-md-table-cell">Pat Contact</th>
+                  <th class="d-none d-xl-table-cell">Gender</th>
+                  <th class="d-none d-xl-table-cell">Age</th>
+                  <th class="d-none d-xl-table-cell">Disease</th>
+                  <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-xl-table-cell">IsVisitComplete</th>
                   <th>IsPharmacyProvided</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of completeDoctorVisitData" >
+                <tr *ngFor="let data of completeDoctorVisitData">
                   <td>{{data.doctorName}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientSex==1 ? 'Male': 'Female'}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientAge}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
-                  <td><span  (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"  [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span></td>
-                  <td><span  (click)="!data.isPharmacyProvided? openRequestPatMedHomeDelivery(data) : false"  [ngClass]="data.isPharmacyProvided ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span></td>
+                  <td><span (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"
+                      [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
+                  </td>
+                  <td><span (click)="!data.isPharmacyProvided? openRequestPatMedHomeDelivery(data) : false"
+                      [ngClass]="data.isPharmacyProvided ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -299,11 +181,8 @@
             <div class="card-body d-flex w-100">
               <div class="align-self-center chart chart-lg">
                 <div style="display: block;">
-                  <canvas baseChart 
-                    [data]="doughnutChartData"
-                    [labels]="doughnutChartLabels"
-                    [chartType]="doughnutChartType"
-                    [colors]="pieChartColor">
+                  <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType" [colors]="pieChartColor">
                   </canvas>
                 </div>
               </div>
@@ -311,13 +190,16 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
   <div *ngIf="showVisitForAll">
-    <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"  [appointmentid]="visitAppointmentId"  (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+    <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"
+      [appointmentid]="visitAppointmentId" (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
   </div>
   <div *ngIf="showRequestPatMedHomeDelivery">
-    <app-request-pat-med-home-delivery  [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery" [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId" [reqByDoctorName]="reqByDoctorName"  [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"  (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
-  </div> 
+    <app-request-pat-med-home-delivery [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery"
+      [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId" [reqByDoctorName]="reqByDoctorName"
+      [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"
+      (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+  </div>

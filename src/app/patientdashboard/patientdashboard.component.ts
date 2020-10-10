@@ -26,47 +26,31 @@ export class PatientdashboardComponent implements OnInit {
   public showBookAppointmentPopup: boolean = false;
   public visitAppointmentId: string = '';
   public completeDoctorListData: any = [];
-
   public expertiesArrayData: any = [];
   public patientAppointmentData: any = [];
-
   public doctorExperties = new FormGroup({
     experties: new FormControl(""),
   });
   public currentUser;
   public filterDoctorData: any = [];
-
   public labTestBookingData: any = [];
-
-
   public commonDashBoardCountData: any = {
     total_no_of_doctors: 0,
     total_no_of_nurses: 0,
     total_no_of_patients: 0,
     total_no_of_pharmacists: 0,
   };
-
   public diseaseWiseApptCount: any;
   public medicineWiseApptCount: any;
   public pharmacistWiseApptCount: any;
-
   public doctorWiseApptCount: any;
   public labTestWiseTestCount: any;
-
   public individualToPackageLabTestCount: any;
-
-
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-
-  // public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  // public pieChartData: SingleDataSet = [300, 500, 100];
-
   public pieChartLabels: Label[] = [];
   public pieChartData: SingleDataSet = [];
-  //public pieChartColors = ["#ff9900","#ff9900","#97bbcd","#97bbcd"]; 
-
   public pieChartColor: any = [
     {
       backgroundColor: ['#157fda',
@@ -87,22 +71,14 @@ export class PatientdashboardComponent implements OnInit {
       ]
     }
   ]
-
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-
   public pieChartPharmacistLabels: Label[] = [];
   public pieChartPharmacistData: SingleDataSet = [];
-
-
   public pieChartIndividualToPackageLabTestCountLabels: Label[] = ['individualTestCount', 'packageCount'];
   public pieChartIndividualToPackageLabTestCountData: SingleDataSet = [];
-
-
   IndividualToPackageLabTestCount
-  //second
-
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -110,30 +86,19 @@ export class PatientdashboardComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
-
   public barChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
-
-
-  //third
-
-
   public doughnutChartLabels: Label[] = ['individualTestCount', 'packageCount'];
-  public doughnutChartData: SingleDataSet = [
-
-  ];
+  public doughnutChartData: SingleDataSet = [];
   public doughnutChartType: ChartType = 'doughnut';
-
-
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_DoctorsList(); //this api Get_AppointmentsByPatientID called inside it
     this.Get_ExpertiseList();
-
     this.Get_CommonDashboardCount();
     this.Get_LabTestWiseTestCount();
     this.Get_DoctorWiseApptCount();
@@ -142,7 +107,6 @@ export class PatientdashboardComponent implements OnInit {
     this.Get_PharmaReqForHomeDel();
   }
 
-  //Get_AppointmentsByDocID
   public closeshowVisitForAll() {
     this.showVisitForAll = false;
     $('#showVisitForAllModal').modal('hide');
@@ -214,7 +178,6 @@ export class PatientdashboardComponent implements OnInit {
           this.completeDoctorListData.forEach(doctorElement => {
             if (apptElement.doctorID == doctorElement._id) {
               apptElement["doctorIsInActive"] = doctorElement.inActive
-
             }
           })
           switch (apptElement.timeSlot) {
@@ -253,7 +216,6 @@ export class PatientdashboardComponent implements OnInit {
 
   expertiesChangeEvent($event) {
     this.Get_FilteredDoctors($event.target.value);
-
   }
 
   Get_ExpertiseList() {
@@ -285,7 +247,6 @@ export class PatientdashboardComponent implements OnInit {
     this.router.navigate(['/getlabtest']);
   }
 
-
   Get_CommonDashboardCount() {
     let dataobj = {}
     this._apiservice.Get_CommonDashboardCount(dataobj).subscribe(data => {
@@ -299,38 +260,34 @@ export class PatientdashboardComponent implements OnInit {
     });
   }
 
-
-
   Get_LabTestWiseTestCount() {
     let dataobj = {
     };
-    let patientid = this.currentUser.roleBaseId;//"5f2fa8d88c2e60000478f67c"; 
+    let patientid; 
+    if (this.currentUser.user.role != 11) {
+      patientid = this.currentUser.roleBaseId;
+    }
     this._apiservice.Get_LabTestWiseTestCount(dataobj, patientid).subscribe(data => {
       if (data) {
         this.labTestWiseTestCount = data;
         if (this.labTestWiseTestCount && this.labTestWiseTestCount.length > 0) {
           for (var i = 0; i < this.labTestWiseTestCount.length; i++) {
-            this.pieChartPharmacistLabels.push(this.labTestWiseTestCount[i].testName);
-            // if(i==1)
-            // {
-            //   this.pieChartPharmacistData.push(4);
-
-            // }
-            // else
-            // {
-            this.pieChartPharmacistData.push(this.labTestWiseTestCount[i].testCount);
-            // }
+            if (this.currentUser.user.role == 11) {
+              this.pieChartPharmacistLabels.push(this.labTestWiseTestCount[i].testName);
+              this.pieChartPharmacistData.push(this.labTestWiseTestCount[i].testCount);
+            }
+            else if (this.labTestWiseTestCount[i].testCount > 0) {
+              this.pieChartPharmacistLabels.push(this.labTestWiseTestCount[i].testName);
+              this.pieChartPharmacistData.push(this.labTestWiseTestCount[i].testCount);
+            }
           }
         }
-
         console.log("  this.labTestWiseTestCount  this.labTestWiseTestCount", this.labTestWiseTestCount)
-
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
 
   Get_DoctorWiseApptCount() {
     let dataobj = {
@@ -344,8 +301,14 @@ export class PatientdashboardComponent implements OnInit {
         this.doctorWiseApptCount = data;
         if (this.doctorWiseApptCount && this.doctorWiseApptCount.length > 0) {
           for (var i = 0; i < this.doctorWiseApptCount.length; i++) {
-            this.pieChartLabels.push(this.doctorWiseApptCount[i].doctorName);
-            this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
+            if (this.currentUser.user.role == 11) {
+              this.pieChartLabels.push(this.doctorWiseApptCount[i].doctorName);
+              this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
+            }
+            else if (this.doctorWiseApptCount[i].apptCount > 0) {
+              this.pieChartLabels.push(this.doctorWiseApptCount[i].doctorName);
+              this.pieChartData.push(this.doctorWiseApptCount[i].apptCount);
+            }
           }
         }
         console.log("  this.doctorWiseApptCount  this.doctorWiseApptCount", this.doctorWiseApptCount)
@@ -355,24 +318,17 @@ export class PatientdashboardComponent implements OnInit {
     });
   }
 
-
-
-
   Get_IndividualToPackageLabTestCount() {
     let dataobj = {
     };
-    let patientid = this.currentUser.roleBaseId;// "5f2fa8d88c2e60000478f67c";
+    let patientid; 
+    if (this.currentUser.user.role != 11) {
+      patientid = this.currentUser.roleBaseId;
+    }
     this._apiservice.Get_IndividualToPackageLabTestCount(dataobj, patientid).subscribe(data => {
       if (data) {
         this.individualToPackageLabTestCount = data;
         if (this.individualToPackageLabTestCount) {
-
-          // this.pieChartIndividualToPackageLabTestCountData.push(this.individualToPackageLabTestCount.individualTestCount);
-          // this.pieChartIndividualToPackageLabTestCountData.push(this.individualToPackageLabTestCount.packageCount);
-
-          // this.doughnutChartData.push(4);
-          // this.doughnutChartData.push(8);
-
           this.doughnutChartData.push(this.individualToPackageLabTestCount.individualTestCount);
           this.doughnutChartData.push(this.individualToPackageLabTestCount.packageCount);
         }
@@ -382,7 +338,6 @@ export class PatientdashboardComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
 
   Get_LabTestsBookings() {
     let dataobj: any = {}
@@ -428,8 +383,6 @@ export class PatientdashboardComponent implements OnInit {
     this._apiservice.Get_PharmaReqForHomeDel(dataobj).subscribe(data => {
       if (data) {
         console.log("Get_PharmaReqForHomeDelGet_PharmaReqForHomeDel", data);
-        //this.pharmaReqForHomeDelData=data;
-
         for (var i = 0; i < data.length; i++) {
           for (var j = 0; j < data[i].medicinesData.length; j++) {
             let temp: any = {};
@@ -489,14 +442,7 @@ export class PatientdashboardComponent implements OnInit {
 
             }
             for (var k = 0; k < data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
-              //medicinesdataArrayForFixTimeSlot
-
-              //  for(var l=0;l<data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].length;l++)
-              // {
               tempMedicineName.push(data[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
-
-              // }
-
             }
             temp.medicineName = tempMedicineName.toString();
             this.pharmaReqForHomeDelData.push(temp);

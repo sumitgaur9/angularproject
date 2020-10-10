@@ -51,7 +51,9 @@ export class NursedashboardComponent implements OnInit {
   }
   Get_LabTestsBookings() {
     let dataobj: any = {}
-    dataobj.nurseID = this.currentUser.roleBaseId;
+    if (this.currentUser.user.role != 11) {
+        dataobj.nurseID = this.currentUser.roleBaseId;
+    }
     this._apiservice.Get_LabTestsBookings(dataobj).subscribe(data => {
       if (data) {
         this.labTestBookingData = data;

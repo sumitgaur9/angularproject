@@ -37,7 +37,7 @@
             <thead style="background-color: #39b49b;">
               <tr>
                 <th class="d-none d-xl-table-cell">S.No</th>
-
+                <th class="d-none d-xl-table-cell">Nurse Name</th>
                 <th class="d-none d-xl-table-cell">Patient Name</th>
                 <th class="d-none d-xl-table-cell">Patient Mob</th>
                 <th class="d-none d-xl-table-cell">Price</th>
@@ -48,6 +48,7 @@
 
               <tr *ngFor="let data of labTestBookingData;let i = index" [ngStyle]="{  'background-color': data.isCollectionCollected ? '#80808045': '' }" >                  
                 <td class="d-none d-xl-table-cell">{{i+1}}</td>
+                <td class="d-none d-xl-table-cell">{{data.nurseName}}</td>
                 <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                 <td class="d-none d-xl-table-cell">{{data.patientMob}}</td>
                 <td class="d-none d-xl-table-cell"><i class="fa fa-inr" style="font-size: 12px;" aria-hidden="true"></i> &nbsp;{{data.price}}</td>

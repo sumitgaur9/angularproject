@@ -17,40 +17,31 @@ declare var $: any;
 })
 export class PharmacistdashboardComponent implements OnInit {
 
-  public doctorAppointmentListData:any=[];
-  public doctorAppointmentHistoryData:any=[];
+  public doctorAppointmentListData: any = [];
   public currentUser;
-
-  public showPharmacistVisitCompleteIntimation:boolean=false;
+  public showPharmacistVisitCompleteIntimation: boolean = false;
   public errorMessage;
-  public showVisitForAll:boolean=false;
-  public visitAppointmentId:string='';
-  public inputPharmacistVisitCompleteIntimationModal:any={};
+  public showVisitForAll: boolean = false;
+  public visitAppointmentId: string = '';
+  public inputPharmacistVisitCompleteIntimationModal: any = {};
 
-  constructor(private router: Router,private toastr: ToastrService, private _apiservice: APIService,private utilityservice:UtililtyFunctions) { }
+  constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-
     this.Get_PharmaReqForHomeDel();
-   
-
   }
-
-  
-
 
   public closePharmacistVisitCompleteIntimation() {
     this.showPharmacistVisitCompleteIntimation = false;
     $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
     this.Get_PharmaReqForHomeDel();
   }
-  
+
   public openPharmacistVisitCompleteIntimation(data) {
     this.showPharmacistVisitCompleteIntimation = true;
-      this.visitAppointmentId = data.appointmentID;
-      this.inputPharmacistVisitCompleteIntimationModal=data;
-
+    this.visitAppointmentId = data.appointmentID;
+    this.inputPharmacistVisitCompleteIntimationModal = data;
     setTimeout(() => {
       $(window).scrollTop(0);
       $('#showPharmacistVisitCompleteIntimationModal').modal('show');
@@ -58,29 +49,19 @@ export class PharmacistdashboardComponent implements OnInit {
   }
 
   Get_PharmaReqForHomeDel() {
-    let dataobj={
-      pharmacistID:this.currentUser.roleBaseId
-    };
+    let dataobj:any={};
+    if (this.currentUser.user.role != 11) {
+      dataobj = {
+        pharmacistID: this.currentUser.roleBaseId
+      };
+    }
     this._apiservice.Get_PharmaReqForHomeDel(dataobj).subscribe(data => {
       if (data) {
-        //this.doctorAppointmentListData=data;
-        console.log("  this.doctorAppointmentListData",data);
-
-        this.doctorAppointmentListData=data;
-
-
-        // this.doctorAppointmentListData = data.filter(function (item) {
-        //   return item.isPharmacyProvided == false;
-        // });
-        // this.doctorAppointmentHistoryData = data.filter(function (item) {
-        //   return item.isPharmacyProvided == true;
-        // });
-
+        console.log("  this.doctorAppointmentListData", data);
+        this.doctorAppointmentListData = data;
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-
-  
 }
