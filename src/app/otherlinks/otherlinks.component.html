@@ -130,6 +130,12 @@
                 </div>
 
                 <div class="text-center" style="margin-top: 5%;">
+                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
+                    (click)="openGetLabPackageTest()"><i class="fa fa-list" aria-hidden="true"></i><span
+                      style="margin-left:5px;">GetLabTestPackageList</span></button>
+                </div>
+
+                <div class="text-center" style="margin-top: 5%;">
                   <button style="width: 225px" class="btn" (click)="openMedicineList()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">Medicine List</span></button>
                 </div>
@@ -137,12 +143,6 @@
                 <div class="text-center" style="margin-top: 5%;">
                   <button style="width: 225px" class="btn" (click)="openPaymentListPage()"><i class="fa fa-list"
                       aria-hidden="true"></i><span style="margin-left:5px;">All Payment List</span></button>
-                </div>
-
-                <div class="text-center" style="margin-top: 5%;">
-                  <button style="width: 225px" *ngIf="currentUser.user.role<1 || currentUser.user.role==1 || currentUser.user.role==11" class="btn"
-                    (click)="openGetLabPackageTest()"><i class="fa fa-list" aria-hidden="true"></i><span
-                      style="margin-left:5px;">GetLabTestPackageList</span></button>
                 </div>
 
                 <div class="text-center" style="margin-top: 5%;">

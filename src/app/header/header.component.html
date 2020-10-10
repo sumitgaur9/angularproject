@@ -3,7 +3,7 @@
     <div class="container">
       <a class="navbar-brand" routerLink="/home"><img style="height: 40px;width: 200px;" src="../../assets/images/logo.png" alt="image"></a>
       <div class="right-header">
-        <div class="header-info" style="padding-right: 15px;">
+        <div class="header-info" style="padding-right: 110px;">
           <div class="info-inner">
             <span class="icontop"><img src="../../assets/images//phone-icon.png" alt="#"></span>
             <span class="iconcont"><a href="tel:971 634 2619">971 634 2619</a></span>
@@ -13,7 +13,7 @@
             <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">knowledgerelated96@gmail.com</a></span>
           </div>
           <div *ngIf="cartInfoData.length>0" (click)="navigatetopage('cartdetail')" class="info-inner" style="padding-right: 60px;cursor: pointer;">
-            <i class="fa fa-cart-plus" style="font-size: 29px;color: #3eb49b;"></i>       
+            <i class="fa fa-cart-plus" style="font-size: 29px;color: #147fdaba;"></i>       
             <span class="badge badge-light" style="font-size: 10px;color: white;border-radius: 10px;background-color: red;position: absolute;top: 7%;">           
                 {{cartInfoData.length}}</span>   
                      <!-- <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span> -->
@@ -39,10 +39,10 @@
               </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item"  (click)="openProfilePopup()"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px">Profile</span></a>
-              <a class="dropdown-item" (click)="openChangePasswordPopup()"><i class="fa fa-key" aria-hidden="true"></i><span style="margin-left:6px">Change Password</span></a>
+              <a class="dropdown-item"  (click)="openProfilePopup()"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px;cursor: pointer;">Profile</span></a>
+              <a class="dropdown-item" (click)="openChangePasswordPopup()"><i class="fa fa-key" aria-hidden="true"></i><span style="margin-left:6px;cursor: pointer;">Change Password</span></a>
               <!-- <a class="dropdown-item"  (click)="openSaveImageForWebPopup()"><i class="fa fa-upload" aria-hidden="true"></i><span style="margin-left:6px">Image Upload</span></a> -->
-              <a class="dropdown-item"  (click)="navigatetopage('login')"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px">LogOut</span></a>
+              <a class="dropdown-item"  (click)="navigatetopage('login')"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px;cursor: pointer;">LogOut</span></a>
             </div>
           </div>
         </div>

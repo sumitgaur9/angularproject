@@ -130,7 +130,8 @@
                   <div *ngIf="submitted && isInvalidCaptcha" style="color:red;font-size: 14px;font-family: auto;">
                     Invalid Captcha Code.
                   </div>
-                  <div id="captcha"></div>
+                  <div id="captcha" style="float: left;"></div>
+                   <i class="fa fa-refresh" area-hidden="true" style="float: right;cursor: pointer;color: mediumblue;font-size: 28px;padding-top: 3%;" (click)="createCaptcha()" ></i>
                 </div>
               </div>
               <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="submitted && inActiveEmailID">

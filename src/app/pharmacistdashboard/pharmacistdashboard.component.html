@@ -8,7 +8,7 @@
    
   
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-10">
         <div class="card flex-fill w-100">
           <div class="card-header">
 
@@ -24,9 +24,11 @@
                         <tr>
                             <th scope="col">SNo</th>
                             <th scope="col">Pharmacist Name</th>
-                            <th scope="col">Patient Name</th>
                             <th scope="col">Doctor Name</th>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Pat Contact</th>
                             <th scope="col">Patient PIN</th>
+                            <th scope="col">Dose Count</th>
 
                             <th scope="col">Pharmacy Provided</th>
                           </tr>
@@ -34,13 +36,15 @@
                         <tbody>
 
 
-                          <tr *ngFor="let data of doctorAppointmentListData;let i = index" [ngStyle]="{  'background-color': !data.isPharmacyProvided ? '#80808045': '' }" >                  
-                            <td scope="row">{{i+1}}</td>
+                          <tr class="gaadiex-list" *ngFor="let data of doctorAppointmentListData;let i = index" [ngStyle]="{  'background-color': data.isPharmacyProvided ? '#80808045': '' }" >                  
+                            <td scope="row">{{i+1}}.</td>
 
                             <td>{{data.pharmacistName}}</td>
-                            <td class="d-none d-xl-table-cell">{{data.patientName}}</td>
                             <td class="d-none d-xl-table-cell">{{data.doctorName}}</td>
+                            <td class="d-none d-xl-table-cell">{{data.patientName}}</td>
+                            <td class="d-none d-xl-table-cell">{{data.patientContactNo}}</td>                            
                             <td class="d-none d-xl-table-cell">{{data.patientPIN}}</td>
+                            <td class="d-none d-xl-table-cell">{{data.medicinesData.length}}</td>
 
                             <td>
                               <a  *ngIf="!data.isPharmacyProvided" (click)="openPharmacistVisitCompleteIntimation(data)" class="btn" style="font-size:13px;background-color:#007bff"><i class="fa fa-times" aria-hidden="true"></i>

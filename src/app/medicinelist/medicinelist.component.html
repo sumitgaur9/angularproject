@@ -34,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of medicineListDataArray;let i = index;">
+          <tr class="gaadiex-list" *ngFor="let data of medicineListDataArray;let i = index;">
             <td style="vertical-align: middle;">{{i+1}}.</td>
             <td>
               <img *ngIf="!(data.newimage && data.newimage.data && data.newimage.data.data)" src="{{getDefaultImage}}"

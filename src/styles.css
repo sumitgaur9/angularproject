@@ -10569,3 +10569,10 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p {
 }
 
 /* End of  cookies related classes */
+
+
+.gaadiex-list:hover{
+  transition:0.5s;
+  transform: scale(1.01);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
