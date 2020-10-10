@@ -129,6 +129,18 @@ export const VerifyOTP={
     sendMobileNoStartMsg:'OTP is sent to ********',
     sendMobileNoEndMsg:' mobile no'
 }
+
+export const HomePageImageSize={
+    TopNavImage:'1349x650',
+    WhatWeDo:'540x360',
+    Servicesimage1:'255x169',
+    Servicesimage2:'255x169',
+    Servicesimage3:'255x169',
+    Servicesimage4:'255x169',
+    SpecialistClinicimage1:'310x310',
+    SpecialistClinicimage2:'310x310',
+    SpecialistClinicimage3:'310x310',
+}
 export const defaultImage={
     userlink:'https://i.dlpng.com/static/png/6191850-user-png-94-images-in-collection-page-2-user-png-800_800_preview.png',
     doctorlink:'https://i.pinimg.com/originals/8c/8b/37/8c8b3766126753c6d098cdb2e42cff49.png',

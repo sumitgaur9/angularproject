@@ -79,7 +79,10 @@ export class SavewebsitetextdataComponent implements OnInit {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success('Thanks for update website text');
-        this.CloseModal(true);
+        this.webTextForm.patchValue({
+          textData: '',
+          locationEnum: ''
+        })
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -110,11 +113,7 @@ export class SavewebsitetextdataComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
-   // onChangesonChanges(): void {
-  //   this.webTextForm.get('locationEnum').valueChanges.subscribe(val => {
-  //     this.Get_WebsiteTextDataByLocationEnum(val);
-  //   })
-  // }
+ 
 }
 
 

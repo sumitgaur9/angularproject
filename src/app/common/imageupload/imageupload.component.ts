@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
+import { HomePageImageSize } from 'src/app/shared/api.constant'
+
 
 @Component({
   selector: 'app-imageupload',
@@ -32,16 +34,19 @@ export class ImageuploadComponent implements OnInit {
 
   public uploadImageForm = new FormGroup({
     imageChangeForID: new FormControl(""),
+    preferredImageSize: new FormControl(""),
   });
 
   public imageForDataArray: any = [{ "id": '1', "name": "TopNavImage" }, { "id": '2', "name": "WhatWeDo" },
   { "id": '3', "name": "Servicesimage1" }, { "id": '4', "name": "Servicesimage2" }, { "id": '5', "name": "Servicesimage3" },
   { "id": '6', "name": "Servicesimage4" }, { "id": '7', "name": "SpecialistClinicimage1" }, { "id": '8', "name": "SpecialistClinicimage2" },
-  { "id": '9', "name": "SpecialistClinicimage3" }]
+  { "id": '9', "name": "SpecialistClinicimage3" }];
+
   public currentUser;
   public uploadreportdatainput: any;
   public testimageform = new FormGroup({
-    image: new FormControl("")
+    image: new FormControl(""),
+
   });
 
   public uploadResult = "";
@@ -113,6 +118,62 @@ export class ImageuploadComponent implements OnInit {
     this.uploadImageForm.get('imageChangeForID').valueChanges.subscribe(val => {
       this.getImageValue = '';
       this.Get_WebsiteImageByLocationEnum(val);
+      switch (val) {
+        case "1":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.TopNavImage
+            })
+          break;
+        case "2":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.WhatWeDo
+            })
+          break;
+        case "3":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.Servicesimage1
+            })
+          break;
+        case "4":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.Servicesimage2
+            })
+          break;
+        case "5":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.Servicesimage3
+            })
+          break;
+        case "6":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.Servicesimage4
+            })
+          break;
+        case "7":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.SpecialistClinicimage1
+            })
+          break;
+        case "8":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.SpecialistClinicimage2
+            })
+          break;
+        case "9":
+          this.uploadImageForm.patchValue(
+            {
+              preferredImageSize:HomePageImageSize.SpecialistClinicimage3
+            })
+          break;
+      }
     })
   }
 
