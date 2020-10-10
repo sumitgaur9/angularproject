@@ -1,24 +1,39 @@
 <div style="position: absolute;top:17%;width:100%;">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <table class="table">
               <thead style="background-color:#17a2b8">
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">S.No</th>
                     <th scope="col">Patient Name</th>
+                    <th scope="col">Patient Email</th>
+                    <th scope="col">Patient Address</th>
                     <th scope="col">Is Collection Collected</th>
                     <th scope="col">Patient Mob</th>
+                    <th scope="col">Patient testType</th>
                     <th scope="col">Upload Report</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of labTestBookingData;let i = index">
+                  <tr *ngFor="let data of labTestBookingData;let i = index;let odd=odd; let even=even;">
                     <th scope="row">{{i+1}}</th>
                     <td>{{data.patientNname}}</td>
+                    <td>{{data.patientEmail}}</td>
+                    <td>{{data.patientAddres}}</td>
                     <td>{{data.isCollectionCollected}}</td>
                     <td>{{data.patientMob}}</td>
-                    <td>   
-                         <button (click)="openUploadReport(data)" id="btn2" class="btn btn-info btn-block rounded-0 py-2">Upload Report</button></td>
+                    <td style="text-transform: capitalize;">{{data.testType}}</td>
+
+                    
+                      <td>
+                        <a *ngIf="!data.isReportGenerated" (click)="openUploadReport(data)" class="btn" style="font-size:13px;"><i
+                            class=" fa fa-upload" aria-hidden="true"></i>
+                          Upload Report</a>
+                        <a *ngIf="data.isReportGenerated" class="btn"
+                          style="font-size:13px;background-color: green;cursor: not-allowed;"><i class="fa fa-upload"
+                            aria-hidden="true"></i>
+                          Uploaded</a>
+                      </td>
                   </tr>
                 </tbody>
               </table>

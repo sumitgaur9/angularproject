@@ -16,13 +16,12 @@ export class OtherlinksComponent implements OnInit {
   public errorMessage: string = '';
   public showDiseasMasterPopup: boolean = false;
   public showExpertiesMasterPopup: boolean = false;
-  public showSaveImageForWebPopup: boolean = false;
   public showBookAppointmentPopup: boolean = false;
   public showCreateLabTestPopup: boolean = false;
   public showSaveBookLabTestPopup: boolean = false;
-  public showChangePasswordPopup: boolean = false;
   public showSaveTextForWebPopup: boolean = false;
   public showCompanyMasterPopup: boolean = false;
+  public showSaveImageForWebPopup: boolean = false;
 
   
 
@@ -135,38 +134,6 @@ export class OtherlinksComponent implements OnInit {
     this.router.navigate(['/labtechniciandashboard']);
   }
 
-  public closeChangePasswordPopup() {
-    this.showChangePasswordPopup = false;
-    $('#showChangePasswordPopup').modal('hide');
-  }
-
-  public openChangePasswordPopup() {
-    this.showChangePasswordPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showChangePasswordPopup').modal('show');
-    }, 100);
-  }
-
-  public closeSaveImageForWebPopup() {
-    this.showSaveImageForWebPopup = false;
-    $('#showSaveImageForWebPopup').modal('hide');
-  }
-
-  public openSaveImageForWebPopup() {
-    this.showSaveImageForWebPopup = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showSaveImageForWebPopup').modal('show');
-    }, 100);
-  }
-
-
-
-  public goToPaymentPage() {
-    this.router.navigate(['/paymentpage']);
-  }
-
   public closeSaveTextForWebPopup() {
     this.showSaveTextForWebPopup = false;
     $('#showSaveTextForWebPopup').modal('hide');
@@ -201,8 +168,18 @@ export class OtherlinksComponent implements OnInit {
     }, 100);
   }
 
+  public openSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showSaveImageForWebPopup').modal('show');
+    }, 100);
+  }
 
-  
+  public closeSaveImageForWebPopup() {
+    this.showSaveImageForWebPopup = false;
+    $('#showSaveImageForWebPopup').modal('hide');
+  }
 
   Save_Image() {
     this.errorMessage = "";

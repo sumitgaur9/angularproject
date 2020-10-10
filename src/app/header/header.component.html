@@ -41,7 +41,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item"  (click)="openProfilePopup()"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px">Profile</span></a>
               <a class="dropdown-item" (click)="openChangePasswordPopup()"><i class="fa fa-key" aria-hidden="true"></i><span style="margin-left:6px">Change Password</span></a>
-              <a class="dropdown-item"  (click)="openSaveImageForWebPopup()"><i class="fa fa-upload" aria-hidden="true"></i><span style="margin-left:6px">Image Upload</span></a>
+              <!-- <a class="dropdown-item"  (click)="openSaveImageForWebPopup()"><i class="fa fa-upload" aria-hidden="true"></i><span style="margin-left:6px">Image Upload</span></a> -->
               <a class="dropdown-item"  (click)="navigatetopage('login')"><i class="fa fa-sign-out" aria-hidden="true"></i><span style="margin-left:6px">LogOut</span></a>
             </div>
           </div>
@@ -109,9 +109,7 @@
   <app-changepassword  [showModal]="showChangePasswordPopup"  (ClosePopup)="closeChangePasswordPopup()"> </app-changepassword>
   </div>
   
-  <div *ngIf="showSaveImageForWebPopup">
-    <app-imageupload  [showModal]="showSaveImageForWebPopup"  (ClosePopup)="closeSaveImageForWebPopup()"> </app-imageupload>
-    </div>
+
 
 
     <div *ngIf="showDoctorProfilePopup">
