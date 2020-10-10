@@ -46,7 +46,7 @@
 						<input type="checkbox" id="readtandc" (change)="readTandC($event)">Remember Me
 					</div>
 					<div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="isActivateAccountRequired">
-						<em style="color: red;">{{inActiveUserRegisterMsg}}</em>
+						<em style="color: red;cursor: pointer;" (click)="GenerateOTP()">{{inActiveUserRegisterMsg}}</em>
 					  </div>
 					<div class="form-group">
 						<input type="submit"  value="Login" class="btn float-right login_btn">
@@ -59,7 +59,7 @@
 				</div>
 				<div class="d-flex justify-content-center">
 					<a *ngIf="!isActivateAccountRequired" (click)="openForgotPasswordPopup()" style="cursor: pointer;color:#053465">Forgot your password?</a>
-					<a *ngIf="isActivateAccountRequired" (click)="GenerateOTP()" style="cursor: pointer;color:#053465">Please Activate Account</a>
+					<a *ngIf="isActivateAccountRequired" (click)="GenerateOTP()" style="cursor: pointer;color:#053465;text-decoration: underline;font-weight: 600;">Please Activate Account</a>
 				</div>
 			</div>
 		</div>
