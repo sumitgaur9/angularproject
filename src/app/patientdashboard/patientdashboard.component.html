@@ -43,171 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-xxl-7">
-          <div class="card flex-fill w-100">
-            <div class="card-header">
-              <h5 class="card-title mb-0">Doctor Wise Count</h5>
-            </div>
-            <div class="card-body py-3">
-              <div class="chart chart-sm">
-                <div style="display: block;">
-                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
-                    [colors]="pieChartColor">
-                  </canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
-          <div class="card flex-fill w-100">
-            <div class="card-header">
-              <h5 class="card-title mb-0">Individual To Package Lab Test Count</h5>
-            </div>
-            <div class="card-body d-flex">
-              <div class="align-self-center w-100">
-                <div class="py-3">
-                  <div class="chart chart-xs">
-                    <div style="display: block;">
-                      <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
-                        [chartType]="doughnutChartType" [colors]="pieChartColor">
-                      </canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-          <div class="card flex-fill">
-            <div class="card-header">
-              <h5 class="card-title mb-0">Lab Test Count</h5>
-            </div>
-            <div class="card-body d-flex">
-              <div class="align-self-center w-100">
-                <div class="chart">
-                  <div>
-                    <canvas baseChart [data]="pieChartPharmacistData" [labels]="pieChartPharmacistLabels"
-                      [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins"
-                      [legend]="pieChartLegend" [colors]="pieChartColor">
-                    </canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-9 col-xxl-9 d-flex">
-          <div class="card flex-fill">
-            <div class="card-header">
-              <h5 class="card-title mb-0">Appointments</h5>
-            </div>
-            <table class="table table-hover my-0">
-              <thead style="background-color: #39b49b;">
-                <tr>
-                  <th>DoctorName</th>
-                  <th class="d-none d-xl-table-cell">Pat Name</th>
-                  <th class="d-none d-xl-table-cell">Pat Email</th>
-                  <th class="d-none d-xl-table-cell">Disease</th>
-                  <th>Appt Date</th>
-                  <th>Slot</th>
-                  <th>Payment</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of patientAppointmentData"
-                  [ngStyle]="{  'background-color': data.isPaymentDone ? '#80808045': '' }">
-                  <td
-                    [ngStyle]="{ 'color': data.doctorIsInActive ? 'red': 'black', 'cursor': data.isAddedInCart ? 'not-allowed': 'pointer' }">
-                    {{data.doctorName}}</td>
-                  <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
-                  <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
-                  <td class="d-none d-xl-table-cell">{{data.disease}}</td>
-                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
-                  <td class="d-none d-md-table-cell">{{data.timeSlotValue}}</td>
-                  <td>
-                    <a *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i
-                        class="fa fa-rupee" aria-hidden="true"></i>
-                      Make Payment</a>
-                    <a *ngIf="data.isPaymentDone" class="btn"
-                      style="font-size:13px;background-color: green;cursor: not-allowed;"><i class="fa fa-paypal"
-                        aria-hidden="true"></i>
-                      Payment Done</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="col-12 col-lg-3 col-xxl-3 d-flex">
-          <div class="card flex-fill w-100">
-            <div class="card-header">
 
-              <h5 class="card-title mb-0">Other Services</h5>
-            </div>
-            <div class="card-body d-flex w-100">
-              <div class="align-self-center chart chart-lg">
-                <div style="display: block;">
-                  <div class="text-center">
-
-                    <button class="btn" style="width: 200px;" (click)="openGetLabTest()"><i class="fa fa-list"
-                        aria-hidden="true"></i><span style="margin-left:5px;">Lab Tests List</span></button>
-                  </div>
-                  <div class="text-center" style="margin-top: 5%;">
-                    <button class="btn" style="width: 200px;"
-                      *ngIf="currentUser.user.role==0 || currentUser.user.role==11"
-                      (click)="openBookAppointmentPopup()"><i class="fa fa-book" aria-hidden="true"></i><span
-                        style="margin-left:5px;">Book Appointment</span></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-          <div class="card flex-fill">
-            <div class="card-header">
-              <h5 class="card-title mb-0">Lab Test</h5>
-            </div>
-            <table class="table table-hover my-0">
-              <thead style="background-color: #39b49b;">
-                <tr>
-                  <th class="d-none d-xl-table-cell">Pat Name</th>
-                  <th class="d-none d-md-table-cell">Pat Contact</th>
-                  <th class="d-none d-xl-table-cell">Pat Email</th>
-                  <th class="d-none d-xl-table-cell">Price</th>
-                  <th>Test Type</th>
-                  <th>Get Report</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of labTestBookingData">
-                  <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
-                  <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
-                  <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
-                  <td class="d-none d-xl-table-cell">{{data.price}}</td>
-                  <td class="d-none d-md-table-cell">{{data.testType}}</td>
-                  <td>
-                    <a *ngIf="data.isReportGenerated"
-                      href="https://mongowithnode.herokuapp.com/api/userModel/Get_UploadedTestReportbyBookLabTestID/{{data._id}}"
-                      class="btn" style="font-size:13px;"><i class="fa fa-download" aria-hidden="true"></i>
-                      Download</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-xl-6 col-xxl-5 d-flex">
           <div class="w-100">
             <div class="card-header">
@@ -253,7 +89,194 @@
             </div>
           </div>
         </div>
+        <!-- <div class="col-xl-6 col-xxl-7">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Doctor Wise Count</h5>
+            </div>
+            <div class="card-body py-3">
+              <div class="chart chart-sm">
+                <div style="display: block;">
+                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+                    [colors]="pieChartColor">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
+      <br>
+      <div class="row">
+        <div class="col-4 d-flex order-2 order-xxl-3">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Individual To Package Lab Test Count</h5>
+            </div>
+            <div class="card-body d-flex">
+              <div class="align-self-center w-100">
+                <div class="py-3">
+                  <div class="chart chart-xs">
+                    <div style="display: block;">
+                      <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType" [colors]="pieChartColor">
+                      </canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="col-4 d-flex order-1 order-xxl-1">
+          <div class="card flex-fill">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Lab Test Count</h5>
+            </div>
+            <div class="card-body d-flex">
+              <div class="align-self-center w-100">
+                <div class="chart">
+                  <div>
+                    <canvas baseChart [data]="pieChartPharmacistData" [labels]="pieChartPharmacistLabels"
+                      [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                      [legend]="pieChartLegend" [colors]="pieChartColor">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 d-flex order-1 order-xxl-1">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Doctor Wise Count</h5>
+            </div>
+            <div class="card-body py-3">
+              <div class="chart chart-sm">
+                <div style="display: block;">
+                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+                    [colors]="pieChartColor">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-12 d-flex">
+          <div class="card flex-fill">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Appointments</h5>
+            </div>
+            <table class="table table-hover my-0">
+              <thead style="background-color: #39b49b;">
+                <tr>
+                  <th>DoctorName</th>
+                  <th class="d-none d-xl-table-cell">Pat Name</th>
+                  <th class="d-none d-xl-table-cell">Pat Email</th>
+                  <th class="d-none d-xl-table-cell">Disease</th>
+                  <th>Appt Date</th>
+                  <th>Slot</th>
+                  <th>Payment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of patientAppointmentData"
+                  [ngStyle]="{  'background-color': data.isPaymentDone ? '#80808045': '' }">
+                  <td
+                    [ngStyle]="{ 'color': data.doctorIsInActive ? 'red': 'black', 'cursor': data.isAddedInCart ? 'not-allowed': 'pointer' }">
+                    {{data.doctorName}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
+                  <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.disease}}</td>
+                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
+                  <td class="d-none d-md-table-cell">{{data.timeSlotValue}}</td>
+                  <td>
+                    <a *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i
+                        class="fa fa-rupee" aria-hidden="true"></i>
+                      Make Payment</a>
+                    <a *ngIf="data.isPaymentDone" class="btn"
+                      style="font-size:13px;background-color: green;cursor: not-allowed;"><i class="fa fa-paypal"
+                        aria-hidden="true"></i>
+                      Payment Done</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="col-12 col-lg-3 col-xxl-3 d-flex">
+          <div class="card flex-fill w-100">
+            <div class="card-header">
+
+              <h5 class="card-title mb-0">Other Services</h5>
+            </div>
+            <div class="card-body d-flex w-100">
+              <div class="align-self-center chart chart-lg">
+                <div style="display: block;">
+                  <div class="text-center">
+
+                    <button class="btn" style="width: 200px;" (click)="openGetLabTest()"><i class="fa fa-list"
+                        aria-hidden="true"></i><span style="margin-left:5px;">Lab Tests List</span></button>
+                  </div>
+                  <div class="text-center" style="margin-top: 5%;">
+                    <button class="btn" style="width: 200px;"
+                      *ngIf="currentUser.user.role==0 || currentUser.user.role==11"
+                      (click)="openBookAppointmentPopup()"><i class="fa fa-book" aria-hidden="true"></i><span
+                        style="margin-left:5px;">Book Appointment</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex">
+          <div class="card flex-fill">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Lab Test</h5>
+            </div>
+            <table class="table table-hover my-0">
+              <thead style="background-color: #39b49b;">
+                <tr>
+                  <th class="d-none d-xl-table-cell">Pat Name</th>
+                  <th class="d-none d-md-table-cell">Pat Contact</th>
+                  <th class="d-none d-xl-table-cell">Pat Email</th>
+                  <th class="d-none d-xl-table-cell">Price</th>
+                  <th>Test Type</th>
+                  <th>Get Report</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of labTestBookingData">
+                  <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
+                  <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
+                  <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
+                  <td class="d-none d-xl-table-cell">{{data.price}}</td>
+                  <td class="d-none d-md-table-cell">{{data.testType}}</td>
+                  <td>
+                    <a *ngIf="data.isReportGenerated"
+                      href="https://mongowithnode.herokuapp.com/api/userModel/Get_UploadedTestReportbyBookLabTestID/{{data._id}}"
+                      class="btn" style="font-size:13px;"><i class="fa fa-download" aria-hidden="true"></i>
+                      Download</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+   
     </div>
   </div>
 
