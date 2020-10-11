@@ -107,6 +107,7 @@ export class PaymentComponent implements OnInit {
         this.razorpay_order_id = response.razorpay_order_id;
         this.razorpay_signature = response.razorpay_signature;
         ref.handlePayment(response);
+      //  window.history.back();
         console.log("Razorpay Payment Id is:", response.razorpay_payment_id);
         console.log("Razorpay Order Id is:", response.razorpay_order_id);
         console.log("Razorpay Signature is:", response.razorpay_signature);
@@ -136,8 +137,15 @@ export class PaymentComponent implements OnInit {
     this._apiservice.paymentverify(dataobj).subscribe(data => {
       if (data) {
         console.log("paymentverify", data);
-     
-      //  this.RemoveCartDetails();
+        this.toastr.error("Payment done sucessfully");
+      //  window.history.back();
+      //this.router.navigate(['/home'])
+       this.openPaymentSuccessPopup();
+        this.RemoveCartDetails();
+
+        // setTimeout(() => {
+        //   this.openPaymentSuccessPopup();
+        // }, 500);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -147,7 +155,7 @@ export class PaymentComponent implements OnInit {
   public closePaymentSuccessPopup() {
     this.showPaymentSuccessPopup = false;
     $('#showPaymentSuccessPopup').modal('hide');
-    window.history.back();
+    this.router.navigate(['/home'])
   }
 
   public openPaymentSuccessPopup() {
@@ -170,9 +178,7 @@ export class PaymentComponent implements OnInit {
     this._apiservice.RemoveCartDetails(dataobj, this.currentUserLoginResponse.roleBaseId).subscribe(data => {
       if (data) {
         this.removeDataFromCartArray();
-        setTimeout(() => {
-          this.openPaymentSuccessPopup();
-        }, 500);
+    
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

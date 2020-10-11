@@ -31,7 +31,7 @@ export class PaymentsuccessComponent implements OnInit {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     setTimeout(() => {
       this.CloseModal();
-    }, 8000);
+    }, 5000);
   }
 }
 
