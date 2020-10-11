@@ -78,8 +78,8 @@
                 <p class="card-text" *ngIf="data.description" style="width:95%; float: left;font-weight: 300;font-size: 14px;color: #5d5d5d;margin-top: 8px;">{{data.description}}
                   <!-- {{data.description.length > 80 ? data.description.substring(0,79)+'...' : data.description  }} -->
                 </p>
-                <div class="row test-included">
-                  <div class="col-6">
+                <!-- <div class="row test-included"> -->
+                  <!-- <div class="col-6">
                     <div class="d-flex">
                       <img src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/test-include.svg" 
                       style="height: 68px; width: 68px;padding-top: 0;"  alt="test">
@@ -92,8 +92,43 @@
                         </h4>
                       </div>
                     </div>
+                  </div> -->
+
+                  <div  style="float: left;width: 100%;padding:0 0 8px 0;">
+                    <div  style="float: left;width: 51%;">
+                      <div class="d-flex">
+                        <img src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/test-include.svg" 
+                        style="height: 68px; width: 68px;padding-top: 0;"  alt="test">
+                        <div class="test-included-info" style="padding-top: 5px;">
+                          <h6 style="font-size: 13px;">
+                            Test Included
+                          </h6>
+                          <h4 style="font-size: 15px;font-weight: 600;">
+                            {{data?.testsData.length}} Parameters
+                          </h4>
+                        </div>
+                      </div>                   
+                    </div>
+
+                    <div  style="float: left;width: 30%;">
+                      <div class="d-flex">
+                        <img src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/megnifier.svg" 
+                        style="height: 68px; width: 68px;padding-top: 0;"  alt="test">
+                        <div class="test-included-info" style="padding-top: 5px;">
+                          <h6 style="font-size: 13px;">
+                            Report Availability
+                          </h6>
+                          <h4 style="font-size: 15px;font-weight: 600;">
+                            Next Day
+                          </h4>
+                        </div>
+                      </div>                   
+                    </div>
+                  
                   </div>
-                  <div class="col-6">
+
+
+                  <!-- <div class="col-6">
                     <div class="d-flex">
                       <img src="https://prod-metropolisindia-bucket.s3.ap-south-1.amazonaws.com/images/megnifier.svg" 
                       style="height: 68px; width: 68px;padding-top: 0;"  alt="test">
@@ -106,8 +141,8 @@
                         </h4>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </div> -->
+                <!-- </div> -->
                 <div class="report-button" style="float: left;width: 100%;padding:0 0 8px 0;">
                   <div class="form_data" style="float: left;width: 30%;">                    
                     <button class="btn-blue" (click)="bookNow(data)">Book Now</button>

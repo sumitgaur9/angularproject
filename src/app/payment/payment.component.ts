@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { RAZORPAY } from 'src/app/shared/api.constant';
 import { WindowRefService } from '../window-ref.service';
+
 declare var $: any;
 
 @Component({
@@ -97,10 +98,10 @@ export class PaymentComponent implements OnInit {
       "amount": this.payableAmount, // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
       // "name": 'Sumit Gaur',
       "name": this.paymentform.controls.name.value,
-      "description": "UI checkout testing",
+      "description": "Health Care",
       "currency": "INR",
       "order_id": this.order_id,//This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
-      "image": 'https://angular.io/assets/images/logos/angular/angular.png',
+      "image": '../../assets/images/icon-logo.png',
       "handler": function (response) {
         this.razorpay_payment_id = response.razorpay_payment_id;
         this.razorpay_order_id = response.razorpay_order_id;
@@ -135,8 +136,8 @@ export class PaymentComponent implements OnInit {
     this._apiservice.paymentverify(dataobj).subscribe(data => {
       if (data) {
         console.log("paymentverify", data);
-        this.openPaymentSuccessPopup();
-        this.RemoveCartDetails();
+     
+      //  this.RemoveCartDetails();
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -146,8 +147,7 @@ export class PaymentComponent implements OnInit {
   public closePaymentSuccessPopup() {
     this.showPaymentSuccessPopup = false;
     $('#showPaymentSuccessPopup').modal('hide');
-    this.router.navigate(['/home'])
-
+    window.history.back();
   }
 
   public openPaymentSuccessPopup() {
@@ -160,7 +160,8 @@ export class PaymentComponent implements OnInit {
 
   cancelPayment()
   {
-    this.router.navigate(['/home'])
+    window.history.back();
+    //this.router.navigate(['/home'])
   }
 
   RemoveCartDetails() {
@@ -169,6 +170,9 @@ export class PaymentComponent implements OnInit {
     this._apiservice.RemoveCartDetails(dataobj, this.currentUserLoginResponse.roleBaseId).subscribe(data => {
       if (data) {
         this.removeDataFromCartArray();
+        setTimeout(() => {
+          this.openPaymentSuccessPopup();
+        }, 500);
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);

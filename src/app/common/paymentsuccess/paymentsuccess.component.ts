@@ -29,14 +29,10 @@ export class PaymentsuccessComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
+    setTimeout(() => {
+      this.CloseModal();
+    }, 8000);
   }
-
-
-
-
- 
-
-  
 }
 
 

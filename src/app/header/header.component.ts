@@ -80,14 +80,8 @@ export class HeaderComponent implements OnInit {
 
     
     this.utilityservice.subRemoveFromCart.subscribe((dataobj) => {
-      if (dataobj) {
-        console.log("subRemoveFromCart", dataobj);
-       if(dataobj)
-       {
-        this.cartInfoData=dataobj;
-       }
-        sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
-      }
+      this.cartInfoData=dataobj;
+      sessionStorage.setItem("sessionCartData", JSON.stringify(this.cartInfoData));    
     });
 
 
