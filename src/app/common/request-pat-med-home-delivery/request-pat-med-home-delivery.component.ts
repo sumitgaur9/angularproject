@@ -111,7 +111,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
 
     this.settings = {
-      text: "Select Test",
+      text: "Select Medicines",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       classes: "myclass custom-class"

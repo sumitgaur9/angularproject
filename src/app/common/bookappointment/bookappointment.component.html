@@ -210,7 +210,7 @@
               <select class="form-control" formControlName="timeSlot">
                 <option value=""></option>
                 <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked"
-                  [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.name}}</option>
+                  [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.isSlotBooked? opt.name+ '  Slot Full': opt.name}}</option>
               </select>
             </div>
 
