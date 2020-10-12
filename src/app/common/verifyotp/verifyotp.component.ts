@@ -15,6 +15,7 @@ export class VerifyotpComponent implements OnInit {
   @Input() inputForVerifyOTP: any;
   @Input() showModal: string;
   @Output() verifyOTPSet: EventEmitter<any> = new EventEmitter();
+  @Output() ResendOTP = new EventEmitter();
   @Output() ClosePopup = new EventEmitter();
 
   public submitted: boolean = false;
@@ -49,5 +50,9 @@ export class VerifyotpComponent implements OnInit {
     else {
       this.verifyOTPSet.emit(this.inputForVerifyOTP.userEmail)
     }
+  }
+
+  resendOTP(){
+    this.ResendOTP.emit();
   }
 }

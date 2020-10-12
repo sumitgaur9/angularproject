@@ -122,7 +122,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
+  resendOTP(){
+    this.GenerateOTP();
+  }
 
   GenerateOTP() {
     this.submitted = true;
