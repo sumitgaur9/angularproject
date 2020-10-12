@@ -1,6 +1,6 @@
   <div class="content" style="position: absolute;top:17%;width:96%;left:2%;right:2%;">
     <div class="container-fluid p-0">
-      <div class="row mb-2 mb-xl-3">
+      <!-- <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
           <h3 style="color:#39b49b"><strong style="color:#39b49b">Patient</strong> Dashboard</h3>
         </div>
@@ -10,7 +10,29 @@
             </ol>
           </nav>
         </div>
-      </div>
+      </div> -->
+ 
+            <div style="float:left;width:100%">
+              <div style="float:left;width:67%;margin-left:1%;margin-bottom:1%">
+                <h3 style="color:#39b49b"><strong style="color:#39b49b">Patient</strong> Dashboard</h3>
+              </div>
+              <div style="float:left;width:13%">
+                <div class="text-center">
+                  <button class="btn" style="width: 200px;"
+                    *ngIf="currentUser.user.role==0 || currentUser.user.role==11"
+                    (click)="openBookAppointmentPopup()"><i class="fa fa-book" aria-hidden="true"></i><span
+                      style="margin-left:5px;">Book Appointment</span></button>
+                </div>
+              </div>
+              <div style="float:left;margin-left:3%;width:13%">
+                <div class="text-center">
+                  <button class="btn" style="width: 200px;" (click)="openGetLabTest()"><i class="fa fa-list"
+                    aria-hidden="true"></i><span style="margin-left:5px;">Lab Tests List</span></button>
+                </div>
+              </div>
+            </div>
+        
+
       <div class="row">
         <div class="col-xl-6 col-xxl-7">
           <div class="card flex-fill w-100">
@@ -182,8 +204,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of patientAppointmentData"
-                  [ngStyle]="{  'background-color': data.isPaymentDone ? '#80808045': '' }">
+                <tr *ngFor="let data of patientAppointmentData ;let odd=odd; let even=even;"[ngClass]="{ odd: odd, even: even }">
                   <td
                     [ngStyle]="{ 'color': data.doctorIsInActive ? 'red': 'black', 'cursor': data.isAddedInCart ? 'not-allowed': 'pointer' }">
                     {{data.doctorName}}</td>
