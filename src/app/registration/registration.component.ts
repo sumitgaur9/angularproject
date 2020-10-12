@@ -71,7 +71,8 @@ export class RegistrationComponent implements OnInit {
     this._apiservice.registration(values).subscribe(data => {
       if (data) {
         this.toastr.success('Registration Successfully');
-        this.router.navigate(['/login']);
+        this.loginUser(values.email,values.password)
+        // this.router.navigate(['/login']);
       }
     }, error => {
       if (error && error.status == 501) {
@@ -90,6 +91,25 @@ export class RegistrationComponent implements OnInit {
       else if (error && error.error && error.error.message) {
         this.errorMessage = error.error.message; this.toastr.error(error.error.message);
       }
+    });
+  }
+
+  loginUser(email,password) {
+    let dataobj ={
+      email: email,
+      password: password
+    }
+    this._apiservice.signIn(dataobj).subscribe(data => {
+      if (data) {
+        console.log("loginUserResponseData..", data);
+        if (data.token && data.token != "" && data.token != null) {
+          let datainput: any = {};
+          this.utilityservice.navigateToSpecificPage(data.user.role);
+          this.utilityservice.onLoginSuccessfully.next();
+        }
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
 

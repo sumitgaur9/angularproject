@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
           if (this.isTandCChequed) {
             this.rememberCredentials();
           }
-          this.navigateToSpecificPage(data.user.role);
+          this.utilityservice.navigateToSpecificPage(data.user.role);
           this.utilityservice.onLoginSuccessfully.next();
         }
       }
@@ -122,31 +122,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  navigateToSpecificPage(roleType) {
-    switch (roleType) {
-      case 0:
-        this.router.navigate(['/patientdashboard']);
-        break;
-      case 1:
-        this.router.navigate(['/doctordashboard']);
-        break;
-      case 2:
-        this.router.navigate(['/nursedashboard']);
-        break;
-        case 5:
-        this.router.navigate(['/labtechniciandashboard']);
-        break;
-      case 3:
-      case 11:
-        this.router.navigate(['/home']);
-        break;
-      case 4:
-        this.router.navigate(['/pharmacistdashboard']);
-        break;
-        
-
-    }
-  }
+  
 
   GenerateOTP() {
     this.submitted = true;
