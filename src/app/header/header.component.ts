@@ -41,6 +41,16 @@ export class HeaderComponent implements OnInit {
   public cartInfoData:any=[];
   public cartInfoCount:number=0;
   public cartDataFromSessionStorage:any=[];
+  public RolesTabVisiblity={
+    home:false,
+    doctor:false,
+    patient:false,
+    pharmacist:false,
+    nurse:false,
+    physio:false,
+    features:false
+  };
+  
 
   constructor(private utilityservice: UtililtyFunctions, private router: Router, private _apiservice: APIService, private toastr: ToastrService) {
     this.unsubscribe = this.utilityservice.onLoginSuccessfully.subscribe(() => {
@@ -105,6 +115,25 @@ export class HeaderComponent implements OnInit {
     else{
       this.Get_CartDetails();
     }
+
+    this.tabVisiblity();
+      
+  }
+
+  tabVisiblity(){
+    this.RolesTabVisiblity.home= true;
+
+      if(this.currentUser.user.role == 1 || this.currentUser.user.role == 11){
+        this.RolesTabVisiblity.patient= true;
+      } else {
+        this.RolesTabVisiblity.patient= false;
+      }
+
+      this.RolesTabVisiblity.doctor= true;
+      this.RolesTabVisiblity.pharmacist= true;
+      this.RolesTabVisiblity.nurse= true;
+      this.RolesTabVisiblity.physio= true;
+      this.RolesTabVisiblity.features= true;
   }
 
   logout() {
