@@ -77,9 +77,9 @@
 
             <!-- <td class="d-none d-xl-table-cell" style="vertical-align: middle;">{{data.companyName}}</td> -->
 			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;">
-				<i class="fa fa-plus" (click)="addQtyByOne(data)" style="width: 12%;font-size: 20;color: blue;"></i>
-				<input type="text" style="width:23%;text-align: center;border:2px solid #0000001c;" [(ngModel)]="data.qty" (change)="qtyChange(data.qty,data)">
-				<i class="fa fa-minus" (click)="reduceQtyByOne(data)" style="width: 12%;font-size: 20;color: #ff00008c;"></i>
+				<i *ngIf="data.paymentTypeEnumKey==3" class="fa fa-plus" (click)="addQtyByOne(data)" style="width: 12%;font-size: 20;color: blue;"></i>
+				<input type="text" [disabled]="data.paymentTypeEnumKey!=3" style="width:23%;text-align: center;border:2px solid #0000001c;" [(ngModel)]="data.qty" (change)="qtyChange(data.qty,data)">
+				<i *ngIf="data.paymentTypeEnumKey==3" class="fa fa-minus" (click)="reduceQtyByOne(data)" style="width: 12%;font-size: 20;color: #ff00008c;"></i>
 			</td>
 			<td class="d-none d-md-table-cell" style="font-weight: 600;vertical-align: middle;text-align: right;">&#8377; {{data.price.toLocaleString('en-IN')}}</td>
 
