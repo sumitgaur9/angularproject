@@ -153,7 +153,9 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       return;
     }
     if (this.sheduleMedicineTableData.length < 1) {
-      this.toastr.error('Please Select Medicine');
+      this.toastr.error('Please provide atleast one record', '', {
+        timeOut: 5000,
+      });
       return;
     }
     this.errorMessage = "";
@@ -196,11 +198,16 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this._apiservice.Request_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
-        this.toastr.success('Thanks to being a part of our platform');
+        this.toastr.success("Thanks to being a part of our platform", '', {
+          timeOut: 8000,
+        });
         this.CloseModal();
       }
     }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+      this.errorMessage = error.error.message; 
+      this.toastr.error(error.error.message, '', {
+        timeOut: 8000,
+      });
     });
   }
 

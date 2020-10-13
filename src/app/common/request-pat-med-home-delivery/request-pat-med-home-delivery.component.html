@@ -168,6 +168,9 @@
         </tbody>
       </table>
     </div>
+    <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="submitted">
+      <em style="color: red;font-size: 12px;">{{errorMessage}}</em>
+    </div>
 
     </ad-modal-body>
     <ad-modal-footer>
