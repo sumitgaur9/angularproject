@@ -38,7 +38,8 @@ export class PatientprofileComponent implements OnInit {
     image: new FormControl(""),
     phoneno: new FormControl(""),
     address: new FormControl(""),
-    age: new FormControl(18),    
+    age: new FormControl(18),
+    weight: new FormControl(60),
     id: new FormControl(""),
     participantID: new FormControl(""),
     description: new FormControl(""),
@@ -132,7 +133,12 @@ export class PatientprofileComponent implements OnInit {
             description: data.description
           });
         }
-
+        if (data.weight != undefined) {
+          this.patientform.patchValue({
+            weight: data.weight
+          });
+        }
+        
 
         if (data.participantID != undefined) {
           this.patientform.patchValue({
@@ -189,7 +195,8 @@ export class PatientprofileComponent implements OnInit {
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
     formData.append('address', this.patientform.value.address);
-    formData.append('age', this.patientform.value.age);    
+    formData.append('age', this.patientform.value.age);   
+    formData.append('weight', this.patientform.value.weight); 
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);
     formData.append('description', this.patientform.value.description);
@@ -223,7 +230,8 @@ export class PatientprofileComponent implements OnInit {
     formData.append('email', this.patientform.value.email);
     formData.append('phoneno', this.patientform.value.phoneno);
     formData.append('address', this.patientform.value.address);
-    formData.append('age', this.patientform.value.age);    
+    formData.append('age', this.patientform.value.age);
+    formData.append('weight', this.patientform.value.weight);    
     formData.append('id', this.patientform.value.id);
     formData.append('participantID', this.patientform.value.participantID);
     formData.append('description', this.patientform.value.description);
