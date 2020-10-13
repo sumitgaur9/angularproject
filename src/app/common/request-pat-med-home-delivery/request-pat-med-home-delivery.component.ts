@@ -16,11 +16,11 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() showModal: boolean = false;
   @Input() userEmail = null;
   @Input() appointmentid: string = '';
-  @Input() reqByDoctorId: string = ''; 
-  @Input() reqByPatientId: string = ''; 
-  @Input() reqByDoctorName: string = ''; 
+  @Input() reqByDoctorId: string = '';
+  @Input() reqByPatientId: string = '';
+  @Input() reqByDoctorName: string = '';
 
-  
+
 
 
   @Input() inputrequesPatMedHomeDeliveryData: any;
@@ -38,12 +38,11 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   public dayPickerTimeConfig = <IDayCalendarConfig>{
     locale: "in",
-    showTwentyFourHours:false,
-    meridiemFormat:"A",
+    showTwentyFourHours: false,
+    meridiemFormat: "A",
     //format: "hh:mm",
   };
 
-  //just for now
   public medicineListDataArray: any = [];
 
 
@@ -61,29 +60,30 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   itemList = [];
   selectedItems = [];
+  keyword = 'name';
+
+  public instructionDataArray: any = [
+    { "name": "Before Breakfast" },
+    { "name": "After Breakfast" },
+    { "name": "Before Lunch" },
+    { "name": "After Lunch" },
+    { "name": "Before Dinner" },
+    { "name": "After Dinner" }]
 
 
   settings = {};
-  public createlabtestpackageform = new FormGroup({
-    packageNname: new FormControl(""),
-    packageAmount: new FormControl(""),
-    id: new FormControl(""),
-    skills: new FormControl([[], Validators.required])
-  });
 
   public reqPatientMedicinesHomeDeliveryForm = new FormGroup({
-    patientName: new FormControl(""),
-    //   medicineName: new FormControl(""),
-    patientContactNo: new FormControl(""),
-    //medicineID: new FormControl(""),
-    pharmacistID: new FormControl(""),
-    pharmacistName: new FormControl(""),
-    patientAddress: new FormControl(""),
-    patientPIN: new FormControl(""),
+    patientName: new FormControl("", Validators.required),
+    patientContactNo: new FormControl("", Validators.required),
+    pharmacistID: new FormControl("", Validators.required),
+    pharmacistName: new FormControl("", Validators.required),
+    patientAddress: new FormControl("", Validators.required),
+    patientPIN: new FormControl("", Validators.required),
     scheduleDate: new FormControl(""),
     scheduleTime: new FormControl(""),
     processInfo: new FormControl(""),
-    skills: new FormControl([[], Validators.required]),
+    medicineName: new FormControl([[]]),
   });
 
   public passwordPatternError = false;
@@ -147,6 +147,11 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   }
 
 
+
+
+
+
+
   Request_PatientMedicinesHomeDelivery() {
     this.submitted = true;
     if (this.reqPatientMedicinesHomeDeliveryForm.invalid) {
@@ -204,7 +209,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
         this.CloseModal();
       }
     }, error => {
-      this.errorMessage = error.error.message; 
+      this.errorMessage = error.error.message;
       this.toastr.error(error.error.message, '', {
         timeOut: 8000,
       });
@@ -229,7 +234,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   Get_MedicinesList(companyName?) {
     let dataobj = {
     };
-    this._apiservice.Get_MedicinesList(dataobj,companyName).subscribe(data => {
+    this._apiservice.Get_MedicinesList(dataobj, companyName).subscribe(data => {
       if (data) {
         console.log("medicineListDataArray ", data);
         for (var i = 0; i < data.length; i++) {
@@ -267,6 +272,40 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   }
 
   public SendDataInTableValue() {
+    if (this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == undefined ||
+
+      this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == null ||
+
+      this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == '') {
+      this.toastr.warning("Please Select ScheduleDate", '', {
+        timeOut: 6000,
+      });
+      return;
+    }
+    else if (this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == undefined ||
+
+      this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == null ||
+
+      this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == '') {
+      this.toastr.warning("Please Select ScheduleTime", '', {
+        timeOut: 6000,
+      });
+      return;
+    }
+    else if (this.selectedItems.length < 1) {
+      this.toastr.warning("Please Select Medicine", '', {
+        timeOut: 6000,
+      });
+      return;
+    }
+    else if (this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == undefined ||
+
+      this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == null || this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == '') {
+      this.toastr.warning("Please Select Instruction", '', {
+        timeOut: 6000,
+      });
+      return;
+    }
     let selectedDataValue: any = [];
     let selectedMedicineName: any = [];
     let selectedMedicineID: any = [];
@@ -287,13 +326,13 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     dataobj.medicineScheduleName = selectedMedicineName.toString();
     dataobj.medicineScheduleId = selectedMedicineID.toString();
 
-    
+
     this.sheduleMedicineTableData.push(dataobj);
 
     this.reqPatientMedicinesHomeDeliveryForm.patchValue({
       scheduleDate: '',
       scheduleTime: '',
-      processInfo:'',
+      processInfo: '',
     })
     this.selectedItems = [];
   }
@@ -301,5 +340,30 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   deleteMedicineDetailRow(index: number) {
     this.sheduleMedicineTableData.splice(index, 1);
   }
-}
 
+
+
+  selectEventInstruction(item) {
+    // do something with selected item
+    console.log("selectEvent", item);
+    this.reqPatientMedicinesHomeDeliveryForm.patchValue({
+      processInfo: item.name
+    })
+
+  }
+
+  onChangeSearchInstruction(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    console.log("onChangeSearch", val);
+    this.reqPatientMedicinesHomeDeliveryForm.patchValue({
+      processInfo: val
+    })
+  }
+
+  onFocusedInstruction(e) {
+    // do something when input is focused
+  }
+
+
+}
