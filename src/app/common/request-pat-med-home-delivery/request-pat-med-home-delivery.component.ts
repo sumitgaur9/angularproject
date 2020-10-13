@@ -32,15 +32,15 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     format: "DD/MM/YYYY",
     monthFormat: "MMMM, YYYY",
     firstDayOfWeek: "mo",
-    min: "01/09/2020",
+    min: "13/10/2020",
     max: "30/11/2020"
   };
 
   public dayPickerTimeConfig = <IDayCalendarConfig>{
     locale: "in",
     showTwentyFourHours:false,
-    meridiemFormat:"A"
-    //format: "hh:mm:ss",
+    meridiemFormat:"A",
+    //format: "hh:mm",
   };
 
   //just for now
@@ -238,10 +238,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     });
   }
 
-
-
-
-
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
@@ -295,6 +291,8 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.selectedItems = [];
   }
 
-
+  deleteMedicineDetailRow(index: number) {
+    this.sheduleMedicineTableData.splice(index, 1);
+  }
 }
 
