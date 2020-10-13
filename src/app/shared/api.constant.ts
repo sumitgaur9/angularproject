@@ -70,6 +70,7 @@ export const API_PATH: any = {
     'Save_UploadLabTestReport': 'Save_UploadLabTestReport',
     'Get_UploadedTestReportbyLabTestID': 'Get_UploadedTestReportbyLabTestID',
     'GenerateOTP': 'GenerateOTP',
+    'GenerateOTPToPhone': 'GenerateOTPToPhone',
     'ChangePassword': 'users/changePassword',
     'Get_WebsiteImageByLocationEnum': 'Get_WebsiteImageByLocationEnum',
     'SaveUpdate_UploadWebsiteImages': 'SaveUpdate_UploadWebsiteImages',

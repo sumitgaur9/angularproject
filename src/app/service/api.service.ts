@@ -653,6 +653,14 @@ export class APIService {
         return userData;
       }));
   }
+
+  GenerateOTPToPhone(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.GenerateOTPToPhone}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }  
   ChangePassword(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.ChangePassword}`
     return this.http.post<any>(APIURL, data)

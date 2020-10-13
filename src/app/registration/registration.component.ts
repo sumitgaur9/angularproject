@@ -25,6 +25,11 @@ export class RegistrationComponent implements OnInit {
   isVisibleSendOTPbutton: boolean = false;
   inActiveEmailID = '';
   public phoneNoCountryCode:string='+91';
+  OTPFromRegistrationForm='';
+  OTPFromAPI='';
+  isRegMobileNoVerified:boolean=false;
+  isInvalidMobileError = true;
+  isverifyOTPbtnClicked:boolean=false;
 
   public userInfo = new FormGroup({
     email: new FormControl("", [Validators.required]),
@@ -36,7 +41,14 @@ export class RegistrationComponent implements OnInit {
 
   });
 
+  public tempForm = new FormGroup({
+    OTPFromRegistrationForm: new FormControl("", ),
+  });
+
+
+
   get f() { return this.userInfo.controls; }
+  get h() { return this.tempForm.controls; }
 
   ngOnInit() {
     this.createCaptcha();
@@ -62,6 +74,12 @@ export class RegistrationComponent implements OnInit {
       this.isInvalidCaptcha = true;
       return;
     }
+    this.isInvalidMobileError = false;
+    if (!this.isRegMobileNoVerified) {
+      this.isInvalidMobileError = true;
+      return;
+    }
+    
     if (this.userInfo.invalid) {
       this.isInvalidCaptcha = false;
       this.createCaptcha();
@@ -116,6 +134,35 @@ export class RegistrationComponent implements OnInit {
   navigateToLoginPage() {
     this.router.navigate(['/login']);
 
+  }
+  verifyRegMobOTP() {
+    this.isverifyOTPbtnClicked = true;
+    if (this.h.OTPFromRegistrationForm.value == this.OTPFromAPI) {
+      this.isRegMobileNoVerified = true;
+    } else {
+      this.isRegMobileNoVerified = false;
+    }
+  }
+
+  sendOTP(number){
+    this.GenerateOTP(number)
+  }
+
+  GenerateOTP(number) {
+    
+    let dataobj = {
+      "phone": number
+    }
+    this._apiservice.GenerateOTPToPhone(dataobj).subscribe(data => {
+      if (data) {
+        console.log("OTP Data is this..", data);
+         this.OTPFromAPI = data.response.OTP;
+        // this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
+        // this.openVerifyOTPPopup();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 
  

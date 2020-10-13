@@ -111,10 +111,46 @@
                     {{getMessage(userInfo.controls['phoneno'],'phoneno','Phoe No')}}</div>
                 </div>
                 </div>
-                <div class="col" style="margin-right:18%">
+
+
+                <div class="col" style="margin-right:18%;margin-top:4%">
+                  <div [hidden]="f.phoneno.value.length!=10">
+                    <form [formGroup]="tempForm" [hidden]="isRegMobileNoVerified">
+                      <input [hidden]="OTPFromAPI"
+                        style="width: 34%;float: left;height: 36px;margin-top: 3px;border-radius: 4px;font-size: 14px;background: #22a2b8;"
+                        type="button" class="btn-primary" value="Send OTP" (click)="sendOTP(f.phoneno.value)">
+                      <input [hidden]="!OTPFromAPI"
+                        style="width: 32%;float: right;height: 35px;border-radius: 0px;background: #22a2b8;font-size: 14px;margin-top: 1%;"
+                        type="button" class="btn-primary" value="Verify OTP" (click)="verifyRegMobOTP()">
+                      <input [hidden]="!OTPFromAPI" style="width: 61%;float: left;margin-top: 1%;margin-left: 2%;" type="text"
+                        class="form-control" maxlength="6" placeholder="Enter OTP" formControlName="OTPFromRegistrationForm">
+                
+                    </form>
+                    <div [hidden]="!isRegMobileNoVerified" style="margin-left: -23%;margin-top: 4%;">
+                      <a><i class="fa fa-check-circle" aria-hidden="true" style="color: green;font-size: 20px;"></i></a>
+                    </div>
+                    <div *ngIf="isverifyOTPbtnClicked && !isRegMobileNoVerified">
+                      <div style="color:red;font-size: 14px;font-family: auto;width: 60%;">
+                        OTP does not matched
+                      </div>
+                    </div>
+                    <div *ngIf="submitted && !isRegMobileNoVerified">
+                      <div style="color:red;font-size: 14px;font-family: auto;width: 75%;">
+                        Mobile Number is not verified
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+
+
+              </div>
+              <div class="row" style="margin-bottom:15px;">
+                
+                <div class="col" style="margin-left:15px">
                   <label class="control-label col-sm-2" for="lname"  style="padding-left:2px;">Password:</label>
 
-                  <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                  <input type="password" formControlName="password" style="width: 39%;" class="form-control" placeholder="Password"
                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 
                 <div *ngIf="submitted && userInfo.controls.password.invalid">
