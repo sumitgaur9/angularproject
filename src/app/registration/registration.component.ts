@@ -66,7 +66,7 @@ export class RegistrationComponent implements OnInit {
       password: this.userInfo.value.password,
       role: Number(this.userInfo.value.role),
       phoneno: Number(this.userInfo.value.phoneno),
-      gender: Number(this.userInfo.value.phoneno),      
+      gender: Number(this.userInfo.value.gender),      
     }
     this.submitted = true;
     this.isInvalidCaptcha = false;
