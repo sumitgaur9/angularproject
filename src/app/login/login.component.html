@@ -73,7 +73,7 @@
   
 
   <div *ngIf="showVerifyOTPPopup">
-    <app-verifyotp   [showModal]="showVerifyOTPPopup" [inputForVerifyOTP]="inputForVerifyOTP"  (ClosePopup)="closeVerifyOTPPopup()" (verifyOTPSet)="verifyOTPSet($event)"  (ResendOTP)="resendOTP()"> </app-verifyotp>
+    <app-verifyotp   [showModal]="showVerifyOTPPopup" [inputForVerifyOTP]="inputForVerifyOTP"  (ClosePopup)="closeVerifyOTPPopup()" (verifyOTPSet)="verifyOTPSet($event)"  (ResendOTP)="GenerateOTP()"> </app-verifyotp>
     </div>
 
 

@@ -18,11 +18,11 @@
                       <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="inputForVerifyOTP.regMobileNo!=''">
                         <em style="color: red;">{{sendMobileNoStartMsg}}{{inputForVerifyOTP.regMobileNo.substring(8)}}{{sendMobileNoEndMsg}}</em>
                       </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group" style="display: none;">
                             <span class="has-float-label">
                                 <input disabled class="form-control" id="userEmail"  formControlName="userEmail"  type="text" placeholder="Registered email id" />
                             </span>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <span class="has-float-label">
                                 <input class="form-control" formControlName="otp" id="otp" type="text"
@@ -33,7 +33,7 @@
                                 </div>
                             </span>
                         </div>
-                        <a style="color: blue;font-size: 12px;float: left;text-decoration: underline;" (click)="resendOTP()"><i class="fa fa-repeat" style="padding-right: 10px;font-size: 17px;" aria-hidden="true"></i>Resend OTP</a>
+                        <a style="color: blue;cursor:pointer;font-size: 12px;float: left;text-decoration: underline;" (click)="resendOTP()"><i class="fa fa-repeat" style="padding-right: 10px;font-size: 17px;" aria-hidden="true"></i>Resend OTP</a>
                     </div>
                 </div>
             </div>

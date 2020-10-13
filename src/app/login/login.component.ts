@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
           email: dataobj.email,
           password: dataobj.password,  //homevisit/online
         });
+        this.inputForVerifyOTP.userEmail=dataobj.email;
       }
     });
   }
@@ -122,27 +123,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  resendOTP(){
-    this.GenerateOTP();
-  }
+  
 
   GenerateOTP() {
     this.submitted = true;
 
-    if(this.loginInfo.controls.email.value=='' || this.loginInfo.controls.email.value==undefined)
+    if(this.inputForVerifyOTP.userEmail=='' || this.inputForVerifyOTP.userEmail==undefined)
     {
       this.toastr.error("Please Enter Email Id to forgot password");
       return;
     }
     let dataobj = {
-      "email": this.loginInfo.controls.email.value//this.inputForVerifyOTP.userEmail
+      "email": this.inputForVerifyOTP.userEmail
     }
     this._apiservice.GenerateOTP(dataobj).subscribe(data => {
       if (data) {
         console.log("OTP Data is this..", data);
         this.inputForVerifyOTP.OTPAPIValue = data.response.OTP;
         this.inputForVerifyOTP.regMobileNo = data.response.regMobileNo;
-        this.inputForVerifyOTP.userEmail = this.loginInfo.controls.email.value;
         this.openVerifyOTPPopup();
       }
     }, error => {
