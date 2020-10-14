@@ -58,6 +58,9 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     { "name": "Before Dinner" },
     { "name": "After Dinner" }]
   settings = {};
+  public labtestListDataArray: any = [];
+  selectedLabTestItems = [];
+  settingsLabTest= {};
   public reqPatientMedicinesHomeDeliveryForm = new FormGroup({
     patientName: new FormControl("", Validators.required),
     patientContactNo: new FormControl("", Validators.required),
@@ -69,6 +72,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     scheduleTime: new FormControl(""),
     processInfo: new FormControl(""),
     medicineName: new FormControl([[]]),
+    LabTestName: new FormControl([[]]),
   });
   public passwordPatternError = false;
   public pharmacistListDataArray: any = [];
@@ -83,6 +87,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
     this.Get_MedicinesList();
     this.Get_PharmacistsList();
+    this.Get_LabTestsList();
     this.reqPatientMedicinesHomeDeliveryForm.patchValue({
       patientName: this.inputrequesPatMedHomeDeliveryData.patientNname,
       patientAddress: this.inputrequesPatMedHomeDeliveryData.patientAddres,
@@ -94,6 +99,15 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.selectedItems = [];
     this.settings = {
       text: "Select Medicines",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      classes: "myclass custom-class"
+    };
+
+    this.labtestListDataArray = [];
+    this.selectedLabTestItems = [];
+    this.settingsLabTest = {
+      text: "Select Lab Tests (If Required)",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       classes: "myclass custom-class"
@@ -142,6 +156,16 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     dataobj.patientAddress = this.reqPatientMedicinesHomeDeliveryForm.controls.patientAddress.value;
     dataobj.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
     dataobj.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
+    
+    let labtestdataarray=[];    
+    this.selectedLabTestItems.forEach(element => {
+      let dataobjec = {
+        testID: element.id,
+        testname: element.itemName
+      }
+      labtestdataarray.push(dataobjec);
+    });
+    dataobj.testsData =  labtestdataarray;
 
     for (var i = 0; i < this.sheduleMedicineTableData.length; i++) {
       let tempObj: any = {};
@@ -213,6 +237,28 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     });
   }
 
+  Get_LabTestsList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_LabTestsList(dataobj).subscribe(data => {
+      if (data) {
+        console.log("labtestListDataArray ", data);
+        this.labtestListDataArray=[];
+        for (var i = 0; i < data.length; i++) {
+          let dataobj1 = {
+            "id": data[i]._id,
+            "itemName": data[i].testName
+          }
+          this.labtestListDataArray.push(dataobj1);
+        }
+      }
+    }, error => {
+      this.errorMessage = error.error.message; 
+      this.toastr.error(error.error.message);
+    });
+  }
+
+
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
@@ -228,6 +274,22 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     console.log(items);
   }
 
+
+  onLabTestItemSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  OnLabTestItemDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  onLabTestSelectAll(items: any) {
+    console.log(items);
+  }
+  onLabTestDeSelectAll(items: any) {
+    console.log(items);
+  }
+  
   datechange() {
   }
 

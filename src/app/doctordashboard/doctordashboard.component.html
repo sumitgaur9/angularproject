@@ -152,7 +152,8 @@
                   <th class="d-none d-md-table-cell">Appt Date</th>
                   <th class="d-none d-md-table-cell">Appt Slot</th>
                   <th class="d-none d-xl-table-cell">IsVisitComplete</th>
-                  <th>IsPharmacyProvided</th>
+                  <th>Pharmacy Req</th>
+                  <th>Pharmacy</th>
                 </tr>
               </thead>
               <tbody>
@@ -168,9 +169,12 @@
                   <td><span (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"
                       [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
                   </td>
-                  <td><span (click)="!data.isPharmacyProvided? openRequestPatMedHomeDelivery(data) : false"
-                      [ngClass]="data.isPharmacyProvided ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
-                  </td>
+                  <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
+                    [ngClass]="data.isPharmacyRequested ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyRequested === true ? 'Requested' : 'To Be Request'}}</span>
+                </td>
+                <td><span 
+                  [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
+              </td>
                 </tr>
               </tbody>
             </table>

@@ -20,7 +20,7 @@
                   formControlName="patientName">
               </div>
               <div *ngIf="submitted && f.patientName.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientName.errors.required">Pharmacist is required</div>
+                <div *ngIf="f.patientName.errors.required">Patient Name is required</div>
               </div>
             </div>
             <div class="form-group">
@@ -32,7 +32,7 @@
                   placeholder="Patient ContactNo" formControlName="patientContactNo">
               </div>
               <div *ngIf="submitted && f.patientContactNo.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientContactNo.errors.required">Pharmacist is required</div>
+                <div *ngIf="f.patientContactNo.errors.required">Patient ContactNo is required</div>
               </div>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
                   placeholder="Patient Address" formControlName="patientAddress">
               </div>
               <div *ngIf="submitted && f.patientAddress.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientAddress.errors.required">Pharmacist is required</div>
+                <div *ngIf="f.patientAddress.errors.required">Patient Addr is required</div>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
                   formControlName="patientPIN">
               </div>
               <div *ngIf="submitted && f.patientPIN.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientPIN.errors.required">Pharmacist is required</div>
+                <div *ngIf="f.patientPIN.errors.required">Patient PIN is required</div>
               </div>
             </div>
             <div class="form-group">
@@ -69,8 +69,17 @@
                 <option value=""></option>
                 <option *ngFor="let opt of pharmacistListDataArray" [value]="opt.name">{{opt.name}}</option>
               </select>
-              <div *ngIf="submitted && f.pharmacistName.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.pharmacistName.errors.required">Pharmacist is required</div>
+              <div *ngIf="submitted && f.pharmacistID.errors" style="color:red;font-size: 10px;">
+                <div *ngIf="f.pharmacistID.errors.required">Pharmacist is required</div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <div style="width: 100%;float: left;">
+                <angular2-multiselect [data]="labtestListDataArray" [(ngModel)]="selectedLabTestItems" [settings]="settingsLabTest"
+                  (onSelect)="onLabTestItemSelect($event)" (onDeSelect)="OnLabTestItemDeSelect($event)" (onSelectAll)="onLabTestSelectAll($event)"
+                  (onDeSelectAll)="onLabTestDeSelectAll($event)" formControlName="LabTestName" style="width: 89%;">
+                </angular2-multiselect>
               </div>
 
             </div>

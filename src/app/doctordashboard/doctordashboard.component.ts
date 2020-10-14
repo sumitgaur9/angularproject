@@ -169,6 +169,10 @@ export class DoctordashboardComponent implements OnInit {
   }
 
   public openRequestPatMedHomeDelivery(data) {
+    if(!data.isVisitCompleted){
+      this.toastr.warning('Complete its Visit first');
+      return;
+    }
     this.showRequestPatMedHomeDelivery = true;
     this.visitAppointmentId = data._id;
     this.reqByDoctorId = data.doctorID;
