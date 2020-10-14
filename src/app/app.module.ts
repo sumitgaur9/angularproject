@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import {PopoverModule} from "ngx-smart-popover";
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -90,6 +91,7 @@ import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.compone
     BrowserAnimationsModule, // required animations module
     ChartsModule,
     Ng2SearchPipeModule,
+    PopoverModule,
 
     ToastrModule.forRoot({
       timeOut: 1000,

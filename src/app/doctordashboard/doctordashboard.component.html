@@ -1,3 +1,5 @@
+
+
   <div class="content" style="position: absolute;top: 17%;width:96%;left:2%;right:2%;">
     <div class="container-fluid p-0">
       <div class="row mb-2 mb-xl-3">
@@ -67,10 +69,16 @@
             <div class="card-body py-3">
               <div class="chart chart-sm">
                 <div style="display: block;">
-                  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
-                    [colors]="pieChartColor">
-                  </canvas>
+                  <div *ngIf="pieChartData.length>0;else other_content">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                      [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+                      [colors]="pieChartColor">
+                    </canvas>
+                  </div>
+
+                  <ng-template #other_content>
+                    <img src="../../assets/images/nodatafound.png">
+                  </ng-template>
                 </div>
               </div>
             </div>
@@ -88,12 +96,21 @@
               <div class="align-self-center w-100">
                 <div class="py-3">
                   <div class="chart chart-xs">
-                    <div style="display: block;">
+                    <!-- <div style="display: block;">
                       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
                         [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors"
                         [chartType]="barChartType">
                       </canvas>
+                    </div> -->
+                    <div *ngIf="barChartData.length>0;else other_content">
+                      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                      [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors"
+                      [chartType]="barChartType">
+                    </canvas>
                     </div>
+                    <ng-template #other_content>
+                      <img src="../../assets/images/nodatafound.png">
+                    </ng-template>
                   </div>
                 </div>
               </div>
@@ -108,12 +125,18 @@
             <div class="card-body d-flex">
               <div class="align-self-center w-100">
                 <div class="chart">
-                  <div>
+
+                  <div *ngIf="pieChartPharmacistData.length>0;else other_content">
                     <canvas baseChart [data]="pieChartPharmacistData" [labels]="pieChartPharmacistLabels"
-                      [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins"
-                      [legend]="pieChartLegend" [colors]="pieChartColor">
-                    </canvas>
+                    [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend" [colors]="pieChartColor">
+                  </canvas>
                   </div>
+
+                  <ng-template #other_content>
+                    <img src="../../assets/images/nodatafound.png">
+                  </ng-template>
+
                 </div>
               </div>
             </div>
@@ -127,7 +150,8 @@
             <div class="card-header">
               <h5 class="card-title mb-0">Appointments</h5>
             </div>
-            <table class="table table-hover my-0">
+            
+            <table class="table table-hover my-0" *ngIf="completeDoctorVisitData.length>0;else other_content">
               <thead style="background-color: #39b49b;">
                 <tr>
                   <th> <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
@@ -154,10 +178,11 @@
                   <th class="d-none d-xl-table-cell">IsVisitComplete</th>
                   <th>Pharmacy Req</th>
                   <th>Pharmacy</th>
+                  <th>Info</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of completeDoctorVisitData">
+                <tr *ngFor="let data of completeDoctorVisitData;let i=index;">
                   <td>{{data.doctorName}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientSex==1 ? 'Male': 'Female'}}</td>
@@ -170,37 +195,32 @@
                       [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
                   </td>
                   <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
-                    [ngClass]="data.isPharmacyRequested ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyRequested === true ? 'Requested' : 'To Be Request'}}</span>
-                </td>
-                <td><span 
-                  [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
-              </td>
+                      [ngClass]="data.isPharmacyRequested ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyRequested === true ? 'Requested' : 'To Be Request'}}</span>
+                  </td>
+                  <td><span
+                      [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
+                  </td>
+                  <td>
+                    <popover-content #myPopover title="Patient Info" placement="left" [animation]="true"
+                      [closeOnClickOutside]="true">
+                      <b>Slot: {{getTimeSlot(data.timeSlot)}}</b>
+                      <b>Date: {{data.appointmentDate}}</b>
+
+                      <!-- <b>Very {{getTimeSlot(data.timeSlot)}}</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
+          <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>. -->
+                    </popover-content>
+                    <button [popoverOnHover]="false" [popover]="myPopover">Info</button>
+                  </td>
                 </tr>
               </tbody>
-            </table>
+              </table>
+            <ng-template #other_content>
+              <img src="../../assets/images/nodatafound.png">
+            </ng-template>
           </div>
         </div>
       </div>
       <br>
-      <div class="row">        
-        <div class="col-12 col-lg-3 col-xxl-3 d-flex">
-          <div class="card flex-fill w-100">
-            <div class="card-header">
-
-              <h5 class="card-title mb-0">Pharmacist Wise Count</h5>
-            </div>
-            <div class="card-body d-flex w-100">
-              <div class="align-self-center chart chart-lg">
-                <div style="display: block;">
-                  <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
-                    [chartType]="doughnutChartType" [colors]="pieChartColor">
-                  </canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <br><br>
     </div>
   </div>

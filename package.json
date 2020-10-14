@@ -33,6 +33,7 @@
     "ng2-charts": "^2.3.3",
     "ng2-date-picker": "^2.6.1",
     "ng2-search-filter": "0.4.7",
+    "ngx-smart-popover": "^1.4.0",
     "ngx-toastr": "^10.0.4",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
