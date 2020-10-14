@@ -8,11 +8,9 @@
             &nbsp;<span style="color:white">Req Medicine Home Delivery</span></span>
         </p>
       </div>
-
       <div class="row">
         <div class="col-md-6">
           <div class="card-body">
-
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -25,9 +23,6 @@
                 <div *ngIf="f.patientName.errors.required">Pharmacist is required</div>
               </div>
             </div>
-
-
-
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -40,7 +35,6 @@
                 <div *ngIf="f.patientContactNo.errors.required">Pharmacist is required</div>
               </div>
             </div>
-
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -53,15 +47,10 @@
                 <div *ngIf="f.patientAddress.errors.required">Pharmacist is required</div>
               </div>
             </div>
-
-
-
           </div>
         </div>
         <div class="col-md-6">
-
           <div class="card-body">
-
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -74,8 +63,6 @@
                 <div *ngIf="f.patientPIN.errors.required">Pharmacist is required</div>
               </div>
             </div>
-
-
             <div class="form-group">
               <label for="exampleFormControlSelect1">Pharmacist</label>
               <select class="form-control" formControlName="pharmacistName" (change)="pharmacistChangeEvent($event)">
@@ -87,25 +74,9 @@
               </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
-
       <div style=" background: #f6f9f8;border: 3px solid rgb(57 180 155 / 32%);padding: 7px;">
         <div style="width: 100%;float: left;">
           <div style="width: 30%;float: left;">
@@ -119,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div style="width: 30%;float: left;margin-left:2%">
+          <div style="width: 30%;float: left;margin-left:1%">
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -130,7 +101,7 @@
               </div>
             </div>
           </div>
-          <div style="width: 30%;float: left;margin-left:2%">
+          <div style="width: 30%;float: left;margin-left:1%">
             <angular2-multiselect [data]="medicineListDataArray" [(ngModel)]="selectedItems" [settings]="settings"
               (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
               (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" formControlName="medicineName"
@@ -138,11 +109,17 @@
             </angular2-multiselect>
           </div>
 
+          <div style="width: 7%;float:right;">
+            <div class="buttonSection">
+              <div class="text-center">
+                <input type="button" (click)="openMedicineProfilePopup()" style="width: 50px;font-size:13px;padding: 0;"
+                  value="Add" class="btn btn-info btn-block rounded-0 py-2">
+              </div>
+            </div>
+          </div>
         </div>
-
         <div style="width: 100%;float: left;">
           <div style="width: 42%;float: left;">
-
             <div style="margin-bottom:6px;">
               <label for="exampleFormControlSelect1">Instruction</label>
               <div class="ng-autocomplete" style="width:347px;">
@@ -161,25 +138,12 @@
                 </ng-template>
               </div>
             </div>
-
-
-            <!-- <div class="form-group">
-            <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
-              </div>
-              <input class="form-control" type="text" 
-                 formControlName="processInfo" placeholder="Instruction" />
-            </div>
-          </div> -->
           </div>
           <div style="width: 10%;float: left;margin-top: 4%;margin-left:2%;">
             <div class="buttonSection">
               <div class="text-center">
                 <input type="button" (click)="SendDataInTableValue()" style="width: 50px;font-size:13px;padding: 0;"
-                  value="Ok" class="btn btn-info 
-
-btn-block rounded-0 py-2">
+                  value="Ok" class="btn btn-info btn-block rounded-0 py-2">
               </div>
             </div>
           </div>
@@ -197,9 +161,8 @@ btn-block rounded-0 py-2">
           <tbody>
             <tr *ngFor="let data of sheduleMedicineTableData;let i=index">
               <td class="d-none d-xl-table-cell" style="vertical-align: middle;"><i class="fa fa-trash"
-                  aria-hidden="true" style="cursor: 
-
-pointer;font-size: 18px;color:red;margin-left: 15%;color:red" (click)="deleteMedicineDetailRow(i)"></i></td>
+                  aria-hidden="true" style="cursor: pointer;font-size: 18px;color:red;margin-left: 15%;color:red"
+                  (click)="deleteMedicineDetailRow(i)"></i></td>
               <td>{{data.medicneScheduleDate}}</td>
               <td class="d-none d-xl-table-cell">{{data.medicineScheduleTime}}</td>
               <td class="d-none d-md-table-cell">
@@ -212,11 +175,9 @@ pointer;font-size: 18px;color:red;margin-left: 15%;color:red" (click)="deleteMed
           </tbody>
         </table>
       </div>
-
       <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="submitted">
         <em style="color: red;font-size: 12px;">{{errorMessage}}</em>
       </div>
-
     </ad-modal-body>
     <ad-modal-footer>
       <div class="buttonSection">
@@ -228,3 +189,8 @@ pointer;font-size: 18px;color:red;margin-left: 15%;color:red" (click)="deleteMed
     </ad-modal-footer>
   </ad-modal>
 </form>
+
+<div *ngIf="showMedicineprofileformpopup">
+  <app-medicineprofile [showModal]="showMedicineprofileformpopup" [getmedicineprofileid]="getmedicineprofileid"
+    (ClosePopup)="closeMedicineProfilePopup($event)"> </app-medicineprofile>
+</div>

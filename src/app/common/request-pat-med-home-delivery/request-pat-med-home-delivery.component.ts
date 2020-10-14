@@ -5,6 +5,7 @@ import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { IDayCalendarConfig, DatePickerComponent } from "ng2-date-picker";
+declare var $: any;
 
 
 @Component({
@@ -19,14 +20,12 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() reqByDoctorId: string = '';
   @Input() reqByPatientId: string = '';
   @Input() reqByDoctorName: string = '';
-
-
-
+  @Output() ClosePopup = new EventEmitter();
+  @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
   @Input() inputrequesPatMedHomeDeliveryData: any;
 
   public sheduleMedicineTableData: any = [];
-
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
@@ -42,26 +41,15 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     meridiemFormat: "A",
     //format: "hh:mm",
   };
-
   public medicineListDataArray: any = [];
-
-
-  @Output() ClosePopup = new EventEmitter();
-  @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
-
   public CloseModal() {
     this.ClosePopup.emit();
   }
-
   public submitted = false;
   errorMessage = '';
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-
-
   itemList = [];
   selectedItems = [];
   keyword = 'name';
-
   public instructionDataArray: any = [
     { "name": "Before Breakfast" },
     { "name": "After Breakfast" },
@@ -69,10 +57,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     { "name": "After Lunch" },
     { "name": "Before Dinner" },
     { "name": "After Dinner" }]
-
-
   settings = {};
-
   public reqPatientMedicinesHomeDeliveryForm = new FormGroup({
     patientName: new FormControl("", Validators.required),
     patientContactNo: new FormControl("", Validators.required),
@@ -85,11 +70,10 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     processInfo: new FormControl(""),
     medicineName: new FormControl([[]]),
   });
-
   public passwordPatternError = false;
   public pharmacistListDataArray: any = [];
-
-
+  public getmedicineprofileid:string='';
+  public showMedicineprofileformpopup:boolean=false;
   public currentUser;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -108,8 +92,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
     this.medicineListDataArray = [];
     this.selectedItems = [];
-
-
     this.settings = {
       text: "Select Medicines",
       selectAllText: 'Select All',
@@ -132,24 +114,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
         })
     }
   }
-
-  medicineChangeEvent($event) {
-    let newArray = this.medicineListDataArray.filter(function (item) {
-      return item.medicineName == $event.target.value;
-    });
-    if (newArray) {
-      this.reqPatientMedicinesHomeDeliveryForm.patchValue(
-        {
-          medicineID: newArray[0]._id
-        }
-      )
-    }
-  }
-
-
-
-
-
 
 
   Request_PatientMedicinesHomeDelivery() {
@@ -216,8 +180,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     });
   }
 
-
-
   Get_PharmacistsList() {
     let dataobj = {
     };
@@ -237,6 +199,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this._apiservice.Get_MedicinesList(dataobj, companyName).subscribe(data => {
       if (data) {
         console.log("medicineListDataArray ", data);
+        this.medicineListDataArray=[];
         for (var i = 0; i < data.length; i++) {
           let dataobj1 = {
             "id": data[i]._id,
@@ -265,17 +228,12 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     console.log(items);
   }
 
-
   datechange() {
-    // this.disableAvailableTimeSlotBtn= false;
-    //this.visibleTimeSlot= false;
   }
 
   public SendDataInTableValue() {
     if (this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == undefined ||
-
       this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == null ||
-
       this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == '') {
       this.toastr.warning("Please Select ScheduleDate", '', {
         timeOut: 6000,
@@ -283,9 +241,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       return;
     }
     else if (this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == undefined ||
-
       this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == null ||
-
       this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleTime.value == '') {
       this.toastr.warning("Please Select ScheduleTime", '', {
         timeOut: 6000,
@@ -299,7 +255,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       return;
     }
     else if (this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == undefined ||
-
       this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == null || this.reqPatientMedicinesHomeDeliveryForm.controls.processInfo.value == '') {
       this.toastr.warning("Please Select Instruction", '', {
         timeOut: 6000,
@@ -325,10 +280,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     }
     dataobj.medicineScheduleName = selectedMedicineName.toString();
     dataobj.medicineScheduleId = selectedMedicineID.toString();
-
-
     this.sheduleMedicineTableData.push(dataobj);
-
     this.reqPatientMedicinesHomeDeliveryForm.patchValue({
       scheduleDate: '',
       scheduleTime: '',
@@ -340,8 +292,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   deleteMedicineDetailRow(index: number) {
     this.sheduleMedicineTableData.splice(index, 1);
   }
-
-
 
   selectEventInstruction(item) {
     // do something with selected item
@@ -365,5 +315,22 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     // do something when input is focused
   }
 
+  public closeMedicineProfilePopup(calllistapi) {
+    this.showMedicineprofileformpopup = false;
+    $('#showMedicineprofileformpopup').modal('hide');
+    if (calllistapi) {
+      this.Get_MedicinesList();
+    }
+  }
 
+  public openMedicineProfilePopup(id?) {
+    if (id == undefined || id == null || id == '') {
+      this.getmedicineprofileid ='';
+    }
+    this.showMedicineprofileformpopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#showMedicineprofileformpopup').modal('show');
+    }, 100);
+  }
 }
