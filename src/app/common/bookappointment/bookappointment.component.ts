@@ -71,6 +71,20 @@ export class BookappointmentComponent implements OnInit {
   public currentUserMeRes;
   public diseasListData: any = [];
   public completeDiseasListData:any=[];
+  public symptomsListData = [
+    {'id': '1', 'itemName': 'Headache'},
+    {'id': '2', 'itemName': 'Weakness'},
+    {'id': '3', 'itemName': 'Chest Pain'},
+    {'id': '4', 'itemName': 'Weight Loss'},
+    {'id': '5', 'itemName': 'Weight Gain'},
+    {'id': '6', 'itemName': 'Tiredness'},
+    {'id': '7', 'itemName': 'Stomachache'},
+  ];
+  public illnessHistoryListData = [
+    {'id': '1', 'itemName': 'Low BP'},
+    {'id': '2', 'itemName': 'High BP'},
+    {'id': '3', 'itemName': 'Diabetes'},
+  ];
  // public filterDoctorData: any = [];
   public filterDoctorListData:any=[];
   public selecteddoctorid;
@@ -91,9 +105,15 @@ export class BookappointmentComponent implements OnInit {
     max: "30/11/2020"
   };
   textareaValue: string = '';
-  itemList = [];
+  
   selectedItems = [];
   settings = {};
+  
+  selectedSymptomItems = [];
+  settingsSymptom = {};
+  
+  selectedIllnessItems = [];
+  settingsIllness = {};
   
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -119,6 +139,22 @@ export class BookappointmentComponent implements OnInit {
     this.selectedItems = [];
     this.settings = {
       text: "Select Diseases",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      classes: "myclass custom-class"
+    };
+
+    this.selectedSymptomItems = [];
+    this.settingsSymptom = {
+      text: "Select Symptoms (If Any)",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      classes: "myclass custom-class"
+    };
+
+    this.selectedIllnessItems = [];
+    this.settingsIllness = {
+      text: "Select Illness History (If Any)",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       classes: "myclass custom-class"
@@ -205,6 +241,31 @@ export class BookappointmentComponent implements OnInit {
       this.toastr.success('Please Select Diseases');
       return;
     }
+
+    
+    
+    let symptomsdataarray=[];    
+    this.selectedSymptomItems.forEach(element => {
+      let dataobjec = {
+        symptomID: element.id,
+        symptomName: element.itemName
+      }
+      symptomsdataarray.push(dataobjec);
+    });
+    dataobj.symptomsData =  symptomsdataarray;
+
+
+    let illnessdataarray=[];    
+    this.selectedIllnessItems.forEach(element => {
+      let dataobje = {
+        illnessID: element.id,
+        illnessName: element.itemName
+      }
+      illnessdataarray.push(dataobje);
+    });
+    dataobj.illnessHistoryData =  illnessdataarray;
+
+
     dataobj.appointmentDate = this.utilityservice.ToDBDateFormat(dataobj.appointmentDate);
     dataobj.timeSlot = parseInt(dataobj.timeSlot);
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
@@ -353,6 +414,37 @@ export class BookappointmentComponent implements OnInit {
     this.Get_PatientsList();     //update list in return if new patient added and any updation in list
     this.updatePatientDetails(value);
   }
+
+  onSymptomItemSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedSymptomItems);
+  }
+  OnSymptomItemDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedSymptomItems);
+  }
+  onSymptomSelectAll(items: any) {
+    console.log(items);
+  }
+  onSymptomDeSelectAll(items: any) {
+    console.log(items);
+  }
+//////////////////
+  onIllnessHitoryItemSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  OnIllnessHitoryItemDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  onIllnessHitorySelectAll(items: any) {
+    console.log(items);
+  }
+  onIllnessHitoryDeSelectAll(items: any) {
+    console.log(items);
+  }
+  ////////////
 
   onDiseasesItemSelect(item: any) {
    // console.log(item);

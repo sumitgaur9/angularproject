@@ -74,6 +74,23 @@
               </select>
             </div>
 
+
+            <div class="form-group">
+              <angular2-multiselect [data]="symptomsListData" [(ngModel)]="selectedSymptomItems" [settings]="settingsSymptom"
+                (onSelect)="onSymptomItemSelect($event)" (onDeSelect)="OnSymptomItemDeSelect($event)"
+                (onSelectAll)="onSymptomSelectAll($event)" (onDeSelectAll)="onSymptomDeSelectAll($event)" formControlName="symptomsData"
+                style="width: 89%;">
+              </angular2-multiselect>
+            </div>
+            <div class="form-group">
+              <angular2-multiselect [data]="illnessHistoryListData" [(ngModel)]="selectedIllnessItems" [settings]="settingsIllness"
+                (onSelect)="onIllnessHitoryItemSelect($event)" (onDeSelect)="OnIllnessHitoryItemDeSelect($event)"
+                (onSelectAll)="onIllnessHitorySelectAll($event)" (onDeSelectAll)="onIllnessHitoryDeSelectAll($event)" formControlName="illnessHistoryData"
+                style="width: 89%;">
+              </angular2-multiselect>
+            </div>
+
+
             <div class="form-group">
               <div class="input-group mb-2">
                 <textarea id="Description" name="Description" formControlName="description" rows="4" cols="30"
