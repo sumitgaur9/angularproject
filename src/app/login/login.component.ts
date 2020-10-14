@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   rememberCredentials(){
     let obj = {
-      email: this.loginInfo.controls.email.value,
+      email: this.loginInfo.controls.email.value.toLowerCase(),
       password: this.loginInfo.controls.password.value,
     }
     localStorage.setItem("currentuseremailpassword", JSON.stringify(obj));    
@@ -96,6 +96,7 @@ export class LoginComponent implements OnInit {
     }
     this.errorMessage = "";
     let values = this.loginInfo.value;
+    values.email = values.email.toLowerCase();
     this._apiservice.signIn(values).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data);

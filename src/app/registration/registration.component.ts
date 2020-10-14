@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
     this.inActiveEmailID = '';
     this.isVisibleSendOTPbutton = false;
     let dataobj = {
-      email: this.userInfo.value.email,
+      email: this.userInfo.value.email.toLowerCase(),
       name: this.userInfo.value.name,
       password: this.userInfo.value.password,
       role: Number(this.userInfo.value.role),
