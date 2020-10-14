@@ -20,7 +20,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() reqByDoctorId: string = '';
   @Input() reqByPatientId: string = '';
   @Input() reqByDoctorName: string = '';
-  @Output() ClosePopup = new EventEmitter();
+  @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
   @Input() inputrequesPatMedHomeDeliveryData: any;
@@ -42,8 +42,8 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     //format: "hh:mm",
   };
   public medicineListDataArray: any = [];
-  public CloseModal() {
-    this.ClosePopup.emit();
+  public CloseModal(calllistapi) {
+    this.ClosePopup.emit(calllistapi);
   }
   public submitted = false;
   errorMessage = '';
@@ -170,7 +170,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
         this.toastr.success("Thanks to being a part of our platform", '', {
           timeOut: 8000,
         });
-        this.CloseModal();
+        this.CloseModal(true);
       }
     }, error => {
       this.errorMessage = error.error.message;

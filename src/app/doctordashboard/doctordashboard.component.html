@@ -203,11 +203,11 @@
 
   <div *ngIf="showVisitForAll">
     <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"
-      [appointmentid]="visitAppointmentId" (ClosePopup)="closeshowVisitForAll()"> </app-visitforall>
+      [appointmentid]="visitAppointmentId" (ClosePopup)="closeshowVisitForAll($event)"> </app-visitforall>
   </div>
   <div *ngIf="showRequestPatMedHomeDelivery">
     <app-request-pat-med-home-delivery [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery"
       [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId" [reqByDoctorName]="reqByDoctorName"
       [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"
-      (ClosePopup)="closeRequestPatMedHomeDelivery()"> </app-request-pat-med-home-delivery>
+      (ClosePopup)="closeRequestPatMedHomeDelivery($event)"> </app-request-pat-med-home-delivery>
   </div>

@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   public currentLoggedUserData: any = {};
   public username = "";
   public errorMessage: string = '';
-  public showRequestPatMedHomeDelivery: boolean = false;
   public showPharmacistVisitCompleteIntimation: boolean = false;
   public showVisitForAll: boolean = false;
   public showChangePasswordPopup: boolean = false;
@@ -159,18 +158,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public closeRequestPatMedHomeDelivery() {
-    this.showRequestPatMedHomeDelivery = false;
-    $('#showRequestPatMedHomeDeliveryModal').modal('hide');
-  }
-
-  public openRequestPatMedHomeDelivery() {
-    this.showRequestPatMedHomeDelivery = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showRequestPatMedHomeDeliveryModal').modal('show');
-    }, 100);
-  }
+ 
   public closePharmacistVisitCompleteIntimation() {
     this.showPharmacistVisitCompleteIntimation = false;
     $('#showPharmacistVisitCompleteIntimationModal').modal('hide');
@@ -183,18 +171,7 @@ export class HeaderComponent implements OnInit {
       $('#showPharmacistVisitCompleteIntimationModal').modal('show');
     }, 100);
   }
-  public closeshowVisitForAll() {
-    this.showVisitForAll = false;
-    $('#showVisitForAllModal').modal('hide');
-  }
-
-  public openShowVisitForAll() {
-    this.showVisitForAll = true;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVisitForAllModal').modal('show');
-    }, 100);
-  }
+ 
 
   public closeChangePasswordPopup() {
     this.showChangePasswordPopup = false;
@@ -241,22 +218,12 @@ export class HeaderComponent implements OnInit {
       case 'otherlinks':
         this.router.navigate(['/otherlinks']);
         break;
-      case 'ReqPatientMedHomeDel':
-        this.openRequestPatMedHomeDelivery();
-        break;
       case 'PharmaVisitCompleteIntimation':
         this.openPharmacistVisitCompleteIntimation();
         break;
-      case 'visitforall':
-        this.openShowVisitForAll();
-        break;
       case 'cartdetail':
         this.router.navigate(['/cartdetail']);
-      //   setTimeout(() => {
-      //  //   this.utilityservice.subOnCartDetailPage.next(this.cartInfoData);
-      //   }, 10);
         break;
-        
       case 'logo':
         let userSubs = this.utilityservice.isUserLoggedIn();
         if (userSubs.user && userSubs.user.tokens != null) {

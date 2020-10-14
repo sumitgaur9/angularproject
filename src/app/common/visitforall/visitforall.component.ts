@@ -17,7 +17,7 @@ export class VisitforallComponent implements OnInit {
   @Input() patientname;
   @Input() bookLabTestId;
 
-  @Output() ClosePopup = new EventEmitter();
+  @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
   public CloseModal(calllistapi) {

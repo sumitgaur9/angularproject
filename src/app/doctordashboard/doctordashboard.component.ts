@@ -111,10 +111,13 @@ export class DoctordashboardComponent implements OnInit {
     this.Get_PharmacistWiseApptCount();
     this.Get_MonthlyHomeOnlineApptCount();
   }
-  public closeshowVisitForAll() {
+  public closeshowVisitForAll(calllistapi) {
     this.showVisitForAll = false;
     $('#showVisitForAllModal').modal('hide');
-    this.Get_AppointmentsByDocID();
+    if(calllistapi)
+    {
+      this.Get_AppointmentsByDocID();
+    }
   }
   public openShowVisitForAll(data) {
     this.showVisitForAll = true;
@@ -127,10 +130,13 @@ export class DoctordashboardComponent implements OnInit {
     }, 100);
   }
 
-  public closeRequestPatMedHomeDelivery() {
+  public closeRequestPatMedHomeDelivery(calllistapi) {
     this.showRequestPatMedHomeDelivery = false;
     $('#showRequestPatMedHomeDeliveryModal').modal('hide');
-    this.Get_AppointmentsByDocID();
+    if(calllistapi)
+    {
+      this.Get_AppointmentsByDocID();
+    }
   }
 
   getTimeSlot(id){

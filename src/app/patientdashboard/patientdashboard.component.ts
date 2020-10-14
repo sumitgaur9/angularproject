@@ -107,34 +107,8 @@ export class PatientdashboardComponent implements OnInit {
     this.Get_PharmaReqForHomeDel();
   }
 
-  public closeshowVisitForAll() {
-    this.showVisitForAll = false;
-    $('#showVisitForAllModal').modal('hide');
-  }
-
-  public openShowVisitForAll(data) {
-    this.showVisitForAll = true;
-    this.visitAppointmentId = data._id;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVisitForAllModal').modal('show');
-    }, 100);
-  }
-
-  public closeRequestPatMedHomeDelivery() {
-    this.showRequestPatMedHomeDelivery = false;
-    $('#showRequestPatMedHomeDeliveryModal').modal('hide');
-  }
-
-  public openRequestPatMedHomeDelivery(data) {
-    this.showRequestPatMedHomeDelivery = true;
-    this.showVisitForAll = true;
-    this.visitAppointmentId = data._id;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showRequestPatMedHomeDeliveryModal').modal('show');
-    }, 100);
-  }
+ 
+ 
 
   public closeBookAppointmentPopup() {
     this.showBookAppointmentPopup = false;
