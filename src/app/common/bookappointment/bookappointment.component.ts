@@ -73,7 +73,7 @@ export class BookappointmentComponent implements OnInit {
   public diseasListData: any = [];
   public completeDiseasListData:any=[];
  // public filterDoctorData: any = [];
-  public tempfilterDoctorListData:any=[];
+  public filterDoctorListData:any=[];
   public selecteddoctorid;
   public displayDate = '';
   public getImageValue;
@@ -82,6 +82,7 @@ export class BookappointmentComponent implements OnInit {
   public showpatientformpopup = false;
   public getpatientprofileid = '';
   public completeDoctorListData:any=[];
+  public expertiesDataWithOccurance:any=[];
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
@@ -228,7 +229,8 @@ export class BookappointmentComponent implements OnInit {
         for (var i = 0; i < data.length; i++) {
           let dataobj1 = {
             "id": data[i]._id,
-            "itemName": data[i].diseaseName
+            "itemName": data[i].diseaseName,
+            "takeCareBy": data[i].takeCareBy,
           }
           this.diseasListData.push(dataobj1);
         }
@@ -251,7 +253,7 @@ export class BookappointmentComponent implements OnInit {
     this.bookAppointmentForm.patchValue({
       appointmentDate:''
     })
-    this.newArray1 = this.tempfilterDoctorListData.filter(function (item) {
+    this.newArray1 = this.filterDoctorListData.filter(function (item) {
       return item.name == $event.target.value;
     });
     if (this.newArray1) {
@@ -391,28 +393,26 @@ export class BookappointmentComponent implements OnInit {
       appointmentDate: ''
     })
     this.getImageValue = '';
-    //  var newArray;
     if (selectionType == "singleSelectionAdd") {
       let newArray = this.completeDiseasListData.filter(function (item) {
         return item.diseaseName == diseasesname;
       });
       if (newArray) {
-        // this.Get_FilteredDoctors(newArray[0].takeCareBy);
         let tempDoctorData = this.completeDoctorListData.filter(function (item) {
           return item.experties == newArray[0].takeCareBy;
         });
         if (tempDoctorData && tempDoctorData.length > 0) {
           for (var i = 0; i < tempDoctorData.length; i++) {
-            if (this.tempfilterDoctorListData.length > 0) {
-              let doctorAlreadyExistInFilteredDoctor = this.tempfilterDoctorListData.filter(function (item) {
+            if (this.filterDoctorListData.length > 0) {
+              let doctorAlreadyExistInFilteredDoctor = this.filterDoctorListData.filter(function (item) {
                 return item._id == tempDoctorData[i]._id;
               });
               if (doctorAlreadyExistInFilteredDoctor && doctorAlreadyExistInFilteredDoctor.length < 1) {
-                this.tempfilterDoctorListData.push(tempDoctorData[i]);
+                this.filterDoctorListData.push(tempDoctorData[i]);
               }
             }
             else {
-              this.tempfilterDoctorListData.push(tempDoctorData[i]);
+              this.filterDoctorListData.push(tempDoctorData[i]);
             }
           }
         }
@@ -428,10 +428,19 @@ export class BookappointmentComponent implements OnInit {
           return item.experties == newArray[0].takeCareBy;
         });
         if (tempFilterDoctorList && tempFilterDoctorList.length > 0) {
-          for (var i = 0; i < this.tempfilterDoctorListData.length; i++) {
+          for (var i = 0; i < this.filterDoctorListData.length; i++) {
             for (var j = 0; j < tempFilterDoctorList.length; j++) {
-              if (this.tempfilterDoctorListData[i]._id == tempFilterDoctorList[j]._id) {
-                this.tempfilterDoctorListData.splice(i, 1);
+              if (this.filterDoctorListData[i]._id == tempFilterDoctorList[j]._id) {
+                this.getExpertiesOccurance();
+                let isOtherDiseasesExistForThisExp = false;
+                for (var k = 0; k < this.expertiesDataWithOccurance.length; k++) {
+                  if (this.filterDoctorListData[i].experties == this.expertiesDataWithOccurance[k].expertiesName) {
+                    isOtherDiseasesExistForThisExp = true;
+                  }
+                }
+                if (isOtherDiseasesExistForThisExp == false) {
+                  this.filterDoctorListData.splice(i, 1);
+                }
               }
             }
 
@@ -440,7 +449,7 @@ export class BookappointmentComponent implements OnInit {
       }
     }
     else if (selectionType == "multiSelectionRemove") {
-      this.tempfilterDoctorListData = [];
+      this.filterDoctorListData = [];
     }
   }
 
@@ -455,5 +464,43 @@ export class BookappointmentComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  getExpertiesOccurance()
+  {
+    let expertiesNameArray:any=[];
+    for (var i = 0; i < this.selectedItems.length; i++) {
+      expertiesNameArray.push(this.selectedItems[i].takeCareBy)
+    }
+    this.finalExpertiesNameWithOccurance(this.ExpertiesOccuranceCount(expertiesNameArray));
+  }
+
+
+  ExpertiesOccuranceCount(expertiesNameArray) {
+    var a = [], b = [], prev;
+    expertiesNameArray.sort();
+    for (var i = 0; i < expertiesNameArray.length; i++) {
+      if (expertiesNameArray[i] !== prev) {
+        a.push(expertiesNameArray[i]);
+        b.push(1);
+      } else {
+        b[b.length - 1]++;
+      }
+      prev = expertiesNameArray[i];
+    }
+    return [a, b];
+  }
+
+
+  finalExpertiesNameWithOccurance(data) {
+   this.expertiesDataWithOccurance = [];
+    for (var i = 0; i < data[0].length; i++) {
+      let dataobj: any = {};
+      dataobj.expertiesName = data[0][i];            //data[0]==experties name array
+      dataobj.expertiesOccurance = data[1][i];   //data[1]==ids com how many times array
+      this.expertiesDataWithOccurance.push(dataobj);
+    }
+    console.log("expertiesDataWithOccuranceexpertiesDataWithOccurance", this.expertiesDataWithOccurance);
+  }
+
 }
 

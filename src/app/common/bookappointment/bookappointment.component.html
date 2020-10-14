@@ -180,7 +180,7 @@
               <label for="exampleFormControlSelect1">Doctor</label>
               <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
                 <option value=""></option>
-                <option *ngFor="let opt of tempfilterDoctorListData" [value]="opt.name">{{opt.name}}</option>
+                <option *ngFor="let opt of filterDoctorListData" [value]="opt.name">{{opt.name}}</option>
               </select>
             </div>
 
