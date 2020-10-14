@@ -156,20 +156,31 @@
         <input type="text" class="form-control" id="diseaseAge" name="diseaseAge"
         placeholder="Disease Age" formControlName="diseaseAge">                            </div>
     </div> -->
-
+<!-- 
             <div class="form-group">
               <label for="exampleFormControlSelect1">Disease</label>
               <select class="form-control" formControlName="disease" (change)="diseaseschangeevent($event)">
                 <option value=""></option>
                 <option *ngFor="let opt of diseasListData" [value]="opt.diseaseName">{{opt.diseaseName}}</option>
               </select>
+            </div> -->
+
+
+            <div class="form-group">
+              <angular2-multiselect [data]="diseasListData" [(ngModel)]="selectedItems" [settings]="settings"
+                (onSelect)="onDiseasesItemSelect($event)" (onDeSelect)="OnDiseasesItemDeSelect($event)"
+                (onSelectAll)="onDiseasesSelectAll($event)" (onDeSelectAll)="onDiseasesDeSelectAll($event)" formControlName="diseasesData"
+                style="width: 89%;">
+              </angular2-multiselect>
             </div>
 
-            <div class="form-group" [hidden]="f.disease.value==''">
+
+
+            <div class="form-group" *ngIf="selectedItems.length">
               <label for="exampleFormControlSelect1">Doctor</label>
               <select class="form-control" formControlName="doctorName" (change)="doctorChangeEvent($event)">
                 <option value=""></option>
-                <option *ngFor="let opt of filterDoctorData" [value]="opt.name">{{opt.name}}</option>
+                <option *ngFor="let opt of tempfilterDoctorListData" [value]="opt.name">{{opt.name}}</option>
               </select>
             </div>
 

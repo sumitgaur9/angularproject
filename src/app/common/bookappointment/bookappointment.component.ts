@@ -53,8 +53,8 @@ export class BookappointmentComponent implements OnInit {
     patientMob: new FormControl(""),
     patientAddres: new FormControl(""),
     patientPIN: new FormControl(""),
-    disease: new FormControl(""),
-    diseaseAge: new FormControl(""),
+   // disease: new FormControl(""),
+   // diseaseAge: new FormControl(""),
     doctorID: new FormControl(""),
     doctorName: new FormControl(""),
     appointmentDate: new FormControl({ value: '', disabled: true }, Validators.required),
@@ -63,12 +63,17 @@ export class BookappointmentComponent implements OnInit {
     patientID: new FormControl(""),
     timeSlot: new FormControl(""),
     charges: new FormControl(""),
+    diseasesData: new FormControl([[]]),
+    symptomsData: new FormControl([[]]),
+    illnessHistoryData: new FormControl([[]]),
   });
 
   public passwordPatternError = false;
   public currentUserMeRes;
   public diseasListData: any = [];
-  public filterDoctorData: any = [];
+  public completeDiseasListData:any=[];
+ // public filterDoctorData: any = [];
+  public tempfilterDoctorListData:any=[];
   public selecteddoctorid;
   public displayDate = '';
   public getImageValue;
@@ -76,6 +81,7 @@ export class BookappointmentComponent implements OnInit {
   public currentUserLoginResponse;
   public showpatientformpopup = false;
   public getpatientprofileid = '';
+  public completeDoctorListData:any=[];
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
@@ -85,6 +91,10 @@ export class BookappointmentComponent implements OnInit {
     max: "30/11/2020"
   };
   textareaValue: string = '';
+  itemList = [];
+  selectedItems = [];
+  settings = {};
+  
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -93,6 +103,7 @@ export class BookappointmentComponent implements OnInit {
     this.currentUserMeRes = JSON.parse(window.sessionStorage.getItem("currentusermedata"));
     this.Get_DiseasesList();
     this.Get_PatientsList();
+    this.Get_DoctorsList();
     if (this.currentUserMeRes.user && this.currentUserMeRes.user._id && this.currentUserLoginResponse.user.role < 1) {
       this.updatePatientDetails(this.currentUserMeRes.user);  //for admin no need to updatepatientdetail
     }
@@ -104,6 +115,14 @@ export class BookappointmentComponent implements OnInit {
     this.displayDate=this.utilityservice.ToDisplayDateFormat(new Date());
 
     this.resetSlotData();
+
+    this.selectedItems = [];
+    this.settings = {
+      text: "Select Diseases",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      classes: "myclass custom-class"
+    };
   }
 
   resetSlotData(){
@@ -171,6 +190,21 @@ export class BookappointmentComponent implements OnInit {
     this.errorMessage = "";
     let dataobj: any = {};
     dataobj = this.bookAppointmentForm.value;
+    if(this.selectedItems && this.selectedItems.length>0)
+    {
+      dataobj.diseasesData=[];
+      for (var i = 0; i < this.selectedItems.length; i++) {
+        let testdataobj = {
+          "diseasesID": this.selectedItems[i].id,
+          "diseaseName": this.selectedItems[i].itemName,
+        }
+        dataobj.diseasesData.push(testdataobj);
+      }
+    }
+    else{
+      this.toastr.success('Please Select Diseases');
+      return;
+    }
     dataobj.appointmentDate = this.utilityservice.ToDBDateFormat(dataobj.appointmentDate);
     dataobj.timeSlot = parseInt(dataobj.timeSlot);
     this._apiservice.Save_BookAppointment(dataobj).subscribe(data => {
@@ -183,43 +217,25 @@ export class BookappointmentComponent implements OnInit {
     });
   }
 
- 
-
+  
   Get_DiseasesList() {
     let dataobj = {
     };
     this._apiservice.Get_DiseasesList(dataobj).subscribe(data => {
       if (data) {
-        console.log("Get_DiseasesList is ", data);
-        this.diseasListData = data;
+        console.log("medicineListDataArray ", data);
+        this.completeDiseasListData=data;
+        for (var i = 0; i < data.length; i++) {
+          let dataobj1 = {
+            "id": data[i]._id,
+            "itemName": data[i].diseaseName
+          }
+          this.diseasListData.push(dataobj1);
+        }
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
-  }
-
-  diseaseschangeevent($event) {
-    this.filterTimeSlotDataArray = [];
-    this.filterTimeSlotDataArray = [];
-    this.visibleTimeSlot = false;
-    this.bookAppointmentForm.patchValue({
-      doctorID:''
-    })
-    this.bookAppointmentForm.patchValue({
-      doctorName:''
-    })
-    this.disableAvailableTimeSlotBtn = true;
-    this.bookAppointmentForm.patchValue({
-      appointmentDate:''
-    })
-    this.getImageValue = '';
-    let newArray = this.diseasListData.filter(function (item) {
-      return item.diseaseName == $event.target.value;
-    });
-
-    if (newArray) {
-      this.Get_FilteredDoctors(newArray[0].takeCareBy);
-    }
   }
 
   datechange(){
@@ -229,16 +245,13 @@ export class BookappointmentComponent implements OnInit {
 
   doctorChangeEvent($event) {
     this.getImageValue = '';
-
      this.bookAppointmentForm.controls.appointmentDate.enable();
     this.bookAppointmentForm.controls.appointmentDate.updateValueAndValidity();
     this.visibleTimeSlot= false;
-
-
     this.bookAppointmentForm.patchValue({
       appointmentDate:''
     })
-    this.newArray1 = this.filterDoctorData.filter(function (item) {
+    this.newArray1 = this.tempfilterDoctorListData.filter(function (item) {
       return item.name == $event.target.value;
     });
     if (this.newArray1) {
@@ -251,17 +264,17 @@ export class BookappointmentComponent implements OnInit {
     return this.utilityservice.arrayBufferToBase64(buffer);
   }
 
-  Get_FilteredDoctors(experties) {
-    let dataobj = {};
-    this._apiservice.Get_FilteredDoctors(dataobj, experties).subscribe(data => {
-      if (data) {
-        console.log("filterDoctorData ", data);
-        this.filterDoctorData = data;
-      }
-    }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-    });
-  }
+  // Get_FilteredDoctors(experties) {
+  //   let dataobj = {};
+  //   this._apiservice.Get_FilteredDoctors(dataobj, experties).subscribe(data => {
+  //     if (data) {
+  //       console.log("filterDoctorData ", data);
+  //       this.filterDoctorData = data;
+  //     }
+  //   }, error => {
+  //     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+  //   });
+  // }
 
   patientNameChangeEvent($event) {
     let newArray = this.patientListData.filter(function (item) {
@@ -338,6 +351,109 @@ export class BookappointmentComponent implements OnInit {
     }
     this.Get_PatientsList();     //update list in return if new patient added and any updation in list
     this.updatePatientDetails(value);
+  }
+
+  onDiseasesItemSelect(item: any) {
+   // console.log(item);
+    console.log("onDiseasesItemSelect",item);
+    this.diseaseschangeevent(item.itemName,"singleSelectionAdd")
+  }
+  OnDiseasesItemDeSelect(item: any) {
+    console.log("OnDiseasesItemDeSelect",item);
+    this.diseaseschangeevent(item.itemName,"singleSelectionRemove")
+   // console.log(this.selectedItems);
+  }
+  onDiseasesSelectAll(items: any) {
+    console.log("onDiseasesSelectAll",items);
+    for(var i=0;i<items.length;i++)
+    {
+      this.diseaseschangeevent(items[i].itemName,"multiSelectionAdd")
+    }
+  }
+  onDiseasesDeSelectAll(items: any) {
+    console.log("onDiseasesSelectAll",items);
+    this.diseaseschangeevent(items.itemName,"multiSelectionRemove")
+   // console.log(items);
+  }
+
+  diseaseschangeevent(diseasesname, selectionType) {
+    this.filterTimeSlotDataArray = [];
+    this.filterTimeSlotDataArray = [];
+    this.visibleTimeSlot = false;
+    this.bookAppointmentForm.patchValue({
+      doctorID: ''
+    })
+    this.bookAppointmentForm.patchValue({
+      doctorName: ''
+    })
+    this.disableAvailableTimeSlotBtn = true;
+    this.bookAppointmentForm.patchValue({
+      appointmentDate: ''
+    })
+    this.getImageValue = '';
+    //  var newArray;
+    if (selectionType == "singleSelectionAdd") {
+      let newArray = this.completeDiseasListData.filter(function (item) {
+        return item.diseaseName == diseasesname;
+      });
+      if (newArray) {
+        // this.Get_FilteredDoctors(newArray[0].takeCareBy);
+        let tempDoctorData = this.completeDoctorListData.filter(function (item) {
+          return item.experties == newArray[0].takeCareBy;
+        });
+        if (tempDoctorData && tempDoctorData.length > 0) {
+          for (var i = 0; i < tempDoctorData.length; i++) {
+            if (this.tempfilterDoctorListData.length > 0) {
+              let doctorAlreadyExistInFilteredDoctor = this.tempfilterDoctorListData.filter(function (item) {
+                return item._id == tempDoctorData[i]._id;
+              });
+              if (doctorAlreadyExistInFilteredDoctor && doctorAlreadyExistInFilteredDoctor.length < 1) {
+                this.tempfilterDoctorListData.push(tempDoctorData[i]);
+              }
+            }
+            else {
+              this.tempfilterDoctorListData.push(tempDoctorData[i]);
+            }
+          }
+        }
+      }
+    }
+
+    else if (selectionType == "singleSelectionRemove") {
+      let newArray = this.completeDiseasListData.filter(function (item) {
+        return item.diseaseName == diseasesname;
+      });
+      if (newArray) {
+        let tempFilterDoctorList = this.completeDoctorListData.filter(function (item) {
+          return item.experties == newArray[0].takeCareBy;
+        });
+        if (tempFilterDoctorList && tempFilterDoctorList.length > 0) {
+          for (var i = 0; i < this.tempfilterDoctorListData.length; i++) {
+            for (var j = 0; j < tempFilterDoctorList.length; j++) {
+              if (this.tempfilterDoctorListData[i]._id == tempFilterDoctorList[j]._id) {
+                this.tempfilterDoctorListData.splice(i, 1);
+              }
+            }
+
+          }
+        }
+      }
+    }
+    else if (selectionType == "multiSelectionRemove") {
+      this.tempfilterDoctorListData = [];
+    }
+  }
+
+  Get_DoctorsList() {
+    let dataobj = {
+    };
+    this._apiservice.Get_DoctorsList(dataobj).subscribe(data => {
+      if (data) {
+        this.completeDoctorListData=data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
   }
 }
 
