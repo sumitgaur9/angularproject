@@ -142,28 +142,28 @@ export class DoctordashboardComponent implements OnInit {
   getTimeSlot(id){
     switch (id) {
       case 0:
-        return '10:00 AM - 11:00 AM';
+        return '10 AM - 11 AM';
         break;
       case 1:
-        return '11:00 AM - 12:00 AM';
+        return '11 AM - 12 AM';
         break;
       case 2:
-        return '12:00 PM - 01:00 PM';
+        return '12 PM - 01 PM';
         break;
       case 3:
-        return '01:00 PM - 02:00 PM';
+        return '01 PM - 02 PM';
         break;
       case 4:
-        return '02:00 PM - 03:00 PM';
+        return '02 PM - 03 PM';
         break;
       case 5:
-        return '03:00 PM - 04:00 PM';
+        return '03 PM - 04 PM';
         break;
       case 6:
-        return '04:00 PM - 05:00 PM';
+        return '04 PM - 05 PM';
         break;
       case 7:
-        return '05:00 PM - 06:00 PM';
+        return '05 PM - 06 PM';
         break;
     }
   }
@@ -202,6 +202,19 @@ export class DoctordashboardComponent implements OnInit {
     this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
         this.completeDoctorVisitData = data;
+        
+        this.completeDoctorVisitData.forEach(element => {
+          element.individualsymptom = '';
+          element.symptomsData.forEach(element1 => {
+            element.individualsymptom = element.individualsymptom + ' ' + element1.symptomName+ ','
+          });
+
+          element.individualillness = '';
+          element.illnessHistoryData.forEach(element2 => {
+            element.individualillness = element.individualillness + ' ' + element2.illnessName+ ','
+          });
+        });
+
         console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID", data)
         this.doctorAppointmentListData = data.filter(function (item) {
           return item.isVisitCompleted == false;

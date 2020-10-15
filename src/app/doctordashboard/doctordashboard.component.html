@@ -148,19 +148,19 @@
         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
           <div class="card flex-fill">
             <div class="card-header">
-              <h5 class="card-title mb-0">Appointments</h5>
+              <h5 class="card-title mb-0">Dr. {{currentUser.user.name}} - Appointments</h5>
             </div>
             
             <table class="table table-hover my-0" *ngIf="completeDoctorVisitData.length>0;else other_content">
               <thead style="background-color: #39b49b;">
                 <tr>
-                  <th> <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
+                  <!-- <th> <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
                       <span>DoctorName</span>
                       <img class="sortIcon" style="display: inline;"
                         [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'"
                         [class.blurSortingArrow]="usersParams.sortBy!='doctorName'"
                         src="../../assets/images/left-arrow.png">
-                    </span></th>
+                    </span></th> -->
                   <th class="d-none d-xl-table-cell">
                     <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
                       <span>Pat Name</span>
@@ -171,23 +171,32 @@
                     </span></th>
                   <th class="d-none d-xl-table-cell">Gender</th>
                   <th class="d-none d-xl-table-cell">Age</th>
-                  <th class="d-none d-xl-table-cell">Disease</th>
+                  <th>Info</th>
                   <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-md-table-cell">Appt Date</th>
                   <th class="d-none d-md-table-cell">Appt Slot</th>
-                  <th class="d-none d-xl-table-cell">IsVisitComplete</th>
+                  <th class="d-none d-xl-table-cell">Dr Visit</th>
                   <th>Pharmacy Req</th>
                   <th>Pharmacy</th>
-                  <th>Info</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let data of completeDoctorVisitData;let i=index;">
-                  <td>{{data.doctorName}}</td>
+                  <!-- <td>{{data.doctorName}}</td> -->
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientSex==1 ? 'Male': 'Female'}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientAge}}</td>
-                  <td class="d-none d-xl-table-cell">{{data.disease}}</td>
+                  <td>
+                    <popover-content #myPopover title="Patient Info" placement="left" [animation]="true"
+                      [closeOnClickOutside]="true">
+                      <b style="display: block;">Gender: {{data.patientSex==1 ? 'Male': 'Female'}}</b>
+                      <b style="display: block;">Weight: {{data.patientWeight}}</b>
+                      <b style="display: block;">Disease: {{data.disease}}</b>
+                      <b style="display: block;">Symptoms: {{data.individualsymptom}}</b>
+                      <b style="display: block;">Illness History: {{data.individualillness}}</b>                     
+                    </popover-content>
+                    <button [popoverOnHover]="false" [popover]="myPopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
+                  </td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
                   <td class="d-none d-md-table-cell">{{getTimeSlot(data.timeSlot)}}</td>
@@ -200,17 +209,7 @@
                   <td><span
                       [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
                   </td>
-                  <td>
-                    <popover-content #myPopover title="Patient Info" placement="left" [animation]="true"
-                      [closeOnClickOutside]="true">
-                      <b>Slot: {{getTimeSlot(data.timeSlot)}}</b>
-                      <b>Date: {{data.appointmentDate}}</b>
-
-                      <!-- <b>Very {{getTimeSlot(data.timeSlot)}}</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
-          <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>. -->
-                    </popover-content>
-                    <button [popoverOnHover]="false" [popover]="myPopover">Info</button>
-                  </td>
+                  
                 </tr>
               </tbody>
               </table>
