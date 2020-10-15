@@ -332,12 +332,14 @@ export class BookappointmentComponent implements OnInit {
       patientMob: patientdetail.phoneno,
       patientAddres: patientdetail.address,
       patientID: patientdetail._id,
+      patientWeight: patientdetail.weight,
     });
 
     this.textareaValue = 
   `  ----Patient Details----
   Name: ${patientdetail.name}
   Age: ${patientdetail.age}
+  Weight: ${patientdetail.weight}
   Sex: ${patientdetail.gender==1?'Male':'Female'}
   Email: ${patientdetail.email}
   Phone: ${patientdetail.phoneno}

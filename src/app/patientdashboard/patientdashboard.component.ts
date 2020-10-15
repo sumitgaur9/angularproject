@@ -28,6 +28,7 @@ export class PatientdashboardComponent implements OnInit {
   public completeDoctorListData: any = [];
   public expertiesArrayData: any = [];
   public patientAppointmentData: any = [];
+  public isDataExistInindividualToPackageLabTestCount:boolean=false;
   public doctorExperties = new FormGroup({
     experties: new FormControl(""),
   });
@@ -304,6 +305,11 @@ export class PatientdashboardComponent implements OnInit {
         this.individualToPackageLabTestCount = data;
         if (this.individualToPackageLabTestCount) {
           this.doughnutChartData.push(this.individualToPackageLabTestCount.individualTestCount);
+          if(this.individualToPackageLabTestCount.packageCount>0)
+          {
+            this.isDataExistInindividualToPackageLabTestCount=true;
+          }
+          
           this.doughnutChartData.push(this.individualToPackageLabTestCount.packageCount);
         }
         console.log("  this.individualToPackageLabTestCount  this.individualToPackageLabTestCount", this.individualToPackageLabTestCount)
