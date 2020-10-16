@@ -183,6 +183,48 @@
             </tr>
           </tbody>
         </table>
+        <div style="width: 100%;float:left;margin-top: 3%;">
+          <div style="width: 40%;float:left;">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Is Next Visit Required</label>
+            <input type="checkbox" formControlName="isNextVisitRequired" (change)="isNextVisitRequiredChangeEvent($event)"/>
+            </div>
+          </div>
+          <div style="width: 60%;float:left;">
+            <div class="form-group" [hidden]="!f.isNextVisitRequired.value">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
+                </div>
+                <input class="form-control"  type="text" [dpDayPicker]="dayPickerConfigApptDate" [theme]="'dp-material'"
+                  formControlName="nextAppointmentDate" (onChange)="datechange()" [mode]="'day'" [displayDate]="displayDate"
+                  placeholder="Appointment Date" />
+              </div>
+            </div>
+           
+            <div style="width: 7%;float:right;" [hidden]="!f.isNextVisitRequired.value || f.nextAppointmentDate.value==''">
+              <div class="buttonSection">
+                <div class="text-center">
+                  <input type="button" (click)="Get_SlotData()" [disabled]="disableAvailableTimeSlotBtn" style="width: 50px;font-size:13px;padding: 0;"
+                    value="Add" class="btn btn-info btn-block rounded-0 py-2">
+                </div>
+              </div>
+            </div>
+            <div class="form-group" [hidden]="!visibleTimeSlot">
+              <label for="exampleFormControlSelect1">Time Slot</label>
+              <select class="form-control" formControlName="nextAppointmentTime">
+                <option value=""></option>
+                <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked"
+                  [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.isSlotBooked? opt.name+ '  Slot Full': opt.name}}</option>
+              </select>
+            </div>
+
+       
+
+          </div>
+
+        
+        </div>
       </div>
       <div class="col-sm-12 col-sm-12 col-lg-12" *ngIf="submitted">
         <em style="color: red;font-size: 12px;">{{errorMessage}}</em>

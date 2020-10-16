@@ -24,6 +24,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
   @Input() inputrequesPatMedHomeDeliveryData: any;
+  public displayDate = '';
 
   public sheduleMedicineTableData: any = [];
   public dayPickerConfig = <IDayCalendarConfig>{
@@ -34,6 +35,16 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     min: "13/10/2020",
     max: "30/11/2020"
   };
+
+  public dayPickerConfigApptDate = <IDayCalendarConfig>{
+    locale: "in",
+    format: "DD/MM/YYYY",
+    monthFormat: "MMMM, YYYY",
+    firstDayOfWeek: "mo",
+    min: "13/10/2020",
+    max: "30/11/2020"
+  };
+
 
   public dayPickerTimeConfig = <IDayCalendarConfig>{
     locale: "in",
@@ -73,12 +84,21 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     processInfo: new FormControl(""),
     medicineName: new FormControl([[]]),
     LabTestName: new FormControl([[]]),
+    isNextVisitRequired:  new FormControl(false),
+    nextAppointmentDate: new FormControl(""),
+    nextAppointmentTime: new FormControl(""),
   });
   public passwordPatternError = false;
   public pharmacistListDataArray: any = [];
   public getmedicineprofileid:string='';
   public showMedicineprofileformpopup:boolean=false;
   public currentUser;
+  public filterTimeSlotDataArray:any=[];
+  public doctorWiseAppointmentData:any=[];
+  public completeTimeSlotDataArray:any=[]; 
+  public visibleTimeSlot:boolean = false;
+  public disableAvailableTimeSlotBtn:boolean=true;
+
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
@@ -94,7 +114,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       patientPIN: this.inputrequesPatMedHomeDeliveryData.patientPIN,
       patientContactNo: this.inputrequesPatMedHomeDeliveryData.patientMob,
     })
-
+    this.resetSlotData();
     this.medicineListDataArray = [];
     this.selectedItems = [];
     this.settings = {
@@ -142,21 +162,29 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       return;
     }
     this.errorMessage = "";
-    let dataobj: any = {};
+    let PatientMedicinesForHomeDelivery: any = {};
+    let nextAppointmentData: any = {};
     let tempObj: any = {};
     let medicinesData: any = [];
-    dataobj.patientName = this.reqPatientMedicinesHomeDeliveryForm.controls.patientName.value;
-    dataobj.appointmentID = this.appointmentid;
-    dataobj.doctorID = this.reqByDoctorId;
-    dataobj.patientID = this.reqByPatientId;
-    dataobj.doctorName = this.reqByDoctorName;
-    dataobj.pharmacistID = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistID.value;
-    dataobj.pharmacistName = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistName.value;
-    dataobj.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
-    dataobj.patientAddress = this.reqPatientMedicinesHomeDeliveryForm.controls.patientAddress.value;
-    dataobj.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
-    dataobj.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
+    let compDataObj:any={};
+
+    PatientMedicinesForHomeDelivery.patientName = this.reqPatientMedicinesHomeDeliveryForm.controls.patientName.value;
+    PatientMedicinesForHomeDelivery.appointmentID = this.appointmentid;
+    PatientMedicinesForHomeDelivery.doctorID = this.reqByDoctorId;
+    PatientMedicinesForHomeDelivery.patientID = this.reqByPatientId;
+    PatientMedicinesForHomeDelivery.doctorName = this.reqByDoctorName;
+    PatientMedicinesForHomeDelivery.pharmacistID = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistID.value;
+    PatientMedicinesForHomeDelivery.pharmacistName = this.reqPatientMedicinesHomeDeliveryForm.controls.pharmacistName.value;
+    PatientMedicinesForHomeDelivery.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
+    PatientMedicinesForHomeDelivery.patientAddress = this.reqPatientMedicinesHomeDeliveryForm.controls.patientAddress.value;
+    PatientMedicinesForHomeDelivery.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
+    PatientMedicinesForHomeDelivery.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
+
+
+
     
+
+
     let labtestdataarray=[];    
     this.selectedLabTestItems.forEach(element => {
       let dataobjec = {
@@ -165,7 +193,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       }
       labtestdataarray.push(dataobjec);
     });
-    dataobj.testsData =  labtestdataarray;
+    PatientMedicinesForHomeDelivery.testsData =  labtestdataarray;
 
     for (var i = 0; i < this.sheduleMedicineTableData.length; i++) {
       let tempObj: any = {};
@@ -186,9 +214,14 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       tempObj.medicinesdataArrayForFixTimeSlot = medicinesdataArrayForFixTimeSlot;
       medicinesData.push(tempObj);
     }
-    dataobj.medicinesData = medicinesData;
-    dataobj.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
-    this._apiservice.Request_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
+    PatientMedicinesForHomeDelivery.medicinesData = medicinesData;
+    PatientMedicinesForHomeDelivery.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
+    compDataObj.PatientMedicinesForHomeDelivery=PatientMedicinesForHomeDelivery;
+    nextAppointmentData.isNextVisitRequired = this.reqPatientMedicinesHomeDeliveryForm.controls.isNextVisitRequired.value;
+    nextAppointmentData.nextAppointmentDate =this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
+    nextAppointmentData.nextAppointmentTime = this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentTime.value;
+    compDataObj.nextAppointmentData=nextAppointmentData;
+    this._apiservice.Request_PatientMedicinesHomeDelivery(compDataObj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
         this.toastr.success("Thanks to being a part of our platform", '', {
@@ -289,9 +322,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   onLabTestDeSelectAll(items: any) {
     console.log(items);
   }
-  
-  datechange() {
-  }
 
   public SendDataInTableValue() {
     if (this.reqPatientMedicinesHomeDeliveryForm.controls.scheduleDate.value == undefined ||
@@ -353,6 +383,74 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   deleteMedicineDetailRow(index: number) {
     this.sheduleMedicineTableData.splice(index, 1);
+  }
+
+  Get_SlotData() {
+    let dataobj={
+      doctorID:this.reqByDoctorId,
+      appointmentDate:this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value),
+    }
+    this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
+      if (data) {
+        this.resetSlotData();
+        if(data.length>0)
+        {
+          this.filterTimeSlotDataArray=[];
+          this.doctorWiseAppointmentData = data.filter(function (item) {
+            return item.isVisitCompleted == false;
+          });
+          for (var i = 0; i < this.completeTimeSlotDataArray.length; i++) {
+            var ispush=true;
+            
+            for (var j = 0; j < this.doctorWiseAppointmentData.length; j++) {
+              if (this.completeTimeSlotDataArray[i].id == this.doctorWiseAppointmentData[j].timeSlot) {
+                ispush=false;
+                break;
+              }
+            }
+            if (ispush) {
+              this.completeTimeSlotDataArray[i].isSlotBooked = false
+            } else {
+              this.completeTimeSlotDataArray[i].isSlotBooked = true
+            }
+            this.filterTimeSlotDataArray.push(this.completeTimeSlotDataArray[i])
+          }
+        }
+        else{
+          this.filterTimeSlotDataArray =this.completeTimeSlotDataArray;
+        }
+        this.visibleTimeSlot = true;
+      }
+     
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  resetSlotData(){
+    this.completeTimeSlotDataArray = [
+      { "id": 0,"name":"10:00 AM - 11:00 AM", "isSlotBooked": false },
+      { "id": 1,"name":"11:00 AM - 12:00 PM", "isSlotBooked": false },
+      { "id": 2,"name":"12:00 PM - 01:00PM", "isSlotBooked": false },
+      { "id": 3,"name":"01:00 PM - 02:00PM", "isSlotBooked": false },
+      { "id": 4,"name":"02:00 PM - 03:00PM", "isSlotBooked": false },
+      { "id": 5,"name":"03:00 PM - 04:00PM", "isSlotBooked": false },
+      { "id": 6,"name":"04:00 PM - 05:00PM", "isSlotBooked": false },
+      { "id": 7,"name":"05:00 PM - 06:00PM", "isSlotBooked": false },
+    ]    
+  }
+
+  datechange(){
+    console.log(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
+    console.log(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
+    this.disableAvailableTimeSlotBtn= false;
+    this.visibleTimeSlot= false;
+  }
+
+  isNextVisitRequiredChangeEvent(event)
+  {
+    this.disableAvailableTimeSlotBtn= true;
+    this.visibleTimeSlot= false;
   }
 
   selectEventInstruction(item) {
