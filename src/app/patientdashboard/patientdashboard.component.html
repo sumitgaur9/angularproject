@@ -211,7 +211,7 @@
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <td class="d-none d-md-table-cell">{{data.patientEmail}}</td>
                   <td class="d-none d-xl-table-cell">{{data.disease}}</td>
-                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
+                  <td class="d-none d-md-table-cell">{{data.appointmentDate.substr(8, 10)}}/{{data.appointmentDate.substr(5, 2)}}/{{data.appointmentDate.substr(0, 4)}}</td> 
                   <td class="d-none d-md-table-cell">{{data.timeSlotValue}}</td>
                   <td>
                     <a *ngIf="!data.isPaymentDone" (click)="makePayment(data)" class="btn" style="font-size:13px;"><i

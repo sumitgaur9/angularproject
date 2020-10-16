@@ -198,7 +198,7 @@
                     <button [popoverOnHover]="false" [popover]="myPopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                   </td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
-                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td>
+                  <td class="d-none d-md-table-cell">{{data.appointmentDate.substr(8, 10)}}/{{data.appointmentDate.substr(5, 2)}}/{{data.appointmentDate.substr(0, 4)}}</td> 
                   <td class="d-none d-md-table-cell">{{getTimeSlot(data.timeSlot)}}</td>
                   <td><span (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"
                       [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
