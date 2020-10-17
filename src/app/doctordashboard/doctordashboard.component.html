@@ -157,8 +157,7 @@
                   <!-- <th class="d-none d-xl-table-cell">Gender</th>
                   <th class="d-none d-xl-table-cell">Age</th> -->
                   <th>Info</th>
-                  <th>MEdInfo</th>
-
+                  <th>MedInfo</th>
                   <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-md-table-cell">Appt Date</th>
                   <th class="d-none d-md-table-cell">Appt Slot</th>
@@ -245,6 +244,7 @@
                   <th class="d-none d-xl-table-cell">Gender</th>
                   <th class="d-none d-xl-table-cell">Age</th>
                   <th>Info</th>
+                  <th>MedInfo</th>
                   <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-md-table-cell">Appt Date</th>
                   <th class="d-none d-md-table-cell">Appt Slot</th>
@@ -268,6 +268,25 @@
                       <b style="display: block;">Illness History: {{data.individualillness}}</b>                     
                     </popover-content>
                     <button [popoverOnHover]="false" [popover]="myPopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
+                  </td>
+                  <td>
+                    <popover-content #medicnehistorypopover title="Medicine Info" placement="left" [animation]="true"
+                      [closeOnClickOutside]="true" popoverSize="large">
+                      <div *ngFor="let dataObj of data.patientMedicinesHomeDelivery">
+                        <div style="float:left;width:100%">
+                          <div style="float:left;width:30%">
+                            <b style="display: block;">{{dataObj.medicineName}}</b>
+                          </div>
+                          <div style="float:left;width:33%">
+                            <b style="display: block;">{{dataObj.medicineScheduleDate}}</b>
+                          </div>
+                          <div style="float:left;width:27%">
+                            <b style="display: block;">{{dataObj.processInfo}}</b>
+                          </div>
+                        </div>
+                    </div>                    
+                    </popover-content>
+                    <button [popoverOnHover]="false" [popover]="medicnehistorypopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                   </td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td> 
