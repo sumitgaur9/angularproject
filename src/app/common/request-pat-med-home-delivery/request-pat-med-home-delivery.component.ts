@@ -32,8 +32,8 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     format: "DD/MM/YYYY",
     monthFormat: "MMMM, YYYY",
     firstDayOfWeek: "mo",
-    min: "13/10/2020",
-    max: "30/11/2020"
+    min: this.utilityservice.ToDisplayDateFormat(new Date()),
+    max: this.utilityservice.ToDisplayDateFormat(new Date().setDate(new Date().getDate() + 30))
   };
 
   public dayPickerConfigApptDate = <IDayCalendarConfig>{
@@ -41,8 +41,8 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     format: "DD/MM/YYYY",
     monthFormat: "MMMM, YYYY",
     firstDayOfWeek: "mo",
-    min: "13/10/2020",
-    max: "30/11/2020"
+    min: this.utilityservice.ToDisplayDateFormat(new Date()),
+    max: this.utilityservice.ToDisplayDateFormat(new Date().setDate(new Date().getDate() + 7))
   };
 
 

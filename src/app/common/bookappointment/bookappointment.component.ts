@@ -96,13 +96,17 @@ export class BookappointmentComponent implements OnInit {
   public getpatientprofileid = '';
   public completeDoctorListData:any=[];
   public expertiesDataWithOccurance:any=[];
+
+  // var date = new Date(this.valueOf());
+  //   date.setDate(date.getDate() + 15);
+
   public dayPickerConfig = <IDayCalendarConfig>{
     locale: "in",
     format: "DD/MM/YYYY",
     monthFormat: "MMMM, YYYY",
     firstDayOfWeek: "mo",
-    min: "13/10/2020",
-    max: "30/11/2020"
+    min: this.utilityservice.ToDisplayDateFormat(new Date()),
+    max: this.utilityservice.ToDisplayDateFormat(new Date().setDate(new Date().getDate() + 7))
   };
   textareaValue: string = '';
   
