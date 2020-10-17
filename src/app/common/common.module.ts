@@ -36,10 +36,11 @@ import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.compone
 import { SavewebsitetextdataComponent } from './savewebsitetextdata/savewebsitetextdata.component';
 import { MedicineprofileComponent } from './medicineprofile/medicineprofile.component';
 import { CompanymasterComponent } from './companymaster/companymaster.component';
+import { PrescriptionuploadComponent } from './prescriptionupload/prescriptionupload.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent, SavewebsitetextdataComponent, MedicineprofileComponent, CompanymasterComponent],
+  declarations: [LoaderComponent,DoctorprofileComponent, ModalComponent, PatientprofileComponent, NurseprofileComponent, PharmacistprofileComponent, PhyscotherapistprofileComponent, RequestPatMedHomeDeliveryComponent, PharmacistVisitCompleteIntimationComponent, VisitforallComponent, BookappointmentComponent, DiseasmasterComponent, ExpertiesmasterComponent, CreatebooklabtestComponent, LabtechnicianprofileComponent, UploadtestreportComponent, ForgotpasswordComponent, ChangepasswordComponent, ImageuploadComponent, ConfirmationComponent, VerifyotpComponent, PasswordsetupComponent, LabtestprofileComponent, LabtestpackageprofileComponent, PaymentsuccessComponent, SavewebsitetextdataComponent, MedicineprofileComponent, CompanymasterComponent, PrescriptionuploadComponent],
    
   imports: [
     CommonModule,
@@ -78,7 +79,8 @@ import { CompanymasterComponent } from './companymaster/companymaster.component'
     PaymentsuccessComponent,
     SavewebsitetextdataComponent,
     MedicineprofileComponent,
-    CompanymasterComponent
+    CompanymasterComponent,
+    PrescriptionuploadComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

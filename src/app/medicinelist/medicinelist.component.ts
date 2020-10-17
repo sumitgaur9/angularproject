@@ -20,12 +20,14 @@ declare var $: any;
 export class MedicinelistComponent implements OnInit {
 
   public showMedicineprofileformpopup = false;
+  public showPrescriptionUploadformpopup = false;
   public errorMessage: string = '';
   public medicineListDataArray: any = [];
   public currentUser;
   public getmedicineprofileid: string = '';
   public companyArrayData:any=[];
-
+  public medicineData;
+  
   showConfirmationPopup = false;
   public showData = 'Do you really want to delete these records? This process cannot be undone.';
   public getDefaultImage = defaultImage.medicinelink;
@@ -45,6 +47,12 @@ export class MedicinelistComponent implements OnInit {
     if (calllistapi) {
       this.Get_MedicinesList();
     }
+  }
+
+  closePrescriptionUploadPopup(){
+    this.showPrescriptionUploadformpopup = false;
+    $('#showSPrescriptionUploadPopup').modal('hide');  
+
   }
 
 
@@ -120,19 +128,32 @@ export class MedicinelistComponent implements OnInit {
 
 
   addToCart(medicineInfo) {
-    let dataobj: any = {};
-    dataobj.itemID = medicineInfo._id;
-    dataobj.itemName = medicineInfo.medicineName;
-    dataobj.companyName = medicineInfo.companyName;
-    dataobj.price = medicineInfo.price;
-    dataobj.qty = 1;
-    dataobj.paymentTypeEnumKey = AppEnum.paymentType.Medicine;;
-    dataobj.paymentTypeEnumValue = "Medicine"
-    dataobj.userId = this.currentUser.roleBaseId;
-    medicineInfo.isAddedInCart = true;
-    var modifycartdata = Object.assign({}, dataobj);
-    this.utilityservice.addIntoCart.next(modifycartdata);
-    //this.Save_AddtoCart(modifycartdata);
+    if (medicineInfo.isPrescriptionRequired) {
+      this.toastr.warning("You need to upload your doctor prescription to order this medicine", '', {
+        timeOut: 8000,
+      });
+      this.medicineData = medicineInfo;
+      this.showPrescriptionUploadformpopup = true;
+      setTimeout(() => {
+        $(window).scrollTop(0);
+        $('#showSPrescriptionUploadPopup').modal('show');
+      }, 100);
+    } else {
+      let dataobj: any = {};
+      dataobj.itemID = medicineInfo._id;
+      dataobj.itemName = medicineInfo.medicineName;
+      dataobj.companyName = medicineInfo.companyName;
+      dataobj.price = medicineInfo.price;
+      dataobj.qty = 1;
+      dataobj.paymentTypeEnumKey = AppEnum.paymentType.Medicine;;
+      dataobj.paymentTypeEnumValue = "Medicine"
+      dataobj.userId = this.currentUser.roleBaseId;
+      medicineInfo.isAddedInCart = true;
+      var modifycartdata = Object.assign({}, dataobj);
+      this.utilityservice.addIntoCart.next(modifycartdata);
+      //this.Save_AddtoCart(modifycartdata);
+    }
+
   }
 
   

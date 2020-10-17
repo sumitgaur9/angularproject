@@ -73,6 +73,10 @@
       <app-medicineprofile [showModal]="showMedicineprofileformpopup"  [getmedicineprofileid]="getmedicineprofileid" (ClosePopup)="closeMedicineProfilePopup($event)"> </app-medicineprofile>
     </div>
 
+    <div *ngIf="showPrescriptionUploadformpopup">
+      <app-prescriptionupload [showModal]="showPrescriptionUploadformpopup" [medicineData]="medicineData" (ClosePopup)="closePrescriptionUploadPopup($event)"> </app-prescriptionupload>
+    </div>
+
     <div *ngIf="showConfirmationPopup">
       <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
       </app-confirmation>
