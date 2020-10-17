@@ -36,7 +36,6 @@ export class DoctordashboardComponent implements OnInit {
   public monthlyHomeOnlineApptCount: any;
   public completeDoctorVisitData: any = [];
   public errorMessage;
-  public showVisitForAll: boolean = false;
   public visitAppointmentId: string = '';
   public patientname: string = '';
   public inputrequesPatMedHomeDelivery: any = {
@@ -99,6 +98,7 @@ export class DoctordashboardComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   public currentUser;
   public usersParams: any = {};
+  public historyApptSortParam: any = {};
   public patientMedicinesHomeDelivery:any=[];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -115,24 +115,8 @@ export class DoctordashboardComponent implements OnInit {
    // let todaydate=this.utilityservice.ToDBDateFormat(new Date()).replace(/-/g, '/');
    // console.log("todaydatetodaydate",todaydate);
   }
-  public closeshowVisitForAll(calllistapi) {
-    this.showVisitForAll = false;
-    $('#showVisitForAllModal').modal('hide');
-    if(calllistapi)
-    {
-      this.Get_AppointmentsByDocID();
-    }
-  }
-  public openShowVisitForAll(data) {
-    this.showVisitForAll = true;
-    console.log("data is this", data);
-    this.visitAppointmentId = data._id;
-    this.patientname = data.patientNname;
-    setTimeout(() => {
-      $(window).scrollTop(0);
-      $('#showVisitForAllModal').modal('show');
-    }, 100);
-  }
+ 
+
 
   public closeRequestPatMedHomeDelivery(calllistapi) {
     this.showRequestPatMedHomeDelivery = false;
@@ -223,8 +207,8 @@ export class DoctordashboardComponent implements OnInit {
         this.completeDoctorVisitData = data;
         this.completeDoctorVisitData.forEach(element => {
           element.individualsymptom = '';
+          element["patientnameForApptHistory"] = element.patientNname;//this is required for fix the problem of sorting
           element.appointmentDate = this.utilityservice.ToDisplayDateFormat(new Date(element.appointmentDate));
-             // let todaydate=this.utilityservice.ToDBDateFormat(new Date()).replace(/-/g, '/');
           element.symptomsData.forEach(element1 => {
             element.individualsymptom = element.individualsymptom + ' ' + element1.symptomName+ ','
           });
@@ -232,10 +216,7 @@ export class DoctordashboardComponent implements OnInit {
           element.illnessHistoryData.forEach(element2 => {
             element.individualillness = element.individualillness + ' ' + element2.illnessName+ ','
           });
-          //this.patientMedicinesHomeDelivery
-         // if(this.currentUser.user.roleBaseId==element.doctorID)
          element["patientMedicinesHomeDelivery"]=[];
-         // element["patientMedicinesHomeDelivery"]
           let patientMedicinesHomeDeliveryInfo = this.patientMedicinesHomeDelivery.filter(function (item) {
             var self = this;
             return (item.doctorID==element.doctorID && item.patientID==element.patientID)
@@ -245,66 +226,12 @@ export class DoctordashboardComponent implements OnInit {
             for (var j = 0; j < patientMedicinesHomeDeliveryInfo[i].medicinesData.length; j++) {
               let temp: any = {};
               let tempMedicineName: any = [];
-           //   temp.medicineSNo = data[i].medicinesData[j].medicineSNo;
               temp.medicineScheduleDate = patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicineScheduleDate;
               temp.processInfo = patientMedicinesHomeDeliveryInfo[i].medicinesData[j].processInfo;//'After Lunch';
-  
-          //    let month = (new Date().getMonth() + 1).toString();
-          //    let year = (new Date().getFullYear()).toString();
-  
-              // let yesterdayDateFromNewDate;
-              // let yest_date = (new Date().getDate() < 9 ? '0' + (new Date().getDate() + 1) : new Date().getDate() + 1).toString();
-              // yesterdayDateFromNewDate = (yest_date + '/' + month + '/' + year);
-  
-              // let todayDateFromNewDate;
-              // let today_date = (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()).toString();
-              // todayDateFromNewDate = (today_date + '/' + month + '/' + year);
-  
-              // let tommorowDateFromNewDate;
-              // let tomm_date = (new Date().getDate() < 11 ? '0' + (new Date().getDate() - 1) : new Date().getDate() - 1).toString();
-              // tommorowDateFromNewDate = (tomm_date + '/' + month + '/' + year);
-  
-              // if (yesterdayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
-              //   temp.yesterday_today_tommorrow = 'yesterday';
-              //   temp.circleBackgroundColor = '#3fb49a';
-              // } else if (todayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
-              //   temp.yesterday_today_tommorrow = 'today';
-              //   temp.circleBackgroundColor = '#147fda';
-              // } else if (tommorowDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
-              //   temp.yesterday_today_tommorrow = 'tommorow';
-              //   temp.circleBackgroundColor = '#f6a52d';
-              // } else {
-              //   if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() < new Date().getTime()) {
-              //     temp.circleBackgroundColor = '#3fb49a';
-              //   }
-              //   else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() == new Date().getTime()) {
-              //     temp.circleBackgroundColor = '#147fda';
-              //   }
-              //   else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() > new Date().getTime()) {
-              //     temp.circleBackgroundColor = '#f6a52d';
-              //   }
-              //   temp.yesterday_today_tommorrow = data[i].medicinesData[j].medicineScheduleDate;
-              // }
-  
-              // temp.medicineScheduleTime = data[i].medicinesData[j].medicineScheduleTime;
-              // if (parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) < 12) {
-              //   temp.am_pm = 'am';
-              // } else {
-              //   temp.am_pm = 'pm';
-              //   if (parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) == 12) {
-              //     temp.medicineScheduleTime = data[i].medicinesData[j].medicineScheduleTime;
-              //   } else {
-              //     let hours = parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) - 12;
-              //     temp.medicineScheduleTime = hours + data[i].medicinesData[j].medicineScheduleTime.substring(2, 5);
-              //   }
-  
-              // }
               for (var k = 0; k < patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
                 tempMedicineName.push(patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
               }
               temp.medicineName = tempMedicineName.toString();
-           //   this.pharmaReqForHomeDelData.push(temp);
-            //  this.pharmaReqForHomeDelData.reverse();
             element["patientMedicinesHomeDelivery"].push(temp);
             }
             let tempabc = {
@@ -314,10 +241,6 @@ export class DoctordashboardComponent implements OnInit {
             }
             element["patientMedicinesHomeDelivery"].push(tempabc);
           }
-
-          //element["medicineHistory"]=
-
-
           if(element.appointmentDate<this.utilityservice.ToDisplayDateFormat(new Date()))
           {
             this.doctorAppointmentHistoryListData.push(element);
@@ -330,17 +253,6 @@ export class DoctordashboardComponent implements OnInit {
         console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID", this.completeDoctorVisitData)
         console.log("doctorAppointmentHistoryListDatadoctorAppointmentHistoryListData", this.doctorAppointmentHistoryListData)
         console.log("doctorUpComingAppointmentDatadoctorUpComingAppointmentData", this.doctorUpComingAppointmentData)
-
-        // for()
-        // this.doctorAppointmentHistoryListData = this.completeDoctorVisitData.filter(function (item) {
-        //   var self=this;
-        //   return item.appointmentDate<self.utilityservice.ToDisplayDateFormat(new Date())
-        // });
-        // console.log("doctorAppointmentHistoryListDatadoctorAppointmentHistoryListData", this.doctorAppointmentHistoryListData)
-        // this.doctorUpComingAppointmentData = this.completeDoctorVisitData.filter(function (item) {
-        //   var selfself=this;
-        //   return item.appointmentDate>=selfself.utilityservice.ToDisplayDateFormat(new Date())
-        // });
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -450,6 +362,24 @@ export class DoctordashboardComponent implements OnInit {
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
+  }
+
+  sortHistoryAppointment(sortBy)
+  {
+    if (this.historyApptSortParam.sortBy == undefined && this.historyApptSortParam.sortDir == undefined) {
+      this.historyApptSortParam.sortBy = sortBy;
+      this.historyApptSortParam.sortDir = "desc";
+    } else if (this.historyApptSortParam.sortBy == sortBy && this.historyApptSortParam.sortDir == "desc") {
+      this.historyApptSortParam.sortBy = sortBy;
+      this.historyApptSortParam.sortDir = "asc";
+    } else if (this.historyApptSortParam.sortBy == sortBy && this.historyApptSortParam.sortDir == "asc") {
+      this.historyApptSortParam.sortBy = sortBy;
+      this.historyApptSortParam.sortDir = "desc";
+    } else if (this.historyApptSortParam.sortBy != undefined && this.historyApptSortParam.sortBy != sortBy) {
+      this.historyApptSortParam.sortBy = sortBy;
+      this.historyApptSortParam.sortDir = "desc";
+    }
+    this.Get_AppointmentsByDocID();
   }
 
   sortUserList(sortBy) {
