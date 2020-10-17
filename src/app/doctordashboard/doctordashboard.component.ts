@@ -22,6 +22,7 @@ export class DoctordashboardComponent implements OnInit {
   public apptHistoryData:any=[];
   public reqByDoctorId: string = '';
   public reqByPatientId: string = '';
+  public reqByAppointmentDate: string = '';
   public reqByDoctorName: string = '';
   public commonDashBoardCountData: any = {
     total_no_of_doctors: 0,
@@ -166,6 +167,7 @@ export class DoctordashboardComponent implements OnInit {
     this.reqByDoctorId = data.doctorID;
     this.reqByPatientId = data.patientID;
     this.reqByDoctorName = data.doctorName;
+    this.reqByAppointmentDate = this.utilityservice.ToDBDateFormat(data.appointmentDate);
     console.log("data is this", data);
     this.inputrequesPatMedHomeDelivery.patientNname = data.patientNname;
     this.inputrequesPatMedHomeDelivery.patientMob = data.patientMob;
@@ -203,9 +205,9 @@ export class DoctordashboardComponent implements OnInit {
       if (data) {
         this.doctorAppointmentHistoryListData = [];
         this.doctorUpComingAppointmentData = [];
-
         this.completeDoctorVisitData = data;
         this.completeDoctorVisitData.forEach(element => {
+          let tempReqPatMedDelAppointmentDateIdArray=[];
           element.individualsymptom = '';
           element["patientnameForApptHistory"] = element.patientNname;//this is required for fix the problem of sorting
           element.appointmentDate = this.utilityservice.ToDisplayDateFormat(new Date(element.appointmentDate));
@@ -218,11 +220,19 @@ export class DoctordashboardComponent implements OnInit {
           });
          element["patientMedicinesHomeDelivery"]=[];
           let patientMedicinesHomeDeliveryInfo = this.patientMedicinesHomeDelivery.filter(function (item) {
-            var self = this;
             return (item.doctorID==element.doctorID && item.patientID==element.patientID)
           });
 
           for (var i = 0; i < patientMedicinesHomeDeliveryInfo.length; i++) {
+            if(patientMedicinesHomeDeliveryInfo[i].appointmentDate!=undefined && patientMedicinesHomeDeliveryInfo[i].appointmentDate!=null && patientMedicinesHomeDeliveryInfo[i].appointmentDate!='')
+            {
+              let tempReqPatMedApptIdDateObj:any={};
+              tempReqPatMedApptIdDateObj.appointmentId=patientMedicinesHomeDeliveryInfo[i].appointmentID;
+              tempReqPatMedApptIdDateObj.appointmentDate=this.utilityservice.ToDisplayDateFormat(patientMedicinesHomeDeliveryInfo[i].appointmentDate);
+              tempReqPatMedDelAppointmentDateIdArray.push(tempReqPatMedApptIdDateObj);
+            }
+    
+
             for (var j = 0; j < patientMedicinesHomeDeliveryInfo[i].medicinesData.length; j++) {
               let temp: any = {};
               let tempMedicineName: any = [];
@@ -241,6 +251,28 @@ export class DoctordashboardComponent implements OnInit {
             }
             element["patientMedicinesHomeDelivery"].push(tempabc);
           }
+
+          //logic to show latest medicine deliver data for this doctor and this patnet
+          element["latestMedicineDeliverInfo"]=[];
+          if(tempReqPatMedDelAppointmentDateIdArray && tempReqPatMedDelAppointmentDateIdArray.length>0)
+          {
+            let maximumDateAndApptId=  this.getMaxDate(tempReqPatMedDelAppointmentDateIdArray);
+            console.log("maximumDateAndApptId",maximumDateAndApptId);
+            let templatestMedicineRequestInfo = patientMedicinesHomeDeliveryInfo.filter(function (item) {
+              return (item.appointmentID==maximumDateAndApptId.apptId)
+            });
+            for (var j = 0; j < templatestMedicineRequestInfo[0].medicinesData.length; j++) {
+              let latestMediineDeliverObj: any = {};
+              let tempMedicineName: any = [];
+              latestMediineDeliverObj.medicineScheduleDate = templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate;
+              latestMediineDeliverObj.processInfo = templatestMedicineRequestInfo[0].medicinesData[j].processInfo;//'After Lunch';
+              for (var k = 0; k < templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
+                tempMedicineName.push(templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
+              }
+              latestMediineDeliverObj.medicineName = tempMedicineName.toString();
+              element["latestMedicineDeliverInfo"].push(latestMediineDeliverObj);
+            }
+          }
           if(element.appointmentDate<this.utilityservice.ToDisplayDateFormat(new Date()))
           {
             this.doctorAppointmentHistoryListData.push(element);
@@ -249,7 +281,6 @@ export class DoctordashboardComponent implements OnInit {
             this.doctorUpComingAppointmentData.push(element);
           }
         });
-      
         console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID", this.completeDoctorVisitData)
         console.log("doctorAppointmentHistoryListDatadoctorAppointmentHistoryListData", this.doctorAppointmentHistoryListData)
         console.log("doctorUpComingAppointmentDatadoctorUpComingAppointmentData", this.doctorUpComingAppointmentData)
@@ -258,6 +289,53 @@ export class DoctordashboardComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  getLatestAppointmentDoenMEdicineInfo(tempReqPatMedDelAppointmentDateIdArray)
+  {
+    // let patientMedicinesHomeDeliveryArray = tempReqPatMedDelAppointmentDateIdArray.map(
+    //   function(tempReqPatMedDelAppointmentDateIdArrayObj) { 
+    //     return tempReqPatMedDelAppointmentDateIdArrayObj.appointmentDate;
+    //   })
+
+    //  let maxdate= this.getMaxDate(patientMedicinesHomeDeliveryArray);
+    //  return maxdate;
+
+    let maxdate= this.getMaxDate(tempReqPatMedDelAppointmentDateIdArray);
+    return maxdate;
+
+  }
+
+
+  getMaxDate(tempReqPatMedDelAppointmentDateIdArray)
+  {
+    let maxdateAndApptId:any={};
+        if(tempReqPatMedDelAppointmentDateIdArray.length>0)
+    {
+      maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[0].appointmentDate;
+      maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[0].appointmentId
+    }
+    for(var i=0;i<tempReqPatMedDelAppointmentDateIdArray.length;i++)
+    {
+      if(maxdateAndApptId.maxDate<tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate)
+      {
+        maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate;
+        maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[i].appointmentId
+      }
+
+    }
+   return  maxdateAndApptId;
+  }
+
+   GFG_Fun(medicineScheduleDate) { 
+    return new Date(Math.max.apply(null, medicineScheduleDate)); 
+   // var minimumDate=new Date(Math.min.apply(null, medicineScheduleDate)); 
+   // console.log("maximumDatemaximumDate",maximumDate);
+
+   // console.log("minimumDateminimumDate",minimumDate);
+
+ 
+} 
+
 
   Get_CommonDashboardCount() {
     let dataobj = {}

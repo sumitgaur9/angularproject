@@ -20,6 +20,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   @Input() reqByDoctorId: string = '';
   @Input() reqByPatientId: string = '';
   @Input() reqByDoctorName: string = '';
+  @Input() reqByAppointmentDate: string = '';
   @Output() ClosePopup: EventEmitter<any> = new EventEmitter();
   @Output() forgotPasswordSet: EventEmitter<any> = new EventEmitter();
 
@@ -96,6 +97,8 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   public filterTimeSlotDataArray:any=[];
   public doctorWiseAppointmentData:any=[];
   public completeTimeSlotDataArray:any=[]; 
+  public patientMedicinesHomeDeliveryList:any=[];
+  public repeatedMedicineData:any=[];
   public visibleTimeSlot:boolean = false;
   public disableAvailableTimeSlotBtn:boolean=true;
 
@@ -108,6 +111,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this.Get_MedicinesList();
     this.Get_PharmacistsList();
     this.Get_LabTestsList();
+    this.Get_PatientMedicinesHomeDelivery();
     this.reqPatientMedicinesHomeDeliveryForm.patchValue({
       patientName: this.inputrequesPatMedHomeDeliveryData.patientNname,
       patientAddress: this.inputrequesPatMedHomeDeliveryData.patientAddres,
@@ -170,6 +174,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
     PatientMedicinesForHomeDelivery.patientName = this.reqPatientMedicinesHomeDeliveryForm.controls.patientName.value;
     PatientMedicinesForHomeDelivery.appointmentID = this.appointmentid;
+    PatientMedicinesForHomeDelivery.appointmentDate = this.reqByAppointmentDate;
     PatientMedicinesForHomeDelivery.doctorID = this.reqByDoctorId;
     PatientMedicinesForHomeDelivery.patientID = this.reqByPatientId;
     PatientMedicinesForHomeDelivery.doctorName = this.reqByDoctorName;
@@ -179,12 +184,6 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     PatientMedicinesForHomeDelivery.patientAddress = this.reqPatientMedicinesHomeDeliveryForm.controls.patientAddress.value;
     PatientMedicinesForHomeDelivery.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
     PatientMedicinesForHomeDelivery.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
-
-
-
-    
-
-
     let labtestdataarray=[];    
     this.selectedLabTestItems.forEach(element => {
       let dataobjec = {
@@ -426,6 +425,84 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  Get_PatientMedicinesHomeDelivery() {
+    let dataobj = {}
+    this._apiservice.Get_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
+      if (data) {
+        this.patientMedicinesHomeDeliveryList=data;
+
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  getRepeatedMedicineData()
+  {
+    let tempReqPatMedDelAppointmentDateIdArray:any=[];
+    this.repeatedMedicineData=[];
+    let self=this;
+    let patientMedicinesHomeDeliveryInfo = this.patientMedicinesHomeDeliveryList.filter(function (item) {
+      return (item.doctorID==self.reqByDoctorId && item.patientID==self.reqByPatientId)
+    });
+
+    for (var i = 0; i < patientMedicinesHomeDeliveryInfo.length; i++) {
+      if(patientMedicinesHomeDeliveryInfo[i].appointmentDate!=undefined && patientMedicinesHomeDeliveryInfo[i].appointmentDate!=null && patientMedicinesHomeDeliveryInfo[i].appointmentDate!='')
+      {
+        let tempReqPatMedApptIdDateObj:any={};
+        tempReqPatMedApptIdDateObj.appointmentId=patientMedicinesHomeDeliveryInfo[i].appointmentID;
+        tempReqPatMedApptIdDateObj.appointmentDate=this.utilityservice.ToDisplayDateFormat(patientMedicinesHomeDeliveryInfo[i].appointmentDate);
+        tempReqPatMedDelAppointmentDateIdArray.push(tempReqPatMedApptIdDateObj);
+      }
+    }
+    if(tempReqPatMedDelAppointmentDateIdArray && tempReqPatMedDelAppointmentDateIdArray.length>0)
+    {
+      let maximumDateAndApptId=  this.getMaxDate(tempReqPatMedDelAppointmentDateIdArray);
+      console.log("maximumDateAndApptId",maximumDateAndApptId);
+      let templatestMedicineRequestInfo = patientMedicinesHomeDeliveryInfo.filter(function (item) {
+        return (item.appointmentID==maximumDateAndApptId.apptId)
+      });
+      for (var j = 0; j < templatestMedicineRequestInfo[0].medicinesData.length; j++) {
+        let latestMediineDeliverObj: any = {};
+        let tempMedicineName: any = [];
+        let tempMedicineID:any=[];
+        latestMediineDeliverObj.medicineScheduleTime = templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleTime;
+        latestMediineDeliverObj.medicneScheduleDate = this.utilityservice.ToDisplayDateFormat(new Date(this.utilityservice.ToDBDateFormat(templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate)).setDate(new Date().getDate() + 7));
+        latestMediineDeliverObj.processInfo = templatestMedicineRequestInfo[0].medicinesData[j].processInfo;//'After Lunch';
+        for (var k = 0; k < templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
+          tempMedicineName.push(templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
+          tempMedicineID.push(templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineID)
+        }
+        latestMediineDeliverObj.medicineScheduleName = tempMedicineName.toString();
+        latestMediineDeliverObj.medicineScheduleId = tempMedicineID.toString();
+        this.repeatedMedicineData.push(latestMediineDeliverObj);
+        this.sheduleMedicineTableData.push(latestMediineDeliverObj);
+      }
+    }
+  }
+
+
+  getMaxDate(tempReqPatMedDelAppointmentDateIdArray)
+  {
+    let maxdateAndApptId:any={};
+        if(tempReqPatMedDelAppointmentDateIdArray.length>0)
+    {
+      maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[0].appointmentDate;
+      maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[0].appointmentId
+    }
+    for(var i=0;i<tempReqPatMedDelAppointmentDateIdArray.length;i++)
+    {
+      if(maxdateAndApptId.maxDate<tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate)
+      {
+        maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate;
+        maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[i].appointmentId
+      }
+
+    }
+   return  maxdateAndApptId;
+  }
+
 
   resetSlotData(){
     this.completeTimeSlotDataArray = [
