@@ -217,6 +217,9 @@ export class DoctordashboardComponent implements OnInit {
     }
     this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
+        this.doctorAppointmentHistoryListData = [];
+        this.doctorUpComingAppointmentData = [];
+
         this.completeDoctorVisitData = data;
         this.completeDoctorVisitData.forEach(element => {
           element.individualsymptom = '';
@@ -304,6 +307,12 @@ export class DoctordashboardComponent implements OnInit {
             //  this.pharmaReqForHomeDelData.reverse();
             element["patientMedicinesHomeDelivery"].push(temp);
             }
+            let tempabc = {
+              medicineScheduleDate:'',
+              processInfo:'',
+              medicineName: ''
+            }
+            element["patientMedicinesHomeDelivery"].push(tempabc);
           }
 
           //element["medicineHistory"]=
