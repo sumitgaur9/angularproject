@@ -46,7 +46,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
       jQuery('.modal-dialog.popupModel').css({"margin-top":"10%"});
     } 
     if(this.modalId=="showRequestPatMedHomeDeliveryModal" || this.modalId=="showPharmacistVisitCompleteIntimationModal"){
-      jQuery('.modal-dialog.popupModel').css({"max-width":"900px"});
+      jQuery('.modal-dialog.popupModel').css({"max-width":"1150px"});
     } 
        }
   ngAfterViewInit(){

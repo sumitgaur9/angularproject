@@ -9,60 +9,65 @@
         </p>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <div class="card-body">
-            <div class="form-group">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                </div>
-                <input type="text" class="form-control" id="patientName" name="patientName" placeholder="Patient Name"
-                  formControlName="patientName">
+        <div class="col-md-3 card-body">
+          <div class="form-group">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
               </div>
-              <div *ngIf="submitted && f.patientName.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientName.errors.required">Patient Name is required</div>
-              </div>
+              <input type="text" class="form-control" id="patientName" name="patientName" placeholder="Patient Name"
+                formControlName="patientName">
             </div>
-            <div class="form-group">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                </div>
-                <input type="text" class="form-control" id="patientContactNo" name="patientContactNo"
-                  placeholder="Patient ContactNo" formControlName="patientContactNo">
-              </div>
-              <div *ngIf="submitted && f.patientContactNo.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientContactNo.errors.required">Patient ContactNo is required</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                </div>
-                <input type="text" class="form-control" id="patientAddress" name="patientAddress"
-                  placeholder="Patient Address" formControlName="patientAddress">
-              </div>
-              <div *ngIf="submitted && f.patientAddress.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientAddress.errors.required">Patient Addr is required</div>
-              </div>
+            <div *ngIf="submitted && f.patientName.errors" style="color:red;font-size: 10px;">
+              <div *ngIf="f.patientName.errors.required">Patient Name is required</div>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card-body">
-            <div class="form-group">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                </div>
-                <input type="text" class="form-control" id="patientPIN" name="patientPIN" placeholder="Patient PIN"
-                  formControlName="patientPIN">
+        <div class="col-md-2 card-body">
+          <div class="form-group">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
               </div>
-              <div *ngIf="submitted && f.patientPIN.errors" style="color:red;font-size: 10px;">
-                <div *ngIf="f.patientPIN.errors.required">Patient PIN is required</div>
-              </div>
+              <input type="text" class="form-control" id="patientPIN" name="patientPIN" placeholder="PIN"
+                formControlName="patientPIN">
             </div>
+            <div *ngIf="submitted && f.patientPIN.errors" style="color:red;font-size: 10px;">
+              <div *ngIf="f.patientPIN.errors.required">Patient PIN is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 card-body">
+          <div class="form-group">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+              </div>
+              <input type="text" class="form-control" id="patientContactNo" name="patientContactNo"
+                placeholder="Patient ContactNo" formControlName="patientContactNo">
+            </div>
+            <div *ngIf="submitted && f.patientContactNo.errors" style="color:red;font-size: 10px;">
+              <div *ngIf="f.patientContactNo.errors.required">Patient ContactNo is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 card-body">
+          <div class="form-group">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+              </div>
+              <input type="text" class="form-control" id="patientAddress" name="patientAddress"
+                placeholder="Patient Address" formControlName="patientAddress">
+            </div>
+            <div *ngIf="submitted && f.patientAddress.errors" style="color:red;font-size: 10px;">
+              <div *ngIf="f.patientAddress.errors.required">Patient Addr is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            
             <div class="form-group">
               <label for="exampleFormControlSelect1">Pharmacist</label>
               <select class="form-control" formControlName="pharmacistName" (change)="pharmacistChangeEvent($event)">
@@ -74,6 +79,16 @@
               </div>
 
             </div>
+            
+          </div>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-7" style="padding-top: 3%;">
+          <div class="card-body">
+           
+           
             <div class="form-group">
               <div style="width: 100%;float: left;">
                 <angular2-multiselect [data]="labtestListDataArray" [(ngModel)]="selectedLabTestItems" [settings]="settingsLabTest"
@@ -87,30 +102,30 @@
         </div>
       </div>
       <div style=" background: #f6f9f8;border: 3px solid rgb(57 180 155 / 32%);padding: 7px;">
-        <div style="width: 100%;float: left;">
-          <div style="width: 30%;float: left;">
+        <div style="width: 100%;float: left;margin-top: 3%;margin-bottom: 4px;">
+          <div style="width: 20%;float: left;">
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
                 </div>
                 <input class="form-control" (onChange)="datechange()" type="text" [dpDayPicker]="dayPickerConfig"
-                  [theme]="'dp-material'" formControlName="scheduleDate" [mode]="'day'" placeholder="schedule Date" />
+                  [theme]="'dp-material'" formControlName="scheduleDate" [mode]="'day'" placeholder="Schedule Date" />
               </div>
             </div>
           </div>
-          <div style="width: 30%;float: left;margin-left:1%">
+          <div style="width: 16%;float: left;margin-left:1%">
             <div class="form-group">
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
                 </div>
                 <input class="form-control" type="text" [dpDayPicker]="dayPickerTimeConfig" [theme]="'dp-material'"
-                  formControlName="scheduleTime" [mode]="'time'" placeholder="scheduleTime" />
+                  formControlName="scheduleTime" [mode]="'time'" placeholder="ScheduleTime" />
               </div>
             </div>
           </div>
-          <div style="width: 30%;float: left;margin-left:1%">
+          <div style="width: 20%;float: left;margin-left:1%">
             <angular2-multiselect [data]="medicineListDataArray" [(ngModel)]="selectedItems" [settings]="settings"
               (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
               (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" formControlName="medicineName"
@@ -118,20 +133,19 @@
             </angular2-multiselect>
           </div>
 
-          <div style="width: 7%;float:right;">
+          <div style="width: 10%;float:left;">
             <div class="buttonSection">
               <div class="text-center">
-                <input type="button" (click)="openMedicineProfilePopup()" style="width: 50px;font-size:13px;padding: 0;"
-                  value="Add" class="btn btn-info btn-block rounded-0 py-2">
+                <a (click)="openMedicineProfilePopup()" style="color: white;width: 75px;font-size:12px;padding: 0;"
+                  class="btn btn-info btn-block rounded-0 py-2"><i class="fa fa-plus" style="color: white;font-size: 15px;padding-right: 3px;"></i> Create</a>
               </div>
             </div>
           </div>
-        </div>
-        <div style="width: 100%;float: left;">
-          <div style="width: 42%;float: left;">
+
+          <div style="width: 27%;float: left;margin-top: -3%;">
             <div style="margin-bottom:6px;">
               <label for="exampleFormControlSelect1">Instruction</label>
-              <div class="ng-autocomplete" style="width:347px;">
+              <div class="ng-autocomplete" style="width:285px;">
                 <ng-autocomplete [data]="instructionDataArray" [searchKeyword]="keyword"
                   (selected)='selectEventInstruction($event)' (inputChanged)='onChangeSearchInstruction($event)'
                   (inputFocused)='onFocusedInstruction($event)' [itemTemplate]="itemTemplate"
@@ -148,17 +162,20 @@
               </div>
             </div>
           </div>
-          <div style="width: 10%;float: left;margin-top: 4%;margin-left:2%;">
+
+          <div style="float: right;">
             <div class="buttonSection">
               <div class="text-center">
-                <input type="button" (click)="SendDataInTableValue()" style="width: 50px;font-size:13px;padding: 0;"
-                  value="Ok" class="btn btn-info btn-block rounded-0 py-2">
+                <a type="button" (click)="SendDataInTableValue()" style="width: 50px;color: white;font-size:13px;padding: 0;"
+                  class="btn btn-info btn-block rounded-0 py-2"><i style="color: white;padding-right: 3px;font-size: 12px;" class="fa fa-file-text-o" aria-hidden="true"></i>OK</a>
               </div>
             </div>
           </div>
+          
         </div>
+       
         <table class="table table-hover my-0">
-          <thead style="background-color: #39b49b;">
+          <thead style="background-color: #39b49b5e;">
             <tr>
               <th>Delete</th>
               <th>Date</th>
@@ -184,15 +201,15 @@
           </tbody>
         </table>
         <div style="width: 100%;float:left;margin-top: 3%;">
-          <div style="width: 40%;float:left;">
+          <div style="width: 20%;float:left;">
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Is Next Visit Required</label>
             <input type="checkbox" formControlName="isNextVisitRequired" (change)="isNextVisitRequiredChangeEvent($event)"/>
+            <label for="exampleFormControlSelect1" style="padding-left: 5%;">Next Visit Req</label>
             </div>
           </div>
-          <div style="width: 60%;float:left;">
+          <div style="width: 80%;float:left;">
             <div class="form-group" [hidden]="!f.isNextVisitRequired.value">
-              <div class="input-group mb-2">
+              <div class="input-group mb-2" style="width: 35%;float: left;">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-calendar text-info"></i></div>
                 </div>
@@ -200,24 +217,28 @@
                   formControlName="nextAppointmentDate" (onChange)="datechange()" [mode]="'day'" [displayDate]="displayDate"
                   placeholder="Appointment Date" />
               </div>
-            </div>
-           
-            <div style="width: 7%;float:right;" [hidden]="!f.isNextVisitRequired.value || f.nextAppointmentDate.value==''">
-              <div class="buttonSection">
-                <div class="text-center">
-                  <input type="button" (click)="Get_SlotData()" [disabled]="disableAvailableTimeSlotBtn" style="width: 50px;font-size:13px;padding: 0;"
-                    value="Add" class="btn btn-info btn-block rounded-0 py-2">
+              <div style="width: 20%;float:left;" [hidden]="!f.isNextVisitRequired.value || f.nextAppointmentDate.value==''">
+                <div class="buttonSection">
+                  <div class="text-center">
+                    <a type="button" (click)="Get_SlotData()" [disabled]="disableAvailableTimeSlotBtn" style="width: 135px;font-size:14px;padding: 0;color: white;"
+                      class="btn btn-info btn-block rounded-0 py-2"><i class="fa fa-clock-o" style="color: white;font-size: 20px;padding-right: 5px;"></i>Available Slot</a>
+                  </div>
                 </div>
               </div>
+              <div style="width: 35%;float:right;" [hidden]="!visibleTimeSlot">
+                <select class="form-control" formControlName="nextAppointmentTime" style="width: 100%;">
+                  <option value=""></option>
+                  <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked"
+                    [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.isSlotBooked? opt.name+ '  Slot Full': opt.name}}</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group" [hidden]="!visibleTimeSlot">
+           
+            
+            <!-- <div class="form-group" [hidden]="!visibleTimeSlot">
               <label for="exampleFormControlSelect1">Time Slot</label>
-              <select class="form-control" formControlName="nextAppointmentTime">
-                <option value=""></option>
-                <option *ngFor="let opt of filterTimeSlotDataArray" [disabled]="opt.isSlotBooked"
-                  [ngStyle]="{  'color': opt.isSlotBooked ? 'red': 'black' }" [value]="opt.id">{{opt.isSlotBooked? opt.name+ '  Slot Full': opt.name}}</option>
-              </select>
-            </div>
+              
+            </div> -->
 
        
 
