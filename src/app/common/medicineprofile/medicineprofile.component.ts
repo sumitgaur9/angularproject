@@ -37,9 +37,6 @@ export class MedicineprofileComponent implements OnInit {
   /************************** */
 
   public uploadreportdatainput: any;
-  public testimageform = new FormGroup({
-    image: new FormControl("")
-  });
 
   public uploadResult = "";
   public UploadFile = [];
@@ -47,6 +44,9 @@ export class MedicineprofileComponent implements OnInit {
   getImageValue;
 
   keyword = 'name';
+
+  
+
   public medicineProfileForm = new FormGroup({
     medicineName: new FormControl(""),
     newimage: new FormControl(),
@@ -55,6 +55,7 @@ export class MedicineprofileComponent implements OnInit {
     price: new FormControl(""),
     id: new FormControl(""),
     description: new FormControl(""),
+    isPrescriptionRequired: new FormControl(false),    
   });
 
   public passwordPatternError = false;
@@ -96,6 +97,11 @@ export class MedicineprofileComponent implements OnInit {
             description: data.description
           });
         }
+        if (data.isPrescriptionRequired != undefined) {
+          this.medicineProfileForm.patchValue({
+            isPrescriptionRequired: data.isPrescriptionRequired
+          });
+        }        
         if (data.price != undefined) {
           this.medicineProfileForm.patchValue({
             price: data.price
@@ -169,6 +175,7 @@ export class MedicineprofileComponent implements OnInit {
     formData.append('companyName', this.medicineProfileForm.value.companyName);
     formData.append('price', this.medicineProfileForm.value.price);
     formData.append('description', this.medicineProfileForm.value.description);
+    formData.append('isPrescriptionRequired', this.medicineProfileForm.value.isPrescriptionRequired);    
     this._apiservice.Update_Medicine(formData, this.medicineProfileForm.value.id).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
@@ -234,6 +241,7 @@ export class MedicineprofileComponent implements OnInit {
     formData.append('companyName', this.medicineProfileForm.value.companyName);
     formData.append('price', this.medicineProfileForm.value.price);
     formData.append('description', this.medicineProfileForm.value.description);
+    formData.append('isPrescriptionRequired', this.medicineProfileForm.value.isPrescriptionRequired);
     this._apiservice.Save_Medicine(formData).subscribe(data => {
       if (data) {
         this.toastr.success('Saved Sucessfully');
