@@ -476,6 +476,19 @@ export class APIService {
         return resdata;
       }));
   }
+  
+
+
+  Get_UploadPrescriptionForMedicineApprovalsList(params) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadPrescriptionForMedicineApprovalsList}`
+    return this.http.get<any>(APIURL, { params: params })
+      .pipe(map(resdata => {
+        if (resdata) {
+        }
+        return resdata;
+      }));
+  }
+
 
   Get_CommonDashboardCount(params) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_CommonDashboardCount}`

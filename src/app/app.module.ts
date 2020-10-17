@@ -52,6 +52,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.component';
+import { AdmindashbaordComponent } from './admindashbaord/admindashbaord.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.compone
     MedicinelistComponent,
     PaymentlistComponent,
     CartdetailpageComponent,
+    AdmindashbaordComponent,
    // DoctorprofileComponent
   ],
   imports: [

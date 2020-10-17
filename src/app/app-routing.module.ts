@@ -22,6 +22,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { MedicinelistComponent } from './medicinelist/medicinelist.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { CartdetailpageComponent } from './cartdetailpage/cartdetailpage.component';
+import { AdmindashbaordComponent } from './admindashbaord/admindashbaord.component';
 
 
 
@@ -43,6 +44,7 @@ const routes: Routes = [
     { path: 'nursedashboard', component: NursedashboardComponent },
     { path: 'pharmacistdashboard', component: PharmacistdashboardComponent },
     { path: 'patientdashboard', component: PatientdashboardComponent },
+    { path: 'admindashboard', component: AdmindashbaordComponent },
     { path: 'getlabtest', component: LablistComponent },
     { path: 'labtechnician', component: LabtechnicianeditdisplaylistComponent },
     { path: 'labtechniciandashboard', component: LabtechniciandashboardComponent },

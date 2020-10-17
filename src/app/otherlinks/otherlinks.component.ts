@@ -102,6 +102,10 @@ export class OtherlinksComponent implements OnInit {
     this.router.navigate(['/doctordashboard']);
   }
 
+  public openAdminDashboard() {
+    this.router.navigate(['/admindashboard']);
+  }
+
   public openGetLabTest() {
     this.router.navigate(['/getlabtest']);
   }

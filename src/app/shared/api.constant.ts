@@ -99,6 +99,7 @@ export const API_PATH: any = {
     'Get_CompanyList':'Get_CompanyList',
     'Save_Company':'Save_Company',
     'Get_PatientMedicinesHomeDelivery':'Get_PatientMedicinesHomeDelivery',
+    'Get_UploadPrescriptionForMedicineApprovalsList': 'Get_UploadPrescriptionForMedicineApprovalsList',
 }
 
 export const PATTERN_ERROR_MESSAGE = {
