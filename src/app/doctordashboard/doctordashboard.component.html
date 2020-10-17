@@ -150,6 +150,7 @@
                   <th class="d-none d-xl-table-cell">Age</th> -->
                   <th>Info</th>
                   <th>MedInfo</th>
+                  <!-- <th>Latest Med Info</th> -->
                   <th class="d-none d-md-table-cell">Pat Contact</th>
                   <th class="d-none d-md-table-cell">Appt Date</th>
                   <th class="d-none d-md-table-cell">Appt Slot</th>
@@ -160,7 +161,6 @@
               </thead>
               <tbody>
                 <tr *ngFor="let data of doctorUpComingAppointmentData;let i=index;">
-                  <!-- <td>{{data.doctorName}}</td> -->
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}/{{data.patientAge}}-{{data.patientSex==1 ? 'M': 'F'}}</td>
                   <td>
                     <popover-content #myPopover title="Patient Info" placement="top" [animation]="true"
@@ -190,11 +190,13 @@
                           </div>
                         </div>
                         <div *ngIf="dataObj.medicineName==''">-----------------------------------------------------------------</div>
-                        
                     </div>                    
                     </popover-content>
                     <button style="margin-left: 17%;" [popoverOnHover]="false" [popover]="medicnehistorypopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                   </td>
+
+              
+
 
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td> 
@@ -202,10 +204,40 @@
                   <td><span 
                       [ngClass]="data.isVisitCompleted ? 'badge badge-success ' : 'badge badge-warning'" style="cursor: none;">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
                   </td>
-                  <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
+                  <!-- <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
                       [ngClass]="data.isPharmacyRequested ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyRequested === true ? 'Requested' : 'To Be Request'}}</span>
-                  </td>
-                  <td><span
+                  </td> -->
+
+                  <td *ngIf="!data.isPharmacyRequested"><span (click)="openRequestPatMedHomeDelivery(data)"
+                    class=" badge badge-warning activevisitispharmacyprovide">To Be Request</span>
+                </td>
+               
+                <td *ngIf="data.isPharmacyRequested">
+                  <popover-content #latestmedicnedeliverpopover title="Latest Medicine Info" placement="right" [animation]="true"
+                    [closeOnClickOutside]="true" popoverSize="large">
+                    <div *ngFor="let dataObj of data.latestMedicineDeliverInfo">
+                      <div *ngIf="dataObj.medicineName!=''" style="float:left;width:100%">
+                        <div style="float:left;width:30%">
+                          <b style="display: block;">{{dataObj.medicineName}}</b>
+                        </div>
+                        <div style="float:left;width:33%">
+                          <b style="display: block;">{{dataObj.medicineScheduleDate}}</b>
+                        </div>
+                        <div style="float:left;width:27%">
+                          <b style="display: block;">{{dataObj.processInfo}}</b>
+                        </div>
+                      </div>
+                  </div>                    
+                  </popover-content>
+                  <button  style="margin-left: 17%;" [popoverOnHover]="false" [popover]="latestmedicnedeliverpopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
+                </td>
+
+
+
+
+
+
+                <td><span
                       [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
                   </td>
                   
@@ -279,6 +311,7 @@
                     </popover-content>
                     <button  style="margin-left: 17%;" [popoverOnHover]="false" [popover]="medicnehistorypopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                   </td>
+                  
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
                   <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td> 
                   <td class="d-none d-md-table-cell">{{getTimeSlot(data.timeSlot)}}</td>
@@ -307,7 +340,7 @@
  
   <div *ngIf="showRequestPatMedHomeDelivery">
     <app-request-pat-med-home-delivery [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery"
-      [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId" [reqByDoctorName]="reqByDoctorName"
+      [reqByDoctorId]="reqByDoctorId" [reqByPatientId]="reqByPatientId" [reqByDoctorName]="reqByDoctorName" [reqByAppointmentDate]="reqByAppointmentDate" 
       [appointmentid]="visitAppointmentId" [showModal]="'showRequestPatMedHomeDeliveryModal'"
       (ClosePopup)="closeRequestPatMedHomeDelivery($event)"> </app-request-pat-med-home-delivery>
   </div>
