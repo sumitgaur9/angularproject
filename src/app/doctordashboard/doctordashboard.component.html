@@ -1,12 +1,9 @@
-
-
-  <div class="content" style="position: absolute;top: 17%;width:96%;left:2%;right:2%;">
+<div class="content" style="position: absolute;top: 17%;width:96%;left:2%;right:2%;">
     <div class="container-fluid p-0">
       <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
           <h3 style="color:#39b49b"><strong style="color:#39b49b">Doctor</strong> Dashboard</h3>
         </div>
-
         <div class="col-auto ml-auto text-right mt-n1">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
@@ -60,7 +57,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-xl-6 col-xxl-7">
           <div class="card flex-fill w-100">
             <div class="card-header">
@@ -85,7 +81,6 @@
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
           <div class="card flex-fill w-100">
@@ -136,31 +131,109 @@
                   <ng-template #other_content>
                     <img src="../../assets/images/nodatafound.png">
                   </ng-template>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12 col-lg-12 col-xxl-9 d-flex">
+          <div class="card flex-fill">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Dr. {{currentUser.user.name}} - UpcomingAppointments</h5>
+            </div>
+            <table class="table table-hover my-0" *ngIf="doctorUpComingAppointmentData.length>0;else other_content">
+              <thead style="background-color: #39b49b;">
+                <tr>
+                  <th class="d-none d-xl-table-cell">
+                    <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
+                      <span>Pat Name</span>
+                      <img class="sortIcon" style="display: inline;"
+                        [class.sortIconRotated]="usersParams.sortBy=='patientNname' && usersParams.sortDir=='desc'"
+                        [class.blurSortingArrow]="usersParams.sortBy!='patientNname'"
+                        src="../../assets/images/left-arrow.png">
+                    </span></th>
+                  <!-- <th class="d-none d-xl-table-cell">Gender</th>
+                  <th class="d-none d-xl-table-cell">Age</th> -->
+                  <th>Info</th>
+                  <th>MEdInfo</th>
 
+                  <th class="d-none d-md-table-cell">Pat Contact</th>
+                  <th class="d-none d-md-table-cell">Appt Date</th>
+                  <th class="d-none d-md-table-cell">Appt Slot</th>
+                  <th class="d-none d-xl-table-cell">Dr Visit</th>
+                  <th>Pharmacy Req</th>
+                  <th>Pharmacy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of doctorUpComingAppointmentData;let i=index;">
+                  <!-- <td>{{data.doctorName}}</td> -->
+                  <td class="d-none d-xl-table-cell">{{data.patientNname}}/{{data.patientAge}}-{{data.patientSex==1 ? 'M': 'F'}}</td>
+                  <td>
+                    <popover-content #myPopover title="Patient Info" placement="left" [animation]="true"
+                      [closeOnClickOutside]="true">
+                      <b style="display: block;">Gender: {{data.patientSex==1 ? 'Male': 'Female'}}</b>
+                      <b style="display: block;">Weight: {{data.patientWeight}}</b>
+                      <b style="display: block;">Disease: {{data.disease}}</b>
+                      <b style="display: block;">Symptoms: {{data.individualsymptom}}</b>
+                      <b style="display: block;">Illness History: {{data.individualillness}}</b>                     
+                    </popover-content>
+                    <button [popoverOnHover]="false" [popover]="myPopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
+                  </td>
+
+                  <td>
+                    <popover-content #medicnehistorypopover title="Medicine Info" placement="left" [animation]="true"
+                      [closeOnClickOutside]="true" popoverSize="large">
+                      <div *ngFor="let dataObj of data.patientMedicinesHomeDelivery">
+                        <div style="float:left;width:100%">
+                          <div style="float:left;width:30%">
+                            <b style="display: block;">{{dataObj.medicineName}}</b>
+                          </div>
+                          <div style="float:left;width:33%">
+                            <b style="display: block;">{{dataObj.medicineScheduleDate}}</b>
+                          </div>
+                          <div style="float:left;width:27%">
+                            <b style="display: block;">{{dataObj.processInfo}}</b>
+                          </div>
+                        </div>
+                    </div>                    
+                    </popover-content>
+                    <button [popoverOnHover]="false" [popover]="medicnehistorypopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
+                  </td>
+
+                  <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
+                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td> 
+                  <td class="d-none d-md-table-cell">{{getTimeSlot(data.timeSlot)}}</td>
+                  <td><span 
+                      [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
+                  </td>
+                  <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
+                      [ngClass]="data.isPharmacyRequested ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning  activevisitispharmacyprovide'">{{data.isPharmacyRequested === true ? 'Requested' : 'To Be Request'}}</span>
+                  </td>
+                  <td><span
+                      [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
+                  </td>
+                  
+                </tr>
+              </tbody>
+              </table>
+            <ng-template #other_content>
+              <img src="../../assets/images/nodatafound.png">
+            </ng-template>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
           <div class="card flex-fill">
             <div class="card-header">
               <h5 class="card-title mb-0">Dr. {{currentUser.user.name}} - Appointments</h5>
             </div>
-            
-            <table class="table table-hover my-0" *ngIf="completeDoctorVisitData.length>0;else other_content">
+            <table class="table table-hover my-0" *ngIf="doctorAppointmentHistoryListData.length>0;else other_content">
               <thead style="background-color: #39b49b;">
                 <tr>
-                  <!-- <th> <span (click)="sortUserList('doctorName')" style="cursor: pointer;">
-                      <span>DoctorName</span>
-                      <img class="sortIcon" style="display: inline;"
-                        [class.sortIconRotated]="usersParams.sortBy=='doctorName' && usersParams.sortDir=='desc'"
-                        [class.blurSortingArrow]="usersParams.sortBy!='doctorName'"
-                        src="../../assets/images/left-arrow.png">
-                    </span></th> -->
                   <th class="d-none d-xl-table-cell">
                     <span (click)="sortUserList('patientNname')" style="cursor: pointer;">
                       <span>Pat Name</span>
@@ -181,8 +254,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of completeDoctorVisitData;let i=index;">
-                  <!-- <td>{{data.doctorName}}</td> -->
+                <tr *ngFor="let data of doctorAppointmentHistoryListData;let i=index;">
                   <td class="d-none d-xl-table-cell">{{data.patientNname}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientSex==1 ? 'Male': 'Female'}}</td>
                   <td class="d-none d-xl-table-cell">{{data.patientAge}}</td>
@@ -198,9 +270,9 @@
                     <button [popoverOnHover]="false" [popover]="myPopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                   </td>
                   <td class="d-none d-md-table-cell">{{data.patientMob}}</td>
-                  <td class="d-none d-md-table-cell">{{data.appointmentDate.substr(8, 10)}}/{{data.appointmentDate.substr(5, 2)}}/{{data.appointmentDate.substr(0, 4)}}</td> 
+                  <td class="d-none d-md-table-cell">{{data.appointmentDate}}</td> 
                   <td class="d-none d-md-table-cell">{{getTimeSlot(data.timeSlot)}}</td>
-                  <td><span (click)="!data.isVisitCompleted ? openShowVisitForAll(data) : false"
+                  <td><span 
                       [ngClass]="data.isVisitCompleted ? 'badge badge-success deactivevisitispharmacyprovide ' : 'badge badge-warning activevisitispharmacyprovide'">{{data.isVisitCompleted === true ? 'Completed' : 'To Be Visit'}}</span>
                   </td>
                   <td><span (click)="!data.isPharmacyRequested? openRequestPatMedHomeDelivery(data) : false"
@@ -209,7 +281,6 @@
                   <td><span
                       [ngClass]="data.isPharmacyProvided ? 'badge badge-success' : 'badge badge-warning'">{{data.isPharmacyProvided === true ? 'Provided' : 'To Be Provide'}}</span>
                   </td>
-                  
                 </tr>
               </tbody>
               </table>
@@ -223,7 +294,6 @@
       <br><br>
     </div>
   </div>
-
   <div *ngIf="showVisitForAll">
     <app-visitforall [showModal]="'showVisitForAllModal'" [patientname]="patientname"
       [appointmentid]="visitAppointmentId" (ClosePopup)="closeshowVisitForAll($event)"> </app-visitforall>

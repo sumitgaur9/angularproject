@@ -16,9 +16,10 @@ declare var $: any;
 })
 export class DoctordashboardComponent implements OnInit {
 
-  public doctorAppointmentListData: any = [];
-  public doctorAppointmentHistoryData: any = [];
+  public doctorAppointmentHistoryListData: any = [];
+  public doctorUpComingAppointmentData: any = [];
   public showRequestPatMedHomeDelivery: boolean = false;
+  public apptHistoryData:any=[];
   public reqByDoctorId: string = '';
   public reqByPatientId: string = '';
   public reqByDoctorName: string = '';
@@ -98,18 +99,21 @@ export class DoctordashboardComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   public currentUser;
   public usersParams: any = {};
+  public patientMedicinesHomeDelivery:any=[];
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-    this.Get_AppointmentsByDocID();
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
     this.Get_CommonDashboardCount();
     this.Get_DiseaseWiseApptCount();
     this.Get_PharmacistWiseApptCount();
     this.Get_MonthlyHomeOnlineApptCount();
+    this.Get_PatientMedicinesHomeDelivery();
+   // let todaydate=this.utilityservice.ToDBDateFormat(new Date()).replace(/-/g, '/');
+   // console.log("todaydatetodaydate",todaydate);
   }
   public closeshowVisitForAll(calllistapi) {
     this.showVisitForAll = false;
@@ -169,10 +173,10 @@ export class DoctordashboardComponent implements OnInit {
   }
 
   public openRequestPatMedHomeDelivery(data) {
-    if(!data.isVisitCompleted){
-      this.toastr.warning('Complete its Visit first');
-      return;
-    }
+    // if(!data.isVisitCompleted){
+    //   this.toastr.warning('Complete its Visit first');
+    //   return;
+    // }
     this.showRequestPatMedHomeDelivery = true;
     this.visitAppointmentId = data._id;
     this.reqByDoctorId = data.doctorID;
@@ -189,6 +193,18 @@ export class DoctordashboardComponent implements OnInit {
     }, 100);
   }
 
+  Get_PatientMedicinesHomeDelivery() {
+    let dataobj = {}
+    this._apiservice.Get_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
+      if (data) {
+        this.patientMedicinesHomeDelivery=data;
+        this.Get_AppointmentsByDocID();
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
 
   Get_AppointmentsByDocID() {
     let dataobj = {
@@ -202,26 +218,120 @@ export class DoctordashboardComponent implements OnInit {
     this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
         this.completeDoctorVisitData = data;
-        
         this.completeDoctorVisitData.forEach(element => {
           element.individualsymptom = '';
+          element.appointmentDate = this.utilityservice.ToDisplayDateFormat(new Date(element.appointmentDate));
+             // let todaydate=this.utilityservice.ToDBDateFormat(new Date()).replace(/-/g, '/');
           element.symptomsData.forEach(element1 => {
             element.individualsymptom = element.individualsymptom + ' ' + element1.symptomName+ ','
           });
-
           element.individualillness = '';
           element.illnessHistoryData.forEach(element2 => {
             element.individualillness = element.individualillness + ' ' + element2.illnessName+ ','
           });
-        });
+          //this.patientMedicinesHomeDelivery
+         // if(this.currentUser.user.roleBaseId==element.doctorID)
+         element["patientMedicinesHomeDelivery"]=[];
+         // element["patientMedicinesHomeDelivery"]
+          let patientMedicinesHomeDeliveryInfo = this.patientMedicinesHomeDelivery.filter(function (item) {
+            var self = this;
+            return (item.doctorID==element.doctorID && item.patientID==element.patientID)
+          });
 
-        console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID", data)
-        this.doctorAppointmentListData = data.filter(function (item) {
-          return item.isVisitCompleted == false;
+          for (var i = 0; i < patientMedicinesHomeDeliveryInfo.length; i++) {
+            for (var j = 0; j < patientMedicinesHomeDeliveryInfo[i].medicinesData.length; j++) {
+              let temp: any = {};
+              let tempMedicineName: any = [];
+           //   temp.medicineSNo = data[i].medicinesData[j].medicineSNo;
+              temp.medicineScheduleDate = patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicineScheduleDate;
+              temp.processInfo = patientMedicinesHomeDeliveryInfo[i].medicinesData[j].processInfo;//'After Lunch';
+  
+          //    let month = (new Date().getMonth() + 1).toString();
+          //    let year = (new Date().getFullYear()).toString();
+  
+              // let yesterdayDateFromNewDate;
+              // let yest_date = (new Date().getDate() < 9 ? '0' + (new Date().getDate() + 1) : new Date().getDate() + 1).toString();
+              // yesterdayDateFromNewDate = (yest_date + '/' + month + '/' + year);
+  
+              // let todayDateFromNewDate;
+              // let today_date = (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()).toString();
+              // todayDateFromNewDate = (today_date + '/' + month + '/' + year);
+  
+              // let tommorowDateFromNewDate;
+              // let tomm_date = (new Date().getDate() < 11 ? '0' + (new Date().getDate() - 1) : new Date().getDate() - 1).toString();
+              // tommorowDateFromNewDate = (tomm_date + '/' + month + '/' + year);
+  
+              // if (yesterdayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              //   temp.yesterday_today_tommorrow = 'yesterday';
+              //   temp.circleBackgroundColor = '#3fb49a';
+              // } else if (todayDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              //   temp.yesterday_today_tommorrow = 'today';
+              //   temp.circleBackgroundColor = '#147fda';
+              // } else if (tommorowDateFromNewDate == data[i].medicinesData[j].medicineScheduleDate) {
+              //   temp.yesterday_today_tommorrow = 'tommorow';
+              //   temp.circleBackgroundColor = '#f6a52d';
+              // } else {
+              //   if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() < new Date().getTime()) {
+              //     temp.circleBackgroundColor = '#3fb49a';
+              //   }
+              //   else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() == new Date().getTime()) {
+              //     temp.circleBackgroundColor = '#147fda';
+              //   }
+              //   else if (new Date(data[i].medicinesData[j].medicineScheduleDate).getTime() > new Date().getTime()) {
+              //     temp.circleBackgroundColor = '#f6a52d';
+              //   }
+              //   temp.yesterday_today_tommorrow = data[i].medicinesData[j].medicineScheduleDate;
+              // }
+  
+              // temp.medicineScheduleTime = data[i].medicinesData[j].medicineScheduleTime;
+              // if (parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) < 12) {
+              //   temp.am_pm = 'am';
+              // } else {
+              //   temp.am_pm = 'pm';
+              //   if (parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) == 12) {
+              //     temp.medicineScheduleTime = data[i].medicinesData[j].medicineScheduleTime;
+              //   } else {
+              //     let hours = parseInt(data[i].medicinesData[j].medicineScheduleTime.substring(0, 2)) - 12;
+              //     temp.medicineScheduleTime = hours + data[i].medicinesData[j].medicineScheduleTime.substring(2, 5);
+              //   }
+  
+              // }
+              for (var k = 0; k < patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
+                tempMedicineName.push(patientMedicinesHomeDeliveryInfo[i].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
+              }
+              temp.medicineName = tempMedicineName.toString();
+           //   this.pharmaReqForHomeDelData.push(temp);
+            //  this.pharmaReqForHomeDelData.reverse();
+            element["patientMedicinesHomeDelivery"].push(temp);
+            }
+          }
+
+          //element["medicineHistory"]=
+
+
+          if(element.appointmentDate<this.utilityservice.ToDisplayDateFormat(new Date()))
+          {
+            this.doctorAppointmentHistoryListData.push(element);
+          }
+          else{
+            this.doctorUpComingAppointmentData.push(element);
+          }
         });
-        this.doctorAppointmentHistoryData = data.filter(function (item) {
-          return item.isVisitCompleted == true;
-        });
+      
+        console.log("Get_AppointmentsByDocIDGet_AppointmentsByDocID", this.completeDoctorVisitData)
+        console.log("doctorAppointmentHistoryListDatadoctorAppointmentHistoryListData", this.doctorAppointmentHistoryListData)
+        console.log("doctorUpComingAppointmentDatadoctorUpComingAppointmentData", this.doctorUpComingAppointmentData)
+
+        // for()
+        // this.doctorAppointmentHistoryListData = this.completeDoctorVisitData.filter(function (item) {
+        //   var self=this;
+        //   return item.appointmentDate<self.utilityservice.ToDisplayDateFormat(new Date())
+        // });
+        // console.log("doctorAppointmentHistoryListDatadoctorAppointmentHistoryListData", this.doctorAppointmentHistoryListData)
+        // this.doctorUpComingAppointmentData = this.completeDoctorVisitData.filter(function (item) {
+        //   var selfself=this;
+        //   return item.appointmentDate>=selfself.utilityservice.ToDisplayDateFormat(new Date())
+        // });
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
@@ -240,6 +350,9 @@ export class DoctordashboardComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+
+  
 
   Get_DiseaseWiseApptCount() {
     let dataobj = {};

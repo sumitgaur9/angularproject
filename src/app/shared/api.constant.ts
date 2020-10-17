@@ -98,8 +98,7 @@ export const API_PATH: any = {
     'RemoveCartDetails':'RemoveCartDetails',
     'Get_CompanyList':'Get_CompanyList',
     'Save_Company':'Save_Company',
-    
-
+    'Get_PatientMedicinesHomeDelivery':'Get_PatientMedicinesHomeDelivery',
 }
 
 export const PATTERN_ERROR_MESSAGE = {
