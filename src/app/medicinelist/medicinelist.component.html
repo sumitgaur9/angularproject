@@ -74,7 +74,7 @@
     </div>
 
     <div *ngIf="showPrescriptionUploadformpopup">
-      <app-prescriptionupload [showModal]="showPrescriptionUploadformpopup" [medicineData]="medicineData" (ClosePopup)="closePrescriptionUploadPopup($event)"> </app-prescriptionupload>
+      <app-prescriptionupload [showModal]="showPrescriptionUploadformpopup" [medicineData]="medicineData" (ClosePopup)="closePrescriptionUploadPopup()"> </app-prescriptionupload>
     </div>
 
     <div *ngIf="showConfirmationPopup">
