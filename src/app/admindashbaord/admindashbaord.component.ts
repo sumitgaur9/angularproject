@@ -13,6 +13,10 @@ export class AdmindashbaordComponent implements OnInit {
 
   public currentUser;
   uploadPrescriptiondata;
+  requestId='';
+  public showConfirmationPopup:boolean =false;
+  public showData='Do you really want to APPROVE this Medicine Requeest.';
+
   errorMessage;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -34,5 +38,41 @@ export class AdmindashbaordComponent implements OnInit {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
   }
+
+  Save_ApproveMedicineReqUsingPrescription(requestId) {
+    let dataobj = {
+      requestId : requestId,
+      approvalDate : this.utilityservice.ToDisplayDateFormat(new Date()),
+    }
+    this._apiservice.Save_ApproveMedicineReqUsingPrescription(dataobj).subscribe(data => {
+      if (data) {
+        this.toastr.success('Request Approved successfully');
+        this.Get_UploadPrescriptionForMedicineApprovalsList()
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  openAttendancePopup(data) {
+    this.requestId = data._id;
+    this.showData = "Are you sure, you want to approve request for " + data.medicineName + "manufactured by " +data.companyName +"?"
+    this.showConfirmationPopup = true;
+    setTimeout(() => {
+      $(window).scrollTop(0);
+      $('#confirmationModal').modal('show');
+    }, 100);
+  }
+
+  closeConfirmationPopup(updateListRequired: boolean = false) {
+    this.showConfirmationPopup = false;
+    $('#confirmationModal').modal('hide');
+    if (updateListRequired) {
+      this.Save_ApproveMedicineReqUsingPrescription(this.requestId);
+    }
+  }
+
+
+
 
 }

@@ -102,6 +102,11 @@
       <br><br>
     </div>
   </div>
+
+  <div *ngIf="showConfirmationPopup">
+    <app-confirmation [showModal]="showConfirmationPopup" [showData]="showData" (ClosePopup)="closeConfirmationPopup($event)">
+    </app-confirmation>
+  </div>
  
   <!-- <div *ngIf="showRequestPatMedHomeDelivery">
     <app-request-pat-med-home-delivery [inputrequesPatMedHomeDeliveryData]="inputrequesPatMedHomeDelivery"

@@ -593,6 +593,23 @@ export class APIService {
       }));
   }
 
+  
+  Save_ApproveMedicineReqUsingPrescription(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_ApproveMedicineReqUsingPrescription}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }  
+
+  Update_BuyStatusForApprovedMedicine(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Update_BuyStatusForApprovedMedicine}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  }
+
   Save_UploadLabTestReport(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_UploadLabTestReport}`
     return this.http.post<any>(APIURL, data)
