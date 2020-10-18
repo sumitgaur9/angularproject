@@ -99,6 +99,7 @@ export const API_PATH: any = {
     'Get_CompanyList':'Get_CompanyList',
     'Save_Company':'Save_Company',
     'Get_PatientMedicinesHomeDelivery':'Get_PatientMedicinesHomeDelivery',
+    'Save_UploadPrescriptionForMedicineApproval': 'Save_UploadPrescriptionForMedicineApproval',
     'Get_UploadPrescriptionForMedicineApprovalsList': 'Get_UploadPrescriptionForMedicineApprovalsList',
     'Save_ApproveMedicineReqUsingPrescription': 'Save_ApproveMedicineReqUsingPrescription',
     'Update_BuyStatusForApprovedMedicine': 'Update_BuyStatusForApprovedMedicine',

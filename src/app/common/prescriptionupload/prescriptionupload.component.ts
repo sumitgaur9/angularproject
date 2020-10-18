@@ -34,9 +34,24 @@ export class PrescriptionuploadComponent implements OnInit {
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  public uploadImageForm = new FormGroup({
-    imageChangeForID: new FormControl(""),
-    preferredImageSize: new FormControl(""),
+  public prescriptionUploadForm = new FormGroup({
+    medicineName: new FormControl(""),
+    medicineID: new FormControl(""),
+    companyName: new FormControl(""), //Only for UI
+    price: new FormControl(""), //Only for UI
+    patientNname: new FormControl(""),
+    patientAge: new FormControl(18),
+    patientSex: new FormControl(1),
+    patientEmail: new FormControl(""),
+    patientID: new FormControl(""),
+    phoneno: new FormControl(""),
+    RequestDate: new FormControl(""),
+
+  // newimage:
+  // {
+  //   data: Buffer,
+  //   contentType: String
+  // },
   });
 
   public imageForDataArray: any = [{ "id": '1', "name": "TopNavImage" }, { "id": '2', "name": "WhatWeDo" },
@@ -44,7 +59,7 @@ export class PrescriptionuploadComponent implements OnInit {
   { "id": '6', "name": "Servicesimage4" }, { "id": '7', "name": "SpecialistClinicimage1" }, { "id": '8', "name": "SpecialistClinicimage2" },
   { "id": '9', "name": "SpecialistClinicimage3" }];
 
-  public currentUser;
+  public currentUserMeRes;
   public uploadreportdatainput: any;
   public testimageform = new FormGroup({
     image: new FormControl(""),
@@ -55,39 +70,70 @@ export class PrescriptionuploadComponent implements OnInit {
   public UploadFile = [];
   public UploadFileName = "";
   getImageValue;
+  getMedicineImageValue;
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
 
 
   ngOnInit() {
-    this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-    this.onChangesonChanges();
+    this.currentUserMeRes = JSON.parse(window.sessionStorage.getItem("currentusermedata"));
+    this.filPatientAndMedicinelData(this.medicineData, this.currentUserMeRes);
+
+    if (this.medicineData.newimage != undefined && this.medicineData.newimage.data != undefined) {
+      this.getMedicineImageValue = this.arrayBufferToBase64(this.medicineData.newimage.data.data);//need to update data in base 64
+    }
   }
-  get f() { return this.uploadImageForm.controls; }
+  get f() { return this.prescriptionUploadForm.controls; }
+
+  filPatientAndMedicinelData(medicineData, currentUserMeRes){
+
+    this.prescriptionUploadForm.patchValue({
+      medicineName: medicineData.medicineName,
+      medicineID: medicineData._id,
+      companyName: medicineData.companyName, //only for UI
+      price: medicineData.price,             //only for UI
+      patientNname: currentUserMeRes.user.name,
+      patientAge: currentUserMeRes.user.age,
+      patientSex: currentUserMeRes.user.gender,
+      patientEmail: currentUserMeRes.user.email,
+      patientID: currentUserMeRes.user._id,
+      phoneno: currentUserMeRes.user.phoneno,
+      RequestDate: this.utilityservice.ToDisplayDateFormat(new Date()),
+    });
+  }
+
 
   arrayBufferToBase64(buffer) {
     return this.utilityservice.arrayBufferToBase64(buffer);
 
   }
 
-  SaveUpdate_UploadWebsiteImages() {
+  Save_UploadPrescriptionForMedicineApproval() {
     this.submitted = true;
-    if (this.uploadImageForm.invalid) {
+    if (this.prescriptionUploadForm.invalid) {
       return;
     }
     this.errorMessage = "";
     var formData = new FormData();
-    formData.append('image', '');
+    formData.append('newimage', '');
     if (this.UploadFile.length && this.UploadFileName) {
-      formData.append('image', this.UploadFile[0], this.UploadFileName);
+      formData.append('newimage', this.UploadFile[0], this.UploadFileName);
     } else {
-      formData.append('image', '');
+      formData.append('newimage', '');
     }
-    formData.append('locationEnum', this.uploadImageForm.value.imageChangeForID);
-    this._apiservice.SaveUpdate_UploadWebsiteImages(formData).subscribe(data => {
+    formData.append('medicineName', this.prescriptionUploadForm.value.medicineName);
+    formData.append('medicineID', this.prescriptionUploadForm.value.medicineID);
+    formData.append('patientNname', this.prescriptionUploadForm.value.patientNname);
+    formData.append('patientAge', this.prescriptionUploadForm.value.patientAge);
+    formData.append('patientSex', this.prescriptionUploadForm.value.patientSex);
+    formData.append('patientEmail', this.prescriptionUploadForm.value.patientEmail);
+    formData.append('patientID', this.prescriptionUploadForm.value.patientID);
+    formData.append('phoneno', this.prescriptionUploadForm.value.phoneno);
+    formData.append('RequestDate', this.prescriptionUploadForm.value.RequestDate);
+
+    this._apiservice.Save_UploadPrescriptionForMedicineApproval(formData).subscribe(data => {
       if (data) {
-        console.log("loginUserResponseData..", data.data);
-        this.toastr.success('thanks for dubmit doctor profile');
+        this.toastr.success('Thanks for requesting, wait for some time till approval');
         this.CloseModal(true);
       }
     }, error => {
@@ -116,84 +162,23 @@ export class PrescriptionuploadComponent implements OnInit {
     this.getImageValue = result;
   }
 
-  onChangesonChanges(): void {
-    this.uploadImageForm.get('imageChangeForID').valueChanges.subscribe(val => {
-      this.getImageValue = '';
-      this.Get_WebsiteImageByLocationEnum(val);
-      switch (val) {
-        case "1":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.TopNavImage
-            })
-          break;
-        case "2":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.WhatWeDo
-            })
-          break;
-        case "3":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.Servicesimage1
-            })
-          break;
-        case "4":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.Servicesimage2
-            })
-          break;
-        case "5":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.Servicesimage3
-            })
-          break;
-        case "6":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.Servicesimage4
-            })
-          break;
-        case "7":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.SpecialistClinicimage1
-            })
-          break;
-        case "8":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.SpecialistClinicimage2
-            })
-          break;
-        case "9":
-          this.uploadImageForm.patchValue(
-            {
-              preferredImageSize:HomePageImageSize.SpecialistClinicimage3
-            })
-          break;
-      }
-    })
-  }
 
-  Get_WebsiteImageByLocationEnum(val) {
-    let dataobj = {
-    };
-    this._apiservice.Get_WebsiteImageByLocationEnum(dataobj, val).subscribe(data => {
-      if (data) {
-        this.getImageValue = '';
-        if (data.image != undefined && data.image.data != undefined) {
-          this.getImageValue = this.arrayBufferToBase64(data.image.data.data);//need to update data in base 64
-        }
 
-      }
-    }, error => {
-      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
-    });
-  }
+  // Get_WebsiteImageByLocationEnum(val) {
+  //   let dataobj = {
+  //   };
+  //   this._apiservice.Get_WebsiteImageByLocationEnum(dataobj, val).subscribe(data => {
+  //     if (data) {
+  //       this.getImageValue = '';
+  //       if (data.image != undefined && data.image.data != undefined) {
+  //         this.getImageValue = this.arrayBufferToBase64(data.image.data.data);//need to update data in base 64
+  //       }
+
+  //     }
+  //   }, error => {
+  //     this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+  //   });
+  // }
 
 }
 

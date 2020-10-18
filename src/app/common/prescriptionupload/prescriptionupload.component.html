@@ -1,5 +1,5 @@
 
-      <form [formGroup]="uploadImageForm" (ngSubmit)="SaveUpdate_UploadWebsiteImages()"  enctype="multipart/form-data">
+      <form [formGroup]="prescriptionUploadForm" (ngSubmit)="Save_UploadPrescriptionForMedicineApproval()"  enctype="multipart/form-data">
 
         <ad-modal [title]="'OTP'" [modalId]="'showSPrescriptionUploadPopup'">
           <ad-modal-body>
@@ -22,36 +22,34 @@
                               </div>
                             </div>
                             <div class="card-body p-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ImageChangeFor</label>
-                                <select class="form-control" formControlName="imageChangeForID">
-                                    <option value=""></option>
-                                    <option *ngFor="let opt of imageForDataArray" [value]="opt.id">{{opt.name}}</option>
-                              </select>
-                              </div>
+                                <img *ngIf="getMedicineImageValue==''" class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png"
+                                        alt="passwordsetImg">
+                                    <img class="otpPopup-img" [src]="getMedicineImageValue" alt="passwordsetImg" style="border-radius: 10%;width: 45%;">
                             </div>
                             <div class="card-body p-3" style="background-color:#eaf1f380">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Medicine Name:- &nbsp;</label>
-                                <input type="text" disabled [(ngModel)]="medicineData.medicineName">
+                                <input type="text" disabled formControlName="medicineName">
+                                <label for="exampleFormControlSelect1">Company:- &nbsp;</label>
+                                  <input type="text" disabled formControlName="companyName"><br>
+                                  <label for="exampleFormControlSelect1">Price:- &nbsp;</label>
+                                  <input type="text" disabled formControlName="price">
                               </div>
                             </div>
-                            <div class="card-body p-3" style="background-color:#eaf1f380">
-                                <div class="form-group">
-                                  <label for="exampleFormControlSelect1">Medicine Company:- &nbsp;</label>
-                                  <input type="text" disabled [(ngModel)]="medicineData.companyName">
-                                </div>
-                              </div>
                               <div class="card-body p-3" style="background-color:#eaf1f380">
                                 <div class="form-group">
-                                  <label for="exampleFormControlSelect1">Medicine Price:- &nbsp;</label>
-                                  <input type="text" disabled [(ngModel)]="medicineData.price">
+                                  <label for="exampleFormControlSelect1">Patient Name:- &nbsp;</label>
+                                  <input type="text" disabled formControlName="patientNname">
+                                  <label for="exampleFormControlSelect1">Patient Email:- &nbsp;</label>
+                                  <input type="text" disabled formControlName="patientEmail">
+                                  <label for="exampleFormControlSelect1">Age:- &nbsp;</label>
+                                  <input type="text" disabled formControlName="patientAge">
                                 </div>
                               </div>
                           </div>
                       </div>
                       <div class="col-md-4">
-                         <img *ngIf="getImageValue==''" class="otpPopup-img" src="../../../../assets/images/passwordsetImg.png" alt="passwordsetImg">
+                        <img *ngIf="getImageValue==''" class="otpPopup-img" src="https://images.template.net/wp-content/uploads/2018/11/Medical-Prescription-Format.jpg" alt="passwordsetImg">
                         <img  class="otpPopup-img" [src]="getImageValue" alt="passwordsetImg"  style="border-radius: 10%;">
                         <div class="form-group">
                           <div class="input-group mb-2">

@@ -479,8 +479,16 @@ export class APIService {
   
 
 
-  Get_UploadPrescriptionForMedicineApprovalsList(params) {
-    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadPrescriptionForMedicineApprovalsList}`
+  Get_UploadPrescriptionForMedicineApprovalsList(params, patientID?) {
+
+    let APIURL;
+    if (patientID) {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadPrescriptionForMedicineApprovalsList + '/' + patientID}`
+    }
+    else {
+      APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Get_UploadPrescriptionForMedicineApprovalsList}`
+    }
+
     return this.http.get<any>(APIURL, { params: params })
       .pipe(map(resdata => {
         if (resdata) {
@@ -594,6 +602,14 @@ export class APIService {
   }
 
   
+  Save_UploadPrescriptionForMedicineApproval(data) {
+    let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_UploadPrescriptionForMedicineApproval}`
+    return this.http.post<any>(APIURL, data)
+      .pipe(map(userData => {
+        return userData;
+      }));
+  } 
+
   Save_ApproveMedicineReqUsingPrescription(data) {
     let APIURL = `${API_PATH.Commaon_Path + API_PATH.API_VERSION_V1 + API_PATH.Save_ApproveMedicineReqUsingPrescription}`
     return this.http.post<any>(APIURL, data)

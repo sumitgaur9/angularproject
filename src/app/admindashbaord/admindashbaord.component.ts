@@ -12,7 +12,7 @@ declare var $: any;
 export class AdmindashbaordComponent implements OnInit {
 
   public currentUser;
-  uploadPrescriptiondata;
+  uploadPrescriptiondata=[];
   requestId='';
   public showConfirmationPopup:boolean =false;
   public showData='Do you really want to APPROVE this Medicine Requeest.';
@@ -31,7 +31,7 @@ export class AdmindashbaordComponent implements OnInit {
     this._apiservice.Get_UploadPrescriptionForMedicineApprovalsList(dataobj).subscribe(data => {
       if (data) {
         this.uploadPrescriptiondata = data;
-        console.log("  this.uploadPrescriptiondata  this.uploadPrescriptiondata", this.uploadPrescriptiondata)
+        console.log("  this.uploadPrescriptiondata.....", this.uploadPrescriptiondata)
 
       }
     }, error => {
@@ -54,9 +54,9 @@ export class AdmindashbaordComponent implements OnInit {
     });
   }
 
-  openAttendancePopup(data) {
+  openConfirmationPopup(data) {
     this.requestId = data._id;
-    this.showData = "Are you sure, you want to approve request for " + data.medicineName + "manufactured by " +data.companyName +"?"
+    this.showData = "Are you sure, you want to approve request for " + data.medicineName +" ?"
     this.showConfirmationPopup = true;
     setTimeout(() => {
       $(window).scrollTop(0);

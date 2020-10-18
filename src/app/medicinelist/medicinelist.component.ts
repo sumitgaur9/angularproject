@@ -9,6 +9,7 @@ import { UtililtyFunctions } from 'src/app/utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/service/api.service';
 import { defaultImage } from '../shared/api.constant';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 declare var $: any;
 
@@ -23,10 +24,12 @@ export class MedicinelistComponent implements OnInit {
   public showPrescriptionUploadformpopup = false;
   public errorMessage: string = '';
   public medicineListDataArray: any = [];
+  public MedicineApprovedData = [];
   public currentUser;
   public getmedicineprofileid: string = '';
   public companyArrayData:any=[];
   public medicineData;
+  public isMedicineApprroved:boolean=false
   
   showConfirmationPopup = false;
   public showData = 'Do you really want to delete these records? This process cannot be undone.';
@@ -37,8 +40,8 @@ export class MedicinelistComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(window.sessionStorage.getItem("userToken"));
-    this.Get_MedicinesList();
     this.Get_CompanyList();
+    this.Get_UploadPrescriptionForMedicineApprovalsList();
   }
 
   public closeMedicineProfilePopup(calllistapi) {
@@ -49,7 +52,8 @@ export class MedicinelistComponent implements OnInit {
     }
   }
 
-  closePrescriptionUploadPopup(){
+  async closePrescriptionUploadPopup(){
+    await this.Get_UploadPrescriptionForMedicineApprovalsList();
     this.showPrescriptionUploadformpopup = false;
     $('#showSPrescriptionUploadPopup').modal('hide');  
 
@@ -81,7 +85,19 @@ export class MedicinelistComponent implements OnInit {
         this.medicineListDataArray = data;
         this.medicineListDataArray.forEach(element => {
           element.isAddedInCart=false;
+          element['isPrescriptionRequestApproved'] = false;
+          element['RequestDate'] = '';         
+
+          let medicineApprrovalData = this.MedicineApprovedData.filter(function (item) {
+            return (item.medicineID==element._id)
+          });
+          if (medicineApprrovalData && medicineApprrovalData.length) {
+            element['isPrescriptionRequestApproved'] = medicineApprrovalData[0].isPrescriptionRequestApproved;
+            element['RequestDate'] = medicineApprrovalData[0].RequestDate;
+          }
+          
         });
+        
         this.checkDataInSessionStorageOnInit();   //this  function call  is here because need to update add basket text
         console.log("medicineListDataArray ", data);
       }
@@ -128,17 +144,24 @@ export class MedicinelistComponent implements OnInit {
 
 
   addToCart(medicineInfo) {
-    if (medicineInfo.isPrescriptionRequired) {
+    if (medicineInfo.isPrescriptionRequired && medicineInfo.RequestDate=='' && !medicineInfo.isPrescriptionRequestApproved ) {
       this.toastr.warning("You need to upload your doctor prescription to order this medicine", '', {
         timeOut: 8000,
       });
       this.medicineData = medicineInfo;
-      this.showPrescriptionUploadformpopup = true;
+      setTimeout(() => {
+        this.showPrescriptionUploadformpopup = true;
+      }, 1000);
       setTimeout(() => {
         $(window).scrollTop(0);
         $('#showSPrescriptionUploadPopup').modal('show');
       }, 100);
-    } else {
+    } else if(medicineInfo.RequestDate!=''){
+      this.toastr.warning("Wait Until you get approval for your request", '', {
+        timeOut: 8000,
+      });
+      return;
+    }else {
       let dataobj: any = {};
       dataobj.itemID = medicineInfo._id;
       dataobj.itemName = medicineInfo.medicineName;
@@ -195,6 +218,21 @@ export class MedicinelistComponent implements OnInit {
       if (data) {
         console.log("Get_CompanyListGet_CompanyList", data);
         this.companyArrayData =data;
+      }
+    }, error => {
+      this.errorMessage = error.error.message; this.toastr.error(error.error.message);
+    });
+  }
+
+  Get_UploadPrescriptionForMedicineApprovalsList() {
+    let dataobj = {
+    };
+    let patientID = this.currentUser.roleBaseId;
+    this._apiservice.Get_UploadPrescriptionForMedicineApprovalsList(dataobj,patientID).subscribe(data => {
+      if (data) {
+        console.log("Get_UploadPrescriptionForMedicineApprovalsList", data);
+        this.MedicineApprovedData =data;
+        this.Get_MedicinesList();
       }
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
