@@ -73,6 +73,7 @@
           </div>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
           <div class="card flex-fill w-100">
@@ -129,6 +130,7 @@
           </div>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
           <div class="card flex-fill">
@@ -213,21 +215,26 @@
                 </td>
                
                 <td *ngIf="data.isPharmacyRequested">
-                  <popover-content #latestmedicnedeliverpopover title="Latest Medicine Info" placement="right" [animation]="true"
+                  <popover-content #latestmedicnedeliverpopover title="Latest Medicine Info" placement="left" [animation]="true"
                     [closeOnClickOutside]="true" popoverSize="large">
-                    <div *ngFor="let dataObj of data.latestMedicineDeliverInfo">
-                      <div *ngIf="dataObj.medicineName!=''" style="float:left;width:100%">
+                      <div  style="float:left;width:100%" *ngFor="let dataObj of data.latestMedicineDeliverInfo; let odd=odd; let even=even;" [ngClass]="{ odd: odd, even: even }">
                         <div style="float:left;width:30%">
                           <b style="display: block;">{{dataObj.medicineName}}</b>
                         </div>
-                        <div style="float:left;width:33%">
+                        <div style="float:left;width:16%">
                           <b style="display: block;">{{dataObj.medicineScheduleDate}}</b>
                         </div>
-                        <div style="float:left;width:27%">
+                        <div style="float:left;width:16%">
+                          <b style="display: block;">{{dataObj.medicineScheduleTime}}</b>
+                        </div>
+                        
+                        <div style="float:left;width:24%">
                           <b style="display: block;">{{dataObj.processInfo}}</b>
                         </div>
                       </div>
-                  </div>                    
+                 
+                  <div style="color:#85e0ce;">--------------------------------------------------------------------------------------</div>
+                    
                   </popover-content>
                   <button  style="margin-left: 17%;" [popoverOnHover]="false" [popover]="latestmedicnedeliverpopover"><i style="color: #3eb49b;font-size: 20px;" class="fa fa-info-circle"></i></button>
                 </td>
@@ -250,6 +257,7 @@
           </div>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
           <div class="card flex-fill">

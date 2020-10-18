@@ -264,6 +264,9 @@ export class DoctordashboardComponent implements OnInit {
             for (var j = 0; j < templatestMedicineRequestInfo[0].medicinesData.length; j++) {
               let latestMediineDeliverObj: any = {};
               let tempMedicineName: any = [];
+              latestMediineDeliverObj.medicineScheduleTime =this.getTimeSlotAmPm(templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleTime); 
+
+            // latestMediineDeliverObj.medicineScheduleTime = templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleTime;
               latestMediineDeliverObj.medicineScheduleDate = templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate;
               latestMediineDeliverObj.processInfo = templatestMedicineRequestInfo[0].medicinesData[j].processInfo;//'After Lunch';
               for (var k = 0; k < templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
@@ -475,6 +478,21 @@ export class DoctordashboardComponent implements OnInit {
       this.usersParams.sortDir = "desc";
     }
     this.Get_AppointmentsByDocID();
+  }
+
+  getTimeSlotAmPm(sheduledTime)
+  {
+    let splitbycolon=sheduledTime.split(':');
+  //  let getHours=sheduledTime.substring(0, 2);
+   if(splitbycolon[0]<=12)
+   {
+     return sheduledTime +'AM'
+   }
+   else{
+     let getTime=parseInt(splitbycolon[0])-12;
+     let finalTime=getTime.toString() +':'+splitbycolon[1]+':'+splitbycolon[2] +'PM'
+      return finalTime
+   }
   }
 
 }
