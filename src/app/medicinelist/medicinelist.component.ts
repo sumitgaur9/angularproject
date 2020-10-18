@@ -91,6 +91,7 @@ export class MedicinelistComponent implements OnInit {
           let medicineApprrovalData = this.MedicineApprovedData.filter(function (item) {
             return (item.medicineID==element._id)
           });
+          console.log("medicineApprrovalData.......",medicineApprrovalData);
           if (medicineApprrovalData && medicineApprrovalData.length) {
             element['isPrescriptionRequestApproved'] = medicineApprrovalData[0].isPrescriptionRequestApproved;
             element['RequestDate'] = medicineApprrovalData[0].RequestDate;
@@ -156,7 +157,7 @@ export class MedicinelistComponent implements OnInit {
         $(window).scrollTop(0);
         $('#showSPrescriptionUploadPopup').modal('show');
       }, 100);
-    } else if(medicineInfo.RequestDate!=''){
+    } else if(!medicineInfo.isPrescriptionRequestApproved && medicineInfo.RequestDate!=''){
       this.toastr.warning("Wait Until you get approval for your request", '', {
         timeOut: 8000,
       });
