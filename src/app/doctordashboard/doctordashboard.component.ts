@@ -124,7 +124,7 @@ export class DoctordashboardComponent implements OnInit {
     $('#showRequestPatMedHomeDeliveryModal').modal('hide');
     if(calllistapi)
     {
-      this.Get_AppointmentsByDocID();
+      this.Get_PatientMedicinesHomeDelivery();//indise this we already call Get_AppointmentsByDocID api
     }
   }
 

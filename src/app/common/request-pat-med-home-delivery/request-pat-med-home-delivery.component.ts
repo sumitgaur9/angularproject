@@ -72,7 +72,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   settings = {};
   public labtestListDataArray: any = [];
   selectedLabTestItems = [];
-  settingsLabTest= {};
+  settingsLabTest = {};
   public reqPatientMedicinesHomeDeliveryForm = new FormGroup({
     patientName: new FormControl("", Validators.required),
     patientContactNo: new FormControl("", Validators.required),
@@ -85,22 +85,22 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     processInfo: new FormControl(""),
     medicineName: new FormControl([[]]),
     LabTestName: new FormControl([[]]),
-    isNextVisitRequired:  new FormControl(false),
+    isNextVisitRequired: new FormControl(false),
     nextAppointmentDate: new FormControl(""),
     nextAppointmentTime: new FormControl(""),
   });
   public passwordPatternError = false;
   public pharmacistListDataArray: any = [];
-  public getmedicineprofileid:string='';
-  public showMedicineprofileformpopup:boolean=false;
+  public getmedicineprofileid: string = '';
+  public showMedicineprofileformpopup: boolean = false;
   public currentUser;
-  public filterTimeSlotDataArray:any=[];
-  public doctorWiseAppointmentData:any=[];
-  public completeTimeSlotDataArray:any=[]; 
-  public patientMedicinesHomeDeliveryList:any=[];
-  public repeatedMedicineData:any=[];
-  public visibleTimeSlot:boolean = false;
-  public disableAvailableTimeSlotBtn:boolean=true;
+  public filterTimeSlotDataArray: any = [];
+  public doctorWiseAppointmentData: any = [];
+  public completeTimeSlotDataArray: any = [];
+  public patientMedicinesHomeDeliveryList: any = [];
+  public repeatedMedicineData: any = [];
+  public visibleTimeSlot: boolean = false;
+  public disableAvailableTimeSlotBtn: boolean = true;
 
 
   constructor(private router: Router, private toastr: ToastrService, private _apiservice: APIService, private utilityservice: UtililtyFunctions) { }
@@ -170,7 +170,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     let nextAppointmentData: any = {};
     let tempObj: any = {};
     let medicinesData: any = [];
-    let compDataObj:any={};
+    let compDataObj: any = {};
 
     PatientMedicinesForHomeDelivery.patientName = this.reqPatientMedicinesHomeDeliveryForm.controls.patientName.value;
     PatientMedicinesForHomeDelivery.appointmentID = this.appointmentid;
@@ -184,7 +184,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     PatientMedicinesForHomeDelivery.patientAddress = this.reqPatientMedicinesHomeDeliveryForm.controls.patientAddress.value;
     PatientMedicinesForHomeDelivery.patientContactNo = this.reqPatientMedicinesHomeDeliveryForm.controls.patientContactNo.value;
     PatientMedicinesForHomeDelivery.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
-    let labtestdataarray=[];    
+    let labtestdataarray = [];
     this.selectedLabTestItems.forEach(element => {
       let dataobjec = {
         testID: element.id,
@@ -192,7 +192,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
       }
       labtestdataarray.push(dataobjec);
     });
-    PatientMedicinesForHomeDelivery.testsData =  labtestdataarray;
+    PatientMedicinesForHomeDelivery.testsData = labtestdataarray;
 
     for (var i = 0; i < this.sheduleMedicineTableData.length; i++) {
       let tempObj: any = {};
@@ -215,11 +215,11 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     }
     PatientMedicinesForHomeDelivery.medicinesData = medicinesData;
     PatientMedicinesForHomeDelivery.patientPIN = this.reqPatientMedicinesHomeDeliveryForm.controls.patientPIN.value;
-    compDataObj.PatientMedicinesForHomeDelivery=PatientMedicinesForHomeDelivery;
+    compDataObj.PatientMedicinesForHomeDelivery = PatientMedicinesForHomeDelivery;
     nextAppointmentData.isNextVisitRequired = this.reqPatientMedicinesHomeDeliveryForm.controls.isNextVisitRequired.value;
-    nextAppointmentData.nextAppointmentDate =this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
+    nextAppointmentData.nextAppointmentDate = this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
     nextAppointmentData.nextAppointmentTime = this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentTime.value;
-    compDataObj.nextAppointmentData=nextAppointmentData;
+    compDataObj.nextAppointmentData = nextAppointmentData;
     this._apiservice.Request_PatientMedicinesHomeDelivery(compDataObj).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data.data);
@@ -255,7 +255,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this._apiservice.Get_MedicinesList(dataobj, companyName).subscribe(data => {
       if (data) {
         console.log("medicineListDataArray ", data);
-        this.medicineListDataArray=[];
+        this.medicineListDataArray = [];
         for (var i = 0; i < data.length; i++) {
           let dataobj1 = {
             "id": data[i]._id,
@@ -275,7 +275,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     this._apiservice.Get_LabTestsList(dataobj).subscribe(data => {
       if (data) {
         console.log("labtestListDataArray ", data);
-        this.labtestListDataArray=[];
+        this.labtestListDataArray = [];
         for (var i = 0; i < data.length; i++) {
           let dataobj1 = {
             "id": data[i]._id,
@@ -285,7 +285,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
         }
       }
     }, error => {
-      this.errorMessage = error.error.message; 
+      this.errorMessage = error.error.message;
       this.toastr.error(error.error.message);
     });
   }
@@ -385,25 +385,24 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   }
 
   Get_SlotData() {
-    let dataobj={
-      doctorID:this.reqByDoctorId,
-      appointmentDate:this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value),
+    let dataobj = {
+      doctorID: this.reqByDoctorId,
+      appointmentDate: this.utilityservice.ToDBDateFormat(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value),
     }
     this._apiservice.Get_AppointmentsByDocID(dataobj).subscribe(data => {
       if (data) {
         this.resetSlotData();
-        if(data.length>0)
-        {
-          this.filterTimeSlotDataArray=[];
+        if (data.length > 0) {
+          this.filterTimeSlotDataArray = [];
           this.doctorWiseAppointmentData = data.filter(function (item) {
             return item.isVisitCompleted == false;
           });
           for (var i = 0; i < this.completeTimeSlotDataArray.length; i++) {
-            var ispush=true;
-            
+            var ispush = true;
+
             for (var j = 0; j < this.doctorWiseAppointmentData.length; j++) {
               if (this.completeTimeSlotDataArray[i].id == this.doctorWiseAppointmentData[j].timeSlot) {
-                ispush=false;
+                ispush = false;
                 break;
               }
             }
@@ -415,12 +414,12 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
             this.filterTimeSlotDataArray.push(this.completeTimeSlotDataArray[i])
           }
         }
-        else{
-          this.filterTimeSlotDataArray =this.completeTimeSlotDataArray;
+        else {
+          this.filterTimeSlotDataArray = this.completeTimeSlotDataArray;
         }
         this.visibleTimeSlot = true;
       }
-     
+
     }, error => {
       this.errorMessage = error.error.message; this.toastr.error(error.error.message);
     });
@@ -430,7 +429,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     let dataobj = {}
     this._apiservice.Get_PatientMedicinesHomeDelivery(dataobj).subscribe(data => {
       if (data) {
-        this.patientMedicinesHomeDeliveryList=data;
+        this.patientMedicinesHomeDeliveryList = data;
 
       }
     }, error => {
@@ -438,37 +437,35 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
     });
   }
 
-  getRepeatedMedicineData()
-  {
-    let tempReqPatMedDelAppointmentDateIdArray:any=[];
-    this.repeatedMedicineData=[];
-    let self=this;
+  getRepeatedMedicineData() {
+    let tempReqPatMedDelAppointmentDateIdArray: any = [];
+    this.repeatedMedicineData = [];
+    let self = this;
     let patientMedicinesHomeDeliveryInfo = this.patientMedicinesHomeDeliveryList.filter(function (item) {
-      return (item.doctorID==self.reqByDoctorId && item.patientID==self.reqByPatientId)
+      return (item.doctorID == self.reqByDoctorId && item.patientID == self.reqByPatientId)
     });
 
     for (var i = 0; i < patientMedicinesHomeDeliveryInfo.length; i++) {
-      if(patientMedicinesHomeDeliveryInfo[i].appointmentDate!=undefined && patientMedicinesHomeDeliveryInfo[i].appointmentDate!=null && patientMedicinesHomeDeliveryInfo[i].appointmentDate!='')
-      {
-        let tempReqPatMedApptIdDateObj:any={};
-        tempReqPatMedApptIdDateObj.appointmentId=patientMedicinesHomeDeliveryInfo[i].appointmentID;
-        tempReqPatMedApptIdDateObj.appointmentDate=this.utilityservice.ToDisplayDateFormat(patientMedicinesHomeDeliveryInfo[i].appointmentDate);
+      if (patientMedicinesHomeDeliveryInfo[i].appointmentDate != undefined && patientMedicinesHomeDeliveryInfo[i].appointmentDate != null && patientMedicinesHomeDeliveryInfo[i].appointmentDate != '') {
+        let tempReqPatMedApptIdDateObj: any = {};
+        tempReqPatMedApptIdDateObj.appointmentId = patientMedicinesHomeDeliveryInfo[i].appointmentID;
+        tempReqPatMedApptIdDateObj.appointmentDate = this.utilityservice.ToDisplayDateFormat(patientMedicinesHomeDeliveryInfo[i].appointmentDate);
         tempReqPatMedDelAppointmentDateIdArray.push(tempReqPatMedApptIdDateObj);
       }
     }
-    if(tempReqPatMedDelAppointmentDateIdArray && tempReqPatMedDelAppointmentDateIdArray.length>0)
-    {
-      let maximumDateAndApptId=  this.getMaxDate(tempReqPatMedDelAppointmentDateIdArray);
-      console.log("maximumDateAndApptId",maximumDateAndApptId);
+    if (tempReqPatMedDelAppointmentDateIdArray && tempReqPatMedDelAppointmentDateIdArray.length > 0) {
+      let maximumDateAndApptId = this.getMaxDate(tempReqPatMedDelAppointmentDateIdArray);
+      console.log("maximumDateAndApptId", maximumDateAndApptId);
       let templatestMedicineRequestInfo = patientMedicinesHomeDeliveryInfo.filter(function (item) {
-        return (item.appointmentID==maximumDateAndApptId.apptId)
+        return (item.appointmentID == maximumDateAndApptId.apptId)
       });
       for (var j = 0; j < templatestMedicineRequestInfo[0].medicinesData.length; j++) {
         let latestMediineDeliverObj: any = {};
         let tempMedicineName: any = [];
-        let tempMedicineID:any=[];
+        let tempMedicineID: any = [];
         latestMediineDeliverObj.medicineScheduleTime = templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleTime;
-        latestMediineDeliverObj.medicneScheduleDate = this.utilityservice.ToDisplayDateFormat(new Date(this.utilityservice.ToDBDateFormat(templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate)).setDate(new Date().getDate() + 7));
+        let dayDifference = this.getDateDayDifference(new Date(this.utilityservice.ToDBDateFormat(templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate)));
+        latestMediineDeliverObj.medicneScheduleDate = this.utilityservice.ToDisplayDateFormat(new Date(this.utilityservice.ToDBDateFormat(templatestMedicineRequestInfo[0].medicinesData[j].medicineScheduleDate)).setDate(new Date().getDate() + dayDifference));
         latestMediineDeliverObj.processInfo = templatestMedicineRequestInfo[0].medicinesData[j].processInfo;//'After Lunch';
         for (var k = 0; k < templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot.length; k++) {
           tempMedicineName.push(templatestMedicineRequestInfo[0].medicinesData[j].medicinesdataArrayForFixTimeSlot[k].medicineName)
@@ -483,51 +480,58 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
   }
 
 
-  getMaxDate(tempReqPatMedDelAppointmentDateIdArray)
-  {
-    let maxdateAndApptId:any={};
-        if(tempReqPatMedDelAppointmentDateIdArray.length>0)
-    {
-      maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[0].appointmentDate;
-      maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[0].appointmentId
+  getDateDayDifference(medicinesheduledate) {
+
+    var date2 = new Date();
+    var date1 = medicinesheduledate;
+
+
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
+    //alert(diffDays)​;
+  }
+
+  getMaxDate(tempReqPatMedDelAppointmentDateIdArray) {
+    let maxdateAndApptId: any = {};
+    if (tempReqPatMedDelAppointmentDateIdArray.length > 0) {
+      maxdateAndApptId.maxDate = tempReqPatMedDelAppointmentDateIdArray[0].appointmentDate;
+      maxdateAndApptId.apptId = tempReqPatMedDelAppointmentDateIdArray[0].appointmentId
     }
-    for(var i=0;i<tempReqPatMedDelAppointmentDateIdArray.length;i++)
-    {
-      if(maxdateAndApptId.maxDate<tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate)
-      {
-        maxdateAndApptId.maxDate=tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate;
-        maxdateAndApptId.apptId=tempReqPatMedDelAppointmentDateIdArray[i].appointmentId
+    for (var i = 0; i < tempReqPatMedDelAppointmentDateIdArray.length; i++) {
+      if (maxdateAndApptId.maxDate < tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate) {
+        maxdateAndApptId.maxDate = tempReqPatMedDelAppointmentDateIdArray[i].appointmentDate;
+        maxdateAndApptId.apptId = tempReqPatMedDelAppointmentDateIdArray[i].appointmentId
       }
 
     }
-   return  maxdateAndApptId;
+    return maxdateAndApptId;
   }
 
 
-  resetSlotData(){
+  resetSlotData() {
     this.completeTimeSlotDataArray = [
-      { "id": 0,"name":"10:00 AM - 11:00 AM", "isSlotBooked": false },
-      { "id": 1,"name":"11:00 AM - 12:00 PM", "isSlotBooked": false },
-      { "id": 2,"name":"12:00 PM - 01:00PM", "isSlotBooked": false },
-      { "id": 3,"name":"01:00 PM - 02:00PM", "isSlotBooked": false },
-      { "id": 4,"name":"02:00 PM - 03:00PM", "isSlotBooked": false },
-      { "id": 5,"name":"03:00 PM - 04:00PM", "isSlotBooked": false },
-      { "id": 6,"name":"04:00 PM - 05:00PM", "isSlotBooked": false },
-      { "id": 7,"name":"05:00 PM - 06:00PM", "isSlotBooked": false },
-    ]    
+      { "id": 0, "name": "10:00 AM - 11:00 AM", "isSlotBooked": false },
+      { "id": 1, "name": "11:00 AM - 12:00 PM", "isSlotBooked": false },
+      { "id": 2, "name": "12:00 PM - 01:00PM", "isSlotBooked": false },
+      { "id": 3, "name": "01:00 PM - 02:00PM", "isSlotBooked": false },
+      { "id": 4, "name": "02:00 PM - 03:00PM", "isSlotBooked": false },
+      { "id": 5, "name": "03:00 PM - 04:00PM", "isSlotBooked": false },
+      { "id": 6, "name": "04:00 PM - 05:00PM", "isSlotBooked": false },
+      { "id": 7, "name": "05:00 PM - 06:00PM", "isSlotBooked": false },
+    ]
   }
 
-  datechange(){
+  datechange() {
     console.log(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
     console.log(this.reqPatientMedicinesHomeDeliveryForm.controls.nextAppointmentDate.value);
-    this.disableAvailableTimeSlotBtn= false;
-    this.visibleTimeSlot= false;
+    this.disableAvailableTimeSlotBtn = false;
+    this.visibleTimeSlot = false;
   }
 
-  isNextVisitRequiredChangeEvent(event)
-  {
-    this.disableAvailableTimeSlotBtn= true;
-    this.visibleTimeSlot= false;
+  isNextVisitRequiredChangeEvent(event) {
+    this.disableAvailableTimeSlotBtn = true;
+    this.visibleTimeSlot = false;
   }
 
   selectEventInstruction(item) {
@@ -562,7 +566,7 @@ export class RequestPatMedHomeDeliveryComponent implements OnInit {
 
   public openMedicineProfilePopup(id?) {
     if (id == undefined || id == null || id == '') {
-      this.getmedicineprofileid ='';
+      this.getmedicineprofileid = '';
     }
     this.showMedicineprofileformpopup = true;
     setTimeout(() => {
