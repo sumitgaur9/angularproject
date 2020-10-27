@@ -19,6 +19,7 @@ export class MessagingService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
+        sessionStorage.setItem("currentUserFirebaseToken", JSON.stringify(token));    
         console.log(token);
       },
       (err) => {

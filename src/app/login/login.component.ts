@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
     this.errorMessage = "";
     let values = this.loginInfo.value;
     values.email = values.email.toLowerCase();
+    values.firebaseNotificationToken = JSON.parse(window.sessionStorage.getItem("currentUserFirebaseToken"));
     this._apiservice.signIn(values).subscribe(data => {
       if (data) {
         console.log("loginUserResponseData..", data);
